@@ -1,4 +1,5 @@
-br/senac/pi4/ProjetoIntegrador/Classes/Produto.class
-br/senac/pi4/ProjetoIntegrador/ServletInitializer.class
-br/senac/pi4/ProjetoIntegrador/Controller/ProjetoController.class
-br/senac/pi4/ProjetoIntegrador/ProjetoIntegradorApplication.class
+br\senac\pi4\ProjetoIntegrador\Classes\Produto.class
+br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
+br\senac\pi4\ProjetoIntegrador\Controller\ClientSideController.class
+br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class
+br\senac\pi4\ProjetoIntegrador\Controller\BackOfficeController.class

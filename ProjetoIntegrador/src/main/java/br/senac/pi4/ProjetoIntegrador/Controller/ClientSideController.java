@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-public class ProjetoController {
+public class ClientSideController {
     
     @RequestMapping("/")
     public String home() {
