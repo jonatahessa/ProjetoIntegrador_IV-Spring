@@ -19,4 +19,14 @@ public class ClientSideController {
     public String home() {
         return "clientside/home";
     }
+    
+    @RequestMapping("/descricao")
+    public String produtos() {
+        return "clientside/descricao";
+    }
+    
+    @RequestMapping("/carrinho")
+    public String carrinho() {
+        return "clientside/carrinho";
+    }
 }
