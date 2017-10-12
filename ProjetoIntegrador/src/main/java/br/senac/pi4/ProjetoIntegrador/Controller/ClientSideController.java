@@ -29,4 +29,15 @@ public class ClientSideController {
     public String carrinho() {
         return "clientside/carrinho";
     }
+    
+    @RequestMapping("/perfil")
+    public String perfil() {
+        return "clientside/clientePerfil";
+    }
+    
+    @RequestMapping("/cadastroC")
+    public String cadastroC() {
+        return "clientside/clienteCadastro";
+    }
+    
 }
