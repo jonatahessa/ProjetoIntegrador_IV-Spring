@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Produtos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -12,48 +12,49 @@
         <link th:href="@{/css/estiloBackofficeProduto.css}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-      <section class="container-fluid">
-        <div class="row">
-        <div class="nav-side-menu col-md-3 col-lg-3">
-    <div class="brand">Loop4$ V1d4 L0k4</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-        <div class="menu-list">
-
-            <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                  <a href="#"><i class="fa fa-dashboard fa-lg"></i> Produtos</a>
-                </li>
-
-                <li>
-                  <a href="#"><i class="fa fa-dashboard fa-lg"></i> Pedidos</a>
-                </li>
-
-                <li>
-                  <a href="#"><i class="fa fa-dashboard fa-lg"></i> Clientes</a>
-                </li>
-
-                <li>
-                  <a href="#"><i class="fa fa-dashboard fa-lg"></i> Relatórios</a>
-                </li>
-            </ul>
-     </div>
-     </div>
-</div>
-
-      </section>
-
-        <section id="sessao-produtos" class="container-fluid">
+        <section id="menu" class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h1 class="text-center">Produto</h1>
+                <div class="nav-side-menu col-md-3 col-lg-3">
+                    <div class="brand">Loop4$ V1d4 L0k4</div>
+                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                    <div class="menu-list">
+
+                        <ul id="menu-content" class="menu-content collapse out">
+                            <li>
+                                <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> Produtos</a>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Pedidos</a>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Clientes</a>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Relatórios</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="div-barra-pesquisa" class="col-xs-10 col-sm-10 col-md-6 col-lg-5">
-                    <div id="barra-pesquisa" class="input-group">
-                        <input type="text" class="form-control" placeholder="Pesquisar produto...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        </span>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="row">
+                <div id="campo-busca" class="col-md-6">
+                    <h2 class="text-center"><strong>Produtos</strong></h2>
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
