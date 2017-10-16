@@ -40,4 +40,8 @@ public class ClientSideController {
         return "clientside/clienteCadastro";
     }
     
+    @RequestMapping("/clientePedidos")
+    public String clientePedidos() {
+        return "clientside/clientePedidos";
+    }
 }
