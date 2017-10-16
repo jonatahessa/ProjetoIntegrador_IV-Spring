@@ -119,7 +119,7 @@ html, body {
   transition: all 1s ease;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .nav-side-menu {
     position: relative;
     width: 100%;
@@ -148,7 +148,7 @@ html, body {
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: 1024px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }

@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author joliveira
  */
-
 @Controller
 public class BackOfficeController {
-    
+
     @RequestMapping("/backoffice/produto")
     public String produto() {
         return "backoffice/produto";
