@@ -30,8 +30,18 @@ public class ClientSideController {
         return "clientside/carrinho";
     }
     
-    @RequestMapping("/cadastroCliente")
-    public String cadastroCliente() {
+    @RequestMapping("/perfil")
+    public String perfil() {
+        return "clientside/clientePerfil";
+    }
+    
+    @RequestMapping("/cadastroC")
+    public String cadastroC() {
         return "clientside/clienteCadastro";
+    }
+    
+    @RequestMapping("/clientePedidos")
+    public String clientePedidos() {
+        return "clientside/clientePedidos";
     }
 }
