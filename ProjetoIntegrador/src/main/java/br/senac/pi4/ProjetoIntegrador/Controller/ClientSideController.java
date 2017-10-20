@@ -29,4 +29,9 @@ public class ClientSideController {
     public String carrinho() {
         return "clientside/carrinho";
     }
+    
+    @RequestMapping("/cadastroCliente")
+    public String cadastroCliente() {
+        return "clientside/clienteCadastro";
+    }
 }
