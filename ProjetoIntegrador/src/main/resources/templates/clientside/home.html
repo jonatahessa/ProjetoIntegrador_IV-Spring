@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title> Loop4'$ V1d4 Lok4</title>
         <meta charset="utf-8">
@@ -36,26 +36,9 @@
     </head>
     <body>
         <div class="container_p container-fluid">
-            <!-- TITULO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">
-                    <p class="titulo">Loop4`S V1d4 Lok4</p>
-                    <button class="icone_usuario fa fa-user-o"></button>
-                    <a th:href="@{/carrinho}"><button class="icone_carrinho_Topo fa fa-shopping-cart"></button></a>
-                </div>
-            </div>
             <!-- MENU TOPO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
-                    <ol class="breadcrumb text-center">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li><a th:href="@{/}">Produtos</a></li>
-                        <li><a th:href="@{/}">Contato</a></li>
-                        <li><a th:href="@{/}">Contato</a></li>
-                        <li><a th:href="@{/}">Contato</a></li>
-                    </ol>
-                </div>
-            </div>
+            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
+
             <!-- BUSCA -->
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
@@ -526,52 +509,7 @@
                 </div>
             </div>
             <!-- RODAPE -->
-            <div class="row">
-                <div class="container_p col-xs-12 col-sm-12 col-md-12 col-lg-12" id="footer">
-                    <footer id="footer-Section">
-                        <div class="footer-top-layout">
-                            <div class="container">
-                                <div class="row">
-                                    <div class=" col-lg-8 col-lg-offset-2">
-                                        <div class="col-sm-4">
-                                            <div class="footer-col-item">
-                                                <h4>Menu</h4>
-                                                <div class="item-contact"> 
-                                                    <a>Home</a> 
-                                                    <a>Contato</a>
-                                                    <a></a> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="footer-col-item">
-                                                <h4>Formas de pagamento</h4>
-                                                <div class="item-contact"> 
-                                                    <a></a> 
-                                                    <a></a>
-                                                    <a></a> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="footer-col-item">
-                                                <h4>Entre em contato</h4>
-                                                <form class="signUpNewsletter" action="" method="get">
-                                                    <input name="" class="gt-email form-control" placeholder="You@youremail.com" type="text">
-                                                    <input name="" class="btn-go" value="Go" type="button">
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer-bottom-layout">
-                            <div class="copyright-tag">Copyright © 2017 Developed by Enumeration. All Rights Reserved for this company.</div>
-                        </div>
-                    </footer>
-                </div>
-            </div>
+            <div th:include="~{clientside/componentes/menu_rodape :: menu_rodape}"></div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script th:src="@{/Bootstrap/js/bootstrap.js}" type="text/javascript"></script>

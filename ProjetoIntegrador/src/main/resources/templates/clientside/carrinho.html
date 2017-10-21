@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title> Carrinho </title>
         <meta charset="utf-8">
@@ -31,28 +31,10 @@
     </head>
     <body>
         <div class="container-fluid">
-            <!-- TITULO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">    
-                    <p class="titulo">Loop4`S V1d4 Lok4</p>
-                    <button class="icone_usuario fa fa-user-o"></button>
-                    <a th:href="@{/carrinho}"><button class="icone_carrinho_Topo fa fa-shopping-cart"></button></a>
-
-                </div>
-            </div>
-
+            
             <!-- MENU TOPO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
-                    <ol class="breadcrumb text-center">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li>Produtos</li>
-                        <li>Contato</li>
-                        <li>Contato</li>
-                        <li>Contato</li>
-                    </ol>
-                </div>
-            </div>
+            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div> 
+            
             <!-- BUSCA -->
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
@@ -153,6 +135,10 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- RODAPE -->
+            <div th:include="~{clientside/componentes/menu_rodape :: menu_rodape}"></div>
+            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script th:src="@{/Bootstrap/js/bootstrap.js}" type="text/javascript"></script>

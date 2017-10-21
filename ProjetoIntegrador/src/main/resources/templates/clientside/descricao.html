@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title> Descrição Produto</title>
         <meta charset="utf-8">
@@ -27,33 +27,15 @@
         <link th:href="@{/IncornButtons/incornbuttons.css}" rel="stylesheet" type="text/css"/>
         <link th:href="@{/css/carousel_descricao.css}" rel="stylesheet" type="text/css"/>
         <link th:href="@{/css/foorter_descricao.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css"/>
         <link th:href="@{/css/descricao.css}" rel="stylesheet" type="text/css"/>
         <script th:href="@{/css/carousel_descricaoResolucao.js}" type="text/javascript"></script>
     </head>
     <body>
         <div class="container-fluid">
-            <!-- TITULO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">    
-                    <p class="titulo">Loop4`S V1d4 Lok4</p>
-                    <button class="icone_usuario fa fa-user-o"></button>
-                    <a th:href="@{/carrinho}"><button class="icone_carrinho_Topo fa fa-shopping-cart"></button></a>
-
-                </div>
-            </div>
-
             <!-- MENU TOPO -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
-                    <ol class="breadcrumb text-center">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li>Produtos</li>
-                        <li>Contato</li>
-                        <li>Contato</li>
-                        <li>Contato</li>
-                    </ol>
-                </div>
-            </div>
+            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
+
             <!-- BUSCA -->
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
@@ -79,7 +61,7 @@
                                     <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
                                 </a>
                                 <a href="#" class="list-group-item text-center">
-                                    <img class="img-responsive" sth:src="@{/images/oculosTeste.jpg}" />
+                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
                                 </a>
                                 <a href="#" class="list-group-item text-center">
                                     <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
@@ -188,13 +170,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script th:src="@{/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
-        <script th:src="@{/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script th:src="@{/js/carousel_descricao.js" type="text/javascript"></script>
-        <script th:src="@{/js/home.js" type="text/javascript"></script>
+        <script th:src="@{/Bootstrap/js/bootstrap.js}" type="text/javascript"></script>
+        <script th:src="@{/Bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/carousel_descricao.js}" type="text/javascript"></script>
+        <script th:src="@{/js/home.js}" type="text/javascript"></script>
     </body>
 </html>

@@ -1,4 +1,3 @@
-/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -7,3 +6,35 @@ function myFunction() {
         x.className = "topnav";
     }
 }
+
+$(document).ready(function () {
+
+    $('#Meus_DadosB').click(function () {
+        $('#Meus_Dados').css("display", "block");
+        $('#Meus_Pedidos').css("display", "none");
+        $('#Meu_Historico').css("display", "none");
+        $('#Recomendacoes').css("display", "none");
+    });
+
+    $('#Meus_PedidosB').click(function () {
+        $('#Meus_Dados').css("display", "none");
+        $('#Meus_Pedidos').css("display", "block");
+        $('#Meu_Historico').css("display", "none");
+        $('#Recomendacoes').css("display", "none");
+    });
+
+    $('#Meu_HistoricoB').click(function () {
+        $('#Meus_Dados').css("display", "none");
+        $('#Meus_Pedidos').css("display", "none");
+        $('#Meu_Historico').css("display", "block");
+        $('#Recomendacoes').css("display", "none");
+    });
+
+    $('#RecomendacoesB').click(function () {
+        $('#Meus_Dados').css("display", "none");
+        $('#Meus_Pedidos').css("display", "none");
+        $('#Meu_Historico').css("display", "none");
+        $('#Recomendacoes').css("display", "block");
+    });
+
+});

@@ -26,6 +26,21 @@
     background-color: white;
 }
 
+#Meus_Dados{
+    display: none;
+}
+
+#Meus_Pedidos{
+    display: none;
+}
+
+#Meu_Historico{
+    display: none;
+}
+
+#Recomendacoes{
+    display: none;
+}
 
 #Menu_Desktop{
     display: none;
