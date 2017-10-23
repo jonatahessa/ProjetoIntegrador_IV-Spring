@@ -125,3 +125,14 @@
     color: firebrick;
     font-weight: bold;
 }
+
+.botaoC{
+    display: block;
+    margin: auto;
+    width: 80%;
+}
+
+.formulario{
+    display: block;
+    margin: auto;
+}
