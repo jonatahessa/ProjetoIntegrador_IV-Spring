@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class Produto {
 
     private long codigoProduto;
+    private String tituloProduto;
     private int quantEstoqueProduto;
     private int avalicaçãoProduto;
     private String marcaProduto;
@@ -44,6 +45,14 @@ public class Produto {
         this.codigoProduto = codigoProduto;
     }
 
+    public String getTituloProduto() {
+        return tituloProduto;
+    }
+
+    public void setTituloProduto(String tituloProduto) {
+        this.tituloProduto = tituloProduto;
+    }
+    
     public int getQuantEstoqueProduto() {
         return quantEstoqueProduto;
     }
