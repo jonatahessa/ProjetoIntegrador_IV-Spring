@@ -2,70 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title> Loop4'$ V1d4 Lok4</title>
-    <div th:include="~{clientside/componentes/referencias :: referencias}"></div>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" >
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
-    <link data-th-href="@{/css/clientePerfil.css}" href="../../static/css/clientePerfil.css" rel="stylesheet" type="text/css"/>
-    <link data-th-href="@{/css/clienteForm.css}" href="../../static/css/clienteForm.css" rel="stylesheet" type="text/css"/>
-    <link data-th-href="@{/css/footer.css}" href="../../static/css/footer.css" rel="stylesheet" type="text/css"/>
-    <link data-th-href="@{/css/home.css}" href="../../static/css/home.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-    <div class="container-fluid">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" >
+        <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+        <link data-th-href="@{/IncornButtons/incornbuttons.css}" href="../../static/IncornButtons/incornbuttons.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/Font-Awesome/css/font-awesome.css}" href="../../static/Font-Awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/Bootstrap/css/bootstrap.css}" href="../../static/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/clientePerfil.css}" href="../../static/css/clientePerfil.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/clienteForm.css}" href="../../static/css/clienteForm.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/footer.css}" href="../../static/css/footer.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/home.css}" href="../../static/css/home.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container-fluid">
 
-        <!-- MENU TOPO -->
-        <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
+            <!-- MENU TOPO -->
+            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
 
-        <!-- LATERAL MENU -->
-        <div class="row">
-            <div id="Menu_Desktop" class="col-sm-2 col-md-2 col-lg-2">
-                <div class="vertical-menu responsive">
-                    <a id="Meus_DadosB">Meus Dados</a>
-                    <a id="Meus_PedidosB">Meus Pedidos</a>
-                    <a id="Meu_HistoricoB">Meu Histórico</a>
-                    <a id="RecomendacoesB">Recomendações</a>
+            <!-- LATERAL MENU -->
+            <div class="row">
+                <div id="Menu_Desktop" class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="vertical-menu responsive">
+                        <a id="Meus_DadosB">Meus Dados</a>
+                        <a id="Meus_PedidosB">Meus Pedidos</a>
+                        <a id="Meu_HistoricoB">Meu Histórico</a>
+                        <a id="RecomendacoesB">Recomendações</a>
+                    </div>
+                </div>
+                <div id="Menu_Mobile" class="col-xs-12">
+
+                </div>
+                <div id="Menu_D" class="col-sm-10 col-md-10 col-lg-10">
+
+                    <div id="Meus_Dados">
+                        <!-- MEUS DADOS -->
+                        <div th:include="~{clientside/perfil/perfil_meusDados :: meus_dados}"></div> 
+                    </div>
+
+                    <div id="Meus_Pedidos">
+                        <!-- MEUS PEDIDOS -->
+                        <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div> 
+                    </div>
+
+                    <div id="Meu_Historico">
+                        <!-- MEU HISTORICO -->
+                        <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div> 
+                    </div>
+
+                    <div id="Recomendacoes">
+                        <!-- RECOMENDAÇÕES -->
+                        <div th:include="~{clientside/perfil/perfil_Recomendacoes :: recomendacoes}"></div> 
+                    </div>
+
                 </div>
             </div>
-            <div id="Menu_Mobile" class="col-xs-12">
 
-            </div>
-            <div id="Menu_D" class="col-sm-10 col-md-10 col-lg-10">
+            <!-- RODAPE -->
+            <div th:include="~{clientside/componentes/menu_rodape :: menu_rodape}"></div>
 
-                <div id="Meus_Dados">
-                    <!-- MEUS DADOS -->
-                    <div th:include="~{clientside/perfil/perfil_meusDados :: meus_dados}"></div> 
-                </div>
-
-                <div id="Meus_Pedidos">
-                    <!-- MEUS PEDIDOS -->
-                    <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div> 
-                </div>
-
-                <div id="Meu_Historico">
-                    <!-- MEU HISTORICO -->
-                    <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div> 
-                </div>
-
-                <div id="Recomendacoes">
-                    <!-- RECOMENDAÇÕES -->
-                    <div th:include="~{clientside/perfil/perfil_Recomendacoes :: recomendacoes}"></div> 
-                </div>
-
-            </div>
         </div>
-
-        <!-- RODAPE -->
-        <div th:include="~{clientside/componentes/menu_rodape :: menu_rodape}"></div>
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script data-th-src="@{/js/clienteCadastro.js}" src="../../static/js/clienteCadastro.js" type="text/javascript"></script>
-    <script data-th-src="@{/js/home.js}" src="../../static/js/home.js" type="text/javascript"></script>
-    <script data-th-src="@{/js/clientePerfil.js}" src="../../static/js/clientePerfil.js" type="text/javascript"></script>
-    <script data-th-src="@{/Bootstrap/js/bootstrap.js}" src="../../static/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
-    <script data-th-src="@{/js/bootstrap.min.js}" src="../../static/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script data-th-src="@{/js/clienteCadastro.js}" src="../../static/js/clienteCadastro.js" type="text/javascript"></script>
+        <script data-th-src="@{/js/home.js}" src="../../static/js/home.js" type="text/javascript"></script>
+        <script data-th-src="@{/js/clientePerfil.js}" src="../../static/js/clientePerfil.js" type="text/javascript"></script>
+        <script data-th-src="@{/Bootstrap/js/bootstrap.js}" src="../../static/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script data-th-src="@{/js/bootstrap.min.js}" src="../../static/Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    </body>
 </html>
 
