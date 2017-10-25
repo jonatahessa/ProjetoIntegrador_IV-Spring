@@ -1,4 +1,9 @@
+br\senac\pi4\ProjetoIntegrador\Classes\Categoria.class
+br\senac\pi4\ProjetoIntegrador\Classes\Cliente.class
 br\senac\pi4\ProjetoIntegrador\Classes\Produto.class
+br\senac\pi4\ProjetoIntegrador\Classes\Endereco.class
+br\senac\pi4\ProjetoIntegrador\Classes\Imagem.class
+br\senac\pi4\ProjetoIntegrador\Classes\Telefone.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
 br\senac\pi4\ProjetoIntegrador\Controller\ClientSideController.class
 br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class

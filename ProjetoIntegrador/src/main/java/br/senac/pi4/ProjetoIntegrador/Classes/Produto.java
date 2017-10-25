@@ -13,22 +13,19 @@ import java.math.BigDecimal;
  */
 public class Produto {
 
-    private long codigoProduto;
+    private Integer codigoProduto;
     private String tituloProduto;
     private int quantEstoqueProduto;
-    private int avalicaçãoProduto;
+    private int avaliacaoProduto;
     private String marcaProduto;
     private String modeloProduto;
     private String corProduto;
     private char generoProduto;
     private char tamanhoProduto;
-    private boolean statusEstoqueProduto;
     private String lenteCorProduto;
     private String lenteTipoProduto;
     private String descricaoProduto;
     // Decidir como irá guardar
-    private String[] imagemProduto;
-    private String altImagemProduto;
     private BigDecimal precoProduto;
     private boolean promocaoProduto;
     private BigDecimal porcentagemPromocaoProduto;
@@ -37,11 +34,11 @@ public class Produto {
     private double comprimentoProduto;
     private double pesoProduto;
 
-    public long getCodigoProduto() {
+    public Integer getCodigoProduto() {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(long codigoProduto) {
+    public void setCodigoProduto(Integer codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
 
@@ -61,12 +58,12 @@ public class Produto {
         this.quantEstoqueProduto = quantEstoqueProduto;
     }
 
-    public int getAvalicaçãoProduto() {
-        return avalicaçãoProduto;
+    public int getAvaliacaoProduto() {
+        return avaliacaoProduto;
     }
 
-    public void setAvalicaçãoProduto(int avalicaçãoProduto) {
-        this.avalicaçãoProduto = avalicaçãoProduto;
+    public void setAvalicaçãoProduto(int avaliacaoProduto) {
+        this.avaliacaoProduto = avaliacaoProduto;
     }
 
     public String getMarcaProduto() {
@@ -109,14 +106,6 @@ public class Produto {
         this.tamanhoProduto = tamanhoProduto;
     }
 
-    public boolean isStatusEstoqueProduto() {
-        return statusEstoqueProduto;
-    }
-
-    public void setStatusEstoqueProduto(boolean statusEstoqueProduto) {
-        this.statusEstoqueProduto = statusEstoqueProduto;
-    }
-
     public String getLenteCorProduto() {
         return lenteCorProduto;
     }
@@ -139,22 +128,6 @@ public class Produto {
 
     public void setDescricaoProduto(String descricaoProduto) {
         this.descricaoProduto = descricaoProduto;
-    }
-
-    public String[] getImagemProduto() {
-        return imagemProduto;
-    }
-
-    public void setImagemProduto(String[] imagemProduto) {
-        this.imagemProduto = imagemProduto;
-    }
-
-    public String getAltImagemProduto() {
-        return altImagemProduto;
-    }
-
-    public void setAltImagemProduto(String altImagemProduto) {
-        this.altImagemProduto = altImagemProduto;
     }
 
     public BigDecimal getPrecoProduto() {
@@ -213,21 +186,18 @@ public class Produto {
         this.pesoProduto = pesoProduto;
     }
 
-    public Produto(long codigoProduto, int quantEstoqueProduto, int avalicaçãoProduto, String marcaProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, boolean statusEstoqueProduto, String lenteCorProduto, String lenteTipoProduto, String descricaoProduto, String[] imagemProduto, String altImagemProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto) {
+    public Produto(Integer codigoProduto, int quantEstoqueProduto, int avaliacaoProduto, String marcaProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto) {
         this.codigoProduto = codigoProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
-        this.avalicaçãoProduto = avalicaçãoProduto;
+        this.avaliacaoProduto = avaliacaoProduto;
         this.marcaProduto = marcaProduto;
         this.modeloProduto = modeloProduto;
         this.corProduto = corProduto;
         this.generoProduto = generoProduto;
         this.tamanhoProduto = tamanhoProduto;
-        this.statusEstoqueProduto = statusEstoqueProduto;
         this.lenteCorProduto = lenteCorProduto;
         this.lenteTipoProduto = lenteTipoProduto;
         this.descricaoProduto = descricaoProduto;
-        this.imagemProduto = imagemProduto;
-        this.altImagemProduto = altImagemProduto;
         this.precoProduto = precoProduto;
         this.promocaoProduto = promocaoProduto;
         this.porcentagemPromocaoProduto = porcentagemPromocaoProduto;

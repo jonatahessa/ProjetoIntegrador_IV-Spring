@@ -26,7 +26,6 @@ public class BackOfficeController {
             Produto produto = new Produto();
             produto.setCodigoProduto(i);
             produto.setTituloProduto("Produto: " + i);
-            produto.setImagemProduto(new String []{"/images/oculosTeste.jpg"});
             listaProdutos.add(produto);
            }
         
