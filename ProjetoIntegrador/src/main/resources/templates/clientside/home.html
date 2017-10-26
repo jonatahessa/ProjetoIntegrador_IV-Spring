@@ -110,24 +110,18 @@
                 </div>
 
                 <!-- PRODUTO INICIO 1 -->
-                <div class="col-xs-12 col-sm-3  col-md-3  col-lg-3 ">
+                <div data-th-each="produto : ${produtos}" data-th-class="${produto.contadorProduto % 3 == 0 && produto.contadorProduto != 0}? 'col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2' : 'col-xs-12 col-sm-3 col-md-3 col-lg-3'">
                     <div id="myCarousel" class="carousel slide">
                         <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
                         <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
+                            <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'item active' : 'item'">
+                                <div class="hovereffect" >
+                                    <img class="d-block img-fluid img-responsive" data-th-src="@{${imagens.NomeImagem}}">
                                 </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " sth:src="@{/images/oculosTeste.jpg}" alt="New York">
                             </div>
                             <div class="card card_desc">
                                 <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
+                                    <h4 class="card-title" data-th-text="${produto.tituloProduto}"></h4>
                                     <div class="card-text card_classificacao">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -135,236 +129,24 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
+                                    <p id="descricao" class="text-justify card-text" data-th-text="${produto.descricaoProduto}"></p>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
+                                <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
                             </div>           
                             <div class="botoes">
                                 <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
                                 <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
                             </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
+                            <h4 class="card-title text-center preco" data-th-text="${produto.precoProduto}"></h4>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRODUTO INICIO 2 -->
-                <div class="col-xs-12 col-sm-3  col-md-3  col-lg-3 "> 
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUTO INICIO 3 -->
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-            <!-- PRODUTO INICIO 1 -->
-            <div class="row">
-                <div class=" col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 "> 
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUTO INICIO 2 -->
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUTO INICIO 3 -->
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- RECOMENDADOS -->
             <div class="row">
                 <div class=" col-xs-12 col-sm-12  col-md-12 col-lg-12 ">
@@ -372,131 +154,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class=" col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2"> 
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUTO INICIO 2 -->
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- PRODUTO INICIO 3 -->
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                    <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
-                        <div class="cards carousel-inner">
-                            <div class="item active">
-                                <div class="hovereffect">
-                                    <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Los Angeles">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="Chicago">
-                            </div>
-                            <div class="item">
-                                <img class="d-block img-fluid img-responsive " th:src="@{/images/oculosTeste.jpg}" alt="New York">
-                            </div>
-                            <div class="card card_desc">
-                                <div class="card-block">
-                                    <h4 class="card-title">Produto X</h4>
-                                    <div class="card-text card_classificacao">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <p id="descricao" class="text-justify card-text">Descricao - Óculos de segurança, modelo ampla-visão, constituídos de armação confeccionada em uma única peça de PVC flexível com sistema de ventilação.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" style="background-color: #ac2925" type="radio" data-slide-to="0"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #2098D1;" type="radio" data-slide-to="1"></div>
-                                <div  data-target="#myCarousel" class="cores" style="background: #000;" type="radio" data-slide-to="2"></div>
-                            </div>           
-                            <div class="botoes">
-                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                            <h4 class="card-title text-center preco">R$ 250,00</h4>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <!-- RODAPE -->

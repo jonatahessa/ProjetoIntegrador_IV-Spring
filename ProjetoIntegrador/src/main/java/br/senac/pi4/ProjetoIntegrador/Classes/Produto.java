@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.pi4.ProjetoIntegrador.Classes;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-/**
- *
- * @author joliveira
- */
 public class Produto {
 
     private Integer codigoProduto;
@@ -25,7 +18,6 @@ public class Produto {
     private String lenteCorProduto;
     private String lenteTipoProduto;
     private String descricaoProduto;
-    // Decidir como irá guardar
     private BigDecimal precoProduto;
     private boolean promocaoProduto;
     private BigDecimal porcentagemPromocaoProduto;
@@ -33,7 +25,17 @@ public class Produto {
     private double larguraProduto;
     private double comprimentoProduto;
     private double pesoProduto;
+    private List<Imagem> imagens;
+    private int contadorProduto;
 
+    public int getContadorProduto() {
+        return contadorProduto;
+    }
+
+    public void setContadorProduto(int contadorProduto) {
+        this.contadorProduto = contadorProduto;
+    }
+    
     public Integer getCodigoProduto() {
         return codigoProduto;
     }
@@ -186,8 +188,17 @@ public class Produto {
         this.pesoProduto = pesoProduto;
     }
 
-    public Produto(Integer codigoProduto, int quantEstoqueProduto, int avaliacaoProduto, String marcaProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto) {
+    public List<Imagem> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<Imagem> imagens) {
+        this.imagens = imagens;
+    }
+
+    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String marcaProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens) {
         this.codigoProduto = codigoProduto;
+        this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
         this.avaliacaoProduto = avaliacaoProduto;
         this.marcaProduto = marcaProduto;
@@ -205,7 +216,9 @@ public class Produto {
         this.larguraProduto = larguraProduto;
         this.comprimentoProduto = comprimentoProduto;
         this.pesoProduto = pesoProduto;
+        this.imagens = imagens;
     }
+
 
     public Produto() {
     }
