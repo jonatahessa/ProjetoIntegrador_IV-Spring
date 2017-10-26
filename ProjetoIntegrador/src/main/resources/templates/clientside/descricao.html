@@ -41,38 +41,14 @@
 
                         <div  class="col-xs-5 col-sm-2 col-md-2 col-lg-2 bhoechie-tab-menu">
                             <div class="list-group">
-                                <a href="#" class="list-group-item active text-center">
-                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                                </a>
-                                <a href="#" class="list-group-item text-center">
-                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                                </a>
-                                <a href="#" class="list-group-item text-center">
-                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                                </a>
-                                <a href="#" class="list-group-item text-center">
-                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                                </a>
-                                <a href="#" class="list-group-item text-center">
-                                    <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
+                                <a data-th-each="imagens : ${produto.Imagens}" href="#" data-th-class="${imagens.sequenciaImagem == 1}? 'list-group-item active text-center' : 'list-group-item text-center'">
+                                    <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}" />
                                 </a>
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-10 col-md-10 col-lg-10 bhoechie-tab">
-                            <div class="bhoechie-tab-content active">
-                                <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                            </div>
-                            <div class="bhoechie-tab-content">
-                                <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                            </div>
-                            <div class="bhoechie-tab-content">
-                                <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                            </div>
-                            <div class="bhoechie-tab-content">
-                                <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
-                            </div>
-                            <div class="bhoechie-tab-content">
-                                <img class="img-responsive" th:src="@{/images/oculosTeste.jpg}" />
+                            <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'bhoechie-tab-content active' : 'bhoechie-tab-content'">
+                                <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}" />
                             </div>
                         </div>
                     </div>
@@ -82,20 +58,13 @@
                 <div class="amostraP">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
                         <div class="carousel slide" id="myCarousel">
+
                             <!-- Carousel items -->
                             <div class="carousel-inner">
-                                <div class="active item" data-slide-number="0">
-                                    <img th:src="@{/images/oculosTeste.jpg}"></div>
-
-                                <div class="item" data-slide-number="1">
-                                    <img th:src="@{/images/oculosTeste.jpg}"></div>
-
-                                <div class="item" data-slide-number="2">
-                                    <img th:src="@{/images/oculosTeste.jpg}"></div>
-
-                                <div class="item" data-slide-number="3">
-                                    <img th:src="@{/images/oculosTeste.jpg}"></div>
-                            </div><!-- Carousel nav -->
+                                <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'active item' : 'item'" th:data-slide-number="${imagens.sequenciaImagem - 1}">
+                                    <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}">
+                                </div>
+                            </div>
                             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>                                       
                             </a>
@@ -110,9 +79,9 @@
                 <div class="colCard col-xs-12 col-sm-5 col-md-5 col-lg-5">
                     <div class="cardDescricao">
                         <div class="card1">
-                            <h1 id="nomeProduto"> OAKLEY </h1>
-                            <h1 id="MarcaProduto"> Tincup OX3184 - Powder Pewter - 02/54</h1>
-                            <h1 id="precoProduto"> R$ 400,00 </h1>                            
+                            <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
+                            <h1 id="MarcaProduto" data-th-text="${produto.marcaProduto}"></h1>
+                            <h1 id="precoProduto" data-th-text="${produto.precoProduto}"></h1>                            
                         </div>
                         <div class="comprar">
                             <a  class="btnComprar button button-raised button-action button-pill ">Comprar</a>
@@ -120,7 +89,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Container das Navs -->
             <div class="row linhaNavs">
@@ -137,15 +105,7 @@
 
                         <section id="content1" class="tab-content">
                             <h3>Descrição</h3>
-                            <p > Lorem Ipsum é simplesmente uma simulação de texto 
-                                da indústria tipográfica e de impressos, e vem sendo utilizado desde 
-                                o século XVI, quando um impressor desconhecido pegou uma bandeja de 
-                                tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem 
-                                Ipsum sobreviveu não só a cinco séculos, como também ao salto para a 
-                                editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou 
-                                na década de 60, quando a Letraset lançou decalques contendo passagens 
-                                de Lorem Ipsum, e mais recentemente quando passou a ser integrado a 
-                                softwares de editoração eletrônica como Aldus PageMaker.</p>
+                            <p data-th-text="${produto.descricaoProduto}"></p>
                         </section>
 
                         <section id="content2" class="tab-content">
