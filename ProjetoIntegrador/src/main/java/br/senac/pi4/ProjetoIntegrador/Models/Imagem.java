@@ -1,4 +1,4 @@
-package br.senac.pi4.ProjetoIntegrador.Classes;
+package br.senac.pi4.ProjetoIntegrador.Models;
 
 import java.io.Serializable;
 import javax.persistence.Column;

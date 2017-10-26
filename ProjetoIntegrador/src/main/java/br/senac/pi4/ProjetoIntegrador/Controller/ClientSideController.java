@@ -5,8 +5,8 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Controller;
 
-import br.senac.pi4.ProjetoIntegrador.Classes.Imagem;
-import br.senac.pi4.ProjetoIntegrador.Classes.Produto;
+import br.senac.pi4.ProjetoIntegrador.Models.Imagem;
+import br.senac.pi4.ProjetoIntegrador.Models.Produto;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
