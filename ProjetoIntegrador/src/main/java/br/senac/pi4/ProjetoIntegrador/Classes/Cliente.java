@@ -5,24 +5,78 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author joliveira
  */
-public class Cliente {
+@Entity
+@Table(name = "TB_CLIENTE")
+public class Cliente implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CLIENTE")
     private Integer codigoCliente;
+    
+    @Size(min = 1, max = 50, message = "{cliente.primeiroNome.erro}")
+    @Column(name = "PN_CLIENTE", length = 50, nullable = false)
     private String primeiroNomeCliente;
+    
+    @Size(min = 1, max = 200, message = "{cliente.sobrenome.erro}")
+    @Column(name = "SN_CLIENTE", length = 200, nullable = false)
     private String sobrenomeCliente;
+    
+    @Size(min = 1, max = 100, message = "{produto.email.erro}")
+    @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
+    
+    @Size(min = 1, max = 100, message = "{produto.senha.erro}")
+    @Column(name = "TL_PRODUTO", length = 100, nullable = false)
     private String senhaCliente;
+    
+    @Size(min = 1, max = 11, message = "{produto.cpf.erro}")
+    @Column(name = "TL_PRODUTO", length = 11, nullable = false)
     private String cpfCliente;
+    
+    @Column(name = "NS_CLIENTE", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date nascCliente;
+    
+    @ManyToMany
+    @JoinTable(name = "TB_CLIENTE_TELEFONE",
+            joinColumns = {
+                @JoinColumn(name = "ID_CLIENTE")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_TELEFONE")
+            })
     private List<Telefone> telefones;
+    
+    @ManyToMany
+    @JoinTable(name = "TB_CLIENTE_ENDERECO",
+            joinColumns = {
+                @JoinColumn(name = "ID_CLIENTE")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "ID_ENDERECO")
+            })
     private Set<Endereco> endereco;
 
     public Cliente() {

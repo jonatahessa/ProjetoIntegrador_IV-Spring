@@ -5,32 +5,58 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Classes;
 
+import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author joliveira
  */
-public class Categoria {
+@Entity
+@Table(name = "TB_CATEGORIA")
+@NamedQueries({
+    @NamedQuery(name = "Categoria.findAll",
+            query = "SELECT c FROM Categoria c")
+    ,
+  @NamedQuery(name = "Categoria.findById",
+            query = "SELECT c FROM Categoria c WHERE c.id = :idCat")
+})
+public class Categoria implements Serializable {
 
-    private long codigoCategoria;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_CATEGORIA")
+    private Integer codigoCategoria;
+
+    @Column(name = "NM_CATEGORIA", length = 100, nullable = false, unique = true)
     private String nomeCategoria;
+    
+    @ManyToMany(mappedBy = "categorias")
     private Set<Produto> produtos;
 
     public Categoria() {
     }
 
-    public Categoria(long codigoCategoria, String nomeCategoria, Set<Produto> produtos) {
+    public Categoria(Integer codigoCategoria, String nomeCategoria, Set<Produto> produtos) {
         this.codigoCategoria = codigoCategoria;
         this.nomeCategoria = nomeCategoria;
         this.produtos = produtos;
     }
 
-    public long getCodigoCategoria() {
+    public Integer getCodigoCategoria() {
         return codigoCategoria;
     }
 
-    public void setCodigoCategoria(long codigoCategoria) {
+    public void setCodigoCategoria(Integer codigoCategoria) {
         this.codigoCategoria = codigoCategoria;
     }
 
