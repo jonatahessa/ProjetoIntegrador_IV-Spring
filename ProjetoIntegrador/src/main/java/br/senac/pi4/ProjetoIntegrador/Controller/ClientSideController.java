@@ -44,4 +44,14 @@ public class ClientSideController {
     public String clientePedidos() {
         return "clientside/clientePedidos";
     }
+    
+    @RequestMapping("/checkoutEndereco")
+    public String clienteCheckoutEndereco() {
+        return "clientside/checkoutEndereco";
+    }
+    
+    @RequestMapping("/checkoutPagamento")
+    public String clienteCheckoutPagamento() {
+        return "clientside/checkoutPagamento";
+    }
 }
