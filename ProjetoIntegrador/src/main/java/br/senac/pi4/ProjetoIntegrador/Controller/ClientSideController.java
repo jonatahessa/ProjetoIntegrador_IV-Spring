@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,9 +64,10 @@ public class ClientSideController {
         return new ModelAndView("clientside/home").addObject("produtos", listaProdutos);
     }
 
-    @RequestMapping("/descricao")
-    public String produtos() {
-        return "clientside/descricao";
+    @RequestMapping("/descricao{id}")
+    public ModelAndView descricao(@PathVariable("id") Integer idProduto){
+        return new ModelAndView("clientside/descricao")
+                .addObject(idProduto);
     }
 
     @RequestMapping("/carrinho")

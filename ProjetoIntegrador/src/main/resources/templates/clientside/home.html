@@ -109,10 +109,10 @@
                     </nav>
                 </div>
 
-                <!-- PRODUTO INICIO 1 -->
+                <!-- PRODUTOS -->
                 <div data-th-each="produto : ${produtos}" data-th-class="${produto.contadorProduto % 3 == 0 && produto.contadorProduto != 0}? 'col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2' : 'col-xs-12 col-sm-3 col-md-3 col-lg-3'">
                     <div id="myCarousel" class="carousel slide">
-                        <span class="glyphicon glyphicon-eye-open icone_descricao" aria-hidden="true"></span>
+                        <a class="glyphicon glyphicon-eye-open icone_descricao" data-th-href="@{/}" aria-hidden="true"></a>
                         <div class="cards carousel-inner">
                             <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'item active' : 'item'">
                                 <div class="hovereffect" >
