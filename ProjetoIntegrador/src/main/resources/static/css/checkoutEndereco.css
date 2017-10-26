@@ -84,87 +84,52 @@ body, html{
     margin-top: 2%;
 }
 
-.panel-heading {
-    background-color: hsl(0, 0%, 91%)!important;
+.h1Selecione {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 150%;
 }
 
-.panel-footer {
-    background-color: hsl(0, 0%, 91%)!important;
+.linhaSelecione {
+    margin-top: 5%;
 }
 
-.panel {
-    border-color: hsl(0, 0%, 91%);
+.colSelecione {
+    background-color: hsl(0, 0%, 91%);
 }
 
-.frete {
-    font-size: 100%;
+.linhaTela {
+    border-top: 1px solid hsl(0, 0%, 91%);
+}
+
+.cardEndereco {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.pPessoa {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.pEndereco {
+    font-family: 'Quicksand', sans-serif;
     font-weight: bold;
 }
 
-.h1MeuCarrinho {
-    font-weight: bold;
+.entregarAqui {
+    width: 80%;
     display: block;
     margin: auto;
-    font-size: 120%;
-    color: black;
-    padding-bottom: 5%;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.h1Total {
-    font-weight: bold;
-    font-size: 120%;
-    color: black;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.colPreco {
-    text-align: right;
-}
-
-.colTotal {
-    text-align: right;
-}
-
-.btnContinuarComprando {
-    width: 100%;
-}
-
-.btnComprar {
-    margin-top: 2%;
-}
-
-.btn-info {
-    width: 100%;
-}
-
-.pFrete {
-    font-weight: bold;
 }
 
 @media (max-width: 760px) {
-    .colMeuCarrinho {
+    .colSelecione {
         text-align: center;
-    }
+    } 
     
-    .colNomeProduto {
-        padding-bottom: 5%;
-        text-align: center;
+    .entregarAqui {
+        font-size: 150%;
     }
-    
-    .colPreco {
-        text-align: right;
-    }
-    
-    .colQnt {
-        padding-left: 0;
-        width: 40%;
-    }
-    
-    .colTotal {
-        text-align: center;
-        padding-bottom: 5%;
-    }
-
 }
-
