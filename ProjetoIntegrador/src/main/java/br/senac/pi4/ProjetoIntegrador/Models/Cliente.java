@@ -59,6 +59,11 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
     
+    
+    private char sexo;
+    
+    private String apelidoCliente;
+    
     @ManyToMany
     @JoinTable(name = "TB_CLIENTE_TELEFONE",
             joinColumns = {
@@ -82,7 +87,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Integer codigoCliente, String primeiroNomeCliente, String sobrenomeCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Telefone> telefones, Set<Endereco> endereco) {
+    public Cliente(Integer codigoCliente, String primeiroNomeCliente, String sobrenomeCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, char sexo, String apelidoCliente, List<Telefone> telefones, Set<Endereco> endereco) {
         this.codigoCliente = codigoCliente;
         this.primeiroNomeCliente = primeiroNomeCliente;
         this.sobrenomeCliente = sobrenomeCliente;
@@ -90,10 +95,28 @@ public class Cliente implements Serializable {
         this.senhaCliente = senhaCliente;
         this.cpfCliente = cpfCliente;
         this.nascCliente = nascCliente;
+        this.sexo = sexo;
+        this.apelidoCliente = apelidoCliente;
         this.telefones = telefones;
         this.endereco = endereco;
     }
 
+    public String getApelidoCliente() {
+        return apelidoCliente;
+    }
+
+    public void setApelidoCliente(String apelidoCliente) {
+        this.apelidoCliente = apelidoCliente;
+    }
+    
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
+    }
+    
     public Integer getCodigoCliente() {
         return codigoCliente;
     }
