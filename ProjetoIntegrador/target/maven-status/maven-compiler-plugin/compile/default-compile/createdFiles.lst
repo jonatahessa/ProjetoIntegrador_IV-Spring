@@ -6,6 +6,7 @@ br\senac\pi4\ProjetoIntegrador\Models\Cliente.class
 br\senac\pi4\ProjetoIntegrador\Models\Telefone.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
 br\senac\pi4\ProjetoIntegrador\Models\Produto_.class
+br\senac\pi4\ProjetoIntegrador\Controller\ClientSideController.class
 br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class
 br\senac\pi4\ProjetoIntegrador\Models\Imagem.class
 br\senac\pi4\ProjetoIntegrador\Models\Endereco_.class
