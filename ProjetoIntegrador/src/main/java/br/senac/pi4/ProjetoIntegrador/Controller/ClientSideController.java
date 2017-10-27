@@ -58,9 +58,8 @@ public class ClientSideController {
 
     @RequestMapping("/descricao/{id}")
     public ModelAndView descricao(@PathVariable("id") Integer idProduto) {
-        
-        // METODO OBTER POR ID
 
+        // METODO OBTER POR ID
         Produto produto = new Produto();
 
         produto.setTituloProduto("Produto titulo " + idProduto);
@@ -91,10 +90,10 @@ public class ClientSideController {
         imagens.add(img3);
 
         produto.setImagens(imagens);
-        
+
         return new ModelAndView("clientside/descricao")
-                .addObject("idProduto",idProduto)
-                .addObject("produto",produto);
+                .addObject("idProduto", idProduto)
+                .addObject("produto", produto);
     }
 
     @RequestMapping("/carrinho")
@@ -126,4 +125,5 @@ public class ClientSideController {
     public String clienteCheckoutPagamento() {
         return "clientside/checkoutPagamento";
     }
+    
 }

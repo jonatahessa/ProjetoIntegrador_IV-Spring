@@ -15,91 +15,92 @@
                     <label for="basic-url">* Nome Completo:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" class="form-control" data-th-text="${cliente.PrimeiroNomeCliente + cliente.SobrenomeCliente}"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* CPF:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                        <input type="text" class="form-control" data-th-text="${cliente.CpfCliente}"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* Data de Nascimento:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                        <input type="text" class="form-control" data-th-text="${cliente.NascCliente}"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
-                    <label for="basic-url">* Telefone:</label>
-                    <br />
-                    <div class="telefone_2 col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2">DDD</span>
-                            <input type="text" class="form-control" data-th-text="${cliente.}"  aria-describedby="sizing-addon2">
-                        </div>
-                    </div>
-                    <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                            <input type="text" class="form-control" data-th-text="${cliente.}"  aria-describedby="sizing-addon2">
-                        </div>
-                    </div>
-                    <div class="telefone_2 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="basic-url">* Celular:</label>
-                    </div>
-                    <div class="telefone_2 col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2">DDD</span>
-                            <input type="text" class="form-control" data-th-text="${cliente.}"  aria-describedby="sizing-addon2">
-                        </div>
-                    </div>
-                    <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-mobile "></span></span>
-                            <input type="text" class="form-control" data-th-text="${cliente.}"   aria-describedby="sizing-addon2">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="basic-url">Adicionar outro(s) numeros <button class="button-primary button-circle button-tiny"><i class="fa fa-plus"></i></button></label>
-                    </div>
-                    <br />
-                    <div class="telefone_2 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="basic-url">* Sexo:</label>
-                    </div>
+
+                    <label for="basic-url">
+                        * Escolha o tipo do aparelho de contato: <select>
+                            <option value="t">Telefone</option>
+                            <option value="c">Celular</option>
+                        </select>
+                    </label>
                     <div class="input-group input_">
-                        <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-venus-mars"></span></span>
-                        <input type="text" class="form-control" data-th-text="${cliente.sexo}"   aria-describedby="sizing-addon2">
+                        <div class="telefone_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2">DDD</span>
+                                <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
+                        </div>
+                        <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
+                                <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
+                        </div>
+                        <div class="telefone_2 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <a class="button button-raised button-action button-pill">Add</a>
+                        </div>
                     </div>
-                    <div class="telefone_2 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="basic-url">* Como podemos te chamar: </label>
+
+                    <div class="form-group">
+                        <label for="sel1">* Escolha o Sexo:</label>
+                        <select class="form-control" id="sel1">
+                            <option>Feminino</option>
+                            <option>Masculino</option>
+                            <option>Outros</option>
+                        </select>
                     </div>
+
+                    <label for="basic-url">* Como podemos te chamar: </label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                        <input type="text" data-th-text="${cliente.ApelidoCliente}"  class="form-control"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* Email:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <input type="text" data-th-text="${cliente.EmailCliente}"  class="form-control"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* Confirmar email:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
-                        <input type="text" data-th-text="${cliente.EmailCliente}"  class="form-control"  aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* Senha:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                        <input type="text" data-th-text="${cliente.SenhaCliente}"  class="form-control"  aria-describedby="sizing-addon2">
+                        <input type="password" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <label for="basic-url">* Confirmar senha:</label>
                     <div class="input-group input_">
                         <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                        <input type="text" class="form-control" data-th-text="${cliente.SenhaCliente}" aria-describedby="sizing-addon2">
+                        <input type="password" class="form-control"  aria-describedby="sizing-addon2">
                     </div>
+
                     <div class="checkbox">
-                        <label><input type="checkbox">Desejo receber ofertas de produtos e serviços</label>
+                        <label><input type="checkbox" value="">Desejo receber ofertas de produtos e serviços</label>
                     </div>
+
                     <div class="checkbox">
-                        <label><input type="checkbox">Desejo receber ofertas por SMS grátis no celular</label>
+                        <label><input type="checkbox" value="">Desejo receber ofertas por SMS grátis no celular</label>
                     </div>
+
                     <a class="button button-raised button-highlight button-pill botaoE">Editar</a>
                     <br />
                     <p class="textCampo text-right">* Campos obrigatórios</p>
