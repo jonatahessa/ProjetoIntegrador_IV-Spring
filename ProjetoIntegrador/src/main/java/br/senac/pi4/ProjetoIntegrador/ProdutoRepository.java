@@ -5,15 +5,16 @@
  */
 package br.senac.pi4.ProjetoIntegrador;
 
-import javax.persistence.Persistence;
+import br.senac.pi4.ProjetoIntegrador.Models.Produto;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author jonat
  */
-public class GerarBD {
-    
-  public static void main(String[] args) {
-    Persistence.generateSchema("projeto4", null);
-  }
+@Repository
+public interface ProdutoRepository 
+        extends CrudRepository<Produto, Long> {
+  
 }

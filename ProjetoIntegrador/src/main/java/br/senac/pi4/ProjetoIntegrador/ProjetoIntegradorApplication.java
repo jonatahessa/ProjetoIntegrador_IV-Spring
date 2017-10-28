@@ -9,7 +9,6 @@ public class ProjetoIntegradorApplication {
 
     public static void main(String[] args) {
 
-        Persistence.generateSchema("projeto4", null);
         SpringApplication.run(ProjetoIntegradorApplication.class, args);
 
     }

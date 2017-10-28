@@ -2,11 +2,13 @@ br\senac\pi4\ProjetoIntegrador\Service\EnderecoService.class
 br\senac\pi4\ProjetoIntegrador\Models\Endereco.class
 br\senac\pi4\ProjetoIntegrador\GerarBD.class
 br\senac\pi4\ProjetoIntegrador\Models\Cliente_.class
+br\senac\pi4\ProjetoIntegrador\config\WebMvcConfig.class
 br\senac\pi4\ProjetoIntegrador\Service\Implement\ServiceCategoriaImplement.class
 br\senac\pi4\ProjetoIntegrador\Service\Implement\ServicoProdutoImplement.class
 br\senac\pi4\ProjetoIntegrador\Models\Categoria.class
 br\senac\pi4\ProjetoIntegrador\Models\Categoria_.class
 br\senac\pi4\ProjetoIntegrador\Models\Cliente.class
+br\senac\pi4\ProjetoIntegrador\ProdutoRepository.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\Models\Telefone.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
