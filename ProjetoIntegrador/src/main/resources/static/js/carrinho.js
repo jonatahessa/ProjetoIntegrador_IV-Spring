@@ -16,4 +16,7 @@ $('.btnCalcularCep').click(function () {
                                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">\n\
                                     <p class="pFrete">Prazo de entrega: 5-7 dias úteis </br>Valor: R$ 12,00</p>\n\
                                 </div>');
+    
+    $('.colTotal').html('');
+    $('.colTotal').append(' <h1 class="h1Total">Total <strong>R$ 912,00</strong></h1>');
 });

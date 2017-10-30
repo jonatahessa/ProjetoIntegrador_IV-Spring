@@ -97,8 +97,41 @@ public class ClientSideController {
     }
 
     @RequestMapping("/carrinho")
-    public String carrinho() {
-        return "clientside/carrinho";
+    public ModelAndView carrinho() {
+        List<Imagem> imagens = new ArrayList<>();
+
+        Imagem img = new Imagem();
+        img.setNomeImagem("/images/oculosTeste.jpg");
+        img.setLegendaImagem("Imagem de um oculos");
+        img.setSequenciaImagem(1);
+        imagens.add(img);
+        
+        Produto produto = new Produto();
+        produto.setTituloProduto("Óculos Oakley Preto");
+        produto.setPrecoProduto(new BigDecimal("400.00"));
+        produto.setImagens(imagens);
+        
+        Produto produto2 = new Produto();
+        produto2.setTituloProduto("Óculos Adidas Preto");
+        produto2.setPrecoProduto(new BigDecimal("500.00"));
+        produto2.setImagens(imagens);
+        
+        List<Produto> produtos = new ArrayList<>();
+        produtos.add(produto);
+        produtos.add(produto2);
+        
+        BigDecimal temp = new BigDecimal("0");
+        BigDecimal total = new BigDecimal("0");
+        for (Produto p : produtos) {
+            temp = p.getPrecoProduto();
+            total = total.add(temp);
+            
+        }
+        
+        return new ModelAndView("clientside/carrinho")
+                .addObject("produtos", produtos)
+                .addObject("total", total);
+        
     }
 
     @RequestMapping("/perfil")
