@@ -5,7 +5,7 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Service;
 
-import br.senac.pi4.ProjetoIntegrador.Models.Endereco;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import java.io.Serializable;
 import java.util.List;
 

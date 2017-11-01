@@ -5,7 +5,7 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Controller;
 
-import br.senac.pi4.ProjetoIntegrador.Models.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;

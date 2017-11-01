@@ -5,7 +5,7 @@
  */
 package br.senac.pi4.ProjetoIntegrador;
 
-import br.senac.pi4.ProjetoIntegrador.Models.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

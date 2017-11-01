@@ -1,4 +1,4 @@
-package br.senac.pi4.ProjetoIntegrador.Models;
+package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,7 +1,7 @@
 package br.senac.pi4.ProjetoIntegrador.Controller;
 
-import br.senac.pi4.ProjetoIntegrador.Models.Imagem;
-import br.senac.pi4.ProjetoIntegrador.Models.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
+import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

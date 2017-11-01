@@ -5,7 +5,7 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Service;
 
-import br.senac.pi4.ProjetoIntegrador.Models.Categoria;
+import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import java.io.Serializable;
 import java.util.List;
 
