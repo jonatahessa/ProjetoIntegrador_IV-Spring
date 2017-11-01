@@ -35,16 +35,16 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private Integer codigoCliente;
 
-    @Size(min = 1, max = 100, message = "{produto.email.erro}")
+    @Size(min = 1, max = 100, message = "{cliente.email.erro}")
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
-    @Size(min = 1, max = 100, message = "{produto.senha.erro}")
-    @Column(name = "TL_PRODUTO", length = 100, nullable = false)
+    @Size(min = 1, max = 100, message = "{cliente.senha.erro}")
+    @Column(name = "PW_CLIENTE", length = 100, nullable = false)
     private String senhaCliente;
 
-    @Size(min = 1, max = 11, message = "{produto.cpf.erro}")
-    @Column(name = "TL_PRODUTO", length = 11, nullable = false)
+    @Size(min = 1, max = 11, message = "{cliente.cpf.erro}")
+    @Column(name = "CP_PRODUTO", length = 11, nullable = false)
     private String cpfCliente;
 
     @Column(name = "NS_CLIENTE", nullable = false)

@@ -5,27 +5,53 @@
  */
 package br.senac.pi4.ProjetoIntegrador.entity;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author joliveira
  */
-public class Telefone {
-    
+@Entity
+@Table(name = "TB_TELEFONE")
+public class Telefone implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_TELEFONE")
     private Integer codigoTelefone;
+    
+    @Size(min = 3, max = 3, message = "{telefone.dddTelefone.erro}")
+    @Column(name = "CA_ENDERECO", length = 3, nullable = false)
     private String dddTelefone;
+    
+    @Size(min = 8, max = 9, message = "{telefone.telefone.erro}")
+    @Column(name = "NM_TELEFONE", length = 9, nullable = false)
     private String numeroTelefone;
-    private Cliente cliente;
+    
+    
+    @ManyToMany(mappedBy = "telefones")
+    private List<Cliente> clientes;
 
     public Telefone() {
     }
 
-    public Telefone(Integer codigoTelefone, String dddTelefone, String numeroTelefone, Cliente cliente) {
+    public Telefone(Integer codigoTelefone, String dddTelefone, String numeroTelefone, List<Cliente> clientes) {
         this.codigoTelefone = codigoTelefone;
         this.dddTelefone = dddTelefone;
         this.numeroTelefone = numeroTelefone;
-        this.cliente = cliente;
+        this.clientes = clientes;
     }
-
+    
     public Integer getCodigoTelefone() {
         return codigoTelefone;
     }
@@ -50,11 +76,11 @@ public class Telefone {
         this.numeroTelefone = numeroTelefone;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public List<Cliente> getClientes() {
+        return clientes;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 }

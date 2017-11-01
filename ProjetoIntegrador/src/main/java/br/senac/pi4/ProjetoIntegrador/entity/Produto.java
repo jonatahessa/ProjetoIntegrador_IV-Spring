@@ -2,7 +2,7 @@ package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -115,7 +116,7 @@ public class Produto implements Serializable {
     private Set<Categoria> categorias;
 
     @Digits(integer = 11, fraction = 0, message = "{produto.quantEstoque.erro}")
-    @Column(name = "QT_PRODUTO", nullable = false)
+    @Column(name = "CT_PRODUTO", nullable = false)
     private int contadorProduto;
 
     public Produto() {

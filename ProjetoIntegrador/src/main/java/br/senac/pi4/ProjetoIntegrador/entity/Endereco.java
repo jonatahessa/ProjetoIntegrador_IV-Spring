@@ -6,6 +6,7 @@
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,13 +63,13 @@ public class Endereco implements Serializable {
     @Column(name = "PA_ENDERECO", length = 100, nullable = false)
     private String paisEndereco;
     
-    @ManyToMany(mappedBy = "enderecos")
-    private Set<Cliente> clientes;
+    @ManyToMany(mappedBy = "endereco")
+    private List<Cliente> clientes;
 
     public Endereco() {
     }
 
-    public Endereco(Integer codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, Set<Cliente> clientes) {
+    public Endereco(Integer codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
         this.codigoEndereco = codigoEndereco;
         this.tipoLogradouroEndereco = tipoLogradouroEndereco;
         this.logradouroEndereco = logradouroEndereco;
@@ -80,6 +81,8 @@ public class Endereco implements Serializable {
         this.paisEndereco = paisEndereco;
         this.clientes = clientes;
     }
+
+    
 
     public Integer getCodigoEndereco() {
         return codigoEndereco;
@@ -153,11 +156,11 @@ public class Endereco implements Serializable {
         this.paisEndereco = paisEndereco;
     }
 
-    public Set<Cliente> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Set<Cliente> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
     
