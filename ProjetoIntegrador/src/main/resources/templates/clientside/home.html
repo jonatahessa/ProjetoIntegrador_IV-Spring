@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
         <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
         <link data-th-href="@{/IncornButtons/incornbuttons.css}" href="../../static/IncornButtons/incornbuttons.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/Font-Awesome/css/font-awesome.css}" href="../../static/Font-Awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
@@ -86,31 +87,120 @@
 
             <!-- CATEGORIAS -->
             <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2">
-                    <nav class="menu_lateral navbar navbar-default sidebar" role="navigation">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                                    <span class="sr-only"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>      
-                            </div>
-                            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li><a>Categorias</a></li>
-                                    <li><a href="#">Marcas</a></li>        
-                                    <li><a href="#">Modelos</a></li>        
-                                    <li><a href="#">Preço</a></li>
-                                </ul>
-                            </div>
+
+                <div class="col-sm-2 col-md-2 col-lg-2 categoria">
+
+                    <table class="table">
+                        <tbody>
+                            <tr class="info">
+                                <td>Pesquisa:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr class="info">
+                                <td>Marca:</td>
+                            </tr>
+                        <div>
+                            <tr data-th-each="produto : ${produtos}">
+                                <td>
+                                    <div>
+                                        <input type="checkbox" th:id="${produto.marcaProduto}"/>
+                                        <label data-th-text="${produto.marcaProduto}"  th:for="${produto.marcaProduto}">
+                                            <div><i class="fa fa-check"></i></div> 
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
                         </div>
-                    </nav>
+                        <tr class="info">
+                            <td>Cor:</td>
+                        </tr>
+                        <div>
+
+                        </div>
+                        <tr class="info">
+                            <td>Genero:</td>
+                        </tr>
+                        <div>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id="Masculino"/>
+                                        <label for="Masculino">
+                                            <div><i class="fa fa-check"></i></div> Masculino
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id="Feminino"/>
+                                        <label for="Feminino">
+                                            <div><i class="fa fa-check"></i></div> Feminino
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id="Outros"/>
+                                        <label for="Outros">
+                                            <div><i class="fa fa-check"></i></div> Outros
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </div>
+                        <tr class="info">
+                            <td>Tipo:</td>
+                        </tr>
+                        <div>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id="check1"/>
+                                        <label for="check1">
+                                            <div><i class="fa fa-check"></i></div> Oculos de Sol
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id="check2"/>
+                                        <label for="check2">
+                                            <div><i class="fa fa-check"></i></div> Oculos de Grau
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </div>
+                        <tr class="info">
+                            <td>Preço Minimo:</td>
+                        </tr>
+                        <div>
+                            <tr>
+                                <td><input min="0" type="range"></td>
+                            </tr>
+                        </div>
+                        <tr class="info">
+                            <td>Preço Maximo:</td>
+                        </tr>
+                        <div>
+                            <tr>
+                                <td><input min="0" type="range"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- PRODUTOS -->
-                <div data-th-each="produto : ${produtos}" data-th-class="${produto.contadorProduto % 3 == 0 && produto.contadorProduto != 0}? 'col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2' : 'col-xs-12 col-sm-3 col-md-3 col-lg-3'">
+                <div data-th-each="produto : ${produtos}" class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                     <div id="myCarousel" class="carousel slide">
                         <a class="glyphicon glyphicon-eye-open icone_descricao" data-th-href="@{/descricao/{id}(id=${produto.codigoProduto})}" aria-hidden="true"></a>
                         <div class="cards carousel-inner">
@@ -154,6 +244,41 @@
                 </div>
             </div>
             <div class="row">
+
+                <!-- PRODUTOS -->
+                <div data-th-each="produto : ${produtos}" data-th-class="${produto.contadorProduto % 3 == 0}? 'col-xs-12 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2' : 'col-xs-12 col-sm-3 col-md-3 col-lg-3'">
+                    <div id="myCarousel" class="carousel slide">
+                        <a class="glyphicon glyphicon-eye-open icone_descricao" data-th-href="@{/descricao/{id}(id=${produto.codigoProduto})}" aria-hidden="true"></a>
+                        <div class="cards carousel-inner">
+                            <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'item active' : 'item'">
+                                <div class="hovereffect" >
+                                    <img class="d-block img-fluid img-responsive" data-th-src="@{${imagens.NomeImagem}}">
+                                </div>
+                            </div>
+                            <div class="card card_desc">
+                                <div class="card-block">
+                                    <h4 class="card-title" data-th-text="${produto.tituloProduto}"></h4>
+                                    <div class="card-text card_classificacao">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <p id="descricao" class="text-justify card-text" data-th-text="${produto.descricaoProduto}"></p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
+                            </div>           
+                            <div class="botoes">
+                                <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
+                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
+                            </div>
+                            <h4 class="card-title text-center preco" data-th-text="${produto.precoProduto}"></h4>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

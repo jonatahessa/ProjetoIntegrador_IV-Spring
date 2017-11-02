@@ -24,7 +24,9 @@ public class ClientSideController {
             produto.setTituloProduto("Produto titulo " + i);
             produto.setDescricaoProduto("Descricao do item " + i);
             produto.setPrecoProduto(new BigDecimal(i));
+            produto.setGeneroProduto('m');
             produto.setContadorProduto(i);
+            produto.setMarcaProduto("Ray Ban" + i);
             produto.setCodigoProduto(i);
             produto.setCorProduto("background: #2098D1;");
 
