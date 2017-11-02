@@ -23,7 +23,7 @@ public class UploadController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView mostrarTela() {
-        return new ModelAndView("upload");
+        return new ModelAndView("backoffice/produto/cadastroDeProdutos");
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -38,7 +38,7 @@ public class UploadController {
 
         try {
             byte[] bytes = arquivo.getBytes();
-            Path destino = Paths.get("http://otaviokalsbier.com.br/imagens/"
+            Path destino = Paths.get("C:/Imagens/"
                     + arquivo.getOriginalFilename());
             Files.write(destino, bytes);
 
