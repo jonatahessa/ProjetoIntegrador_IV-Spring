@@ -18,6 +18,7 @@ public interface ProdutoService extends Serializable {
     
     public List<Produto> listar(int offset, int quantidade);
     
+    
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade);
     
     public Produto obter(Integer codigoProduto);

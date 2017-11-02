@@ -116,7 +116,7 @@ public class Produto implements Serializable {
     private Set<Categoria> categorias;
 
     @Digits(integer = 11, fraction = 0, message = "{produto.quantEstoque.erro}")
-    @Column(name = "CT_PRODUTO", nullable = false)
+    @Column(name = "CT_PRODUTO")
     private int contadorProduto;
 
     public Produto() {
