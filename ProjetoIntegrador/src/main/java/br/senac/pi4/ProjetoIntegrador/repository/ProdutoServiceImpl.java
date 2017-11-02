@@ -1,25 +1,34 @@
 package br.senac.pi4.ProjetoIntegrador.repository;
 
-
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProdutoServiceJPAImpl implements ProdutoService{
+public class ProdutoServiceImpl implements ProdutoService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private ProdutoRepository repo;
 
     @Override
     public List<Produto> listar(int offset, int quantidade) {
-        Query query = entityManager.createQuery("SELECT * FROM tb_produto");
-        return query.getResultList();
+        Iterable<Produto> produtos = repo.findAll();
+        Iterator it = produtos.iterator();
+        List<Produto> lista = new ArrayList<Produto>();
+        while (it.hasNext()) {
+            Produto p = (Produto) it.next();
+            lista.add(p);
+        }
+        return lista;
+
     }
 
     @Override
@@ -46,7 +55,5 @@ public class ProdutoServiceJPAImpl implements ProdutoService{
     public void remover(Integer codigoProduto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-  
-    
+
 }

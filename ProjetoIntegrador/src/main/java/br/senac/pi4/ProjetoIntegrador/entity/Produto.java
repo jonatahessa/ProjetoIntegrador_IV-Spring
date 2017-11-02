@@ -40,6 +40,7 @@ public class Produto implements Serializable {
     @Column(name = "QT_PRODUTO", nullable = false)
     private int quantEstoqueProduto;
 
+    @Digits(integer = 11, fraction = 0, message = "{produto.avaliacao.erro}")
     @Column(name = "AV_PRODUTO")
     private int avaliacaoProduto;
 

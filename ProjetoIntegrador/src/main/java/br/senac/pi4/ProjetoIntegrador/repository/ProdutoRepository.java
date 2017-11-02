@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.pi4.ProjetoIntegrador;
+package br.senac.pi4.ProjetoIntegrador.repository;
 
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import org.springframework.data.repository.CrudRepository;
