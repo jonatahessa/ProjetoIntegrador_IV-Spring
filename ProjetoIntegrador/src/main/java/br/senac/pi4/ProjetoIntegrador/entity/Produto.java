@@ -44,10 +44,6 @@ public class Produto implements Serializable {
     @Column(name = "AV_PRODUTO")
     private int avaliacaoProduto;
 
-    @Size(min = 1, max = 50, message = "{produto.marcaProduto.erro}")
-    @Column(name = "MC_PRODUTO", length = 50, nullable = false)
-    private String marcaProduto;
-
     @Size(min = 1, max = 50, message = "{produto.modeloProduto.erro}")
     @Column(name = "MD_PRODUTO", length = 50, nullable = false)
     private String modeloProduto;
@@ -56,7 +52,7 @@ public class Produto implements Serializable {
     @Column(name = "CO_PRODUTO", length = 20, nullable = false)
     private String corProduto;
 
-    @Size(min = 1, max = 1, message = "{produto.generoProduto.erro}")
+    @Size(min = 1, max = 10, message = "{produto.generoProduto.erro}")
     @Column(name = "GE_PRODUTO", length = 1, nullable = false)
     private char generoProduto;
 
@@ -67,6 +63,10 @@ public class Produto implements Serializable {
     @Size(min = 1, max = 20, message = "{produto.lenteCorProduto.erro}")
     @Column(name = "CL_PRODUTO", length = 20, nullable = false)
     private String lenteCorProduto;
+    
+    @Size(min = 1, max = 100, message = "{produto.materialProduto.erro}")
+    @Column(name = "MT_PRODUTO", length = 20, nullable = false)
+    private String materialProduto;
 
     @Size(min = 1, max = 100, message = "{produto.lenteTipoProduto.erro}")
     @Column(name = "LT_PRODUTO", length = 100, nullable = false)
@@ -123,17 +123,17 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String marcaProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, int contadorProduto) {
+    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, int contadorProduto) {
         this.codigoProduto = codigoProduto;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
         this.avaliacaoProduto = avaliacaoProduto;
-        this.marcaProduto = marcaProduto;
         this.modeloProduto = modeloProduto;
         this.corProduto = corProduto;
         this.generoProduto = generoProduto;
         this.tamanhoProduto = tamanhoProduto;
         this.lenteCorProduto = lenteCorProduto;
+        this.materialProduto = materialProduto;
         this.lenteTipoProduto = lenteTipoProduto;
         this.descricaoProduto = descricaoProduto;
         this.precoProduto = precoProduto;
@@ -189,14 +189,6 @@ public class Produto implements Serializable {
         this.avaliacaoProduto = avaliacaoProduto;
     }
 
-    public String getMarcaProduto() {
-        return marcaProduto;
-    }
-
-    public void setMarcaProduto(String marcaProduto) {
-        this.marcaProduto = marcaProduto;
-    }
-
     public String getModeloProduto() {
         return modeloProduto;
     }
@@ -239,6 +231,14 @@ public class Produto implements Serializable {
 
     public String getLenteTipoProduto() {
         return lenteTipoProduto;
+    }
+
+    public String getMaterialProduto() {
+        return materialProduto;
+    }
+
+    public void setMaterialProduto(String materialProduto) {
+        this.materialProduto = materialProduto;
     }
 
     public void setLenteTipoProduto(String lenteTipoProduto) {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>Cadastro de Imagens</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section layout:fragment="conteudo">
+            <h1>Upload de arquivo</h1>
+
+            <div class="alert alert-success" th:if="${mensagem != null}">
+                <h2 th:text="${mensagem}"></h2>
+            </div>
+            <div class="alert alert-danger" th:if="${mensagemErro != null}">
+                <h2 th:text="${mensagemErro}"></h2>
+            </div>
+            <div>
+                <form action="#" th:action="@{/upload}" method="post"
+                      enctype="multipart/form-data">
+                    <input type="file" name="arquivo" />
+                    <button class="btn btn-success" type="submit">Enviar arquivo</button>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

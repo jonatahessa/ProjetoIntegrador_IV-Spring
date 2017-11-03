@@ -5,7 +5,9 @@
  */
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.Service.CategoriaService;
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
+import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.util.ArrayList;
@@ -20,21 +22,31 @@ import org.springframework.web.servlet.ModelAndView;
  * @author joliveira
  */
 @Controller
-public class BackOfficeController {
+public class BackOfficeProdutoController {
 
     @Autowired
-    private ProdutoService service;
+    private ProdutoService prodService;
+    
+    @Autowired
+    private CategoriaService catService;
 
     @RequestMapping("/backoffice/produtos")
     public ModelAndView produto() {
-        List<Produto> lista = service.listar(0, 100);
+        List<Produto> lista = prodService.listar(0, 100);
 
         return new ModelAndView("backoffice/produto/listaDeProdutos").addObject("prod", lista);
     }
     
     @RequestMapping("/backoffice/produtos/cadastro")
     public ModelAndView cadastro() {
+        List<Categoria> lista = catService.listar();
         
-        return new ModelAndView("backoffice/produto/cadastroDeProdutos");
+        return new ModelAndView("backoffice/produto/cadastroDeProdutos").addObject("categorias", lista);
+    }
+    
+    @RequestMapping("/backoffice/produtos/cadastrar")
+    public ModelAndView cadastrar() {
+        
+        return null;
     }
 }

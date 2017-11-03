@@ -5,15 +5,15 @@
  */
 package br.senac.pi4.ProjetoIntegrador.repository;
 
-import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author jonat
+ * @author joliveira
  */
 @Repository
-public interface ProdutoRepository extends CrudRepository<Produto, Long> {
-  
+public interface CategoriaRepository extends CrudRepository<Categoria, Long> {
+
 }

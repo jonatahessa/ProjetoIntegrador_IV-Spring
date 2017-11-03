@@ -23,7 +23,7 @@ public class UploadController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView mostrarTela() {
-        return new ModelAndView("backoffice/produto/cadastroDeProdutos");
+        return new ModelAndView("backoffice/produto/cadastroDeImagens");
     }
 
     @RequestMapping(method = RequestMethod.POST)

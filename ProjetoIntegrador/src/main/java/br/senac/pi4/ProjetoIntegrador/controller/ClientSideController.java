@@ -26,7 +26,6 @@ public class ClientSideController {
             produto.setPrecoProduto(new BigDecimal(i));
             produto.setGeneroProduto('m');
             produto.setContadorProduto(i);
-            produto.setMarcaProduto("Ray Ban" + i);
             produto.setCodigoProduto(i);
             produto.setCorProduto("background: #2098D1;");
 
@@ -68,7 +67,6 @@ public class ClientSideController {
         produto.setDescricaoProduto("Descricao do item " + idProduto);
         produto.setPrecoProduto(new BigDecimal(idProduto));
         produto.setContadorProduto(idProduto);
-        produto.setMarcaProduto("Marca asijdaidjao");
         produto.setCorProduto("background: #2098D1;");
 
         List<Imagem> imagens = new ArrayList<>();

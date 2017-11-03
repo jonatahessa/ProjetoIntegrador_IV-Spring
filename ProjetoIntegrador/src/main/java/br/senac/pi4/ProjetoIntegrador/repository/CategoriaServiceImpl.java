@@ -3,21 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.pi4.ProjetoIntegrador.Service.Implement;
+package br.senac.pi4.ProjetoIntegrador.repository;
 
-import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.Service.CategoriaService;
+import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author jonat
+ * @author joliveira
  */
-public class ServiceCategoriaImplement implements CategoriaService {
+
+@Repository
+public class CategoriaServiceImpl implements CategoriaService {
+    
+    @Autowired
+    private CategoriaRepository repo;
 
     @Override
     public List<Categoria> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Iterable<Categoria> categorias = repo.findAll();
+        Iterator it = categorias.iterator();
+        List<Categoria> lista = new ArrayList<Categoria>();
+        while (it.hasNext()) {
+            Categoria c = (Categoria) it.next();
+            lista.add(c);
+        }
+        return lista;
     }
 
     @Override
@@ -39,7 +55,5 @@ public class ServiceCategoriaImplement implements CategoriaService {
     public void remover(Integer codigoCategoria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
     
 }

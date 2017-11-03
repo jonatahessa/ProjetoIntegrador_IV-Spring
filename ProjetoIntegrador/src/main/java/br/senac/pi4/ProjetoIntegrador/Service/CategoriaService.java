@@ -17,5 +17,11 @@ public interface CategoriaService extends Serializable {
     
     public List<Categoria> listar();
     
-    public Categoria obter(Integer codigoCategoria);
+    public Categoria obter(String nomeCategoria);
+    
+    public void incluir(Categoria categoria);
+    
+    public void alterar(Categoria categoria);
+    
+    public void remover(Integer codigoCategoria);
 }

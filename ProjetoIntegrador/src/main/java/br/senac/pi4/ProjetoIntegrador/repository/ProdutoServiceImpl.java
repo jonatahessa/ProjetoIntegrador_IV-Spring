@@ -28,7 +28,6 @@ public class ProdutoServiceImpl implements ProdutoService {
             lista.add(p);
         }
         return lista;
-
     }
 
     @Override
