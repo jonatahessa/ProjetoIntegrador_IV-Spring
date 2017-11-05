@@ -6,6 +6,7 @@
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -172,4 +175,6 @@ public class Cliente implements Serializable {
     public void setEndereco(Set<Endereco> endereco) {
         this.endereco = endereco;
     }
+
+    
 }

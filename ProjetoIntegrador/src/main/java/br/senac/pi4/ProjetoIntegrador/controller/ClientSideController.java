@@ -8,12 +8,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClientSideController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         // CADASTRO
         List<Produto> listaProdutos = new ArrayList<>();
@@ -57,7 +58,45 @@ public class ClientSideController {
         return new ModelAndView("clientside/home").addObject("produtos", listaProdutos);
     }
 
-    @RequestMapping("/descricao/{id}")
+    @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
+    public ModelAndView carrinho() {
+        List<Imagem> imagens = new ArrayList<>();
+
+        Imagem img = new Imagem();
+        img.setNomeImagem("/images/oculosTeste.jpg");
+        img.setLegendaImagem("Imagem de um oculos");
+        img.setSequenciaImagem(1);
+        imagens.add(img);
+
+        Produto produto = new Produto();
+        produto.setTituloProduto("Óculos Oakley Preto");
+        produto.setPrecoProduto(new BigDecimal("400.00"));
+        produto.setImagens(imagens);
+
+        Produto produto2 = new Produto();
+        produto2.setTituloProduto("Óculos Adidas Preto");
+        produto2.setPrecoProduto(new BigDecimal("500.00"));
+        produto2.setImagens(imagens);
+
+        List<Produto> produtos = new ArrayList<>();
+        produtos.add(produto);
+        produtos.add(produto2);
+
+        BigDecimal temp = new BigDecimal("0");
+        BigDecimal total = new BigDecimal("0");
+        for (Produto p : produtos) {
+            temp = p.getPrecoProduto();
+            total = total.add(temp);
+
+        }
+
+        return new ModelAndView("clientside/carrinho")
+                .addObject("produtos", produtos)
+                .addObject("total", total);
+
+    }
+
+    @RequestMapping(value = "/descricao/{id}", method = RequestMethod.POST)
     public ModelAndView descricao(@PathVariable("id") Integer idProduto) {
 
         // METODO OBTER POR ID
@@ -96,67 +135,14 @@ public class ClientSideController {
                 .addObject("produto", produto);
     }
 
-    @RequestMapping("/carrinho")
-    public ModelAndView carrinho() {
-        List<Imagem> imagens = new ArrayList<>();
-
-        Imagem img = new Imagem();
-        img.setNomeImagem("/images/oculosTeste.jpg");
-        img.setLegendaImagem("Imagem de um oculos");
-        img.setSequenciaImagem(1);
-        imagens.add(img);
-        
-        Produto produto = new Produto();
-        produto.setTituloProduto("Óculos Oakley Preto");
-        produto.setPrecoProduto(new BigDecimal("400.00"));
-        produto.setImagens(imagens);
-        
-        Produto produto2 = new Produto();
-        produto2.setTituloProduto("Óculos Adidas Preto");
-        produto2.setPrecoProduto(new BigDecimal("500.00"));
-        produto2.setImagens(imagens);
-        
-        List<Produto> produtos = new ArrayList<>();
-        produtos.add(produto);
-        produtos.add(produto2);
-        
-        BigDecimal temp = new BigDecimal("0");
-        BigDecimal total = new BigDecimal("0");
-        for (Produto p : produtos) {
-            temp = p.getPrecoProduto();
-            total = total.add(temp);
-            
-        }
-        
-        return new ModelAndView("clientside/carrinho")
-                .addObject("produtos", produtos)
-                .addObject("total", total);
-        
-    }
-
-    @RequestMapping("/perfil")
-    public String perfil() {
-        return "clientside/clientePerfil";
-    }
-
-    @RequestMapping("/cadastroC")
+    @RequestMapping(value = "/cadastroC", method = RequestMethod.GET)
     public String cadastroC() {
         return "clientside/clienteCadastro";
     }
 
-    @RequestMapping("/clientePedidos")
-    public String clientePedidos() {
-        return "clientside/clientePedidos";
+    @RequestMapping("/login")
+    public String login() {
+        return "clientside/login";
     }
 
-    @RequestMapping("/checkoutEndereco")
-    public String clienteCheckoutEndereco() {
-        return "clientside/checkoutEndereco";
-    }
-
-    @RequestMapping("/checkoutPagamento")
-    public String clienteCheckoutPagamento() {
-        return "clientside/checkoutPagamento";
-    }
-    
 }
