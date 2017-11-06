@@ -100,7 +100,7 @@ public class ClientSideController {
 
     }
 
-    @RequestMapping(value = "/descricao/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/descricao/{id}")
     public ModelAndView descricao(@PathVariable("id") Integer idProduto) {
 
         // METODO OBTER POR ID
