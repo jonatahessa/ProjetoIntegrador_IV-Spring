@@ -63,7 +63,7 @@ public class Produto implements Serializable {
     @Size(min = 1, max = 20, message = "{produto.lenteCorProduto.erro}")
     @Column(name = "CL_PRODUTO", length = 20, nullable = false)
     private String lenteCorProduto;
-    
+
     @Size(min = 1, max = 100, message = "{produto.materialProduto.erro}")
     @Column(name = "MT_PRODUTO", length = 20, nullable = false)
     private String materialProduto;
@@ -115,7 +115,7 @@ public class Produto implements Serializable {
                 @JoinColumn(name = "ID_CATEGORIA")
             })
     private Set<Categoria> categorias;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MARCA", nullable = false)
     private Marca marca;
@@ -124,10 +124,13 @@ public class Produto implements Serializable {
     @Column(name = "CT_PRODUTO")
     private int contadorProduto;
 
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedido> pedidos;
+
     public Produto() {
     }
 
-    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Marca marca, int contadorProduto) {
+    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Marca marca, int contadorProduto, List<Pedido> pedidos) {
         this.codigoProduto = codigoProduto;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
@@ -152,6 +155,7 @@ public class Produto implements Serializable {
         this.categorias = categorias;
         this.marca = marca;
         this.contadorProduto = contadorProduto;
+        this.pedidos = pedidos;
     }
 
     public int getContadorProduto() {
@@ -344,5 +348,13 @@ public class Produto implements Serializable {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

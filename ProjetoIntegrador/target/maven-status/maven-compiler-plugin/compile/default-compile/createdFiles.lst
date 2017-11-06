@@ -1,7 +1,5 @@
 br\senac\pi4\ProjetoIntegrador\Service\EnderecoService.class
 br\senac\pi4\ProjetoIntegrador\controller\AdminSideController.class
-br\senac\pi4\ProjetoIntegrador\GerarBD.class
-br\senac\pi4\ProjetoIntegrador\entity\Venda.class
 br\senac\pi4\ProjetoIntegrador\config\WebMvcConfig.class
 br\senac\pi4\ProjetoIntegrador\entity\Endereco.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.class

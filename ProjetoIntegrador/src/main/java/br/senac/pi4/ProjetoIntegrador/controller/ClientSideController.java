@@ -1,7 +1,9 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClientSideController {
+    
+    CategoriaServiceImpl serviceCategoria;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         // CADASTRO
+        List<Categoria> categorias = serviceCategoria.listar();
         List<Produto> listaProdutos = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
 
@@ -55,7 +60,7 @@ public class ClientSideController {
             listaProdutos.add(produto);
 
         }
-        return new ModelAndView("clientside/home").addObject("produtos", listaProdutos);
+        return new ModelAndView("clientside/home").addObject("produtos", listaProdutos).addObject("categorias", categorias);
     }
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
