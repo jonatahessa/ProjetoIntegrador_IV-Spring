@@ -21,7 +21,6 @@ public class ClientSideController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         // CADASTRO
-        List<Categoria> categorias = serviceCategoria.listar();
         List<Produto> listaProdutos = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
 
@@ -60,7 +59,7 @@ public class ClientSideController {
             listaProdutos.add(produto);
 
         }
-        return new ModelAndView("clientside/home").addObject("produtos", listaProdutos).addObject("categorias", categorias);
+        return new ModelAndView("clientside/home").addObject("produtos", listaProdutos);
     }
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
