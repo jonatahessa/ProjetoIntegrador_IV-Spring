@@ -10,14 +10,15 @@
         <link data-th-href="@{/Font-Awesome/css/font-awesome.css}" href="../../static/Font-Awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/Bootstrap/css/bootstrap.css}" href="../../static/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/carousel_descricao.css}" href="../../static/css/carousel_descricao.css" rel="stylesheet" type="text/css"/>
-        <link data-th-href="@{/css/foorter_descricao.css}" href="../../static/css/foorter_descricao.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/footer.css}" href="../../static/css/footer.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/footer_descricao.css}" href="../../static/css/footer_descricao.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/home.css}" rel="stylesheet" href="../../static/css/home.css" type="text/css"/>
         <link data-th-href="@{/css/descricao.css}" href="../../static/css/descricao.css" rel="stylesheet" type="text/css"/>
         <script dt-th-src="@{/css/carousel_descricaoResolucao.js}" src="../../static/js/carousel_descricao.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container-fluid">
-            
+
             <!-- MENU TOPO -->
             <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
 
@@ -81,7 +82,7 @@
                     <div class="cardDescricao">
                         <div class="card1">
                             <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
-                            
+
                             <h1 id="precoProduto" data-th-text="${produto.precoProduto}"></h1>                            
                         </div>
                         <div class="comprar">
@@ -92,7 +93,7 @@
             </div>
 
             <!-- Container das Navs -->
-            <div class="row linhaNavs">
+            <div class="row">
 
                 <!-- Coluna das Navs -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -115,8 +116,10 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+            <!-- RODAPE -->
+            <div th:include="~{clientside/componentes/menu_rodape :: menu_rodape}"></div>
+
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
