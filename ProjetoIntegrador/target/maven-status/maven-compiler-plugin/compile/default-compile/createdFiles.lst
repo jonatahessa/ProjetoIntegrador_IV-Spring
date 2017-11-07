@@ -1,5 +1,6 @@
 br\senac\pi4\ProjetoIntegrador\Service\EnderecoService.class
 br\senac\pi4\ProjetoIntegrador\controller\AdminSideController.class
+br\senac\pi4\ProjetoIntegrador\repository\ImagemRepository.class
 br\senac\pi4\ProjetoIntegrador\config\WebMvcConfig.class
 br\senac\pi4\ProjetoIntegrador\entity\Endereco.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.class
@@ -14,12 +15,14 @@ br\senac\pi4\ProjetoIntegrador\controller\BackOfficeProdutoController.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\UploadController.class
+br\senac\pi4\ProjetoIntegrador\repository\ImagemServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class
 br\senac\pi4\ProjetoIntegrador\entity\Usuario.class
 br\senac\pi4\ProjetoIntegrador\entity\Marca.class
 br\senac\pi4\ProjetoIntegrador\repository\CategoriaServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Pedido.class
 br\senac\pi4\ProjetoIntegrador\config\SecurityConfig.class
+br\senac\pi4\ProjetoIntegrador\Service\ImagemService.class
 br\senac\pi4\ProjetoIntegrador\entity\Telefone.class
 br\senac\pi4\ProjetoIntegrador\Service\ClienteService.class
 br\senac\pi4\ProjetoIntegrador\Service\ProdutoService.class

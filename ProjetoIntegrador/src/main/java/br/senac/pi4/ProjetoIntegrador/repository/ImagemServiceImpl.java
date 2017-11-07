@@ -1,7 +1,9 @@
 package br.senac.pi4.ProjetoIntegrador.repository;
 
+import br.senac.pi4.ProjetoIntegrador.Service.ImagemService;
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
+import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,46 +15,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProdutoServiceImpl implements ProdutoService {
+public class ImagemServiceImpl implements ImagemService {
 
-    @Autowired
-    private ProdutoRepository repo;
+   @Autowired
+    private ImagemRepository repo;
     
     @Override
-    public List<Produto> listar(int offset, int quantidade) {
-        Iterable<Produto> produtos = repo.findAll();
-        Iterator it = produtos.iterator();
-        List<Produto> lista = new ArrayList<Produto>();
+    public List<Imagem> listar(int offset, int quantidade) {
+        Iterable<Imagem> imagens = repo.findAll();
+        Iterator it = imagens.iterator();
+        ArrayList<Imagem> lista = new ArrayList<Imagem>();
         while (it.hasNext()) {
-            Produto p = (Produto) it.next();
-            lista.add(p);
+            Imagem img = (Imagem) it.next();
+            lista.add(img);
         }
         return lista;
     }
 
     @Override
-    public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
+    public List<Imagem> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Produto obter(Integer codigoProduto) {
+    public Produto obter(Integer codigoImagem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void incluir(Produto produto) {
+    public void incluir(Imagem imagem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(Produto produto) {
+    public void alterar(Imagem imagem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remover(Integer codigoProduto) {
+    public void remover(Integer codigoImagem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+   
 }
+

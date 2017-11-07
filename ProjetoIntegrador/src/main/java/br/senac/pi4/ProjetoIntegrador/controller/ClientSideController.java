@@ -4,9 +4,12 @@ import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
+import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
+import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +19,27 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ClientSideController {
     
+    @Autowired
     CategoriaServiceImpl serviceCategoria;
+    
+    @Autowired
+    ImagemServiceImpl serviceImagem;
+    
+    @Autowired
+    ProdutoServiceImpl serviceProduto;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         // CADASTRO
         List<Produto> listaProdutos = new ArrayList<>();
+        
+        
+//        List<Produto> produtos = serviceProduto.listar(0, 100);
+//        List<Imagem> imagens = serviceImagem.listar(0, 100);
+
+        
+
+                
         for (int i = 0; i < 9; i++) {
 
             Produto produto = new Produto();
