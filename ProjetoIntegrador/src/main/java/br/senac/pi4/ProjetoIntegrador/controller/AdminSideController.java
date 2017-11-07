@@ -28,4 +28,8 @@ public class AdminSideController {
         return "clientside/checkoutPagamento";
     }
 
+    @RequestMapping(value = "/checkoutConfirmacao", method = RequestMethod.GET)
+    public String clienteCheckoutConfirmacao() {
+        return "clientside/checkoutConfirmacao";
+    }
 }
