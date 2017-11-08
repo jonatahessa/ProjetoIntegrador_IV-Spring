@@ -54,3 +54,27 @@
 .produtos img {
   width: 100%;
 }
+
+/*janela cadastro*/
+
+#cadastrar {
+  position: absolute;
+  display: none;
+  margin: auto;
+  width: 60%;
+  z-index: 150;
+  float: none;
+}
+
+#nevoa {
+  content: " ";
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #000000;
+  opacity: 0.5;
+  position: fixed;
+  display: none;
+  z-index: 100;
+}

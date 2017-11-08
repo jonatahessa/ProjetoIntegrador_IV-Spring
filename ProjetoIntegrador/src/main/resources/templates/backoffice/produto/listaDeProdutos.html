@@ -4,13 +4,14 @@
         <title>Produtos</title>
         <meta charset="UTF-8">
         <link th:href="@{/css/estiloBackofficeProduto.css}" rel="stylesheet" type="text/css"/>
+        <script th:src="@{/js/domCadastroProdutosBackoffice.js}" type="text/javascript"></script>
     </head>
     <body>
-        <section layout:fragment="conteudo" class="container">
+        <section layout:fragment="conteudo" class="container-fluid">
             <div class="row">
                 <div id="campo-busca" class="col-md-6">
                     <h2 class="text-center"><strong>Produtos</strong></h2>
-                    <a th:href="@{/backoffice/produtos/cadastro}">Cadastrar Produto</a>
+                    <button id="botao-novo" class="btn btn-primary" type="button" name="novo">Novo Produto</button>
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
                             <input type="text" class="form-control input-lg" placeholder="Buscar" />
@@ -28,6 +29,130 @@
                     <h2 th:text="${p.tituloProduto}">Nome do Produto</h2>
                     <p th:text="${p.codigoProduto}">Código do Produto</p>
                 </div>
+            </div>
+
+            <div id="cadastrar" class="container-fluid">
+              <div class="row">
+                <h1 class="text-center">Cadastro de Produtos</h1>
+                <div id="formulario" class="col-xs-12 col-sm-12 col-md-8 col-lg-6 container">
+                  <form class="row" th:action="@{/backoffice/produtos/cadastrar}" method="post">
+
+                    <div class="form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="titulo">Título</label>
+                        <input id="titulo" class="form-control" type="text" name="tituloproduto" value="">
+                      </div>
+                    </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <label for="qtde">Quantidade</label>
+                          <input id="qtde" class="form-control" type="text" name="qtdeproduto" value="">
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <label for="preco">Preço</label>
+                          <input id="preco" class="form-control" type="text" name="valorproduto" value="">
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <label for="avalia">Avaliação</label>
+                          <input id="avalia" class="form-control" type="text" name="avaliacaoproduto" value="">
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <label for="genero">Gênero</label>
+                          <select id="genero" class="form-control campos-linha" name="generoproduto">
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                          </select>
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="modelo">Modelo</label>
+                        <input id="modelo" class="form-control" type="text" name="modeloproduto" value="">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="cor">Cor</label>
+                        <input id="cor" class="form-control campos-linha" type="text" name="corproduto" value="">
+                      </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="cor-lente">Cor da Lente</label>
+                        <input id="cor-lente" class="form-control campos-linha" type="text" name="corlenteproduto" value="">
+                      </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="material">Material</label>
+                        <input id="material" class="form-control" type="text" name="materialproduto" value="">
+                      </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="peso">Peso</label>
+                        <input id="peso" class="form-control" type="text" name="pesoproduto" value="">
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="descricao">Descricão</label>
+                        <textarea id="descricao" class="form-control" name="descricaoproduto" rows="8" cols="80"></textarea>
+                      </div>
+                    </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                          <label for="tamanho">Tamanho</label>
+                          <select id="tamanho" class="form-control" name="tamanho">
+                            <option value="P">P</option>
+                            <option value="M">M</option>
+                            <option value="G">G</option>
+                          </select>
+                        </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="altura">Altura</label>
+                        <input id="altura" class="form-control" type="text" name="alturaproduto" value="">
+                      </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="largura">Lagura</label>
+                        <input id="largura" class="form-control" type="text" name="larguraproduto" value="">
+                      </div>
+
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label for="comprimento">Comprimento</label>
+                        <input id="comprimento" class="form-control" type="text" name="comprimentoproduto" value="">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label for="categorias">Categorias</label>
+                        <div id="categorias" class="checkbox" th:each="c:${categorias}">
+                          <input th:id="${c.nomeCategoria}" type="checkbox" name="categoriaproduto" th:value="${c.codigoCategoria}"/>
+                          <label th:for="${c.nomeCategoria}" th:text="${c.nomeCategoria}">Categoria</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <button class="btn btn-success form-control" type="submit" method="post" name="button">Salvar</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div id="nevoa">
+
+                  </div>
+                </div>
+              </div>
             </div>
         </section>
     </body>
