@@ -13,7 +13,7 @@ $(document).ready(function () {
 $('.btnCalcularCep').click(function () {
     $('.linhaInfoCep').html('');
     $('.linhaInfoCep').append('<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>\n\
-                                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">\n\
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">\n\
                                     <p class="pFrete">Prazo de entrega: 5-7 dias úteis </br>Valor: R$ 12,00</p>\n\
                                 </div>');
     

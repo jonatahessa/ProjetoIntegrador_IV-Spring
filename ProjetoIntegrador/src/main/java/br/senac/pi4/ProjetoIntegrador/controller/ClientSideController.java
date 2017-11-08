@@ -105,12 +105,15 @@ public class ClientSideController {
         produtos.add(produto2);
 
         BigDecimal temp = new BigDecimal("0");
-        BigDecimal total = new BigDecimal("0");
+        BigDecimal t = new BigDecimal("0");
+        String total = null;
         for (Produto p : produtos) {
             temp = p.getPrecoProduto();
-            total = total.add(temp);
+            t = t.add(temp);
 
         }
+        
+        total = "Total R$ " + t;
 
         return new ModelAndView("clientside/carrinho")
                 .addObject("produtos", produtos)
