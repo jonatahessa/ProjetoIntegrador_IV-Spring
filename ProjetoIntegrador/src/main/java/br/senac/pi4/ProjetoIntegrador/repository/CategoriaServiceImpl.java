@@ -37,8 +37,8 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria obter(String nomeCategoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categoria obter(long id) {
+        return repo.findOne(id);
     }
 
     @Override

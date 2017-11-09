@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 
@@ -115,6 +116,9 @@ public class Produto implements Serializable {
                 @JoinColumn(name = "ID_CATEGORIA")
             })
     private Set<Categoria> categorias;
+
+    @Transient
+    private Set<Integer> idCategorias;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MARCA", nullable = false)
@@ -356,5 +360,13 @@ public class Produto implements Serializable {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public Set<Integer> getIdCategorias() {
+        return idCategorias;
+    }
+
+    public void setIdCategorias(Set<Integer> idCategorias) {
+        this.idCategorias = idCategorias;
     }
 }

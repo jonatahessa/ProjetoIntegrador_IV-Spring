@@ -9,8 +9,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,10 +17,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Autowired
     private ProdutoRepository repo;
-
-    @PersistenceContext
-    private EntityManager entityManager;
-
+    
     @Override
     public List<Produto> listar(int offset, int quantidade) {
         Iterable<Produto> produtos = repo.findAll();
@@ -35,9 +30,23 @@ public class ProdutoServiceImpl implements ProdutoService {
         return lista;
     }
 
+//     @PersistenceContext
+//    private EntityManager entityManager;
+//    
+//    @Override
+//    public List<Produto> listar(int offset, int quantidade) {
+//        Query query = entityManager.createQuery("SELECT * from tb_produto");
+//        return query.getResultList();
+//    }
+    
     @Override
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
         throw new UnsupportedOperationException(""); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Produto obter(Integer codigoProduto) {
+        throw new UnsupportedOperationException("SELECT from tb_produto WHERE id_produto =" + codigoProduto + ";"); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -53,14 +62,6 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public void remover(Integer codigoProduto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Produto obter(Long codigoProduto) {
-        Query query = entityManager.createNativeQuery(
-                "SELECT * FROM tb_produto WHERE id_produto = :id")
-                .setParameter("id", codigoProduto);
-        return (Produto) query.getSingleResult();
     }
 
 }
