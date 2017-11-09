@@ -31,7 +31,7 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO")
-    private Integer codigoProduto;
+    private Long codigoProduto;
 
     @Size(min = 1, max = 100, message = "{produto.tituloProduto.erro}")
     @Column(name = "TL_PRODUTO", length = 100, nullable = false)
@@ -54,8 +54,8 @@ public class Produto implements Serializable {
     private String corProduto;
 
     @Size(min = 1, max = 10, message = "{produto.generoProduto.erro}")
-    @Column(name = "GE_PRODUTO", length = 1, nullable = false)
-    private char generoProduto;
+    @Column(name = "GE_PRODUTO", length = 20, nullable = false)
+    private String generoProduto;
 
     @Size(min = 1, max = 5, message = "{produto.tamanhoProduto.erro}")
     @Column(name = "TM_PRODUTO", length = 5, nullable = false)
@@ -118,7 +118,7 @@ public class Produto implements Serializable {
     private Set<Categoria> categorias;
 
     @Transient
-    private Set<Integer> idCategorias;
+    private Set<Long> idCategorias;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MARCA", nullable = false)
@@ -134,7 +134,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Integer codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, char generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Marca marca, int contadorProduto, List<Pedido> pedidos) {
+    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Marca marca, int contadorProduto, List<Pedido> pedidos) {
         this.codigoProduto = codigoProduto;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
@@ -170,11 +170,11 @@ public class Produto implements Serializable {
         this.contadorProduto = contadorProduto;
     }
 
-    public Integer getCodigoProduto() {
+    public Long getCodigoProduto() {
         return codigoProduto;
     }
 
-    public void setCodigoProduto(Integer codigoProduto) {
+    public void setCodigoProduto(Long codigoProduto) {
         this.codigoProduto = codigoProduto;
     }
 
@@ -218,11 +218,11 @@ public class Produto implements Serializable {
         this.corProduto = corProduto;
     }
 
-    public char getGeneroProduto() {
+    public String getGeneroProduto() {
         return generoProduto;
     }
 
-    public void setGeneroProduto(char generoProduto) {
+    public void setGeneroProduto(String generoProduto) {
         this.generoProduto = generoProduto;
     }
 
@@ -362,11 +362,11 @@ public class Produto implements Serializable {
         this.pedidos = pedidos;
     }
 
-    public Set<Integer> getIdCategorias() {
+    public Set<Long> getIdCategorias() {
         return idCategorias;
     }
 
-    public void setIdCategorias(Set<Integer> idCategorias) {
+    public void setIdCategorias(Set<Long> idCategorias) {
         this.idCategorias = idCategorias;
     }
 }

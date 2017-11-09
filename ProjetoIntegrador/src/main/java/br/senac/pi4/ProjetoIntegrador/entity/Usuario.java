@@ -17,7 +17,7 @@ public class Usuario implements UserDetails {
 
     private List<Papel> papeis;
 
-    private Integer codigoCliente;
+    private Long codigoCliente;
 
     private String senhaCliente;
 
@@ -25,12 +25,15 @@ public class Usuario implements UserDetails {
 
     private String nomeCompletoCliente;
 
-    public Usuario(Integer codigoCliente, String senhaCliente, String cpfCliente, String nomeCompletoCliente, List<Papel> papeis) {
+    public Usuario(Long codigoCliente, String senhaCliente, String cpfCliente, String nomeCompletoCliente, List<Papel> papeis) {
         this.codigoCliente = codigoCliente;
         this.senhaCliente = senhaCliente;
         this.cpfCliente = cpfCliente;
         this.nomeCompletoCliente = nomeCompletoCliente;
         this.papeis = papeis;
+    }
+
+    public Usuario() {
     }
 
     @Override

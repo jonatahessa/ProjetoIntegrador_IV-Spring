@@ -48,9 +48,9 @@ public class ClientSideController {
 
             produto.setTituloProduto("Produto titulo " + i);
             produto.setPrecoProduto(new BigDecimal(i));
-            produto.setGeneroProduto('m');
+            produto.setGeneroProduto("m");
             produto.setContadorProduto(i);
-            produto.setCodigoProduto(i);
+            produto.setCodigoProduto(new Long(i));
             produto.setCorProduto("background: #2098D1;");
 
             List<Imagem> imagens = new ArrayList<>();

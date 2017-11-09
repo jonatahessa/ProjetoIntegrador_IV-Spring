@@ -20,15 +20,13 @@ public class UsuarioService implements UserDetailsService {
         
         USUARIOS = new LinkedHashMap<String, Usuario>();
 
-        USUARIOS.put("Livia Cristina", new Usuario(
-                1,
+        USUARIOS.put("Livia Cristina", new Usuario(new Long(1),
                 SecurityConfig.passwordEncoder().encode("1234"),
                 "437.931.688-21",
                 "Livia Cristina",
                 Arrays.asList(new Papel("ROLE_BOÇA"))));
 
-        USUARIOS.put("Eloisa Apolinario", new Usuario(
-                2,
+        USUARIOS.put("Eloisa Apolinario", new Usuario(new Long(2),
                 SecurityConfig.passwordEncoder().encode("1234"),
                 "437.931.688-24",
                 "Eloisa Apolinario",

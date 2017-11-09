@@ -29,7 +29,7 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO")
-    private Integer codigoEndereco;
+    private Long codigoEndereco;
     
     @Size(min = 1, max = 50, message = "{endereco.tipoLogradouro.erro}")
     @Column(name = "TL_ENDERECO", length = 50, nullable = false)
@@ -69,7 +69,7 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(Integer codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
+    public Endereco(Long codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
         this.codigoEndereco = codigoEndereco;
         this.tipoLogradouroEndereco = tipoLogradouroEndereco;
         this.logradouroEndereco = logradouroEndereco;
@@ -84,11 +84,11 @@ public class Endereco implements Serializable {
 
     
 
-    public Integer getCodigoEndereco() {
+    public Long getCodigoEndereco() {
         return codigoEndereco;
     }
 
-    public void setCodigoEndereco(Integer codigoEndereco) {
+    public void setCodigoEndereco(Long codigoEndereco) {
         this.codigoEndereco = codigoEndereco;
     }
 

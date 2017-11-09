@@ -36,7 +36,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE")
-    private Integer codigoCliente;
+    private Long codigoCliente;
 
     @Size(min = 1, max = 100, message = "{cliente.email.erro}")
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
@@ -83,7 +83,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Integer codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, String nomeCompletoCliente, char sexoCliente, String apelidoCliente, List<Telefone> telefones, Set<Endereco> endereco) {
+    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, String nomeCompletoCliente, char sexoCliente, String apelidoCliente, List<Telefone> telefones, Set<Endereco> endereco) {
         this.codigoCliente = codigoCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
@@ -120,11 +120,11 @@ public class Cliente implements Serializable {
         this.apelidoCliente = apelidoCliente;
     }
 
-    public Integer getCodigoCliente() {
+    public Long getCodigoCliente() {
         return codigoCliente;
     }
 
-    public void setCodigoCliente(Integer codigoCliente) {
+    public void setCodigoCliente(Long codigoCliente) {
         this.codigoCliente = codigoCliente;
     }
 
