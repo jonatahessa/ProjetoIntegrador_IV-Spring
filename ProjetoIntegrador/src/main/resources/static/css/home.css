@@ -69,11 +69,6 @@ body, html{
     font-size: 200%;
 }
 
-.botoes{
-    position: absolute;
-    bottom: 5%;
-}
-
 #descricao{
     display: none;
 }
@@ -104,7 +99,18 @@ body, html{
 }
 
 
+.botoes{
+   margin: 2%;
+}
+
+
 @media screen and (min-width: 768px) {
+
+
+    .botoes{
+        margin: 2%;
+    }
+
 
 
     .menu_topo{
@@ -115,11 +121,6 @@ body, html{
 
     #descricao{
         display: block;
-    }
-
-    .botoes{
-        position: absolute;
-        bottom: 5%;
     }
 
     .titulo{
