@@ -20,7 +20,7 @@ public class Imagem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_IMAGEM")
-    private Integer codigoImagem;
+    private Long codigoImagem;
     
     @Column(name = "NM_IMAGEM", length = 100, nullable = false)
     private String nomeImagem;
@@ -40,7 +40,7 @@ public class Imagem implements Serializable {
 
     }
 
-    public Imagem(Integer codigoImagem, String nomeImagem, String legendaImagem, Integer sequenciaImagem, Produto produto) {
+    public Imagem(Long codigoImagem, String nomeImagem, String legendaImagem, Integer sequenciaImagem, Produto produto) {
         this.codigoImagem = codigoImagem;
         this.nomeImagem = nomeImagem;
         this.legendaImagem = legendaImagem;
@@ -56,11 +56,11 @@ public class Imagem implements Serializable {
         this.sequenciaImagem = sequenciaImagem;
     }
 
-    public Integer getCodigoImagem() {
+    public Long getCodigoImagem() {
         return codigoImagem;
     }
 
-    public void setCodigoImagem(Integer codigoImagem) {
+    public void setCodigoImagem(Long codigoImagem) {
         this.codigoImagem = codigoImagem;
     }
 

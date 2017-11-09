@@ -28,7 +28,7 @@ public class Telefone implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TELEFONE")
-    private Integer codigoTelefone;
+    private Long codigoTelefone;
     
     @Size(min = 3, max = 3, message = "{telefone.dddTelefone.erro}")
     @Column(name = "CA_ENDERECO", length = 3, nullable = false)
@@ -45,18 +45,18 @@ public class Telefone implements Serializable {
     public Telefone() {
     }
 
-    public Telefone(Integer codigoTelefone, String dddTelefone, String numeroTelefone, List<Cliente> clientes) {
+    public Telefone(Long codigoTelefone, String dddTelefone, String numeroTelefone, List<Cliente> clientes) {
         this.codigoTelefone = codigoTelefone;
         this.dddTelefone = dddTelefone;
         this.numeroTelefone = numeroTelefone;
         this.clientes = clientes;
     }
     
-    public Integer getCodigoTelefone() {
+    public Long getCodigoTelefone() {
         return codigoTelefone;
     }
 
-    public void setCodigoTelefone(Integer codigoTelefone) {
+    public void setCodigoTelefone(Long codigoTelefone) {
         this.codigoTelefone = codigoTelefone;
     }
 

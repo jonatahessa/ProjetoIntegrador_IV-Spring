@@ -30,7 +30,7 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MARCA")
-    private Integer codigoMarca;
+    private Long codigoMarca;
 
     @Size(min = 1, max = 100, message = "{marca.tituloMarca.erro}")
     @Column(name = "TL_MARCA", length = 100, nullable = false)
@@ -46,18 +46,18 @@ public class Marca implements Serializable {
     public Marca() {
     }
 
-    public Marca(Integer codigoMarca, String tituloMarca, String descricaoMarca, List<Produto> produtos) {
+    public Marca(Long codigoMarca, String tituloMarca, String descricaoMarca, List<Produto> produtos) {
         this.codigoMarca = codigoMarca;
         this.tituloMarca = tituloMarca;
         this.descricaoMarca = descricaoMarca;
         this.produtos = produtos;
     }
 
-    public Integer getCodigoMarca() {
+    public Long getCodigoMarca() {
         return codigoMarca;
     }
 
-    public void setCodigoMarca(Integer codigoMarca) {
+    public void setCodigoMarca(Long codigoMarca) {
         this.codigoMarca = codigoMarca;
     }
 

@@ -38,7 +38,7 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PEDIDO")
-    private Integer codigoPedido;
+    private Long codigoPedido;
 
     @ManyToMany
     @JoinTable(name = "TB_PRODUTO_PEDIDO",
@@ -77,7 +77,7 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Integer codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date dataEntrega, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido) {
+    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date dataEntrega, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido) {
         this.codigoPedido = codigoPedido;
         this.produtos = produtos;
         this.clientePedido = clientePedido;
@@ -88,11 +88,11 @@ public class Pedido implements Serializable {
         this.formaPagamentoPedido = formaPagamentoPedido;
     }
 
-    public Integer getCodigoPedido() {
+    public Long getCodigoPedido() {
         return codigoPedido;
     }
 
-    public void setCodigoPedido(Integer codigoPedido) {
+    public void setCodigoPedido(Long codigoPedido) {
         this.codigoPedido = codigoPedido;
     }
 

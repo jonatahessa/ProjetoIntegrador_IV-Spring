@@ -6,10 +6,11 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.CategoriaService;
+import br.senac.pi4.ProjetoIntegrador.Service.MarcaService;
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
+import br.senac.pi4.ProjetoIntegrador.entity.Marca;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
-import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -38,13 +39,20 @@ public class BackOfficeProdutoController {
     @Autowired
     private CategoriaService catService;
 
+    @Autowired
+    private MarcaService marcaService;
+
     @RequestMapping("/backoffice/produtos")
     public ModelAndView produto() {
         List<Produto> listaProdutos = prodService.listar(0, 100);
         List<Categoria> listaCategorias = catService.listar();
+        List<Marca> listaMarcas = marcaService.listar();
 
-        return new ModelAndView("backoffice/produto/listaDeProdutos").addObject("prod", listaProdutos).addObject("categorias", listaCategorias).addObject("produto", new Produto());
+        return new ModelAndView("backoffice/produto/listaDeProdutos")
+                .addObject("prod", listaProdutos).addObject("categorias", listaCategorias)
+                .addObject("produto", new Produto()).addObject("marcas", listaMarcas);
     }
+
     //Cadastro de Produto;
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public ModelAndView salvar(
@@ -54,12 +62,12 @@ public class BackOfficeProdutoController {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("produto/input");
         }
-        boolean inclusao = (p.getCodigoProduto()== null);
+        boolean inclusao = (p.getCodigoProduto() == null);
         p.setDtCadastroProduto(new Date());
 
         if (p.getIdCategorias() != null && !p.getIdCategorias().isEmpty()) {
             Set<Categoria> categorias = new LinkedHashSet<Categoria>();
-            for (Integer i : p.getIdCategorias()) {
+            for (Long i : p.getIdCategorias()) {
                 Categoria c = catService.obter(i);
                 Set<Produto> produtos = new LinkedHashSet<Produto>();
                 produtos.add(p);
@@ -75,7 +83,7 @@ public class BackOfficeProdutoController {
         }
 
         redirectAttributes.addFlashAttribute("msgSucesso",
-                "Produto " + p.getTituloProduto()+ " cadastrado com sucesso");
+                "Produto " + p.getTituloProduto() + " cadastrado com sucesso");
         return new ModelAndView("redirect:/gerenciamento/produto");
     }
 }

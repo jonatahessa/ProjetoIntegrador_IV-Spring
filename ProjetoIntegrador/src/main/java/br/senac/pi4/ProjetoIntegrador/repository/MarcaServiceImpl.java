@@ -5,8 +5,9 @@
  */
 package br.senac.pi4.ProjetoIntegrador.repository;
 
-import br.senac.pi4.ProjetoIntegrador.Service.CategoriaService;
+import br.senac.pi4.ProjetoIntegrador.Service.MarcaService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
+import br.senac.pi4.ProjetoIntegrador.entity.Marca;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,43 +18,42 @@ import org.springframework.stereotype.Repository;
  *
  * @author joliveira
  */
-
 @Repository
-public class CategoriaServiceImpl implements CategoriaService {
-    
+public class MarcaServiceImpl implements MarcaService {
+
     @Autowired
-    private CategoriaRepository repo;
+    private MarcaRepository repoMarca;
 
     @Override
-    public List<Categoria> listar() {
-        Iterable<Categoria> categorias = repo.findAll();
-        Iterator it = categorias.iterator();
-        List<Categoria> lista = new ArrayList<Categoria>();
+    public List<Marca> listar() {
+        Iterable<Marca> marcas = repoMarca.findAll();
+        Iterator it = marcas.iterator();
+        List<Marca> lista = new ArrayList<Marca>();
         while (it.hasNext()) {
-            Categoria c = (Categoria) it.next();
-            lista.add(c);
+            Marca m = (Marca) it.next();
+            lista.add(m);
         }
         return lista;
     }
 
     @Override
-    public Categoria obter(Long id) {
-        return repo.findOne(id);
-    }
-
-    @Override
-    public void incluir(Categoria categoria) {
+    public Marca obter(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(Categoria categoria) {
+    public void incluir(Marca marca) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remover(Long codigoCategoria) {
+    public void alterar(Marca marca) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void remover(Long codigoMarca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

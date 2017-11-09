@@ -9,15 +9,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProdutoServiceImpl implements ProdutoService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Autowired
     private ProdutoRepository repo;
-    
+
     @Override
     public List<Produto> listar(int offset, int quantidade) {
         Iterable<Produto> produtos = repo.findAll();
@@ -38,7 +42,6 @@ public class ProdutoServiceImpl implements ProdutoService {
 //        Query query = entityManager.createQuery("SELECT * from tb_produto");
 //        return query.getResultList();
 //    }
-    
     @Override
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
         throw new UnsupportedOperationException(""); //To change body of generated methods, choose Tools | Templates.
@@ -50,8 +53,9 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void incluir(Produto produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public void incluir(Produto p) {
+        entityManager.persist(p);
     }
 
     @Override
