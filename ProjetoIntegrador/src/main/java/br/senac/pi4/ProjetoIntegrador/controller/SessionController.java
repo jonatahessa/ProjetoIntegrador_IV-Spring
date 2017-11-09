@@ -29,7 +29,7 @@ public class SessionController implements Serializable{
      @RequestMapping("/adicionarCarrinho/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Integer codigoProduto, RedirectAttributes redirectAttributes) {
         ProdutoServiceImpl psi = new ProdutoServiceImpl();      
-        Produto p =  (Produto) psi.obter(codigoProduto);
+        Produto p = psi.obter(Long.parseLong(""+codigoProduto));
         carrinho.add(p);
             return new ModelAndView("redirect:/");
     }
