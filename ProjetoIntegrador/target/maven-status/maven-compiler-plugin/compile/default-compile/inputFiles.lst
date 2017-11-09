@@ -7,11 +7,13 @@ A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Categoria.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Imagem.java
+A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\Service\MarcaService.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Marca.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\Service\UsuarioService.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\ImagemRepository.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\config\SecurityConfig.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\Service\ProdutoService.java
+A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\MarcaServiceImpl.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\ProdutoRepository.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Usuario.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\controller\BackOfficeProdutoController.java
@@ -22,6 +24,7 @@ A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\controller\ClientSideController.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\ImagemServiceImpl.java
+A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\repository\MarcaRepository.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Papel.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\Service\ClienteService.java
 A:\Arquivos\Documentos\NetBeansProjects\jonatahessa.github.io\ProjetoIntegrador\src\main\java\br\senac\pi4\ProjetoIntegrador\entity\Endereco.java

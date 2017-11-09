@@ -1,5 +1,6 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ClientSideController {
@@ -160,6 +162,15 @@ public class ClientSideController {
         return "clientside/clienteCadastro";
     }
 
+    @RequestMapping(value = "/novoCliente", method = RequestMethod.POST)
+    public ModelAndView cadastrarCliente(Cliente cliente, RedirectAttributes attributes){
+        
+        ModelAndView mv = new ModelAndView("redirect:/cadastroC");
+        attributes.addFlashAttribute("mensagemFinal", "Cliente cadastrado com sucesso");
+        return mv;
+    }
+    
+    
     @RequestMapping("/login")
     public String login() {
         return "clientside/login";
