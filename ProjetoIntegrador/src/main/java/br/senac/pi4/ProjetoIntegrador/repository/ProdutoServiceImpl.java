@@ -30,14 +30,23 @@ public class ProdutoServiceImpl implements ProdutoService {
         return lista;
     }
 
+//     @PersistenceContext
+//    private EntityManager entityManager;
+//    
+//    @Override
+//    public List<Produto> listar(int offset, int quantidade) {
+//        Query query = entityManager.createQuery("SELECT * from tb_produto");
+//        return query.getResultList();
+//    }
+    
     @Override
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(""); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Produto obter(Integer codigoProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("SELECT from tb_produto WHERE id_produto =" + codigoProduto + ";"); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

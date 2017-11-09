@@ -73,6 +73,11 @@ a:hover {
     }
 }
 @media (max-width: 760px) {
+    
+    .btnCalcularCep {
+        width: 100%;
+    }
+    
     .colMeuCarrinho {
         text-align: center;
     }

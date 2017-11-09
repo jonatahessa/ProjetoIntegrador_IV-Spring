@@ -111,10 +111,10 @@
                                     </div>
                                 </td>
                             </tr>
-                        </div>
-                        <tr class="info">
-                            <td>Genero:</td>
-                        </tr>
+                            </div>
+                            <tr class="info">
+                                <td>Genero:</td>
+                            </tr>
                         <div>
                             <tr>
                                 <td>
@@ -197,10 +197,13 @@
                     <div id="myCarousel" class="carousel slide">
                         <a class="glyphicon glyphicon-eye-open icone_descricao" data-th-href="@{/descricao/{id}(id=${produto.codigoProduto})}" aria-hidden="true"></a>
                         <div class="cards carousel-inner">
-                            <div data-th-each="imagens : ${produto.Imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'item active' : 'item'">
-                                <div class="hovereffect" >
-                                    <img class="d-block img-fluid img-responsive" data-th-src="@{${imagens.NomeImagem}}">
-                                </div>
+                            <div data-th-each="imagens : ${imagens}">
+                                <div data-th-if="${imagens.NomeImagem == produto.CodigoProduto}">
+<div class="hovereffect" >
+    <img class="d-block img-fluid img-responsive" data-th-src="@{${imagens.NomeImagem}}">
+                                    </div> 
+                                    
+                                </div>                              
                             </div>
                             <div class="card card_desc">
                                 <div class="card-block">
@@ -220,7 +223,10 @@
                             </div>           
                             <div class="botoes">
                                 <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
+                                <form action="#" th:action="@{sessao/adicionar/{id}(id=${p.id})}" method="post">
+                                    <input type="hidden" name="id" th:value="${produto.id}" />
+                                    <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
+                                </form>
                             </div>
                             <h4 class="card-title text-center preco" data-th-text="${produto.precoProduto}"></h4>
                         </div>
