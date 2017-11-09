@@ -19,8 +19,8 @@
                     <ol class="breadcrumb text-center">
                         <li><a th:href="@{/}">Home</a></li>
                         <li><a th:href="@{/carrinho}">Carrinho</a></li>
-                        <li><a th:href="@{/admin/perfil}">Perfil</a></li>
-                        <li><a th:href="@{/cadastroC}">Cadastro</a></li>
+                        <li><a sec:authorize="hasRole('ROLE_JOSELITO')" th:href="@{/admin/perfil}">Perfil</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/cadastroC}">Cadastro</a></li>
                     </ol>
                 </div>
             </div>

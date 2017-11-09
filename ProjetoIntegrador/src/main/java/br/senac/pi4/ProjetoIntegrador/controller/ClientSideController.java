@@ -30,17 +30,11 @@ public class ClientSideController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         
-        
-        
         // CADASTRO
         List<Produto> listaProdutos = new ArrayList<>();
         
-        
 //        List<Produto> produtos = serviceProduto.listar(0, 100);
 //        List<Imagem> imagens = serviceImagem.listar(0, 100);
-        
-        
-
                 
         for (int i = 0; i < 9; i++) {
 

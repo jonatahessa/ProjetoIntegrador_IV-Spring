@@ -25,23 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
+    public void configureGlobal(AuthenticationManagerBuilder builder ) throws Exception{
+        builder
                 .inMemoryAuthentication()
-                .withUser("user")
-                .password("password")
-                .roles("BOÇA")
-                .and()
-                .withUser("admin") 
-                .password("password")
-                .roles("JOSELITO", "BOÇA");
+                .withUser("Arthur").password("123").roles("JOSELITO");
     }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/**");
-    }
-
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -55,14 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/images/**",
                         "/IncornButtons/**").permitAll()
                 .antMatchers(
-                        "/admin/**").hasRole("JOSELITO")
+                        "/admin/**", "/**").hasRole("JOSELITO")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("senha")
-                .defaultSuccessUrl("/").permitAll()
+                .defaultSuccessUrl("/**").permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout").logoutSuccessUrl("/login?logout")

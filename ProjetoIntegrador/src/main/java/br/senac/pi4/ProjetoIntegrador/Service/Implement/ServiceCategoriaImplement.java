@@ -13,14 +13,13 @@ import java.util.List;
  *
  * @author jonat
  */
-public class ServiceCategoriaImplement implements CategoriaService {
+public abstract class ServiceCategoriaImplement implements CategoriaService {
 
     @Override
     public List<Categoria> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public Categoria obter(String nomeCategoria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
