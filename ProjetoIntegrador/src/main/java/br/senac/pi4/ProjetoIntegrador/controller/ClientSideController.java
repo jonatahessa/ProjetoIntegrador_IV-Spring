@@ -45,7 +45,6 @@ public class ClientSideController {
             Produto produto = new Produto();
 
             produto.setTituloProduto("Produto titulo " + i);
-            produto.setDescricaoProduto("Descricao do item " + i);
             produto.setPrecoProduto(new BigDecimal(i));
             produto.setGeneroProduto('m');
             produto.setContadorProduto(i);
