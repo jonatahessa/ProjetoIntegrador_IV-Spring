@@ -1,5 +1,6 @@
 br\senac\pi4\ProjetoIntegrador\Service\EnderecoService.class
 br\senac\pi4\ProjetoIntegrador\controller\AdminSideController.class
+br\senac\pi4\ProjetoIntegrador\Service\PedidoService.class
 br\senac\pi4\ProjetoIntegrador\repository\ImagemRepository.class
 br\senac\pi4\ProjetoIntegrador\config\WebMvcConfig.class
 br\senac\pi4\ProjetoIntegrador\entity\Endereco.class
@@ -7,9 +8,12 @@ br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\Service\Implement\ServiceCategoriaImplement.class
 br\senac\pi4\ProjetoIntegrador\entity\Papel.class
 br\senac\pi4\ProjetoIntegrador\controller\ClientSideController.class
+br\senac\pi4\ProjetoIntegrador\repository\PedidoRepository.class
+br\senac\pi4\ProjetoIntegrador\repository\PedidoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Imagem.class
 br\senac\pi4\ProjetoIntegrador\entity\Produto.class
 br\senac\pi4\ProjetoIntegrador\repository\CategoriaRepository.class
+br\senac\pi4\ProjetoIntegrador\controller\BDController.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\controller\BackOfficeProdutoController.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
@@ -29,3 +33,4 @@ br\senac\pi4\ProjetoIntegrador\Service\ProdutoService.class
 br\senac\pi4\ProjetoIntegrador\Service\UsuarioService.class
 br\senac\pi4\ProjetoIntegrador\entity\Cliente.class
 br\senac\pi4\ProjetoIntegrador\entity\Categoria.class
+br\senac\pi4\ProjetoIntegrador\controller\SessionController.class

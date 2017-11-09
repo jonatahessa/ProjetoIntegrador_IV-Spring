@@ -28,57 +28,11 @@ public class ClientSideController {
     ProdutoServiceImpl serviceProduto;
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home() {
+    public ModelAndView home() {     
+        List<Produto> produtos = serviceProduto.listar(0, 100);
+        List<Imagem> imagens = serviceImagem.listar(0, 100);
         
-        
-        
-        // CADASTRO
-        List<Produto> listaProdutos = new ArrayList<>();
-        
-        
-//        List<Produto> produtos = serviceProduto.listar(0, 100);
-//        List<Imagem> imagens = serviceImagem.listar(0, 100);
-        
-        
-
-                
-        for (int i = 0; i < 9; i++) {
-
-            Produto produto = new Produto();
-
-            produto.setTituloProduto("Produto titulo " + i);
-            produto.setPrecoProduto(new BigDecimal(i));
-            produto.setGeneroProduto('m');
-            produto.setContadorProduto(i);
-            produto.setCodigoProduto(i);
-            produto.setCorProduto("background: #2098D1;");
-
-            List<Imagem> imagens = new ArrayList<>();
-
-            Imagem img1 = new Imagem();
-            img1.setNomeImagem("/images/oculosTeste.jpg");
-            img1.setLegendaImagem("Imagem de um oculos");
-            img1.setSequenciaImagem(1);
-            imagens.add(img1);
-
-            Imagem img2 = new Imagem();
-            img2.setNomeImagem("/images/oculosTeste.jpg");
-            img2.setLegendaImagem("Imagem de um oculos");
-            img2.setSequenciaImagem(2);
-            imagens.add(img2);
-
-            Imagem img3 = new Imagem();
-            img3.setNomeImagem("/images/oculosTeste.jpg");
-            img3.setLegendaImagem("Imagem de um oculos");
-            img3.setSequenciaImagem(3);
-            imagens.add(img3);
-
-            produto.setImagens(imagens);
-
-            listaProdutos.add(produto);
-
-        }
-        return new ModelAndView("clientside/home").addObject("produtos", listaProdutos);
+        return new ModelAndView("clientside/home").addObject("produtos", produtos).addObject("imagens", imagens);
     }
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)

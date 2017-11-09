@@ -205,10 +205,10 @@
                             </div>           
                             <div class="navbar-right botoes">
                                 <button class="no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button>
-                                <form action="#" th:action="@{sessao/adicionar/{id}(id=${p.id})}" method="post">
-                                    <input type="hidden" name="id" th:value="${produto.id}" />
-                                    <button class="no-wlauto button button-primary button-circle ">+<i class="fa fa-shopping-cart"></i></button>
-                                </form>
+                                <form action="#" th:action="@{sessao/adicionarCarrinho/{id}(id=${produto.codigoProduto})}" method="post">
+                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                    <button class="no-wlauto button button-primary button-circle "><i class="fa fa-shopping-cart"></i></button>
+                                </form>   
                             </div>
                         </div>
 
