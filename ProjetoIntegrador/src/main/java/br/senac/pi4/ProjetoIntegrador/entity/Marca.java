@@ -40,7 +40,7 @@ public class Marca implements Serializable {
     @Column(name = "DS_MARCA", length = 1000, nullable = false)
     private String descricaoMarca;
 
-    @OneToMany(mappedBy = "marca", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "marcaProduto", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Produto> produtos;
 
     public Marca() {

@@ -64,6 +64,7 @@ public class BackOfficeProdutoController {
         }
         boolean inclusao = (p.getCodigoProduto() == null);
         p.setDtCadastroProduto(new Date());
+        p.setMarcaProduto(marcaService.obter(p.getIdMarca()));
 
         if (p.getIdCategorias() != null && !p.getIdCategorias().isEmpty()) {
             Set<Categoria> categorias = new LinkedHashSet<Categoria>();
@@ -84,6 +85,6 @@ public class BackOfficeProdutoController {
 
         redirectAttributes.addFlashAttribute("msgSucesso",
                 "Produto " + p.getTituloProduto() + " cadastrado com sucesso");
-        return new ModelAndView("redirect:/gerenciamento/produto");
+        return new ModelAndView("redirect:/backoffice/produtos");
     }
 }

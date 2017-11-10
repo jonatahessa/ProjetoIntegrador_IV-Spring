@@ -84,9 +84,9 @@ public class Produto implements Serializable {
     @Column(name = "PR_PRODUTO", nullable = false)
     private boolean promocaoProduto;
 
-    @Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
-    @Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
-    private BigDecimal porcentagemPromocaoProduto;
+    //@Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
+    //@Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
+    //private int porcentagemPromocaoProduto;
 
     @Column(name = "DT_PRODUTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -120,9 +120,12 @@ public class Produto implements Serializable {
     @Transient
     private Set<Long> idCategorias;
 
+    @Transient
+    private Long idMarca;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MARCA", nullable = false)
-    private Marca marca;
+    private Marca marcaProduto;
 
     @Digits(integer = 11, fraction = 0, message = "{produto.quantEstoque.erro}")
     @Column(name = "CT_PRODUTO")
@@ -134,7 +137,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Marca marca, int contadorProduto, List<Pedido> pedidos) {
+    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Set<Long> idCategorias, Long idMarca, Marca marcaProduto, int contadorProduto, List<Pedido> pedidos) {
         this.codigoProduto = codigoProduto;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
@@ -149,7 +152,6 @@ public class Produto implements Serializable {
         this.descricaoProduto = descricaoProduto;
         this.precoProduto = precoProduto;
         this.promocaoProduto = promocaoProduto;
-        this.porcentagemPromocaoProduto = porcentagemPromocaoProduto;
         this.dtCadastroProduto = dtCadastroProduto;
         this.alturaProduto = alturaProduto;
         this.larguraProduto = larguraProduto;
@@ -157,7 +159,9 @@ public class Produto implements Serializable {
         this.pesoProduto = pesoProduto;
         this.imagens = imagens;
         this.categorias = categorias;
-        this.marca = marca;
+        this.idCategorias = idCategorias;
+        this.idMarca = idMarca;
+        this.marcaProduto = marcaProduto;
         this.contadorProduto = contadorProduto;
         this.pedidos = pedidos;
     }
@@ -282,13 +286,13 @@ public class Produto implements Serializable {
         this.promocaoProduto = promocaoProduto;
     }
 
-    public BigDecimal getPorcentagemPromocaoProduto() {
-        return porcentagemPromocaoProduto;
-    }
-
-    public void setPorcentagemPromocaoProduto(BigDecimal porcentagemPromocaoProduto) {
-        this.porcentagemPromocaoProduto = porcentagemPromocaoProduto;
-    }
+//    public BigDecimal getPorcentagemPromocaoProduto() {
+//        return porcentagemPromocaoProduto;
+//    }
+//
+//    public void setPorcentagemPromocaoProduto(BigDecimal porcentagemPromocaoProduto) {
+//        this.porcentagemPromocaoProduto = porcentagemPromocaoProduto;
+//    }
 
     public Date getDtCadastroProduto() {
         return dtCadastroProduto;
@@ -346,14 +350,6 @@ public class Produto implements Serializable {
         this.categorias = categorias;
     }
 
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
     public List<Pedido> getPedidos() {
         return pedidos;
     }
@@ -368,5 +364,21 @@ public class Produto implements Serializable {
 
     public void setIdCategorias(Set<Long> idCategorias) {
         this.idCategorias = idCategorias;
+    }
+
+    public Long getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(Long idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public Marca getMarcaProduto() {
+        return marcaProduto;
+    }
+
+    public void setMarcaProduto(Marca marcaProduto) {
+        this.marcaProduto = marcaProduto;
     }
 }
