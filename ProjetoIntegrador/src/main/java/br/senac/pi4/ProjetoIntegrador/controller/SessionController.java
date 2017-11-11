@@ -40,9 +40,9 @@ public class SessionController implements Serializable {
     public ModelAndView adicionarProduto(@PathVariable("id") Integer idProduto,
             RedirectAttributes redirectAttributes) {
         Produto p = serviceProduto.obter(idProduto);
-        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());
-        carrinho.add(p);
-        imagens.add(temp.get(0));
+//        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());
+        carrinho.add(p);     
+//        imagens.add(temp.get(0));
         return new ModelAndView("redirect:/");
     }
 

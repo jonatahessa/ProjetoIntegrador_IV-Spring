@@ -64,9 +64,8 @@ public class ImagemServiceImpl implements ImagemService {
     @Override
     public List<Imagem> obterCodigoProduto(Long codigoProduto) {
         Query query = em.createNativeQuery(
-            "SELECT * FROM tb_imagem "
-            + "WHERE sq_imagem = 1 "        
-            + "AND id_produto = :idProd")
+            "SELECT * FROM tb_imagem "      
+            + "WHERE id_produto = :idProd")
             .setParameter("idProd", codigoProduto);
         return query.getResultList();
     }
