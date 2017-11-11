@@ -21,14 +21,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- *
- * @author joliveira
- */
 @Entity
 @Table(name = "TB_CLIENTE")
 public class Cliente implements Serializable {
@@ -38,15 +36,16 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private Long codigoCliente;
 
-    @Size(min = 1, max = 100, message = "{cliente.email.erro}")
+    @NotNull
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
-    @Size(min = 1, max = 100, message = "{cliente.senha.erro}")
+    @NotNull
     @Column(name = "PW_CLIENTE", length = 100, nullable = false)
     private String senhaCliente;
 
-    @Size(min = 1, max = 11, message = "{cliente.cpf.erro}")
+    @CPF
+    @NotNull
     @Column(name = "CP_PRODUTO", length = 11, nullable = false)
     private String cpfCliente;
 
@@ -54,10 +53,13 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
 
+    @NotNull(message = "{cliente.nomeCompletoCliente.erro}")
     private String nomeCompletoCliente;
 
+    @NotNull
     private char sexoCliente;
 
+    @NotNull
     private String apelidoCliente;
 
     @ManyToMany
@@ -95,7 +97,7 @@ public class Cliente implements Serializable {
         this.telefones = telefones;
         this.endereco = endereco;
     }
-    
+
     public String getNomeCompletoCliente() {
         return nomeCompletoCliente;
     }
@@ -111,7 +113,7 @@ public class Cliente implements Serializable {
     public void setSexoCliente(char sexoCliente) {
         this.sexoCliente = sexoCliente;
     }
-    
+
     public String getApelidoCliente() {
         return apelidoCliente;
     }
@@ -176,5 +178,4 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
-    
 }

@@ -6,32 +6,30 @@
     <body>
         <div th:fragment="formulario">
 
-            <div class="alert alert-success" data-th-text="${mensagem}" role="alert"
-                 data-th-if="${not #string.isEmpty(mensagem)}"></div>
-            
             <!-- FORMULARIO -->
             <div class="row">
 
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 
-                    <form action="" data-th-action="">
+                    <form method="post" th:action="@{/novoCliente}" th:object="${cliente}" novalidate>
 
                         <label for="basic-url">* Nome Completo:</label>
+                        <div th:if="${#fields.hasErrors('nomeCompletoCliente')}" th:errors="*{nomeCompletoCliente}" class="alert alert-success" role="alert"></div>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* CPF:</label>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* Data de Nascimento:</label>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">
