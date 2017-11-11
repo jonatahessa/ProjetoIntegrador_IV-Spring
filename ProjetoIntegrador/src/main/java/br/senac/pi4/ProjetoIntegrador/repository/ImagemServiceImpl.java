@@ -19,6 +19,9 @@ public class ImagemServiceImpl implements ImagemService {
 
    @Autowired
     private ImagemRepository repo;
+   
+    @Autowired
+    private EntityManager em;
     
     @Override
     public List<Imagem> listar(int offset, int quantidade) {
@@ -38,8 +41,8 @@ public class ImagemServiceImpl implements ImagemService {
     }
 
     @Override
-    public Produto obter(Integer codigoImagem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Imagem obter(Long idImagem) {
+        return repo.findOne(Long.parseLong("" + idImagem));
     }
 
     @Override
@@ -56,7 +59,18 @@ public class ImagemServiceImpl implements ImagemService {
     public void remover(Integer codigoImagem) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
-   
+    @Override
+    public List<Imagem> obterCodigoProduto(Long codigoProduto) {
+        Query query = em.createNativeQuery(
+            "SELECT * FROM tb_imagem "
+            + "WHERE sq_imagem = 1 "        
+            + "AND id_produto = :idProd")
+            .setParameter("idProd", codigoProduto);
+        return query.getResultList();
+    }
+
+       
 }
 

@@ -48,8 +48,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto obter(Integer codigoProduto) {
-        throw new UnsupportedOperationException("SELECT from tb_produto WHERE id_produto =" + codigoProduto + ";"); //To change body of generated methods, choose Tools | Templates.
+    public Produto obter(Integer idProduto) {
+        return repo.findOne(Long.parseLong("" + idProduto));
     }
 
     @Override

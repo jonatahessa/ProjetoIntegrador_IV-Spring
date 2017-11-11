@@ -21,7 +21,9 @@ public interface ImagemService extends Serializable {
     
     public List<Imagem> listarPorCategoria(Categoria categoria, int offset, int quantidade);
     
-    public Produto obter(Integer codigoImagem);
+    public Imagem obter(Long codigoImagem);
+    
+    public List<Imagem> obterCodigoProduto(Long codigoProduto);
     
     public void incluir(Imagem imagem);
     
