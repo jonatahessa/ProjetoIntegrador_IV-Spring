@@ -53,6 +53,15 @@ public class BackOfficeProdutoController {
                 .addObject("produto", new Produto()).addObject("marcas", listaMarcas);
     }
 
+    @RequestMapping("/teste")
+    public ModelAndView teste() {
+        List<Categoria> listaCategorias = catService.listar();
+        List<Marca> listaMarcas = marcaService.listar();
+
+        return new ModelAndView("backoffice/produto/testeModal").addObject("categorias", listaCategorias)
+                .addObject("produto", new Produto()).addObject("marcas", listaMarcas);
+    }
+
     //Cadastro de Produto;
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public ModelAndView salvar(

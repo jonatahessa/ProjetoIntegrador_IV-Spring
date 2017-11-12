@@ -11,7 +11,7 @@
             <div class="row">
                 <div id="campo-busca" class="col-md-6">
                     <h2 class="text-center"><strong>Produtos</strong></h2>
-                    <button id="botao-novo" class="btn btn-primary" type="button" name="novo">Novo Produto</button>
+                    <button id="botao-novo" class="btn btn-primary" type="button" name="novo" data-toggle="modal" data-target="#novo">Novo Produto</button>
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
                             <input type="text" class="form-control input-lg" placeholder="Buscar" />
@@ -30,138 +30,151 @@
                         <p th:text="${p.codigoProduto}">Código do Produto</p></li>
                 </ul>
             </div>
-
-            <div id="cadastrar" class="container-fluid">
-                <div class="row">
-                    <h1 class="text-center">Cadastro de Produtos</h1>
-                    <div id="formulario" class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+            <div class="modal fade" tabindex="-1" role="dialog" id="novo">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Novo Produto</h4>
+                        </div>
                         <form class="row" th:object="${produto}" th:action="@{/cadastrar}" method="post">
+                            <div id="formulario" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <label for="titulo">Título</label>
+                                            <input id="titulo" class="form-control" th:field="*{tituloProduto}" type="text" name="tituloproduto" value="">
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <label for="titulo">Título</label>
-                                    <input id="titulo" class="form-control" th:field="*{tituloProduto}" type="text" name="tituloproduto" value="">
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="qtde">Quantidade</label>
+                                            <input id="qtde" class="form-control" th:field="*{quantEstoqueProduto}" type="text" name="qtdeproduto" value="">
+                                        </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="qtde">Quantidade</label>
-                                    <input id="qtde" class="form-control" th:field="*{quantEstoqueProduto}" type="text" name="qtdeproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="preco">Preço</label>
+                                            <input id="preco" class="form-control" th:field="*{precoProduto}" type="text" name="valorproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="preco">Preço</label>
-                                    <input id="preco" class="form-control" th:field="*{precoProduto}" type="text" name="valorproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="avalia">Avaliação</label>
+                                            <input id="avalia" class="form-control" th:field="*{avaliacaoProduto}" type="text" name="avaliacaoproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="avalia">Avaliação</label>
-                                    <input id="avalia" class="form-control" th:field="*{avaliacaoProduto}" type="text" name="avaliacaoproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="genero">Gênero</label>
+                                            <select id="genero" class="form-control campos-linha" th:field="*{generoProduto}" name="generoproduto">
+                                                <option value="masculino">Masculino</option>
+                                                <option value="feminino">Feminino</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="genero">Gênero</label>
-                                    <select id="genero" class="form-control campos-linha" th:field="*{generoProduto}" name="generoproduto">
-                                        <option value="masculino">Masculino</option>
-                                        <option value="feminino">Feminino</option>
-                                    </select>
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <label for="modelo">Modelo</label>
+                                            <input id="modelo" class="form-control" th:field="*{modeloProduto}" type="text" name="modeloproduto" value="">
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <label for="tipo-lente">Tipo da Lente</label>
+                                            <input id="tipo-lente" class="form-control campos-linha" th:field="*{lenteTipoProduto}" type="text" name="tipolenteproduto" value="">
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <label for="modelo">Modelo</label>
-                                    <input id="modelo" class="form-control" th:field="*{modeloProduto}" type="text" name="modeloproduto" value="">
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="cor">Cor</label>
+                                            <input id="cor" class="form-control campos-linha" th:field="*{corProduto}" type="text" name="corproduto" value="">
+                                        </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="cor">Cor</label>
-                                    <input id="cor" class="form-control campos-linha" th:field="*{corProduto}" type="text" name="corproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="cor-lente">Cor da Lente</label>
+                                            <input id="cor-lente" class="form-control campos-linha" th:field="*{lenteCorProduto}" type="text" name="corlenteproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="cor-lente">Cor da Lente</label>
-                                    <input id="cor-lente" class="form-control campos-linha" th:field="*{lenteCorProduto}" type="text" name="corlenteproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="material">Material</label>
+                                            <input id="material" class="form-control" th:field="*{materialProduto}" type="text" name="materialproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="tipo-lente">Tipo da Lente</label>
-                                    <input id="tipo-lente" class="form-control campos-linha" th:field="*{lenteTipoProduto}" type="text" name="tipolenteproduto" value="">
-                                </div>
-
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="material">Material</label>
-                                    <input id="material" class="form-control" th:field="*{materialProduto}" type="text" name="materialproduto" value="">
-                                </div>
-
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="peso">Peso</label>
-                                    <input id="peso" class="form-control" th:field="*{pesoProduto}" type="text" name="pesoproduto" value="">
-                                </div>
-                            </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="peso">Peso</label>
+                                            <input id="peso" class="form-control" th:field="*{pesoProduto}" type="text" name="pesoproduto" value="">
+                                        </div>
+                                    </div>
 
 
-                            <div class="form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <label for="descricao">Descricão</label>
-                                    <textarea id="descricao" class="form-control" th:field="*{descricaoProduto}" name="descricaoproduto" rows="8" cols="80"></textarea>
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <label for="descricao">Descricão</label>
+                                            <textarea id="descricao" class="form-control" th:field="*{descricaoProduto}" name="descricaoproduto" rows="8" cols="80"></textarea>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="tamanho">Tamanho</label>
-                                    <select id="tamanho" class="form-control" th:field="*{tamanhoProduto}" name="tamanho">
-                                        <option value="P">P</option>
-                                        <option value="M">M</option>
-                                        <option value="G">G</option>
-                                    </select>
-                                </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="tamanho">Tamanho</label>
+                                            <select id="tamanho" class="form-control" th:field="*{tamanhoProduto}" name="tamanho">
+                                                <option value="P">P</option>
+                                                <option value="M">M</option>
+                                                <option value="G">G</option>
+                                            </select>
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="altura">Altura</label>
-                                    <input id="altura" class="form-control" th:field="*{alturaProduto}" type="text" name="alturaproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="altura">Altura</label>
+                                            <input id="altura" class="form-control" th:field="*{alturaProduto}" type="text" name="alturaproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="largura">Lagura</label>
-                                    <input id="largura" class="form-control" th:field="*{larguraProduto}" type="text" name="larguraproduto" value="">
-                                </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="largura">Lagura</label>
+                                            <input id="largura" class="form-control" th:field="*{larguraProduto}" type="text" name="larguraproduto" value="">
+                                        </div>
 
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <label for="comprimento">Comprimento</label>
-                                    <input id="comprimento" class="form-control" th:field="*{comprimentoProduto}" type="text" name="comprimentoproduto" value="">
-                                </div>
-                            </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label for="comprimento">Comprimento</label>
+                                            <input id="comprimento" class="form-control" th:field="*{comprimentoProduto}" type="text" name="comprimentoproduto" value="">
+                                        </div>
+                                    </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <select id="marca" class="form-control" th:field="*{idMarca}" name="marca">
-                                    <option th:each="m:${marcas}" th:value="${m.codigoMarca}" th:text="${m.tituloMarca}"></option>
-                                </select>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <label for="marca">Marca</label>
+                                            <select id="marca" class="form-control" th:field="*{idMarca}" name="marca">
+                                                <option th:each="m:${marcas}" th:value="${m.codigoMarca}" th:text="${m.tituloMarca}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <label for="categorias">Categorias</label>
-                                    <div id="categorias" class="checkbox" th:each="c:${categorias}">
-                                        <input th:id="${c.nomeCategoria}" th:field="*{idCategorias}" type="checkbox" name="categoriaproduto" th:value="${c.codigoCategoria}"/>
-                                        <label th:for="${c.nomeCategoria}" th:text="${c.nomeCategoria}">Categoria</label>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <label for="categorias">Categorias</label>
+                                            <div id="categorias" class="checkbox checkbox-primary" th:each="c:${categorias}">
+                                                <input class="checkbox" th:id="${c.nomeCategoria}" th:field="*{idCategorias}" type="checkbox" name="categoriaproduto" th:value="${c.codigoCategoria}"/>
+                                                <label class="" th:for="${c.nomeCategoria}" th:text="${c.nomeCategoria}">Categoria</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class="form-group">
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                <button type="button" class="btn btn-default form-control" data-dismiss="modal">Cancelar</button>
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                <button type="submit" class="btn btn-primary form-control">Salvar</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <button class="btn btn-success form-control" type="submit" method="post" name="button">Salvar</button>
-                                    <button class="btn btn-danger form-control" type="button" method="post" name="button">Cancelar</button>
-                                </div>
                         </form>
                     </div>
                 </div>
             </div>
+
         </section>
     </body>
 </html>
