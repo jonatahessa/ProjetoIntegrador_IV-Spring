@@ -1,10 +1,15 @@
 function main() {
-  document.querySelector("#botao-novo").addEventListener("click", mostrarJanelaNovo);
+  document.querySelector("#botao-cancelar-novo").addEventListener("click", limparCampos);
+  document.querySelector("#fechar-janela-novo").addEventListener("click", limparCampos);
+
 }
 
-function mostrarJanelaNovo() {
-  document.querySelector("#cadastrar").style.display = 'block';
-  document.querySelector("#nevoa").style.display = "block";
+function limparCampos() {
+  var inputs = [];
+  inputs = document.querySelectorAll(".inputs-janela-novo");
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].value = '';
+  }
 }
 
 window.addEventListener("load", main);
