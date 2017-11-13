@@ -43,14 +43,14 @@
 
                         <div  class="col-xs-5 col-sm-2 col-md-2 col-lg-2 bhoechie-tab-menu">
                             <div class="list-group">
-                                <a data-th-each="imagens : ${imagens}" href="#" data-th-class="${imagens.sequenciaImagem == 1}? 'list-group-item active text-center' : 'list-group-item text-center'">
-                                    <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}" />
+                                <a data-th-each="imagem : ${imagens}" href="#" data-th-class="${imagem.SequenciaImagem == 1}? 'list-group-item active text-center' : 'list-group-item text-center'">
+                                    <img class="img-responsive" data-th-src="@{${imagem.NomeImagem}}" />
                                 </a>
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-10 col-md-10 col-lg-10 bhoechie-tab">
-                            <div data-th-each="imagens : ${imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'bhoechie-tab-content active' : 'bhoechie-tab-content'">
-                                <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}" />
+                            <div data-th-each="imagem  : ${imagens}" data-th-class="${imagem.SequenciaImagem == 1}? 'bhoechie-tab-content active' : 'bhoechie-tab-content'">
+                                <img class="img-responsive" data-th-src="@{${imagem.NomeImagem}}" />
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,8 @@
 
                             <!-- Carousel items -->
                             <div class="carousel-inner">
-                                <div data-th-each="imagens : ${imagens}" data-th-class="${imagens.sequenciaImagem == 1}? 'active item' : 'item'" th:data-slide-number="${imagens.sequenciaImagem - 1}">
-                                    <img class="img-responsive" data-th-src="@{${imagens.NomeImagem}}">
+                                <div data-th-each="imagem : ${imagens}" data-th-class="${imagem.SequenciaImagem == 1}? 'active item' : 'item'" th:data-slide-number="${imagens.SequenciaImagem - 1}">
+                                    <img class="img-responsive" data-th-src="@{${imagem.NomeImagem}}">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
