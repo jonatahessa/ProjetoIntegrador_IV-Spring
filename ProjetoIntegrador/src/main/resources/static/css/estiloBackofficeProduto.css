@@ -54,3 +54,11 @@
 .produtos img {
   width: 100%;
 }
+
+.label-categoria-novo {
+  padding: 0;
+}
+
+.input-categoria-novo {
+  margin-left: 20%;
+}
