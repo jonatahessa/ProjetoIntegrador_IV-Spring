@@ -15,14 +15,21 @@
             </div>
             <!-- MENU TOPO -->
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
+                <div sec:authorize="hasRole('ROLE_JOSELITO')" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
                     <ol class="breadcrumb text-center">
                         <li><a th:href="@{/}">Home</a></li>
                         <li><a th:href="@{sessao/carrinho}">Carrinho</a></li>
-                        <li><a sec:authorize="hasRole('ROLE_JOSELITO')" th:href="@{/admin/perfil}">Perfil</a></li>
+                        <li><a th:href="@{/admin/perfil}">Perfil</a></li>
+                    </ol>
+                </div>
+                <div sec:authorize="!isAuthenticated()" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
+                    <ol class="breadcrumb text-center">
+                        <li><a th:href="@{/}">Home</a></li>
+                        <li><a th:href="@{sessao/carrinho}">Carrinho</a></li>
                         <li><a th:href="@{/cadastroC}">Cadastro</a></li>
                     </ol>
                 </div>
+                
             </div>
             <div class="modal fade bs-example-modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                 <div class="modal-dialog modal-lg" role="document">
