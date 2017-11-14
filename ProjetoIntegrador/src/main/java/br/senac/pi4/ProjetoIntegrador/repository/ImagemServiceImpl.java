@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,8 +21,8 @@ public class ImagemServiceImpl implements ImagemService {
    @Autowired
     private ImagemRepository repo;
    
-    @Autowired
-    private EntityManager em;
+    @PersistenceContext
+    private EntityManager entityManager;
     
     @Override
     public List<Imagem> listar(int offset, int quantidade) {
@@ -46,8 +47,9 @@ public class ImagemServiceImpl implements ImagemService {
     }
 
     @Override
+    @Transactional
     public void incluir(Imagem imagem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entityManager.persist(imagem);
     }
 
     @Override
@@ -63,7 +65,7 @@ public class ImagemServiceImpl implements ImagemService {
     
     @Override
     public List<Imagem> obterCodigoProduto(Long codigoProduto) {
-        Query query = em.createNativeQuery(
+        Query query = entityManager.createNativeQuery(
             "SELECT * FROM tb_imagem "      
             + "WHERE id_produto = :idProd")
             .setParameter("idProd", codigoProduto);

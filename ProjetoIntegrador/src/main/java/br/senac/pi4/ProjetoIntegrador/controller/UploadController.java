@@ -5,11 +5,18 @@
  */
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.Service.ImagemService;
+import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
+import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,16 +27,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
+    
+    @Autowired
+    private ImagemService imagemService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView mostrarTela() {
-        return new ModelAndView("backoffice/produto/cadastroDeImagens");
+    public ModelAndView salvar(
+            @ModelAttribute("produto") @Valid Produto produto,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+        return new ModelAndView("backoffice/produto/cadastroDeImagens").addObject("produto", produto).addObject("imagem", new Imagem());
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView uploadArquivo(
             @RequestParam("arquivo") MultipartFile arquivo,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            @ModelAttribute("imagem") @Valid Imagem imagem) {
         if (arquivo.isEmpty()) {
             redirectAttributes.addFlashAttribute("mensagemErro",
                     "Erro ao carregar arquivo");
@@ -45,6 +59,7 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("mensagem",
                     "Arquivo " + arquivo.getOriginalFilename()
                     + " carregado com sucesso");
+            imagemService.incluir(imagem);
             return new ModelAndView("redirect:/upload");
         } catch (IOException ex) {
             redirectAttributes.addFlashAttribute("mensagemErro",
