@@ -34,7 +34,8 @@
                           <button class="btn btn-primary" type="button" name="button">Editar</button>
                         </form>
 
-                        <form class="" th:object="${p}" th:action="@{/upload}" method="get">
+                        <form class="" th:action="@{/upload}" method="get">
+                          <input type="hidden" name="codigo" th:value="${p.codigoProduto}">
                           <button class="btn btn-success" type="submit">Adicionar Imagens</button>
                         </form>
                     </li>

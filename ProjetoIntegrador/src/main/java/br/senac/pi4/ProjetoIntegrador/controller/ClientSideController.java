@@ -43,7 +43,7 @@ public class ClientSideController {
     }
 
     @RequestMapping(value = "/descricao/{id}")
-    public ModelAndView descricao(@PathVariable("id") Integer idProduto) {
+    public ModelAndView descricao(@PathVariable("id") Long idProduto) {
 
         Produto produto = serviceProduto.obter(idProduto);
         List<Imagem> imagens = serviceImagem.obterCodigoProduto(Long.parseLong("" + idProduto));

@@ -48,8 +48,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto obter(Integer idProduto) {
-        return repo.findOne(Long.parseLong("" + idProduto));
+    public Produto obter(Long idProduto) {
+        return repo.findOne(idProduto);
     }
 
     @Override

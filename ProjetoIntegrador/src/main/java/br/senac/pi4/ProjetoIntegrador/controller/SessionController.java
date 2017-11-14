@@ -24,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/sessao")
 @Scope("session")
-
 public class SessionController implements Serializable {
 
     @Autowired
@@ -37,7 +36,7 @@ public class SessionController implements Serializable {
     private List<Imagem> imagens = new ArrayList<Imagem>();
 
     @RequestMapping("/adicionar/{id}")
-    public ModelAndView adicionarProduto(@PathVariable("id") Integer idProduto,
+    public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes) {
         Produto p = serviceProduto.obter(idProduto);
 //        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());

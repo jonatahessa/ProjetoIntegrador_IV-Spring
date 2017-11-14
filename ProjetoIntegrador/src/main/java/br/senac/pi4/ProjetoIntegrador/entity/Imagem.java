@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 
 @Entity
@@ -35,6 +36,9 @@ public class Imagem implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PRODUTO", nullable = false)
     private Produto produto;
+    
+    @Transient
+    private Long idProduto;
 
     public Imagem() {
 
@@ -78,6 +82,14 @@ public class Imagem implements Serializable {
 
     public void setLegendaImagem(String legendaImagem) {
         this.legendaImagem = legendaImagem;
+    }
+
+    public Long getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
     }
 
     public Produto getProduto() {

@@ -20,7 +20,7 @@ public interface ProdutoService extends Serializable {
     
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade);
     
-    public Produto obter(Integer codigoProduto);
+    public Produto obter(Long codigoProduto);
     
     public void incluir(Produto produto);
     

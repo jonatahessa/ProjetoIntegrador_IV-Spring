@@ -6,6 +6,7 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ImagemService;
+import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.io.IOException;
@@ -30,20 +31,25 @@ public class UploadController {
     
     @Autowired
     private ImagemService imagemService;
+    
+    @Autowired
+    private ProdutoService prodService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView salvar(
-            @ModelAttribute("produto") @Valid Produto produto,
+            @ModelAttribute("codigo") @Valid Long codigo,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-        return new ModelAndView("backoffice/produto/cadastroDeImagens").addObject("produto", produto).addObject("imagem", new Imagem());
+        Long teste = codigo;
+        return new ModelAndView("backoffice/produto/cadastroDeImagens").addObject("codigoProduto", codigo).addObject("imagem", new Imagem());
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView uploadArquivo(
             @RequestParam("arquivo") MultipartFile arquivo,
             RedirectAttributes redirectAttributes,
-            @ModelAttribute("imagem") @Valid Imagem imagem) {
+            @ModelAttribute("imagem") @Valid Imagem imagem,
+            @ModelAttribute("codigoProduto") @Valid Long codigo) {
         if (arquivo.isEmpty()) {
             redirectAttributes.addFlashAttribute("mensagemErro",
                     "Erro ao carregar arquivo");
@@ -59,6 +65,7 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("mensagem",
                     "Arquivo " + arquivo.getOriginalFilename()
                     + " carregado com sucesso");
+            imagem.setProduto(prodService.obter(codigo));
             imagemService.incluir(imagem);
             return new ModelAndView("redirect:/upload");
         } catch (IOException ex) {
@@ -67,5 +74,4 @@ public class UploadController {
             return new ModelAndView("redirect:/upload");
         }
     }
-
 }
