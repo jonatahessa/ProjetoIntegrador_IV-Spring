@@ -10,6 +10,7 @@ import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class SessionController implements Serializable {
 
     @Autowired
     ProdutoServiceImpl serviceProduto;
-    
+
     @Autowired
     ImagemServiceImpl serviceImagem;
 
@@ -38,24 +39,63 @@ public class SessionController implements Serializable {
     @RequestMapping("/adicionar/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes) {
-        Produto p = serviceProduto.obter(idProduto);
+        int qntCarrinho = 1;
+        boolean igual = false;
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                qntCarrinho++;
+                igual = true;
+            }
+        }
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                p.setQntCarrinho(qntCarrinho);
+            }
+        }
+
+        if (igual == false) {
+            Produto p = serviceProduto.obter(idProduto);
+            p.setQntCarrinho(1);
 //        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());
-        carrinho.add(p);     
+            carrinho.add(p);
 //        imagens.add(temp.get(0));
+
+        }
         return new ModelAndView("redirect:/");
+    }
+
+    @RequestMapping("/remover/{id}")
+    public ModelAndView removerProduto(@PathVariable("id") Long idProduto,
+            RedirectAttributes redirectAttributes) {
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                carrinho.remove(p);
+                break;
+            }
+        }
+        return new ModelAndView("sessao/carrinho");
     }
 
     public List<Produto> getCarrinho() {
         return carrinho;
     }
-    
-     public List<Imagem> getImagens() {
+
+    public List<Imagem> getImagens() {
         return imagens;
     }
-    
-     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
     public ModelAndView carrinho() {
-        return new ModelAndView("clientside/carrinho");
+        BigDecimal total = new BigDecimal("0.0");
+        boolean vazio = false;
+        if (carrinho.isEmpty()) {
+            vazio = true;
+        } else {
+            for (Produto p : carrinho) {
+                total = total.add(p.getPrecoProduto());
+            }
+        }
+        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
     }
 
 }

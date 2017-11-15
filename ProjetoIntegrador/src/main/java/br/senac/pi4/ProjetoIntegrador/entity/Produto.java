@@ -32,7 +32,11 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO")
     private Long codigoProduto;
-
+   
+    @Size(min = 1, max = 100, message = "{produto.quantidadeCarrinho.erro}")
+    @Column(name = "QTC_PRODUTO", length = 3)
+    private int qntCarrinho;
+    
     @Size(min = 1, max = 100, message = "{produto.tituloProduto.erro}")
     @Column(name = "TL_PRODUTO", length = 100, nullable = false)
     private String tituloProduto;
@@ -137,7 +141,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Set<Long> idCategorias, Long idMarca, Marca marcaProduto, int contadorProduto, List<Pedido> pedidos) {
+    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Set<Long> idCategorias, Long idMarca, Marca marcaProduto, int qntCarrinho, int contadorProduto, List<Pedido> pedidos) {
         this.codigoProduto = codigoProduto;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
@@ -164,6 +168,15 @@ public class Produto implements Serializable {
         this.marcaProduto = marcaProduto;
         this.contadorProduto = contadorProduto;
         this.pedidos = pedidos;
+        this.qntCarrinho = qntCarrinho;
+    }
+
+    public int getQntCarrinho() {
+        return qntCarrinho;
+    }
+
+    public void setQntCarrinho(int qntCarrinho) {
+        this.qntCarrinho = qntCarrinho;
     }
 
     public int getContadorProduto() {

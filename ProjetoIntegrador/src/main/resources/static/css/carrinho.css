@@ -67,6 +67,10 @@ a:hover {
     text-decoration: none;
 }
 
+.vazio {
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .btnCalcularCep {
         width: 60%;

@@ -10,6 +10,7 @@ $(document).ready(function () {
     });
 });
 
+
 $('.btnCalcularCep').click(function () {
     $('.linhaInfoCep').html('');
     $('.linhaInfoCep').append('<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1"></div>\n\
@@ -17,6 +18,7 @@ $('.btnCalcularCep').click(function () {
                                     <p class="pFrete">Prazo de entrega: 5-7 dias úteis </br>Valor: R$ 12,00</p>\n\
                                 </div>');
     
-    $('.colTotal').html('');
-    $('.colTotal').append(' <h1 class="h1Total">Total <strong>R$ 912,00</strong></h1>');
+    var total = parseInt($('.h1Total').html(), 10) + 12;
+    $('.colValor').html('');
+    $('.colValor').append(' <h1 class="h1Total"> <strong>'+ total +'.00</strong></h1>');
 });
