@@ -40,20 +40,18 @@ public class UploadController {
             @ModelAttribute("codigo") @Valid Long codigo,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-        Long teste = codigo;
-        return new ModelAndView("backoffice/produto/cadastroDeImagens").addObject("codigoProduto", codigo).addObject("imagem", new Imagem());
+        return new ModelAndView("backoffice/produto/cadastroDeImagens").addObject("codigo", codigo).addObject("imagem", new Imagem());
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView uploadArquivo(
             @RequestParam("arquivo") MultipartFile arquivo,
             RedirectAttributes redirectAttributes,
-            @ModelAttribute("imagem") @Valid Imagem imagem,
-            @ModelAttribute("codigoProduto") @Valid Long codigo) {
+            @ModelAttribute("imagem") @Valid Imagem imagem) {
         if (arquivo.isEmpty()) {
             redirectAttributes.addFlashAttribute("mensagemErro",
                     "Erro ao carregar arquivo");
-            return new ModelAndView("redirect:/upload");
+            return new ModelAndView("redirect:/upload").addObject("codigo", imagem.getIdProduto());
         }
 
         try {
@@ -65,13 +63,13 @@ public class UploadController {
             redirectAttributes.addFlashAttribute("mensagem",
                     "Arquivo " + arquivo.getOriginalFilename()
                     + " carregado com sucesso");
-            imagem.setProduto(prodService.obter(codigo));
+            imagem.setProduto(prodService.obter(imagem.getIdProduto()));
             imagemService.incluir(imagem);
-            return new ModelAndView("redirect:/upload");
+            return new ModelAndView("redirect:/upload").addObject("codigo", imagem.getIdProduto());
         } catch (IOException ex) {
             redirectAttributes.addFlashAttribute("mensagemErro",
                     "Erro ao carregar arquivo - " + ex.getMessage());
-            return new ModelAndView("redirect:/upload");
+            return new ModelAndView("redirect:/upload").addObject("codigo", imagem.getIdProduto());
         }
     }
 }

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>Cadastrar Produto</title>
+        <link th:href="@{/css/estiloBackofficeCadastroProduto.css}" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <section layout:fragment="conteudo" class="container-fluid">
+            <h1 class="text-center">Novo Produto</h1>
+            <form class="row" th:object="${produto}" th:action="@{/cadastrar}" method="post">
+                <div id="formulario" class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="titulo">Título</label>
+                            <input id="titulo" class="form-control inputs-janela-novo" th:field="*{tituloProduto}" type="text" name="tituloproduto" value="">
+                            <p th:if="${#fields.hasErrors('tituloProduto')}" th:errors="*{tituloProduto}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="qtde">Quantidade</label>
+                            <input id="qtde" class="form-control inputs-janela-novo" th:field="*{quantEstoqueProduto}" type="text" name="qtdeproduto" value="">
+                            <p th:if="${#fields.hasErrors('quantEstoqueProduto')}" th:errors="*{quantEstoqueProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="preco">Preço</label>
+                            <input id="preco" class="form-control inputs-janela-novo" th:field="*{precoProduto}" type="text" name="valorproduto" value="">
+                            <p th:if="${#fields.hasErrors('precoProduto')}" th:errors="*{precoProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="avalia">Avaliação</label>
+                            <input id="avalia" class="form-control inputs-janela-novo" th:field="*{avaliacaoProduto}" type="text" name="avaliacaoproduto" value="">
+                            <p th:if="${#fields.hasErrors('avaliacaoProduto')}" th:errors="*{avaliacaoProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="genero">Gênero</label>
+                            <select id="genero" class="form-control campos-linha" th:field="*{generoProduto}" name="generoproduto">
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="modelo">Modelo</label>
+                            <input id="modelo" class="form-control inputs-janela-novo" th:field="*{modeloProduto}" type="text" name="modeloproduto" value="">
+                            <p th:if="${#fields.hasErrors('modeloProduto')}" th:errors="*{quantEstoqueProduto}"></p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label for="tipo-lente">Tipo da Lente</label>
+                            <input id="tipo-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteTipoProduto}" type="text" name="tipolenteproduto" value="">
+                            <p th:if="${#fields.hasErrors('lenteTipoProduto')}" th:errors="*{lenteTipoProduto}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="cor">Cor</label>
+                            <input id="cor" class="form-control campos-linha inputs-janela-novo" th:field="*{corProduto}" type="text" name="corproduto" value="">
+                            <p th:if="${#fields.hasErrors('corProduto')}" th:errors="*{corProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="cor-lente">Cor da Lente</label>
+                            <input id="cor-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteCorProduto}" type="text" name="corlenteproduto" value="">
+                            <p th:if="${#fields.hasErrors('lenteCorProduto')}" th:errors="*{lenteCorProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="material">Material</label>
+                            <input id="material" class="form-control inputs-janela-novo" th:field="*{materialProduto}" type="text" name="materialproduto" value="">
+                            <p th:if="${#fields.hasErrors('materialProduto')}" th:errors="*{materialProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="peso">Peso</label>
+                            <input id="peso" class="form-control inputs-janela-novo" th:field="*{pesoProduto}" type="text" name="pesoproduto" value="">
+                            <p th:if="${#fields.hasErrors('pesoProduto')}" th:errors="*{pesoProduto}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="descricao">Descricão</label>
+                            <textarea id="descricao" class="form-control inputs-janela-novo" th:field="*{descricaoProduto}" name="descricaoproduto" rows="8" cols="80"></textarea>
+                            <p th:if="${#fields.hasErrors('descricaoProduto')}" th:errors="*{descricaoProduto}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="tamanho">Tamanho</label>
+                            <select id="tamanho" class="form-control" th:field="*{tamanhoProduto}" name="tamanho">
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="altura">Altura</label>
+                            <input id="altura" class="form-control inputs-janela-novo" th:field="*{alturaProduto}" type="text" name="alturaproduto" value="">
+                            <p th:if="${#fields.hasErrors('alturaProduto')}" th:errors="*{alturaProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="largura">Lagura</label>
+                            <input id="largura" class="form-control inputs-janela-novo" th:field="*{larguraProduto}" type="text" name="larguraproduto" value="">
+                            <p th:if="${#fields.hasErrors('larguraProduto')}" th:errors="*{larguraProduto}"></p>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <label for="comprimento">Comprimento</label>
+                            <input id="comprimento" class="form-control inputs-janela-novo" th:field="*{comprimentoProduto}" type="text" name="comprimentoproduto" value="">
+                            <p th:if="${#fields.hasErrors('comprimentoProduto')}" th:errors="*{comprimentoProduto}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="marca">Marca</label>
+                            <select id="marca" class="form-control inputs-janela-novo" th:field="*{idMarca}" name="marca">
+                                <option th:each="m:${marcas}" th:value="${m.codigoMarca}" th:text="${m.tituloMarca}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <label for="categorias">Categorias</label>
+                            <div id="categorias" class="checkbox checkbox-primary" th:each="c:${categorias}">
+                                <input class="checkbox inputs-janela-novo" th:id="${c.nomeCategoria}" th:field="*{idCategorias}" type="checkbox" name="categoriaproduto" th:value="${c.codigoCategoria}"/>
+                                <label class="" th:for="${c.nomeCategoria}" th:text="${c.nomeCategoria}">Categoria</label>
+                                <p th:if="${#fields.hasErrors('idCategorias')}" th:errors="*{idCategorias}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button id="botao-cancelar-novo" type="button" class="btn btn-default form-control" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button type="submit" class="btn btn-primary form-control">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+    </body>
+</html>

@@ -21,11 +21,13 @@
               <h1 class="text-center">Upload de arquivo</h1>
                 <form id="formulario-upload" class="col-xs-12 col-sm-12 col-md-8 col-lg-6" th:action="@{/upload}" th:object="${imagem}" method="post" enctype="multipart/form-data">
 
-                  <input type="hidden" name="" th:field="*{idProduto}">
-
-                  <input type="hidden" name="" th:value="${codigoProduto}">
+                  <input type="hidden" th:id="idProduto" th:name="idProduto" th:value="${codigo}">
 
                   <input id="titulo" th:field="*{nomeImagem}" type="hidden" name="" value="">
+
+                    <div class="form-group">
+                      <input id="input-imagem" type="file" name="arquivo"/>
+                    </div>
 
                     <div class="form-group">
                       <label for="descricao-imagem">Descrição</label>
@@ -35,10 +37,6 @@
                     <div class="form-group">
                       <label for="seq-imagem">Sequência da Imagem</label>
                       <input id="seq-imagem" type="number" th:field="*{sequenciaImagem}" name="" value="">
-                    </div>
-
-                    <div class="form-group">
-                      <input id="input-imagem" type="file" name="arquivo"/>
                     </div>
 
                     <div class="form-group">

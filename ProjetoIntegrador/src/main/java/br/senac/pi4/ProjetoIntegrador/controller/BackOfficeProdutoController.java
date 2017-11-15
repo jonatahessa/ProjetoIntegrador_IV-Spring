@@ -42,7 +42,7 @@ public class BackOfficeProdutoController {
     @Autowired
     private MarcaService marcaService;
 
-    @RequestMapping("/backoffice/produtos")
+    @RequestMapping("/backoffice/produto")
     public ModelAndView produto() {
         List<Produto> listaProdutos = prodService.listar(0, 100);
         List<Categoria> listaCategorias = catService.listar();
@@ -53,12 +53,12 @@ public class BackOfficeProdutoController {
                 .addObject("produto", new Produto()).addObject("marcas", listaMarcas);
     }
 
-    @RequestMapping("/teste")
-    public ModelAndView teste() {
+    @RequestMapping("/backoffice/produto/cadastrar")
+    public ModelAndView telaCadastrar() {
         List<Categoria> listaCategorias = catService.listar();
         List<Marca> listaMarcas = marcaService.listar();
 
-        return new ModelAndView("backoffice/produto/testeModal").addObject("categorias", listaCategorias)
+        return new ModelAndView("backoffice/produto/cadastroDeProdutos").addObject("categorias", listaCategorias)
                 .addObject("produto", new Produto()).addObject("marcas", listaMarcas);
     }
 
@@ -69,7 +69,10 @@ public class BackOfficeProdutoController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("produto/input");
+            List<Categoria> listaCategorias = catService.listar();
+            List<Marca> listaMarcas = marcaService.listar();
+            return new ModelAndView("backoffice/produto/cadastroDeProdutos").addObject("produto", p)
+                    .addObject("categorias", listaCategorias).addObject("marcas", listaMarcas);
         }
         boolean inclusao = (p.getCodigoProduto() == null);
         p.setDtCadastroProduto(new Date());
