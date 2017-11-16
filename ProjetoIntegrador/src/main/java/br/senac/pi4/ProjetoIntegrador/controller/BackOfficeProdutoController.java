@@ -97,6 +97,6 @@ public class BackOfficeProdutoController {
 
         redirectAttributes.addFlashAttribute("msgSucesso",
                 "Produto " + p.getTituloProduto() + " cadastrado com sucesso");
-        return new ModelAndView("redirect:/backoffice/produtos");
+        return new ModelAndView("redirect:/backoffice/produto");
     }
 }

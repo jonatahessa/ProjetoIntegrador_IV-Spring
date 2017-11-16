@@ -13,9 +13,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,11 +37,14 @@ public class SessionController implements Serializable {
 
     private List<Produto> carrinho = new ArrayList<Produto>();
     private List<Imagem> imagens = new ArrayList<Imagem>();
-
+    private int qntCarrinho = 1;
+    private int idEndereco = 1;
+    private boolean frete = false;
+    private BigDecimal total = new BigDecimal("0.0");
+    
     @RequestMapping("/adicionar/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes) {
-        int qntCarrinho = 1;
         boolean igual = false;
         for (Produto p : carrinho) {
             if (p.getCodigoProduto() == idProduto) {
@@ -66,14 +71,21 @@ public class SessionController implements Serializable {
 
     @RequestMapping("/remover/{id}")
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
+
         for (Produto p : carrinho) {
             if (p.getCodigoProduto() == idProduto) {
-                carrinho.remove(p);
-                break;
+                int qntAtual = p.getQntCarrinho() - qnt;
+                if (qntAtual != 0) {
+                    p.setQntCarrinho(qntAtual);
+                    break;
+                } else {
+                    carrinho.remove(p);
+                    break;
+                }
             }
         }
-        return new ModelAndView("sessao/carrinho");
+        return new ModelAndView("redirect:/sessao/carrinho");
     }
 
     public List<Produto> getCarrinho() {
@@ -86,16 +98,26 @@ public class SessionController implements Serializable {
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
     public ModelAndView carrinho() {
-        BigDecimal total = new BigDecimal("0.0");
+        BigDecimal tempTotal = new BigDecimal("0.0");
+        BigDecimal produto = new BigDecimal("0.0");
         boolean vazio = false;
         if (carrinho.isEmpty()) {
             vazio = true;
         } else {
             for (Produto p : carrinho) {
-                total = total.add(p.getPrecoProduto());
+                produto = p.getPrecoProduto().multiply(new BigDecimal(p.getQntCarrinho()));
+                tempTotal = tempTotal.add(produto);
             }
         }
-        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
+        total = tempTotal;
+        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio).addObject("frete", frete);
+    }
+    
+    @RequestMapping(value = "/frete")
+    public ModelAndView frete() {
+        frete = true;
+        total.add(new BigDecimal(12.00));
+        return new ModelAndView("redirect:/sessao/carrinho");
     }
 
 }
