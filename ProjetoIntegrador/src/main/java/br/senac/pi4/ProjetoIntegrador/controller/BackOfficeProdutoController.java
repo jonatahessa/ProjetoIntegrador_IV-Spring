@@ -69,10 +69,7 @@ public class BackOfficeProdutoController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            List<Categoria> listaCategorias = catService.listar();
-            List<Marca> listaMarcas = marcaService.listar();
-            return new ModelAndView("backoffice/produto/cadastroDeProdutos").addObject("produto", p)
-                    .addObject("categorias", listaCategorias).addObject("marcas", listaMarcas);
+            return new ModelAndView("backoffice/produto/cadastroDeProdutos");
         }
         boolean inclusao = (p.getCodigoProduto() == null);
         p.setDtCadastroProduto(new Date());

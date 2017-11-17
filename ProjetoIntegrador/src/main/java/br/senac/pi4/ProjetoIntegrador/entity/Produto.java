@@ -32,11 +32,11 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO")
     private Long codigoProduto;
-   
-    @Size(min = 1, max = 100, message = "{produto.qntCarrinho.erro}")
-    @Column(name = "QTC_PRODUTO", length = 3)
+
+    @Digits(integer = 6, fraction = 0, message = "{produto.qntProduto.erro}")
+    @Column(name = "QTC_PRODUTO", length = 3, nullable = true)
     private int qntCarrinho;
-    
+
     @Size(min = 1, max = 100, message = "{produto.tituloProduto.erro}")
     @Column(name = "TL_PRODUTO", length = 100, nullable = false)
     private String tituloProduto;
@@ -61,7 +61,6 @@ public class Produto implements Serializable {
     @Column(name = "GE_PRODUTO", length = 20, nullable = false)
     private String generoProduto;
 
-    @Size(min = 1, max = 5, message = "{produto.tamanhoProduto.erro}")
     @Column(name = "TM_PRODUTO", length = 5, nullable = false)
     private char tamanhoProduto;
 
@@ -91,11 +90,10 @@ public class Produto implements Serializable {
     //@Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
     //@Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
     //private int porcentagemPromocaoProduto;
-
     @Column(name = "DT_PRODUTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastroProduto;
-    
+
     @Digits(integer = 6, fraction = 1, message = "{produto.alturaProduto.erro}")
     @Column(name = "AT_PRODUTO", precision = 10, scale = 2)
     private double alturaProduto;
@@ -112,7 +110,6 @@ public class Produto implements Serializable {
     @Column(name = "PS_PRODUTO", precision = 10, scale = 2)
     private double pesoProduto;
 
-    @Digits(integer = 6, fraction = 1, message = "{produto.produto.erro}")
     @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Imagem> imagens;
 
@@ -311,7 +308,6 @@ public class Produto implements Serializable {
 //    public void setPorcentagemPromocaoProduto(BigDecimal porcentagemPromocaoProduto) {
 //        this.porcentagemPromocaoProduto = porcentagemPromocaoProduto;
 //    }
-
     public Date getDtCadastroProduto() {
         return dtCadastroProduto;
     }
