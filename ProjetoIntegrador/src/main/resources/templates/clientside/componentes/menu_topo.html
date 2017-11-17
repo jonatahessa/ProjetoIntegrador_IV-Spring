@@ -8,32 +8,23 @@
             <!-- TITULO -->
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">
-                    <a th:href="@{/}" class="titulo">Loop4`S V1d4 Lok4</a>
-                    <a th:href="@{/login}" class="icone_usuario fa fa-user-o"></a>
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="icone_carrinho_Topo fa fa-shopping-cart"></button>
+                    <a title="Home" th:href="@{/}" class="titulo">Loop4`S V1d4 Lok4</a>
+                    <button sec:authorize="!isAuthenticated()" type="button" data-toggle="modal" data-target="#login" class="icone_login fa fa-sign-in"></button>
+                    <a title="Perfil!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/admin/perfil}" type="button" class="icone_usuario fa fa-user-o"></a>
+                    <a title="Logout!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/logout}" type="button" class="icone_logout fa fa-sign-out"></a>
+                    <button title="Carrinho!" type="button" data-toggle="modal" data-target="#carrrinho" class="icone_carrinho_Topo fa fa-shopping-cart"></button>
                 </div>
             </div>
-            <!-- MENU TOPO -->
-            <div class="row">
-                <div sec:authorize="hasRole('ROLE_JOSELITO')" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
-                    <ol class="breadcrumb text-center">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li><a th:href="@{sessao/carrinho}">Carrinho</a></li>
-                        <li><a th:href="@{/cadastroC}">Cadastro</a></li>
-                        <li><a th:href="@{/admin/perfil}">Perfil</a></li>
-                    </ol>
+            <!-- LOGIN -->
+            <div class="modal fade bs-example-modal-lg" id="login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div th:include="~{clientside/componentes/modal_login :: modal_login}"></div>
+                    </div>
                 </div>
-                <div sec:authorize="!isAuthenticated()" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu">
-                    <ol class="breadcrumb text-center">
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li><a th:href="@{sessao/carrinho}">Carrinho</a></li>
-
-                        <li><a th:href="@{/cadastroC}">Cadastro</a></li>
-                    </ol>
-                </div>
-
             </div>
-            <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog">
+            <!-- CARRINHO -->
+            <div class="modal fade bs-example-modal-lg" id="carrrinho" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content modal-lg">
                         <div th:include="~{clientside/componentes/modal_carrinho :: modal_carrinho}"></div>

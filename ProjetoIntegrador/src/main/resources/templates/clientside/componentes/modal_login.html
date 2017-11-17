@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div th:fragment="modal_login">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2" style="background: white;">
+                <form th:action="@{/}" action="../home.html" method="post">
+                    <div class="imgcontainer">
+                        <img  data-th-src="@{/images/login.png}" class="avatar">
+                    </div>
+                    <label for="basic-url">* CPF:</label>
+                    <div class="input-group input_">
+                        <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="text" name="username" class="form-control"  aria-describedby="sizing-addon2">
+                    </div>
+                    <br />    
+                    <label for="basic-url">* Senha:</label>
+                    <div class="input-group input_">
+                        <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
+                        <input type="password" name="senha" class="form-control"  aria-describedby="sizing-addon2">
+                    </div>
+                    <br /> 
+                    <button type="submit" class="button button-glow button-rounded button-caution botaoL">Logar</button>
+                    <br />  
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -25,12 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder builder ) throws Exception{
+    public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
         builder
                 .inMemoryAuthentication()
                 .withUser("Arthur").password("123").roles("JOSELITO");
     }
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -42,16 +42,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/Font-Awesome/**",
                         "/css/**",
                         "/images/**",
-                        "/IncornButtons/**").permitAll()
+                        "/IncornButtons/**",
+                        "/sessao/**"
+                ).permitAll()
                 .antMatchers(
                         "/admin/**", "/**").hasRole("JOSELITO")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/")
                 .usernameParameter("username")
                 .passwordParameter("senha")
-                .defaultSuccessUrl("/**").permitAll()
+                .defaultSuccessUrl("/").permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout").logoutSuccessUrl("/login?logout")
