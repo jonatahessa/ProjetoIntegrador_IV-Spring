@@ -100,7 +100,8 @@ body, html{
 
 
 .botoes{
-    float: left;
+    width: 50%;
+    float: right;
     margin: 2%;
 }
 

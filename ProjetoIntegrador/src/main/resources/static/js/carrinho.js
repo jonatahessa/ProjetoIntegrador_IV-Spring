@@ -8,6 +8,7 @@ $(document).ready(function () {
             t.value += texto.substring(0, 1);
         }
     });
+
 });
 
 

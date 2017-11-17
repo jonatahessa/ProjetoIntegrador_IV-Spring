@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
@@ -95,6 +91,8 @@ public class SessionController implements Serializable {
     public List<Imagem> getImagens() {
         return imagens;
     }
+    
+    
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
     public ModelAndView carrinho() {
