@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -21,11 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "TB_CLIENTE")
@@ -36,16 +27,12 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private Long codigoCliente;
 
-    @NotNull
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
-    @NotNull
     @Column(name = "PW_CLIENTE", length = 100, nullable = false)
     private String senhaCliente;
 
-    @CPF
-    @NotNull
     @Column(name = "CP_PRODUTO", length = 11, nullable = false)
     private String cpfCliente;
 
@@ -53,13 +40,11 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
 
-    @NotNull(message = "{cliente.nomeCompletoCliente.erro}")
+    @Size(min = 0, message = "{cliente.nomeCompletoCliente.erro}")
     private String nomeCompletoCliente;
 
-    @NotNull
     private char sexoCliente;
 
-    @NotNull
     private String apelidoCliente;
 
     @ManyToMany

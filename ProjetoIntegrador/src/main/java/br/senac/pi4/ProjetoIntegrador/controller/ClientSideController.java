@@ -54,7 +54,7 @@ public class ClientSideController {
     }
 
     @RequestMapping(value = "/cadastroC")
-    public ModelAndView cadastroC(Cliente cliente) {
+    public ModelAndView cadastroC() {
         return new ModelAndView("clientside/clienteCadastro")
                 .addObject("cliente", new Cliente());
     }
@@ -64,7 +64,6 @@ public class ClientSideController {
             @ModelAttribute("cliente") @Valid Cliente cliente,
             BindingResult result,
             RedirectAttributes attributes) {
-
         if (result.hasErrors()) {
             return new ModelAndView("clientside/clienteCadastro");
         }
