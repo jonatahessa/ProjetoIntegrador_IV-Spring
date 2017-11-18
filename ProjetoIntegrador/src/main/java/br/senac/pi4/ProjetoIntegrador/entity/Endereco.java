@@ -59,6 +59,10 @@ public class Endereco implements Serializable {
     @Column(name = "ES_ENDERECO", length = 2, nullable = false)
     private String estadoEndereco;
     
+    @Size(min = 1, max = 9, message = "{endereco.cep.erro}")
+    @Column(name = "CE_ENDERECO", length = 9, nullable = false)
+    private String cepEndereco;
+    
     @Size(min = 1, max = 100, message = "{endereco.pais.erro}")
     @Column(name = "PA_ENDERECO", length = 100, nullable = false)
     private String paisEndereco;
@@ -69,7 +73,7 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(Long codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
+    public Endereco(Long codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String cepEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
         this.codigoEndereco = codigoEndereco;
         this.tipoLogradouroEndereco = tipoLogradouroEndereco;
         this.logradouroEndereco = logradouroEndereco;
@@ -79,10 +83,17 @@ public class Endereco implements Serializable {
         this.cidadeEndereco = cidadeEndereco;
         this.estadoEndereco = estadoEndereco;
         this.paisEndereco = paisEndereco;
+        this.cepEndereco = cepEndereco;
         this.clientes = clientes;
     }
 
-    
+    public String getCepEndereco() {
+        return cepEndereco;
+    }
+
+    public void setCepEndereco(String cepEndereco) {
+        this.cepEndereco = cepEndereco;
+    }   
 
     public Long getCodigoEndereco() {
         return codigoEndereco;
