@@ -26,5 +26,5 @@ public interface ProdutoService extends Serializable {
     
     public void alterar(Produto produto);
     
-    public void remover(Integer codigoProduto);
+    public void remover(Long codigoProduto);
 }

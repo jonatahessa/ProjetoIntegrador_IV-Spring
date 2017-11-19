@@ -64,7 +64,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void remover(Integer codigoProduto) {
+    public void remover(Long codigoProduto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

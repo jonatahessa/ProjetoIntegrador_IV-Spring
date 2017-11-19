@@ -46,21 +46,4 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(localeChangeInterceptor());
   }
-  
-  @Bean(name = "messageSource")
-  public ReloadableResourceBundleMessageSource messageSource() {
-    ReloadableResourceBundleMessageSource source = 
-            new ReloadableResourceBundleMessageSource();
-    source.setBasename("classpath:i18n/mensagens");
-    source.setDefaultEncoding("UTF-8");
-    source.setCacheSeconds(10);
-    return source;
-  }
-
-  @Bean(name = "validator")
-  public LocalValidatorFactoryBean validator() {
-    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-    bean.setValidationMessageSource(messageSource());
-    return bean;
-  }
 }

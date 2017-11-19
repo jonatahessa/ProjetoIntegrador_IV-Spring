@@ -33,7 +33,7 @@ public class Produto implements Serializable {
     @Column(name = "ID_PRODUTO")
     private Long codigoProduto;
 
-    @Digits(integer = 6, fraction = 0, message = "{produto.qntProduto.erro}")
+    @Digits(integer = 6, fraction = 0, message = "{produto.qntCarrinho.erro}")
     @Column(name = "QTC_PRODUTO", length = 3, nullable = true)
     private int qntCarrinho;
 
