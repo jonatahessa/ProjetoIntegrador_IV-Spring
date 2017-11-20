@@ -62,7 +62,7 @@ public class BackoficeGerenciaProdutoController {
     @RequestMapping(value = "/{id}/remover", method = RequestMethod.POST)
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto) {
         produtoService.remover(idProduto);
-        return new ModelAndView("redirect:/gerenciamento/produto");
+        return new ModelAndView("redirect:/backoffice/produto");
     }
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)

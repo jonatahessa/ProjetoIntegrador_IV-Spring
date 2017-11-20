@@ -64,8 +64,10 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void remover(Long codigoProduto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public void remover(Long idProduto) {
+        Produto p = entityManager.find(Produto.class, idProduto);
+        entityManager.remove(p);
     }
 
 }

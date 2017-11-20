@@ -4,6 +4,7 @@
         <title>Produtos</title>
         <meta charset="UTF-8">
         <link th:href="@{/css/estiloBackofficeProduto.css}" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" th:src="@{/js/jQueryBackofficeListaDeProdutos.js}"></script>
     </head>
     <body>
         <section layout:fragment="conteudo" class="container-fluid">
@@ -29,7 +30,7 @@
                         <p th:text="${p.codigoProduto}">Código do Produto</p>
                         <p th:text="${p.descricaoProduto}">Descrição Produto</p>
 
-                        <form class="" th:object="${p}" th:action="@{/gerenciamento/produto/{id} (id={p.codigoProduto})}" method="post">
+                        <form class="" th:object="${p}" th:action="@{/gerenciamento/produto/{id} (id=${p.codigoProduto})}" method="post">
                             <button class="btn btn-primary" type="submit" name="button">Editar</button>
                         </form>
 
@@ -37,9 +38,30 @@
                             <input type="hidden" name="codigo" th:value="${p.codigoProduto}">
                             <button class="btn btn-success" type="submit">Adicionar Imagens</button>
                         </form>
+
+                        <form class="" id="remove-form" th:action="@{/gerenciamento/produto/{id}/remover (id=${p.codigoProduto})}" method="post">
+                            <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#confirm-submit">Remover</button>
+                        </form>
                     </li>
                 </ul>
             </div>
+
+            <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Confirmar Exclusão</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deseja realmente excluir esse produto?</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                            <a href="#" id="submit" class="btn btn-danger success">Excluir</a>
+                        </div>
+                    </div>
+                </div>
         </section>
     </body>
 </html>
