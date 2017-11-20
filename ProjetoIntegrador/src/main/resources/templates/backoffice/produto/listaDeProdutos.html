@@ -29,8 +29,8 @@
                         <p th:text="${p.codigoProduto}">Código do Produto</p>
                         <p th:text="${p.descricaoProduto}">Descrição Produto</p>
 
-                        <form class="" th:object="${p}" th:action="@{/salvar}" method="post">
-                            <button class="btn btn-primary" type="button" name="button">Editar</button>
+                        <form class="" th:object="${p}" th:action="@{/gerenciamento/produto/{id} (id={p.codigoProduto})}" method="post">
+                            <button class="btn btn-primary" type="submit" name="button">Editar</button>
                         </form>
 
                         <form class="" th:action="@{/upload}" method="get">
