@@ -24,6 +24,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 
@@ -58,6 +59,10 @@ public class Pedido implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataPedido;
 
+    @Column(name = "UA_PEDIDO", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ultimaAtualizacao;
+
     @Column(name = "DE_PEDIDO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataEntrega;
@@ -74,14 +79,18 @@ public class Pedido implements Serializable {
     @Column(name = "FP_PEDIDO", length = 100, nullable = false)
     private String formaPagamentoPedido;
 
+    @Transient
+    private Long idCliente;
+
     public Pedido() {
     }
 
-    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date dataEntrega, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido) {
+    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, Date dataEntrega, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido) {
         this.codigoPedido = codigoPedido;
         this.produtos = produtos;
         this.clientePedido = clientePedido;
         this.dataPedido = dataPedido;
+        this.ultimaAtualizacao = ultimaAtualizacao;
         this.dataEntrega = dataEntrega;
         this.statusPedido = statusPedido;
         this.valorPedido = valorPedido;
@@ -151,4 +160,21 @@ public class Pedido implements Serializable {
     public void setFormaPagamentoPedido(String formaPagamentoPedido) {
         this.formaPagamentoPedido = formaPagamentoPedido;
     }
+
+    public Date getUltimaAtualizacao() {
+        return ultimaAtualizacao;
+    }
+
+    public void setUltimaAtualizacao(Date ultimaAtualizacao) {
+        this.ultimaAtualizacao = ultimaAtualizacao;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
 }

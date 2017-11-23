@@ -17,9 +17,10 @@ public interface PedidoService extends Serializable {
     
     public List<Pedido> listar(int offset, int quantidade);
        
-    public Pedido obter(Integer codigoPedido);
+    public Pedido obter(Long codigoPedido);
     
     public void incluir(Pedido pedido);
     
+    public void alterar(Pedido pedido);
 }
 

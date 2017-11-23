@@ -17,11 +17,11 @@ public interface ClienteService extends Serializable {
     
     public List<Cliente> listar(int offset);
     
-    public List<Cliente> obter(Integer codigoCliente);
+    public Cliente obter(Long codigoCliente);
     
     public void incluir(Cliente cliente);
     
     public void alterar(Cliente cliente);
     
-    public void remover(Integer codigoCliente);
+    public void remover(Long codigoCliente);
 }
