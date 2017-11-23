@@ -5,8 +5,6 @@
  */
 package br.senac.pi4.ProjetoIntegrador.entity;
 
-import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
-import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -57,15 +56,13 @@ public class Pedido implements Serializable {
 
     @Column(name = "DT_PEDIDO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat (pattern="dd-MMM-YYYY HH:mm:ss")
     private Date dataPedido;
 
     @Column(name = "UA_PEDIDO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat (pattern="dd-MMM-YYYY HH:mm:ss")
     private Date ultimaAtualizacao;
-
-    @Column(name = "DE_PEDIDO", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dataEntrega;
 
     @Size(min = 1, max = 100, message = "{pedido.statusPedido.erro}")
     @Column(name = "ST_PEDIDO", length = 100, nullable = false)
@@ -85,17 +82,18 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, Date dataEntrega, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido) {
+    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido, Long idCliente) {
         this.codigoPedido = codigoPedido;
         this.produtos = produtos;
         this.clientePedido = clientePedido;
         this.dataPedido = dataPedido;
         this.ultimaAtualizacao = ultimaAtualizacao;
-        this.dataEntrega = dataEntrega;
         this.statusPedido = statusPedido;
         this.valorPedido = valorPedido;
         this.formaPagamentoPedido = formaPagamentoPedido;
+        this.idCliente = idCliente;
     }
+    
 
     public Long getCodigoPedido() {
         return codigoPedido;
@@ -127,14 +125,6 @@ public class Pedido implements Serializable {
 
     public void setDataPedido(Date dataPedido) {
         this.dataPedido = dataPedido;
-    }
-
-    public Date getDataEntrega() {
-        return dataEntrega;
-    }
-
-    public void setDataEntrega(Date dataEntrega) {
-        this.dataEntrega = dataEntrega;
     }
 
     public String getStatusPedido() {

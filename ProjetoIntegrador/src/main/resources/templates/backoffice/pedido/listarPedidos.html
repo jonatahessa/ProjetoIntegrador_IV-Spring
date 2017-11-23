@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>Pedidos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section layout:fragment="conteudo" class="container-fluid">
+          <div class="row">
+            <table>
+              <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Cliente</th>
+                <th>Status</th>
+                <th>Ultima Atualização</th>
+                <th>Detalhes</th>
+              </tr>
+              <tr th:each="p:${pedidos}">
+                <td th:text="${p.codigoPedido}"></td>
+                <td th:text="${p.dataPedido}"></td>
+                <td th:text="${p.valorPedido}"></td>
+                <td th:text="${p.idCliente}"></td>
+                <td th:text="${p.statusPedido}"></td>
+                <td th:text="${p.ultimaAtualizacao}"></td>
+                <td><form th:action="@{/pedido/detalhe/{id} (id=${p.codigoPedido})}" method="post">
+                  <button class="btn btn-default" type="submit" name="button">Detalhes</button>
+                </form></td>
+              </tr>
+            </table>
+
+          </div>
+
+        </section>
+    </body>
+</html>

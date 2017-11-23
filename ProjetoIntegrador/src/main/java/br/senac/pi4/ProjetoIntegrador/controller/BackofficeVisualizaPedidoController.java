@@ -10,6 +10,7 @@ import br.senac.pi4.ProjetoIntegrador.Service.PedidoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -33,32 +34,33 @@ public class BackofficeVisualizaPedidoController {
 
     @Autowired
     private PedidoService pedidoService;
-    
+
     @Autowired
     private ClienteService clienteService;
 
-    
     @RequestMapping
     public ModelAndView listar() {
-        List<Pedido> pedido = pedidoService.listar(0, 100);
+        List<Pedido> pedidos = pedidoService.listar(0, 100);
         return new ModelAndView("backoffice/pedido/listarPedidos")
-                .addObject("pedido", pedido);
-           
+                .addObject("pedidos", pedidos);
+
     }
-    
-    @RequestMapping("/detalhe")
-    public ModelAndView abrirDetalhe(@ModelAttribute("pedido") @Valid Pedido p) {
+
+    @RequestMapping("/detalhe/{id}")
+    public ModelAndView abrirDetalhe(@PathVariable("id") Long idPedido) {
+        Pedido p = pedidoService.obter(idPedido);
         Cliente cliente = p.getClientePedido();
         p.setIdCliente(cliente.getCodigoCliente());
         return new ModelAndView("backoffice/pedido/detalhePedido").addObject("pedido", p);
     }
-    
+
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)
     public ModelAndView salvar(
             @ModelAttribute("pedido") @Valid Pedido p,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes){
+            RedirectAttributes redirectAttributes) {
         p.setClientePedido(clienteService.obter(p.getIdCliente()));
+        System.out.println(p.getDataPedido());
         p.setUltimaAtualizacao(new Date());
         pedidoService.alterar(p);
         return new ModelAndView("redirect:/pedido");

@@ -50,13 +50,7 @@ public class PedidoServiceImpl implements PedidoService{
 
     @Override
     public void incluir(Pedido pedido) {
-        throw new UnsupportedOperationException("INSERT INTO tb_pedido (de_pedido, dt_pedido, fp_pedido, st_pedido, vl_pedido, id_cliente)"
-                + "VALUES (" + pedido.getDataEntrega() + ","
-                             + pedido.getDataPedido() + ","
-                             + pedido.getFormaPagamentoPedido() + ","
-                             + pedido.getStatusPedido() + ","
-                             + pedido.getValorPedido() + ","
-                             + pedido.getClientePedido() + ");"); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

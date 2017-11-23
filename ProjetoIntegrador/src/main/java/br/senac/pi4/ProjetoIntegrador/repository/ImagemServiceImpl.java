@@ -18,12 +18,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ImagemServiceImpl implements ImagemService {
 
-   @Autowired
+    @Autowired
     private ImagemRepository repo;
-   
+
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public List<Imagem> listar(int offset, int quantidade) {
         Iterable<Imagem> imagens = repo.findAll();
@@ -43,7 +43,7 @@ public class ImagemServiceImpl implements ImagemService {
 
     @Override
     public Imagem obter(Long idImagem) {
-        return repo.findOne(Long.parseLong("" + idImagem));
+        return repo.findOne(idImagem);
     }
 
     @Override
@@ -62,16 +62,12 @@ public class ImagemServiceImpl implements ImagemService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     @Override
     public List<Imagem> obterCodigoProduto(Long codigoProduto) {
         Query query = entityManager.createNativeQuery(
-            "SELECT * FROM tb_imagem "      
-            + "WHERE id_produto = :idProd")
-            .setParameter("idProd", codigoProduto);
+                "SELECT * FROM tb_imagem "
+                + "WHERE id_produto = :idProd;")
+                .setParameter("idProd", codigoProduto);
         return query.getResultList();
     }
-
-       
 }
-

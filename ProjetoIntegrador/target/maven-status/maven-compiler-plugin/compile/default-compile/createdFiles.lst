@@ -1,3 +1,4 @@
+br\senac\pi4\ProjetoIntegrador\repository\ClienteServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\Service\EnderecoService.class
 br\senac\pi4\ProjetoIntegrador\controller\AdminSideController.class
 br\senac\pi4\ProjetoIntegrador\repository\MarcaServiceImpl.class
@@ -17,6 +18,8 @@ br\senac\pi4\ProjetoIntegrador\entity\Imagem.class
 br\senac\pi4\ProjetoIntegrador\entity\Produto.class
 br\senac\pi4\ProjetoIntegrador\repository\CategoriaRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaProdutoController.class
+br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaPedidoController.class
+br\senac\pi4\ProjetoIntegrador\repository\ClienteRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\BDController.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class

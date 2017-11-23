@@ -1,18 +1,20 @@
-
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +41,9 @@ public class Cliente implements Serializable {
     @Column(name = "NS_CLIENTE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
+
+    @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Pedido> pedidos;
 
     @Size(min = 0, message = "{cliente.nomeCompletoCliente.erro}")
     private String nomeCompletoCliente;
@@ -70,12 +75,13 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, String nomeCompletoCliente, char sexoCliente, String apelidoCliente, List<Telefone> telefones, Set<Endereco> endereco) {
+    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Pedido> pedidos, String nomeCompletoCliente, char sexoCliente, String apelidoCliente, List<Telefone> telefones, Set<Endereco> endereco) {
         this.codigoCliente = codigoCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
         this.cpfCliente = cpfCliente;
         this.nascCliente = nascCliente;
+        this.pedidos = pedidos;
         this.nomeCompletoCliente = nomeCompletoCliente;
         this.sexoCliente = sexoCliente;
         this.apelidoCliente = apelidoCliente;
@@ -163,4 +169,11 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }

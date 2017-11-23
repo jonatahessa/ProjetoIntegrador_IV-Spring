@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>Detalhes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section layout:fragment="conteudo" class="container-fluid">
+          <div class="row">
+            <div class="">
+              <form class="" th:object="${pedido}" th:action="@{/pedido/salvar}" method="post">
+                <div class="">
+                  <label for="">Códido Pedido</label>
+                  <p th:text="${pedido.codigoPedido}"></p>
+                </div>
+
+                <div class="">
+                  <label for="">Data Pedido</label>
+                  <p th:text="${#calendars.format(pedido.dataPedido,'dd/MMM/yyyy HH:mm:ss')}"></p>
+                </div>
+
+                <div class="">
+                  <label for="">Valor Pedido</label>
+                  <p th:text="${pedido.valorPedido}"></p>
+                </div>
+
+                <div class="">
+                  <label for="">Cliente Pedido</label>
+                  <p th:text="${pedido.idCliente}"></p>
+                  <input type="hidden" th:field="*{idCliente}">
+                </div>
+
+                <div class="">
+                  <label for="">Status Pedido</label>
+                  <select class="" th:field="*{statusPedido}" name="">
+                    <option value="Aguardando Pagamento">Aguardando Pagamento</option>
+                    <option value="Pagamento Autorizado">Pagamento Autorizado</option>
+                    <option value="Em Transporte">Em Transporte</option>
+                    <option value="Entregue">Entregue</option>
+                  </select>
+                </div>
+
+                <div class="">
+                  <label for="">Ultima Atualização</label>
+                  <p th:text="${#calendars.format(pedido.ultimaAtualizacao,'dd/MMM/yyyy HH:mm:ss')}"></p>
+                </div>
+
+                <button type="submit" name="button">Salvar</button>
+
+              </form>
+
+            </div>
+          </div>
+        </section>
+    </body>
+</html>
