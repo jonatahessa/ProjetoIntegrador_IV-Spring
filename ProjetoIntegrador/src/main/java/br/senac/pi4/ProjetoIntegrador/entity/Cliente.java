@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "TB_CLIENTE")
@@ -29,15 +30,19 @@ public class Cliente implements Serializable {
     @Column(name = "ID_CLIENTE")
     private Long codigoCliente;
 
+    @Size(min = 1, message = "{cliente.emailCliente.erro}")
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
+    @Size(min = 1, message = "{cliente.senhaCliente.erro}")
     @Column(name = "PW_CLIENTE", length = 100, nullable = false)
     private String senhaCliente;
 
+    @CPF(message = "{cliente.cpfCliente.erro}")
     @Column(name = "CP_CLIENTE", length = 14, nullable = false)
     private String cpfCliente;
 
+    @Size(min = 1, message = "{cliente.senhaCliente.erro}")
     @Column(name = "NS_CLIENTE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
@@ -45,11 +50,13 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
 
-    @Size(min = 0, message = "{cliente.nomeCompletoCliente.erro}")
+    @Size(min = 1, message = "{cliente.nomeCompletoCliente.erro}")
     private String nomeCompletoCliente;
 
+    @Size(min = 1, message = "{cliente.sexoCliente.erro}")
     private char sexoCliente;
 
+    @Size(min = 1, message = "{cliente.apelidoCliente.erro}")
     private String apelidoCliente;
 
     @ManyToMany

@@ -43,7 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/images/**",
                         "/IncornButtons/**",
-                        "/sessao/**"
+                        "/sessao/**",
+                        "/cadastroC/**",
+                        "/descricao/**",
+                        "/novoCliente/**"
                 ).permitAll()
                 .antMatchers(
                         "/admin/**", "/**").hasRole("JOSELITO")

@@ -13,11 +13,6 @@ public class AdminSideController {
         return "clientside/clientePerfil";
     }
 
-    @RequestMapping(value = "/clientePedidos", method = RequestMethod.GET)
-    public String clientePedidos() {
-        return "clientside/clientePedidos";
-    }
-
     @RequestMapping(value = "/checkoutEndereco", method = RequestMethod.GET)
     public String clienteCheckoutEndereco() {
         return "clientside/checkoutEndereco";
