@@ -15,91 +15,87 @@
 
             <form class="row" th:object="${produto}" th:action="@{/gerenciamento/produto/salvar}" method="post">
                 <div id="formulario" class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+
+                  <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="detailedError : ${#fields.detailedErrors()}">
+                      <span th:text="${detailedError.message}"></span>
+                    </div>
+                  </div>
+
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" th:classappend="${#fields.hasErrors('tituloProduto')} ? has-error">
                             <label for="titulo">Título</label>
-                            <input id="titulo" class="form-control inputs-janela-novo" th:placeholder="#{produto.tituloProduto.placeholder}" th:field="*{tituloProduto}" type="text" required name="tituloProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('tituloProduto')}" th:errors="*{tituloProduto}" th:text="#{produto.tituloProduto.erro}"></p>
+                            <input id="titulo" class="form-control inputs-janela-novo" th:placeholder="#{produto.tituloProduto.placeholder}" th:field="*{tituloProduto}" type="text" name="tituloProduto" value="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"  th:classappend="${#fields.hasErrors('quantEstoqueProduto')} ? has-error">
                             <label for="qtde">Quantidade</label>
-                            <input id="qtde" class="form-control inputs-janela-novo" th:field="*{quantEstoqueProduto}" th:placeholder="#{produto.quantEstoqueProduto.placeholder}" type="text" required name="quantEstoqueProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('quantEstoqueProduto')}" th:errors="*{quantEstoqueProduto}" th:text="#{produto.quantEstoqueProduto.erro}"></p>
+                            <input id="qtde" class="form-control inputs-janela-novo" th:field="*{quantEstoqueProduto}" th:placeholder="#{produto.quantEstoqueProduto.placeholder}" type="number" min="1" name="quantEstoqueProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('precoProduto')} ? has-error">
                             <label for="preco">Preço</label>
-                            <input id="preco" class="form-control inputs-janela-novo" th:field="*{precoProduto}" th:placeholder="#{produto.precoProduto.placeholder}" type="text" required name="precoProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('precoProduto')}" th:errors="*{precoProduto}" th:text="#{produto.precoProduto.erro}"></p>
+                            <input id="preco" class="form-control inputs-janela-novo" th:field="*{precoProduto}" th:placeholder="#{produto.precoProduto.placeholder}" type="text" name="precoProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('avaliacaoProduto')} ? has-error">
                             <label for="avalia">Avaliação</label>
-                            <input id="avalia" class="form-control inputs-janela-novo" th:field="*{avaliacaoProduto}" th:placeholder="#{produto.avaliacaoProduto.placeholder}" type="text" required name="avaliacaoProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('avaliacaoProduto')}" th:errors="*{avaliacaoProduto}" th:text="#{produto.avaliacaoProduto.erro}"></p>
+                            <input id="avalia" class="form-control inputs-janela-novo" th:field="*{avaliacaoProduto}" th:placeholder="#{produto.avaliacaoProduto.placeholder}" type="number" min="1" name="avaliacaoProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"  th:classappend="${#fields.hasErrors('generoProduto')} ? has-error">
                             <label for="genero">Gênero</label>
                             <select id="genero" class="form-control campos-linha" th:field="*{generoProduto}" name="generoProduto">
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" th:classappend="${#fields.hasErrors('modeloProduto')} ? has-error">
                             <label for="modelo">Modelo</label>
-                            <input id="modelo" class="form-control inputs-janela-novo" th:field="*{modeloProduto}" th:placeholder="#{produto.modeloProduto.placeholder}" type="text" required name="modeloProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('modeloProduto')}" th:errors="*{modeloProduto}" th:text="#{produto.modeloProduto.erro}"></p>
+                            <input id="modelo" class="form-control inputs-janela-novo" th:field="*{modeloProduto}" th:placeholder="#{produto.modeloProduto.placeholder}" type="text" name="modeloProduto" value="">
                         </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" th:classappend="${#fields.hasErrors('lenteTipoProduto')} ? has-error">
                             <label for="tipo-lente">Tipo da Lente</label>
-                            <input id="tipo-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteTipoProduto}" th:placeholder="#{produto.lenteTipoProduto.placeholder}" type="text" required name="lenteTipoProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('lenteTipoProduto')}" th:errors="*{lenteTipoProduto}" th:text="#{produto.lenteTipoProduto.erro}"></p>
+                            <input id="tipo-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteTipoProduto}" th:placeholder="#{produto.lenteTipoProduto.placeholder}" type="text" name="lenteTipoProduto" value="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('corProduto')} ? has-error">
                             <label for="cor">Cor</label>
-                            <input id="cor" class="form-control campos-linha inputs-janela-novo" th:field="*{corProduto}" th:placeholder="#{produto.corProduto.placeholder}" type="text" required name="corProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('corProduto')}" th:errors="*{corProduto}" th:text="#{produto.corProduto.erro}"></p>
+                            <input id="cor" class="form-control campos-linha inputs-janela-novo" th:field="*{corProduto}" th:placeholder="#{produto.corProduto.placeholder}" type="text" name="corProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('lenteCorProduto')} ? has-error">
                             <label for="cor-lente">Cor da Lente</label>
-                            <input id="cor-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteCorProduto}" th:placeholder="#{produto.lenteCorProduto.placeholder}" type="text" required name="lenteCorProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('lenteCorProduto')}" th:errors="*{lenteCorProduto}" th:text="#{produto.lenteCorProduto.erro}"></p>
+                            <input id="cor-lente" class="form-control campos-linha inputs-janela-novo" th:field="*{lenteCorProduto}" th:placeholder="#{produto.lenteCorProduto.placeholder}" type="text" name="lenteCorProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('materialProduto')} ? has-error">
                             <label for="material">Material</label>
-                            <input id="material" class="form-control inputs-janela-novo" th:field="*{materialProduto}" th:placeholder="#{produto.materialProduto.placeholder}" type="text" required name="materialProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('materialProduto')}" th:errors="*{materialProduto}" th:text="#{produto.materialProduto.erro}"></p>
+                            <input id="material" class="form-control inputs-janela-novo" th:field="*{materialProduto}" th:placeholder="#{produto.materialProduto.placeholder}" type="text" name="materialProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('pesoProduto')} ? has-error">
                             <label for="peso">Peso</label>
-                            <input id="peso" class="form-control inputs-janela-novo" th:field="*{pesoProduto}" th:placeholder="#{produto.pesoProduto.placeholder}" type="text" required name="pesoProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('pesoProduto')}" th:errors="*{pesoProduto}" th:text="#{produto.pesoProduto.erro}"></p>
+                            <input id="peso" class="form-control inputs-janela-novo" th:field="*{pesoProduto}" th:placeholder="#{produto.pesoProduto.placeholder}" type="number" min="0" step="0.1" name="pesoProduto" value="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" th:classappend="${#fields.hasErrors('descricaoProduto')} ? has-error">
                             <label for="descricao">Descricão</label>
-                            <textarea id="descricao" class="form-control inputs-janela-novo" th:field="*{descricaoProduto}" th:placeholder="#{produto.descricaoProduto.placeholder}" required name="descricaoProduto" rows="8" cols="80"></textarea>
-                            <p class="text-danger" th:if="${#fields.hasErrors('descricaoProduto')}" th:errors="*{descricaoProduto}" th:text="#{produto.descricaoProduto.erro}"></p>
+                            <textarea id="descricao" class="form-control inputs-janela-novo" th:field="*{descricaoProduto}" th:placeholder="#{produto.descricaoProduto.placeholder}" name="descricaoProduto" rows="8" cols="80"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('tamanhoProduto')} ? has-error">
                             <label for="tamanho">Tamanho</label>
                             <select id="tamanho" class="form-control" th:field="*{tamanhoProduto}" name="tamanhoProduto">
                                 <option value="P">P</option>
@@ -108,27 +104,24 @@
                             </select>
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('alturaProduto')} ? has-error">
                             <label for="altura">Altura</label>
-                            <input id="altura" class="form-control inputs-janela-novo" th:field="*{alturaProduto}" th:placeholder="#{produto.alturaProduto.placeholder}" type="text" required name="alturaProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('alturaProduto')}" th:errors="*{alturaProduto}" th:text="#{produto.alturaProduto.erro}"></p>
+                            <input id="altura" class="form-control inputs-janela-novo" th:field="*{alturaProduto}" th:placeholder="#{produto.alturaProduto.placeholder}" type="number" min="0" step="0.1" name="alturaProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('larguraProduto')} ? has-error">
                             <label for="largura">Lagura</label>
-                            <input id="largura" class="form-control inputs-janela-novo" th:field="*{larguraProduto}" th:placeholder="#{produto.larguraProduto.placeholder}" type="text" required name="larguraProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('larguraProduto')}" th:errors="*{larguraProduto}" th:text="#{produto.larguraProduto.erro}"></p>
+                            <input id="largura" class="form-control inputs-janela-novo" th:field="*{larguraProduto}" th:placeholder="#{produto.larguraProduto.placeholder}" type="number" min="0" step="0.1" name="larguraProduto" value="">
                         </div>
 
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" th:classappend="${#fields.hasErrors('comprimentoProduto')} ? has-error">
                             <label for="comprimento">Comprimento</label>
-                            <input id="comprimento" class="form-control inputs-janela-novo" th:field="*{comprimentoProduto}" th:placeholder="#{produto.comprimentoProduto.placeholder}" type="text" required name="comprimentoProduto" value="">
-                            <p class="text-danger" th:if="${#fields.hasErrors('comprimentoProduto')}" th:errors="*{comprimentoProduto}" th:text="#{produto.comprimentoProduto.erro}"></p>
+                            <input id="comprimento" class="form-control inputs-janela-novo" th:field="*{comprimentoProduto}" th:placeholder="#{produto.comprimentoProduto.placeholder}" type="number" min="0" step="0.1" name="comprimentoProduto" value="">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" th:classappend="${#fields.hasErrors('marcaProduto')} ? has-error">
                             <label for="marca">Marca</label>
                             <select id="marca" class="form-control inputs-janela-novo" th:field="*{idMarca}" name="marca">
                                 <option th:each="m:${marcas}" th:value="${m.codigoMarca}" th:text="${m.tituloMarca}"></option>
@@ -137,12 +130,11 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" th:classappend="${#fields.hasErrors('idCategorias')} ? has-error">
                             <label for="categorias">Categorias</label>
                             <div id="categorias" class="checkbox checkbox-primary" th:each="c:${categorias}">
                                 <input class="checkbox inputs-janela-novo" th:id="${c.nomeCategoria}" th:field="*{idCategorias}" type="checkbox" name="categoriaproduto" th:value="${c.codigoCategoria}"/>
                                 <label class="" th:for="${c.nomeCategoria}" th:text="${c.nomeCategoria}">Categoria</label>
-                                <p th:if="${#fields.hasErrors('idCategorias')}" th:errors="*{idCategorias}"></p>
                             </div>
                         </div>
                     </div>

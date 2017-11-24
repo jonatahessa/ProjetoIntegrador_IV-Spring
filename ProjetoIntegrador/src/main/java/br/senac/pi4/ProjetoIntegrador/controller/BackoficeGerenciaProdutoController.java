@@ -71,7 +71,10 @@ public class BackoficeGerenciaProdutoController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("backoffice/produto/cadastroDeProdutos");
+            return new ModelAndView("backoffice/produto/cadastroDeProdutos")
+                    .addObject("produto", p)
+                    .addObject("categorias", categoriaService.listar())
+                    .addObject("marcas", marcaService.listar());
         }
         boolean inclusao = (p.getCodigoProduto() == null);
         p.setDtCadastroProduto(new Date());

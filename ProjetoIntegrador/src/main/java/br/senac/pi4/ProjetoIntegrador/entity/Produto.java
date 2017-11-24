@@ -21,8 +21,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "TB_PRODUTO")
@@ -37,50 +42,66 @@ public class Produto implements Serializable {
     @Column(name = "QTC_PRODUTO", length = 3, nullable = true)
     private int qntCarrinho;
 
-    @Size(min = 1, max = 100, message = "{produto.tituloProduto.erro}")
+    @NotBlank(message = "O título do produto é obrigatório!")
+    @Size(max = 100, message = "O título deve conter no máximo 100 caractéres!")
     @Column(name = "TL_PRODUTO", length = 100, nullable = false)
     private String tituloProduto;
 
-    @Digits(integer = 11, fraction = 0, message = "{produto.quantEstoqueProduto.erro}")
+    @NotNull(message = "A quantidade em estoque do produto é obrigatória!")
+    @Min(value = 1, message = "A quantidade em estoque do produto deve ser maior que zero!")
+    @Digits(integer = 11, fraction = 0, message = "Quantidade em estoque inválida!")
     @Column(name = "QT_PRODUTO", nullable = false)
     private int quantEstoqueProduto;
 
-    @Digits(integer = 11, fraction = 0, message = "{produto.avaliacaoProduto.erro}")
+    @NotNull(message = "A avaliação do produto é obrigatória!")
+    @Min(value = 1, message = "A avaliação do produto deve ser maior que zero!")
+    @Digits(integer = 11, fraction = 0, message = "Avaliação do produto inválida!")
     @Column(name = "AV_PRODUTO")
     private int avaliacaoProduto;
 
-    @Size(min = 1, max = 50, message = "{produto.modeloProduto.erro}")
+    @NotBlank(message = "O modelo do produto é obrigatório!")
+    @Size(max = 50, message = "O modelo deve conter no máximo 50 caractéres!")
     @Column(name = "MD_PRODUTO", length = 50, nullable = false)
     private String modeloProduto;
 
-    @Size(min = 1, max = 20, message = "{produto.corProduto.erro}")
+    @NotBlank(message = "A cor do produto obrigatória!")
+    @Size(max = 20, message = "A cor do produto deve conter no máximo 20 caractéres!")
     @Column(name = "CO_PRODUTO", length = 20, nullable = false)
     private String corProduto;
 
-    @Size(min = 1, max = 10, message = "{produto.generoProduto.erro}")
+    @NotBlank(message = "O gênero do produto é obrigatório!")
+    @Size(max = 10, message = "O gênero deve ser somente masculino ou feminino!")
     @Column(name = "GE_PRODUTO", length = 20, nullable = false)
     private String generoProduto;
 
+    @NotNull(message = "O tamanho do produto é obrigatório!")
     @Column(name = "TM_PRODUTO", length = 5, nullable = false)
     private char tamanhoProduto;
 
-    @Size(min = 1, max = 20, message = "{produto.lenteCorProduto.erro}")
+    @NotBlank(message = "A cor da lente é obrigatória!")
+    @Size(max = 20, message = "A cor da lente deve conter no máximo 20 caractéres!")
     @Column(name = "CL_PRODUTO", length = 20, nullable = false)
     private String lenteCorProduto;
 
-    @Size(min = 1, max = 100, message = "{produto.materialProduto.erro}")
+    @NotBlank(message = "O material do produto é obrigatório!")
+    @Size(max = 100, message = "O material do produto deve conter no máximo 100 caractéres!")
     @Column(name = "MT_PRODUTO", length = 20, nullable = false)
     private String materialProduto;
 
-    @Size(min = 1, max = 100, message = "{produto.lenteTipoProduto.erro}")
+    @NotBlank(message = "O tipo da lente é obrigatório!")
+    @Size(max = 100, message = "O tipo da lente deve conter no máximo 100 caractéres!")
     @Column(name = "LT_PRODUTO", length = 100, nullable = false)
     private String lenteTipoProduto;
 
-    @Size(min = 1, max = 1000, message = "{produto.descricaoProduto.erro}")
+    @NotBlank(message = "A descrição do produto é obrigatória!")
+    @Size(max = 1000, message = "A descrição deve conter no máximo 1000 caractéres!")
     @Column(name = "DS_PRODUTO", length = 1000, nullable = false)
     private String descricaoProduto;
 
-    @Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
+    @NotNull(message = "O preço do produto é obrigatório!")
+    @DecimalMin(value = "0.01", message = "Preco do produto inválido!")
+    @Min(value = 1, message = "O valor do produto deve ser maior que zero!")
+    @Digits(integer = 6, fraction = 2, message = "Preço do produto inválido!")
     @Column(name = "VL_PRODUTO", precision = 6, scale = 2, nullable = false)
     private BigDecimal precoProduto;
 
@@ -90,23 +111,28 @@ public class Produto implements Serializable {
     //@Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
     //@Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
     //private int porcentagemPromocaoProduto;
+    
     @Column(name = "DT_PRODUTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastroProduto;
 
-    @Digits(integer = 6, fraction = 1, message = "{produto.alturaProduto.erro}")
+    @DecimalMin(value = "0.0", message = "Altura do protuto inválida!")
+    @Digits(integer = 6, fraction = 1, message = "Altura do produto inválida!")
     @Column(name = "AT_PRODUTO", precision = 10, scale = 2)
     private double alturaProduto;
 
-    @Digits(integer = 6, fraction = 1, message = "{produto.larguraProduto.erro}")
+    @DecimalMin(value = "0.0", message = "Largura do protuto inválida!")
+    @Digits(integer = 6, fraction = 1, message = "Largura do produto inválida!")
     @Column(name = "LG_PRODUTO", precision = 10, scale = 2)
     private double larguraProduto;
 
-    @Digits(integer = 6, fraction = 1, message = "{produto.comprimentoProduto.erro}")
+    @DecimalMin(value = "0.0", message = "Comprimento do protuto inválido!")
+    @Digits(integer = 6, fraction = 1, message = "Comprimento do produto inválido!")
     @Column(name = "CM_PRODUTO", precision = 10, scale = 2)
     private double comprimentoProduto;
 
-    @Digits(integer = 6, fraction = 1, message = "{produto.pesoProduto.erro}")
+    @DecimalMin(value = "0.0", message = "Peso do produto inválido!")
+    @Digits(integer = 6, fraction = 1, message = "Peso do produto inválido!")
     @Column(name = "PS_PRODUTO", precision = 10, scale = 2)
     private double pesoProduto;
 
@@ -124,6 +150,7 @@ public class Produto implements Serializable {
     private Set<Categoria> categorias;
 
     @Transient
+    @NotEmpty(message = "Selecione pelo menos uma categoria!")
     private Set<Long> idCategorias;
 
     @Transient
