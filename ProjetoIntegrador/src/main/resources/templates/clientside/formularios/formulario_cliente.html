@@ -16,48 +16,21 @@
                           th:object="${cliente}" novalidate>
 
                         <label for="basic-url">* Nome Completo:</label>
-                        <div class="input-group input_">
+                        <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input id="nome" th:field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2" required >
+                            <input id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2" required >
                         </div>
-                        <div th:if="${#fields.hasErrors('nomeCompletoCliente')}" class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong th:text="#{cliente.nomeCompletoCliente.erro}" th:errors="*{nomeCompletoCliente}"></strong> 
-                        </div>
+
                         <label for="basic-url">* CPF:</label>
-                        <div class="input-group input_">
+                        <div class="input-group input_" data-th-classappend="${#fields.hasErrors('cpfCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input  id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* Data de Nascimento:</label>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
                             <input id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
-                        </div>
-
-                        <label for="basic-url">
-                            * Escolha o tipo do aparelho de contato: <select>
-                                <option value="t">Telefone</option>
-                                <option value="c">Celular</option>
-                            </select>
-                        </label>
-                        <div class="input-group input_">
-                            <div class="telefone_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2">DDD</span>
-                                    <input type="text" class="form-control"  aria-describedby="sizing-addon2">
-                                </div>
-                            </div>
-                            <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                                    <input type="text" class="form-control"  aria-describedby="sizing-addon2">
-                                </div>
-                            </div>
-                            <div class="telefone_2 col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                                <a class="button button-raised button-action button-pill">Add</a>
-                            </div>
                         </div>
 
                         <div class="form-group">
@@ -69,118 +42,154 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="cep">* CEP</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="cep" class="form-control"  aria-describedby="sizing-addon2" type="text" required/>
-                            </div>
-                        </div>
+                        <div th:object="${telefone}">
 
-                        <div class="form-group">
-                            <label for="logradouro">* Logradouro</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="logradouro" class="form-control"  aria-describedby="sizing-addon2" type="text" required/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="numero">Número</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="numero"  class="form-control"  aria-describedby="sizing-addon2"  type="text" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="complemento">* Complemento</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="complemento"  class="form-control"  aria-describedby="sizing-addon2"  type="text"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="bairro">* Bairro</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="bairro" type="text" class="form-control"  aria-describedby="sizing-addon2" required/>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="cidade">* Cidade</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input id="cidade" type="text" class="form-control"  aria-describedby="sizing-addon2" required/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="uf">* Estado</label>
-                            <div class="input-group input_">
-                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <select class="form-control" id="uf">
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                            <label for="basic-url">
+                                * Escolha o tipo do aparelho de contato: <select>
+                                    <option value="t">Telefone</option>
+                                    <option value="c">Celular</option>
                                 </select>
+                            </label>
+                            <div class="input-group input_">
+                                <div class="telefone_1 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon2">DDD</span>
+                                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    </div>
+                                </div>
+                                <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
+                                        <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    </div>
+                                </div>
+                                <div class="telefone_2 col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                    <a class="button button-raised button-action button-pill">Add</a>
+                                </div>
                             </div>
+
                         </div>
 
-                        <label for="basic-url">* Como podemos te chamar: </label>
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                        <div th:object="${endereco}">
+
+                            <div class="form-group">
+                                <label for="cep">* CEP</label>
+                                <div class="input-group input_">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="cep" class="form-control" aria-describedby="sizing-addon2" type="text" required/>
+                                </div>
+                            </div>
+
+<!--                            <div class="form-group">
+                                <label for="logradouro">* Logradouro</label>
+                                <div class="input-group input_" data-th-classappend="${#fields.hasErrors('logradouroEndereco')} ? has-error">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="logradouro" class="form-control" data-th-field="*{logradouroEndereco}" aria-describedby="sizing-addon2" type="text" required/>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group">
+                                <label for="numero">Número</label>
+                                <div class="input-group input_" data-th-classappend="${#fields.hasErrors('numeroEndereco')} ? has-error">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="numero"  class="form-control" data-th-field="*{numeroEndereco}"  aria-describedby="sizing-addon2"  type="text" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="complemento">* Complemento</label>
+                                <div class="input-group input_" data-th-classappend="${#fields.hasErrors('complementoCliente')} ? has-error">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="complemento"  class="form-control" data-th-field="*{complementoCliente}"  aria-describedby="sizing-addon2"  type="text"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bairro">* Bairro</label>
+                                <div class="input-group input_" data-th-classappend="${#fields.hasErrors('bairroCliente')} ? has-error">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="bairro" type="text" data-th-field="*{bairroCliente}" class="form-control"  aria-describedby="sizing-addon2" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cidade">* Cidade</label>
+                                <div class="input-group input_" data-th-classappend="${#fields.hasErrors('cidadeCliente')} ? has-error">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <input id="cidade" type="text" data-th-field="*{cidadeCliente}" class="form-control"  aria-describedby="sizing-addon2" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="uf">* Estado</label>
+                                <div class="input-group input_">
+                                    <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
+                                    <select class="form-control" id="uf">
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <label for="basic-url">* Email:</label>
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
-                        </div>
+                        <div th:object="${cliente}">
 
-                        <label for="basic-url">* Confirmar email:</label>
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
-                        </div>
+                            <label for="basic-url">* Como podemos te chamar: </label>
+                            <div class="input-group input_">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
 
-                        <label for="basic-url">* Senha:</label>
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                            <input autocomplete="off" type="password" class="form-control"  aria-describedby="sizing-addon2">
-                        </div>
+                            <label for="basic-url">* Email:</label>
+                            <div class="input-group input_">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
 
-                        <label for="basic-url">* Confirmar senha:</label>
-                        <div class="input-group input_">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                            <input autocomplete="off" type="password" class="form-control"  aria-describedby="sizing-addon2">
+                            <label for="basic-url">* Confirmar email:</label>
+                            <div class="input-group input_">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
+
+                            <label for="basic-url">* Senha:</label>
+                            <div class="input-group input_">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
+                                <input autocomplete="off" type="password" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
+
+                            <label for="basic-url">* Confirmar senha:</label>
+                            <div class="input-group input_">
+                                <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
+                                <input autocomplete="off" type="password" class="form-control"  aria-describedby="sizing-addon2">
+                            </div>
+
                         </div>
 
                         <div class="checkbox">

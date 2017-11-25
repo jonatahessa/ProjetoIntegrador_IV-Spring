@@ -17,10 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author joliveira
- */
+
 @Entity
 @Table(name = "TB_ENDERECO")
 public class Endereco implements Serializable {
@@ -31,39 +28,38 @@ public class Endereco implements Serializable {
     @Column(name = "ID_ENDERECO")
     private Long codigoEndereco;
     
-    @Size(min = 1, max = 50, message = "{endereco.tipoLogradouro.erro}")
+    @Size(min = 1, max = 50, message = "{cliente.tipoLogradouroCliente.erro}")
     @Column(name = "TL_ENDERECO", length = 50, nullable = false)
     private String tipoLogradouroEndereco;
     
-    @Size(min = 1, max = 500, message = "{endereco.logradouro.erro}")
+    @Size(min = 1, max = 500, message = "{cliente.logradouroEndereco.erro}")
     @Column(name = "LO_ENDERECO", length = 100, nullable = false)
     private String logradouroEndereco;
     
-    @Size(min = 1, max = 11, message = "{endereco.numero.erro}")
+    @Size(min = 1, max = 11, message = "{cliente.numeroEndereco.erro}")
     @Column(name = "NU_ENDERECO", length = 100, nullable = false)
     private String numeroEndereco;
     
-    @Size(min = 1, max = 100, message = "{endereco.complemento.erro}")
+    @Size(min = 1, max = 100, message = "{cliente.complementoCliente.erro}")
     @Column(name = "CP_ENDERECO", length = 100, nullable = true)
     private String complementoEndereco;
     
-    @Size(min = 1, max = 100, message = "{endereco.beirro.erro}")
+    @Size(min = 1, max = 100, message = "{cliente.bairroCliente.erro}")
     @Column(name = "BR_ENDERECO", length = 100, nullable = false)
     private String bairroEndereco;
     
-    @Size(min = 1, max = 100, message = "{endereco.cidade.erro}")
+    @Size(min = 1, max = 100, message = "{cliente.cidadeCliente.erro}")
     @Column(name = "CD_ENDERECO", length = 100, nullable = false)
     private String cidadeEndereco;
     
-    @Size(min = 1, max = 2, message = "{endereco.estado.erro}")
+    @Size(min = 1, max = 2, message = "{cliente.estadoCliente.erro}")
     @Column(name = "ES_ENDERECO", length = 2, nullable = false)
     private String estadoEndereco;
     
-    @Size(min = 1, max = 9, message = "{endereco.cep.erro}")
     @Column(name = "CE_ENDERECO", length = 9, nullable = false)
     private String cepEndereco;
     
-    @Size(min = 1, max = 100, message = "{endereco.pais.erro}")
+    @Size(min = 1, max = 100, message = "{cliente.pais.erro}")
     @Column(name = "PA_ENDERECO", length = 100, nullable = false)
     private String paisEndereco;
     

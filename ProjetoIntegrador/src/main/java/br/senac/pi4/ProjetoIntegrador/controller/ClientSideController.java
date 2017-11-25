@@ -1,8 +1,10 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
@@ -61,10 +63,11 @@ public class ClientSideController {
 
     @RequestMapping(value = "/novoCliente", method = RequestMethod.POST)
     public ModelAndView cadastrarCliente(
-            @ModelAttribute("cliente") @Valid Cliente cliente,
-            BindingResult result,
+            @ModelAttribute("cliente") @Valid Cliente cliente, BindingResult clienteR,
+            @ModelAttribute("endereco") @Valid Endereco endereco, BindingResult enderecoR,
+            @ModelAttribute("telefone") @Valid Telefone telefone, BindingResult telefoneR,
             RedirectAttributes attributes) {
-        if (result.hasErrors()) {
+        if (clienteR.hasErrors() || enderecoR.hasErrors()  || telefoneR.hasErrors() ) {
             return new ModelAndView("clientside/clienteCadastro");
         }
 
@@ -76,6 +79,11 @@ public class ClientSideController {
     @RequestMapping("/login")
     public String login() {
         return "clientside/login";
+    }
+
+    @RequestMapping("/login-error")
+    public ModelAndView loginError() {
+        return new ModelAndView("clientside/login").addObject("erro", true);
     }
 
 }

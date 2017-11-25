@@ -46,16 +46,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/sessao/**",
                         "/cadastroC/**",
                         "/descricao/**",
-                        "/novoCliente/**"
+                        "/novoCliente/**",
+                        "/login-error/**",
+                        "/login"
                 ).permitAll()
                 .antMatchers(
                         "/admin/**", "/**").hasRole("JOSELITO")
-                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/")
+                .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("senha")
+                .failureUrl("/login-error")
                 .defaultSuccessUrl("/").permitAll()
                 .and()
                 .logout()

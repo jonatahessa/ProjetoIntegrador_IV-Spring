@@ -30,21 +30,24 @@
                         <div class="imgcontainer">
                             <img  data-th-src="@{/images/login.png}" class="avatar">
                         </div>
+                        <label data-th-if="${erro}">Erro de usuario ou senha</label>
+                        <br />
                         <label for="basic-url">* CPF:</label>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" name="username" class="form-control"  aria-describedby="sizing-addon2">
+                            <input type="text" name="username" autocomplete="off" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
                         <br />    
                         <label for="basic-url">* Senha:</label>
                         <div class="input-group input_">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input type="password" name="senha" class="form-control"  aria-describedby="sizing-addon2">
+                            <input type="password" name="senha" autocomplete="off" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
                         <br /> 
                         <button type="submit" class="button button-glow button-rounded button-caution botaoL">Logar</button>
                         <br />  
                     </form>
+                    <a data-th-href="@{/cadastroC}" class="button button-glow button-rounded button-primary">Cadastrar</a>
                 </div>
 
             </div>

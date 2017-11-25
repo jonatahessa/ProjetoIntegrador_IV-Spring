@@ -42,7 +42,6 @@ public class Cliente implements Serializable {
     @Column(name = "CP_CLIENTE", length = 14, nullable = false)
     private String cpfCliente;
 
-    @Size(min = 1, message = "{cliente.senhaCliente.erro}")
     @Column(name = "NS_CLIENTE", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
@@ -53,7 +52,6 @@ public class Cliente implements Serializable {
     @Size(min = 1, message = "{cliente.nomeCompletoCliente.erro}")
     private String nomeCompletoCliente;
 
-    @Size(min = 1, message = "{cliente.sexoCliente.erro}")
     private char sexoCliente;
 
     @Size(min = 1, message = "{cliente.apelidoCliente.erro}")

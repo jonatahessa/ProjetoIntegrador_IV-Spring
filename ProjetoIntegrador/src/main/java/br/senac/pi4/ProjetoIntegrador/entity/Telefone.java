@@ -30,11 +30,11 @@ public class Telefone implements Serializable {
     @Column(name = "ID_TELEFONE")
     private Long codigoTelefone;
     
-    @Size(min = 3, max = 3, message = "{telefone.dddTelefone.erro}")
+    @Size(min = 3, max = 3, message = "{cliente.dddTelefone.erro}")
     @Column(name = "CA_ENDERECO", length = 3, nullable = false)
     private String dddTelefone;
     
-    @Size(min = 8, max = 9, message = "{telefone.telefone.erro}")
+    @Size(min = 8, max = 9, message = "{cliente.numeroTelefone.erro}")
     @Column(name = "NM_TELEFONE", length = 9, nullable = false)
     private String numeroTelefone;
     

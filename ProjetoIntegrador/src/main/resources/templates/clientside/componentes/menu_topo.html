@@ -9,18 +9,10 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">
                     <a title="Home" th:href="@{/}" class="titulo">Loop4`S V1d4 Lok4</a>
-                    <button sec:authorize="!isAuthenticated()" type="button" data-toggle="modal" data-target="#login" class="icone_login fa fa-sign-in"></button>
+                    <a data-th-href="@{/login}" sec:authorize="!isAuthenticated()" type="button" class="icone_login fa fa-sign-in"></a>
                     <a title="Perfil!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/admin/perfil}" type="button" class="icone_usuario fa fa-user-o"></a>
                     <a title="Logout!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/logout}" type="button" class="icone_logout fa fa-sign-out"></a>
                     <button title="Carrinho!" type="button" data-toggle="modal" data-target="#carrrinho" class="icone_carrinho_Topo fa fa-shopping-cart"></button>
-                </div>
-            </div>
-            <!-- LOGIN -->
-            <div class="modal fade bs-example-modal-lg" id="login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div th:include="~{clientside/componentes/modal_login :: modal_login}"></div>
-                    </div>
                 </div>
             </div>
             <!-- CARRINHO -->
