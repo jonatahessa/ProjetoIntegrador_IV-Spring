@@ -54,13 +54,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     @Transactional
-    public void incluir(Produto p) {
-        entityManager.persist(p);
+    public void incluir(Produto produto) {
+        entityManager.persist(produto);
     }
 
     @Override
+    @Transactional
     public void alterar(Produto produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entityManager.merge(produto);
     }
 
     @Override

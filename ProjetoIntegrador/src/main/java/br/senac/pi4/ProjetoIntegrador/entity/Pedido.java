@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +25,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,20 +51,19 @@ public class Pedido implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "ID_PEDIDO")
             })
-    private List<Produto> produtos;
+    private Set<Produto> produtos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CLIENTE", nullable = false)
     private Cliente clientePedido;
 
     @Column(name = "DT_PEDIDO", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat (pattern="dd-MMM-YYYY HH:mm:ss")
+    @Temporal(TemporalType.DATE)
     private Date dataPedido;
 
     @Column(name = "UA_PEDIDO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat (pattern="dd-MMM-YYYY HH:mm:ss")
+    @DateTimeFormat(pattern = "dd-MMM-YYYY HH:mm:ss")
     private Date ultimaAtualizacao;
 
     @Size(min = 1, max = 100, message = "{pedido.statusPedido.erro}")
@@ -79,10 +81,13 @@ public class Pedido implements Serializable {
     @Transient
     private Long idCliente;
 
+    @Transient
+    private Set<Long> idProdutos;
+
     public Pedido() {
     }
 
-    public Pedido(Long codigoPedido, List<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido, Long idCliente) {
+    public Pedido(Long codigoPedido, Set<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido, Long idCliente, Set<Long> idProdutos) {
         this.codigoPedido = codigoPedido;
         this.produtos = produtos;
         this.clientePedido = clientePedido;
@@ -92,7 +97,9 @@ public class Pedido implements Serializable {
         this.valorPedido = valorPedido;
         this.formaPagamentoPedido = formaPagamentoPedido;
         this.idCliente = idCliente;
+        this.idProdutos = idProdutos;
     }
+
     
 
     public Long getCodigoPedido() {
@@ -103,11 +110,11 @@ public class Pedido implements Serializable {
         this.codigoPedido = codigoPedido;
     }
 
-    public List<Produto> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
     }
 
@@ -167,4 +174,11 @@ public class Pedido implements Serializable {
         this.idCliente = idCliente;
     }
 
+    public Set<Long> getIdProdutos() {
+        return idProdutos;
+    }
+
+    public void setIdProdutos(Set<Long> idProdutos) {
+        this.idProdutos = idProdutos;
+    }
 }

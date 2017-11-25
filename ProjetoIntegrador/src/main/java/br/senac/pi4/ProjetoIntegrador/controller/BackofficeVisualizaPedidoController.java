@@ -7,12 +7,15 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.Service.PedidoService;
+import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author eloisa.asilva2
  */
 @Controller
-@RequestMapping("/pedido")
+@RequestMapping("/backoffice/pedido")
 public class BackofficeVisualizaPedidoController {
 
     @Autowired
@@ -37,6 +40,9 @@ public class BackofficeVisualizaPedidoController {
 
     @Autowired
     private ClienteService clienteService;
+    
+    @Autowired
+    private ProdutoService produtoService;
 
     @RequestMapping
     public ModelAndView listar() {
@@ -59,10 +65,33 @@ public class BackofficeVisualizaPedidoController {
             @ModelAttribute("pedido") @Valid Pedido p,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-        p.setClientePedido(clienteService.obter(p.getIdCliente()));
-        System.out.println(p.getDataPedido());
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("backoffice/pedido/detalhePedido")
+                    .addObject("pedido", p);
+        }
+        boolean inclusao = (p.getCodigoPedido() == null);
         p.setUltimaAtualizacao(new Date());
-        pedidoService.alterar(p);
-        return new ModelAndView("redirect:/pedido");
+        p.setClientePedido(clienteService.obter(p.getIdCliente()));
+
+        if (p.getIdProdutos()!= null && !p.getIdProdutos().isEmpty()) {
+            Set<Produto> prods = new LinkedHashSet<Produto>();
+            for (Long i : p.getIdProdutos()) {
+                Produto prod = produtoService.obter(i);
+                Set<Produto> produtos = new LinkedHashSet<Produto>();
+                produtos.add(prod);
+                p.setProdutos(produtos);
+                prods.add(prod);
+            }
+            p.setProdutos(prods);
+        }
+        if (inclusao) {
+            pedidoService.incluir(p);
+        } else {
+            pedidoService.alterar(p);
+        }
+
+        redirectAttributes.addFlashAttribute("msgSucesso",
+                "Produto " + p.getCodigoPedido()+ " cadastrado com sucesso");
+        return new ModelAndView("redirect:/gerenciamento/produto");
     }
 }

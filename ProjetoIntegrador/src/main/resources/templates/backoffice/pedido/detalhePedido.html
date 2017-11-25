@@ -14,10 +14,11 @@ and open the template in the editor.
         <section layout:fragment="conteudo" class="container-fluid">
           <div class="row">
             <div class="">
-              <form class="" th:object="${pedido}" th:action="@{/pedido/salvar}" method="post">
+              <form class="" th:object="${pedido}" th:action="@{/backoffice/pedido/salvar}" method="post">
                 <div class="">
                   <label for="">Códido Pedido</label>
                   <p th:text="${pedido.codigoPedido}"></p>
+                  <input type="hidden" th:field="*{codigoPedido}">
                 </div>
 
                 <div class="">
@@ -33,7 +34,6 @@ and open the template in the editor.
                 <div class="">
                   <label for="">Cliente Pedido</label>
                   <p th:text="${pedido.idCliente}"></p>
-                  <input type="hidden" th:field="*{idCliente}">
                 </div>
 
                 <div class="">

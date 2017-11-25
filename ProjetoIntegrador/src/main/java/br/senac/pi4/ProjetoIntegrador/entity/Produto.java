@@ -150,7 +150,6 @@ public class Produto implements Serializable {
     private Set<Categoria> categorias;
 
     @Transient
-    @NotEmpty(message = "Selecione pelo menos uma categoria!")
     private Set<Long> idCategorias;
 
     @Transient

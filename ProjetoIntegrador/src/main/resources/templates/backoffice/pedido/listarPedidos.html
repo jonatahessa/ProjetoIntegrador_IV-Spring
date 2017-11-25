@@ -30,7 +30,7 @@ and open the template in the editor.
                 <td th:text="${p.idCliente}"></td>
                 <td th:text="${p.statusPedido}"></td>
                 <td th:text="${p.ultimaAtualizacao}"></td>
-                <td><form th:action="@{/pedido/detalhe/{id} (id=${p.codigoPedido})}" method="post">
+                <td><form th:action="@{/backoffice/pedido/detalhe/{id} (id=${p.codigoPedido})}" method="post">
                   <button class="btn btn-default" type="submit" name="button">Detalhes</button>
                 </form></td>
               </tr>
