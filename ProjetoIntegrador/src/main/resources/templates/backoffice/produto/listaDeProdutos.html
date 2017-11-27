@@ -36,7 +36,7 @@
 
                         <form class="" th:action="@{/upload}" method="get">
                             <input type="hidden" name="codigo" th:value="${p.codigoProduto}">
-                            <button class="btn btn-success" type="submit">Adicionar Imagens</button>
+                            <button class="btn btn-success" type="submit">Adicionar Imagem</button>
                         </form>
 
                         <form class="" id="remove-form" th:action="@{/gerenciamento/produto/{id}/remover (id=${p.codigoProduto})}" method="post">

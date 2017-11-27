@@ -24,14 +24,12 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<Produto> listar(int offset, int quantidade) {
-        Iterable<Produto> produtos = repo.findAll();
-        Iterator it = produtos.iterator();
-        List<Produto> lista = new ArrayList<Produto>();
-        while (it.hasNext()) {
-            Produto p = (Produto) it.next();
-            lista.add(p);
-        }
-        return lista;
+        Query query = entityManager.createQuery(
+                "SELECT DISTINCT p FROM Produto p "
+                + "LEFT JOIN FETCH p.categorias "
+                + "LEFT JOIN FETCH p.imagens "
+                + "WHERE en_produto = 1");
+        return query.getResultList();
     }
 
 //     @PersistenceContext
@@ -65,10 +63,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    @Transactional
     public void remover(Long idProduto) {
-        Produto p = entityManager.find(Produto.class, idProduto);
-        entityManager.remove(p);
+        Query query = entityManager.createQuery(
+                " UPDATE Produto p "
+                + "SET EN_PRODUTO = 0 "
+                + "WHERE p.id = :idProd")
+                .setParameter("idProd", idProduto);
     }
-
 }

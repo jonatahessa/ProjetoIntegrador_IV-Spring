@@ -111,10 +111,12 @@ public class Produto implements Serializable {
     //@Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
     //@Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
     //private int porcentagemPromocaoProduto;
-    
     @Column(name = "DT_PRODUTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastroProduto;
+
+    @Column(name = "EN_PRODUTO", nullable = false)
+    private Boolean enabledProduto;
 
     @DecimalMin(value = "0.0", message = "Altura do protuto inválida!")
     @Digits(integer = 6, fraction = 1, message = "Altura do produto inválida!")
@@ -169,8 +171,9 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Long codigoProduto, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, BigDecimal porcentagemPromocaoProduto, Date dtCadastroProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Set<Long> idCategorias, Long idMarca, Marca marcaProduto, int qntCarrinho, int contadorProduto, List<Pedido> pedidos) {
+    public Produto(Long codigoProduto, int qntCarrinho, String tituloProduto, int quantEstoqueProduto, int avaliacaoProduto, String modeloProduto, String corProduto, String generoProduto, char tamanhoProduto, String lenteCorProduto, String materialProduto, String lenteTipoProduto, String descricaoProduto, BigDecimal precoProduto, boolean promocaoProduto, Date dtCadastroProduto, Boolean enabledProduto, double alturaProduto, double larguraProduto, double comprimentoProduto, double pesoProduto, List<Imagem> imagens, Set<Categoria> categorias, Set<Long> idCategorias, Long idMarca, Marca marcaProduto, int contadorProduto, List<Pedido> pedidos) {
         this.codigoProduto = codigoProduto;
+        this.qntCarrinho = qntCarrinho;
         this.tituloProduto = tituloProduto;
         this.quantEstoqueProduto = quantEstoqueProduto;
         this.avaliacaoProduto = avaliacaoProduto;
@@ -185,6 +188,7 @@ public class Produto implements Serializable {
         this.precoProduto = precoProduto;
         this.promocaoProduto = promocaoProduto;
         this.dtCadastroProduto = dtCadastroProduto;
+        this.enabledProduto = enabledProduto;
         this.alturaProduto = alturaProduto;
         this.larguraProduto = larguraProduto;
         this.comprimentoProduto = comprimentoProduto;
@@ -196,7 +200,6 @@ public class Produto implements Serializable {
         this.marcaProduto = marcaProduto;
         this.contadorProduto = contadorProduto;
         this.pedidos = pedidos;
-        this.qntCarrinho = qntCarrinho;
     }
 
     public int getQntCarrinho() {
@@ -340,6 +343,14 @@ public class Produto implements Serializable {
 
     public void setDtCadastroProduto(Date dtCadastroProduto) {
         this.dtCadastroProduto = dtCadastroProduto;
+    }
+
+    public Boolean getEnabledProduto() {
+        return enabledProduto;
+    }
+
+    public void setEnabledProduto(Boolean enabledProduto) {
+        this.enabledProduto = enabledProduto;
     }
 
     public double getAlturaProduto() {

@@ -61,7 +61,9 @@ public class BackoficeGerenciaProdutoController {
 
     @RequestMapping(value = "/{id}/remover", method = RequestMethod.POST)
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto) {
-        produtoService.remover(idProduto);
+        Produto p = produtoService.obter(idProduto);
+        p.setEnabledProduto(false);
+        produtoService.alterar(p);
         return new ModelAndView("redirect:/backoffice/produto");
     }
 
@@ -77,6 +79,7 @@ public class BackoficeGerenciaProdutoController {
                     .addObject("marcas", marcaService.listar());
         }
         boolean inclusao = (p.getCodigoProduto() == null);
+        p.setEnabledProduto(true);
         p.setDtCadastroProduto(new Date());
         p.setMarcaProduto(marcaService.obter(p.getIdMarca()));
 
