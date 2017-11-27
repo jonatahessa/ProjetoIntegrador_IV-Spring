@@ -49,8 +49,9 @@ public class Cliente implements Serializable {
     @Column(name = "NC_CLIENTE", length = 255, nullable = false)
     private String nomeCompletoCliente;
 
-  
-    private char sexoCliente;
+    @Size(max = 10)
+    @Column(name = "SX_CLIENTE", length = 50, nullable = false)
+    private String sexoCliente;
 
     @Size(min = 1, message = "{cliente.apelidoCliente.erro}")
     @Column(name = "AP_CLIENTE", length = 50, nullable = false)
@@ -110,11 +111,11 @@ public class Cliente implements Serializable {
         this.nomeCompletoCliente = nomeCompletoCliente;
     }
 
-    public char getSexoCliente() {
+    public String getSexoCliente() {
         return sexoCliente;
     }
 
-    public void setSexoCliente(char sexoCliente) {
+    public void setSexoCliente(String sexoCliente) {
         this.sexoCliente = sexoCliente;
     }
 
@@ -261,8 +262,5 @@ public class Cliente implements Serializable {
     public void setCepCliente(String cepCliente) {
         this.cepCliente = cepCliente;
     }
-    
-    
-    
-    
+
 }
