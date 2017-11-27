@@ -10,6 +10,9 @@ import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +20,14 @@ import org.springframework.stereotype.Repository;
  *
  * @author joliveira
  */
-
 @Repository
 public class CategoriaServiceImpl implements CategoriaService {
-    
+
     @Autowired
     private CategoriaRepository repo;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Categoria> listar() {
@@ -34,6 +39,16 @@ public class CategoriaServiceImpl implements CategoriaService {
             lista.add(c);
         }
         return lista;
+    }
+
+    @Override
+    public List<Categoria> listarPorProduto(Long idProduto) {
+        Query query = entityManager.createQuery(
+                "SELECT c From Categoria c "
+                + "INNER JOIN Produto ON c.id_categoria = ct_produto"
+                + "WHERE ct_produto = :idProd")
+                .setParameter("idProd", idProduto);
+        return query.getResultList();
     }
 
     @Override
@@ -55,5 +70,5 @@ public class CategoriaServiceImpl implements CategoriaService {
     public void remover(Long codigoCategoria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

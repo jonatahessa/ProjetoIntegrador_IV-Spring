@@ -111,6 +111,8 @@ public class Produto implements Serializable {
     //@Digits(integer = 6, fraction = 2, message = "{produto.precoProduto.erro}")
     //@Column(name = "VP_PRODUTO", precision = 6, scale = 2, nullable = false)
     //private int porcentagemPromocaoProduto;
+    
+    
     @Column(name = "DT_PRODUTO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtCadastroProduto;

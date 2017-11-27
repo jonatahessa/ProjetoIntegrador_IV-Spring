@@ -19,6 +19,8 @@ public interface CategoriaService extends Serializable {
     
     public Categoria obter(Long id);
     
+    public List<Categoria> listarPorProduto(Long idProduto);
+    
     public void incluir(Categoria categoria);
     
     public void alterar(Categoria categoria);

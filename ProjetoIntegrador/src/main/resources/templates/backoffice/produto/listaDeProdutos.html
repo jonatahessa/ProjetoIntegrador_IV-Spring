@@ -25,25 +25,42 @@
                 </div>
             </div>
             <div class="row grade-produtos">
-                <ul id="lista-produtos" class="col-xs-10 col-sm-10 col-md-3 col-lg-3 produtos" th:each="p:${prod}">
-                    <li class="produto-item"><h2 th:text="${p.tituloProduto}">Nome do Produto </h2>
-                        <p th:text="${p.codigoProduto}">Código do Produto</p>
-                        <p th:text="${p.descricaoProduto}">Descrição Produto</p>
+                <table class="col-xs-12 col-sm-12 col-md-8 col-lg-8 table table-hover produtos">
+                  <thead>
+                    <tr>
+                      <th>Código</th>
+                      <th>Título</th>
+                      <th>Modelo</th>
+                      <th>Adicionado Em</th>
+                      <th>Add Imagem</th>
+                      <th>Detalhe</th>
+                      <th>Editar</th>
+                      <th>Remover</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="p:${prod}">
+                      <td th:text="${p.codigoProduto}"></td>
+                      <td th:text="${p.tituloProduto}"></td>
+                      <td th:text="${p.modeloProduto}"></td>
+                      <td th:text="${#calendars.format(p.dtCadastroProduto,'dd/MM/yyyy HH:mm:ss')}"></td>
+                      <td><form class="" th:action="@{/upload}" method="get">
+                          <input type="hidden" name="codigo" th:value="${p.codigoProduto}">
+                          <button class="btn btn-success" type="submit">Adicionar Imagem</button>
+                      </form></td>
 
-                        <form class="" th:object="${p}" th:action="@{/gerenciamento/produto/{id} (id=${p.codigoProduto})}" method="post">
-                            <button class="btn btn-primary" type="submit" name="button">Editar</button>
-                        </form>
+                      <td><a class="btn btn-default" th:href="@{/backoffice/produto/{id} (id=${p.codigoProduto})}">Detalhes</a></td>
 
-                        <form class="" th:action="@{/upload}" method="get">
-                            <input type="hidden" name="codigo" th:value="${p.codigoProduto}">
-                            <button class="btn btn-success" type="submit">Adicionar Imagem</button>
-                        </form>
+                      <td><form class="" th:object="${p}" th:action="@{/gerenciamento/produto/{id} (id=${p.codigoProduto})}" method="post">
+                          <button class="btn btn-primary" type="submit" name="button">Editar</button>
+                      </form></td>
 
-                        <form class="" id="remove-form" th:action="@{/gerenciamento/produto/{id}/remover (id=${p.codigoProduto})}" method="post">
-                            <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#confirm-submit">Remover</button>
-                        </form>
-                    </li>
-                </ul>
+                      <td><form class="" id="remove-form" th:action="@{/gerenciamento/produto/{id}/remover (id=${p.codigoProduto})}" method="post">
+                          <button class="btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#confirm-submit">Remover</button>
+                      </form></td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
 
             <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

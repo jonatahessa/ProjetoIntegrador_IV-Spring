@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>Detalhe Produto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section layout:fragment="conteudo" class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+              <h1 th:text="${produto.tituloProduto}">Título Produto</h1>
+            </div>
+          </div>
+        </section>
+    </body>
+</html>
