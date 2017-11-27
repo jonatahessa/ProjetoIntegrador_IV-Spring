@@ -1,86 +1,64 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name = "TB_ENDERECO")
-public class Endereco implements Serializable {
-    
+public class EnderecosAlternativos implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO")
     private Long codigoEndereco;
     
-    @Size(min = 1, max = 50, message = "{cliente.tipoLogradouroCliente.erro}")
-    @Column(name = "TL_ENDERECO", length = 50, nullable = false)
-    private String tipoLogradouroEndereco;
-    
-    @Size(min = 1, max = 500, message = "{cliente.logradouroEndereco.erro}")
+    @Size(min = 1, max = 500, message = "{endereco.logradouroEndereco.erro}")
     @Column(name = "LO_ENDERECO", length = 100, nullable = false)
     private String logradouroEndereco;
     
-    @Size(min = 1, max = 11, message = "{cliente.numeroEndereco.erro}")
+    @Size(min = 1, max = 11, message = "{endereco.numeroEndereco.erro}")
     @Column(name = "NU_ENDERECO", length = 100, nullable = false)
     private String numeroEndereco;
     
-    @Size(min = 1, max = 100, message = "{cliente.complementoCliente.erro}")
+    @Size(min = 1, max = 100, message = "{endereco.complementoEndereco.erro}")
     @Column(name = "CP_ENDERECO", length = 100, nullable = true)
     private String complementoEndereco;
     
-    @Size(min = 1, max = 100, message = "{cliente.bairroCliente.erro}")
+    @Size(min = 1, max = 100, message = "{endereco.bairroEndereco.erro}")
     @Column(name = "BR_ENDERECO", length = 100, nullable = false)
     private String bairroEndereco;
     
-    @Size(min = 1, max = 100, message = "{cliente.cidadeCliente.erro}")
+    @Size(min = 1, max = 100, message = "{endereco.cidadeEndereco.erro}")
     @Column(name = "CD_ENDERECO", length = 100, nullable = false)
     private String cidadeEndereco;
     
-    @Size(min = 1, max = 2, message = "{cliente.estadoCliente.erro}")
+    @Size(min = 1, max = 2, message = "{endereco.estadoEndereco.erro}")
     @Column(name = "ES_ENDERECO", length = 2, nullable = false)
     private String estadoEndereco;
     
     @Column(name = "CE_ENDERECO", length = 9, nullable = false)
     private String cepEndereco;
-    
-    @Size(min = 1, max = 100, message = "{cliente.pais.erro}")
-    @Column(name = "PA_ENDERECO", length = 100, nullable = false)
-    private String paisEndereco;
-    
-    @ManyToMany(mappedBy = "endereco")
-    private List<Cliente> clientes;
 
-    public Endereco() {
+    public EnderecosAlternativos() {
     }
 
-    public Endereco(Long codigoEndereco, String tipoLogradouroEndereco, String logradouroEndereco, String numeroEndereco, String cepEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String paisEndereco, List<Cliente> clientes) {
+    public EnderecosAlternativos(Long codigoEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String cepEndereco) {
         this.codigoEndereco = codigoEndereco;
-        this.tipoLogradouroEndereco = tipoLogradouroEndereco;
         this.logradouroEndereco = logradouroEndereco;
         this.numeroEndereco = numeroEndereco;
         this.complementoEndereco = complementoEndereco;
         this.bairroEndereco = bairroEndereco;
         this.cidadeEndereco = cidadeEndereco;
         this.estadoEndereco = estadoEndereco;
-        this.paisEndereco = paisEndereco;
         this.cepEndereco = cepEndereco;
-        this.clientes = clientes;
     }
 
     public String getCepEndereco() {
@@ -97,14 +75,6 @@ public class Endereco implements Serializable {
 
     public void setCodigoEndereco(Long codigoEndereco) {
         this.codigoEndereco = codigoEndereco;
-    }
-
-    public String getTipoLogradouroEndereco() {
-        return tipoLogradouroEndereco;
-    }
-
-    public void setTipoLogradouroEndereco(String tipoLogradouroEndereco) {
-        this.tipoLogradouroEndereco = tipoLogradouroEndereco;
     }
 
     public String getLogradouroEndereco() {
@@ -153,22 +123,6 @@ public class Endereco implements Serializable {
 
     public void setEstadoEndereco(String estadoEndereco) {
         this.estadoEndereco = estadoEndereco;
-    }
-
-    public String getPaisEndereco() {
-        return paisEndereco;
-    }
-
-    public void setPaisEndereco(String paisEndereco) {
-        this.paisEndereco = paisEndereco;
-    }
-
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
     }
     
 }
