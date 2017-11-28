@@ -19,27 +19,28 @@
                         <label for="basic-url">* Nome Completo:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input autocomplete="off" id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2" required >
+                            <input  id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2" required >
                         </div>
 
                         <label for="basic-url">* CPF:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('cpfCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input autocomplete="off"  id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input  id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* Data de Nascimento:</label>
-                        <div class="input-group input_">
+                        <div class="input-group input_" >
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input autocomplete="off" id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" data-th-classappend="${#fields.hasErrors('sexoCliente')} ? has-error">
                             <label for="sel1">* Escolha o Sexo:</label>
-                            <select data-th-field="*{sexoCliente}" class="form-control" id="sel1">
-                                <option>Feminino</option>
-                                <option>Masculino</option>
-                                <option>Outros</option>
+                            <select name="sexoCliente" data-th-field="*{sexoCliente}" class="form-control" id="sel1">
+                                <option value="">Escolha</option>
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
+                                <option value="O">Outros</option>
                             </select>
                         </div>
 
@@ -48,13 +49,13 @@
                             <div class="telefone_1 col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('dddTelefone')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2">DDD</span>
-                                    <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{dddTelefone}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                             <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('telefone')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                                    <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{telefone}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                         </div>
@@ -63,13 +64,13 @@
                             <div class="telefone_1 col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('dddCelular')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2">DDD</span>
-                                    <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{dddCelular}"  type="text" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                             <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('celular')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                                    <input autocomplete="off" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{celular}" type="text" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                         </div>
@@ -78,7 +79,7 @@
                             <label for="cep">CEP</label>
                             <div class="input-group input_">
                                 <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input autocomplete="off" id="cep" class="form-control" aria-describedby="sizing-addon2" type="text" required/>
+                                <input data-th-field="*{cepCliente}"  id="cep" class="form-control" aria-describedby="sizing-addon2" type="text" required/>
                             </div>
                         </div>
 
@@ -124,9 +125,10 @@
 
                         <div class="form-group">
                             <label for="uf">* Estado</label>
-                            <div class="input-group input_">
+                            <div class="input-group input_"  data-th-classappend="${#fields.hasErrors('estadoCliente')} ? has-error">
                                 <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <select class="form-control" id="uf">
+                                <select class="form-control" data-th-field="*{estadoCliente}" id="uf">
+                                    <option value="">Escolha</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
                                     <option value="AP">Amapá</option>
