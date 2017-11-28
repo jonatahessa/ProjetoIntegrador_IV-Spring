@@ -6,6 +6,7 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.CategoriaService;
+import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.Service.MarcaService;
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
@@ -40,6 +41,7 @@ public class BackoficeGerenciaProdutoController {
 
     @Autowired
     private MarcaService marcaService;
+    
 
     @RequestMapping
     public ModelAndView abrirFormulario() {

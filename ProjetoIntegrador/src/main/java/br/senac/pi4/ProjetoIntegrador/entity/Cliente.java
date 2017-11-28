@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
+
 @Entity
 @Table(name = "TB_CLIENTE")
 public class Cliente implements Serializable {
@@ -49,7 +50,7 @@ public class Cliente implements Serializable {
     @Column(name = "NC_CLIENTE", length = 255, nullable = false)
     private String nomeCompletoCliente;
 
-    @Size(max = 10)
+    @Size(min = 1)
     @Column(name = "SX_CLIENTE", length = 50, nullable = false)
     private String sexoCliente;
 
@@ -57,11 +58,11 @@ public class Cliente implements Serializable {
     @Column(name = "AP_CLIENTE", length = 50, nullable = false)
     private String apelidoCliente;
 
-    @Size(min = 1, message = "{telefone.dddTelefoneCliente.erro}")
+    @Size(min = 3, max = 3, message = "{telefone.dddTelefoneCliente.erro}")
     @Column(name = "DDT_CLIENTE", length = 3, nullable = true)
     private String dddTelefone;
 
-    @Size(min = 1, message = "{telefone.dddCelularCliente.erro}")
+    @Size(min = 3, max = 3, message = "{telefone.dddCelularCliente.erro}")
     @Column(name = "DDC_CLIENTE", length = 3, nullable = true)
     private String dddCelular;
 
@@ -93,11 +94,11 @@ public class Cliente implements Serializable {
     @Column(name = "CD_CLIENTE", length = 100, nullable = false)
     private String cidadeCliente;
 
-    @Size(min = 1, max = 2, message = "{endereco.estadoEndereco.erro}")
+    @Size(min = 1, message = "{endereco.estadoEndereco.erro}")
     @Column(name = "ES_CLIENTE", length = 2, nullable = false)
     private String estadoCliente;
 
-    @Column(name = "CE_CLIENTE", length = 9, nullable = true)
+    @Column(name = "CE_CLIENTE", length = 8, nullable = true)
     private String cepCliente;
 
     public Cliente() {
