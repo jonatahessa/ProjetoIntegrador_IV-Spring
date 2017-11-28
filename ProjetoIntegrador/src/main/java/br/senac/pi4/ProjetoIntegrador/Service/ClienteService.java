@@ -12,6 +12,8 @@ public interface ClienteService extends Serializable {
     
     public Cliente obter(Long codigoCliente);
     
+    public Cliente obterClientePeloCPF_Senha(String cpf, String senha);
+    
     public void incluir(Cliente cliente);
     
     public void alterar(Cliente cliente);
