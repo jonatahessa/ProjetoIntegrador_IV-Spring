@@ -1,8 +1,10 @@
 
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.entity.EnderecosAlternativos;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.repository.EnderecoServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.io.Serializable;
@@ -30,6 +32,9 @@ public class SessionController implements Serializable {
 
     @Autowired
     ImagemServiceImpl serviceImagem;
+    
+    @Autowired
+    EnderecoServiceImpl serviceEndereco;
 
     private List<Produto> carrinho = new ArrayList<Produto>();
     private List<Imagem> imagens = new ArrayList<Imagem>();
@@ -92,8 +97,6 @@ public class SessionController implements Serializable {
         return imagens;
     }
     
-    
-
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
     public ModelAndView carrinho() {
         BigDecimal tempTotal = new BigDecimal("0.0");
@@ -116,6 +119,18 @@ public class SessionController implements Serializable {
         frete = true;
         total.add(new BigDecimal(12.00));
         return new ModelAndView("redirect:/sessao/carrinho");
+    }
+    
+    @RequestMapping(value = "/checkoutEndereco")
+    public ModelAndView checkoutEndereco() {
+        List<EnderecosAlternativos> enderecos = serviceEndereco.listar(Long.parseLong(""+1));
+        return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos);
+    }
+    
+    @RequestMapping(value = "/checkoutPagamento")
+    public ModelAndView checkoutPagamento(@ModelAttribute("id") @Valid int codigoEndereco) {
+        idEndereco = codigoEndereco;
+        return new ModelAndView("clientside/checkoutPagamento");
     }
 
 }

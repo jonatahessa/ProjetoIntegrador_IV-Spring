@@ -43,31 +43,22 @@
             </div>
             <div class="row">
                 <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
-                    <div class="cardEndereco">
-                        <p class="pPessoa"> João da Silva
-                        <p class="pEndereco"> Rua José Rafaelli, 221
-                            </br> 04763-280
-                            </br> São Paulo - SP - Brasil
-                            </br> Telefone: (11) 5678-5411
-                        </p>
-                        <div>
-                            <a class="btn btn-small btn-info entregarAqui" th:href="@{/admin/checkoutPagamento}">
-                                <i class="icon-info-sign"></i>Entregar Aqui!</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
-                    <div class="cardEndereco">
-                        <p class="pPessoa"> Arthur Coutinho
-                        <p class="pEndereco"> Rua Jorge Amado, 551
-                            </br> 08958-205
-                            </br> São Paulo - SP - Brasil
-                            </br> Telefone: (11) 5623-5478
-                        </p>
-                        <div>
-                            <a class="btn btn-small btn-info entregarAqui"  th:href="@{/admin/checkoutPagamento}">
-                                <i class="icon-info-sign"></i>Entregar Aqui!</a>
+                <div data-th-each="endereco : ${enderecos}">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+                        <div class="cardEndereco">
+                            <p class="pPessoa"> João da Silva</p>
+                            <p class="pEndereco" data-th-text="${endereco.logradouroEndereco}"></p>
+                            <p class="pEndereco" data-th-text="${endereco.bairroEndereco}"></p>
+                            <p class="pEndereco" data-th-text="${endereco.cidadeEndereco}"></p>
+                            <div>
+                                <form action="#" th:action="@{/sessao/checkoutPagamento}" class="botoes" method="post">
+                                    <input type="hidden" name="id" th:value="${endereco.codigoEndereco}" />
+                                    <button type="submit" class="btn btn-small btn-info entregarAqui"><i class="icon-info-sign"></i>Entregar Aqui!</button>
+                                </form>
+
+                                <!-- <a class="btn btn-small btn-info entregarAqui" th:href="@{/admin/checkoutPagamento}">
+                                    <i class="icon-info-sign"></i>Entregar Aqui!</a>-->
+                            </div>
                         </div>
                     </div>
                 </div>

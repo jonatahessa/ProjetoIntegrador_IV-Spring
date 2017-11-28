@@ -23,6 +23,7 @@ br\senac\pi4\ProjetoIntegrador\controller\BDController.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoRepository.class
+br\senac\pi4\ProjetoIntegrador\repository\EnderecoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\controller\UploadController.class
 br\senac\pi4\ProjetoIntegrador\repository\ImagemServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class
@@ -39,4 +40,5 @@ br\senac\pi4\ProjetoIntegrador\Service\ProdutoService.class
 br\senac\pi4\ProjetoIntegrador\Service\UsuarioService.class
 br\senac\pi4\ProjetoIntegrador\entity\Cliente.class
 br\senac\pi4\ProjetoIntegrador\entity\Categoria.class
+br\senac\pi4\ProjetoIntegrador\repository\EnderecoRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\SessionController.class
