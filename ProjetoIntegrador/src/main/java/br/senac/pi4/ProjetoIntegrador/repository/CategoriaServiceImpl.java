@@ -10,6 +10,7 @@ import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -40,17 +41,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         }
         return lista;
     }
-
-    @Override
-    public List<Categoria> listarPorProduto(Long idProduto) {
-        Query query = entityManager.createQuery(
-                "SELECT c From Categoria c "
-                + "INNER JOIN Produto ON c.id_categoria = ct_produto"
-                + "WHERE ct_produto = :idProd")
-                .setParameter("idProd", idProduto);
-        return query.getResultList();
-    }
-
+    
     @Override
     public Categoria obter(Long id) {
         return repo.findOne(id);

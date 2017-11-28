@@ -10,6 +10,7 @@ import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,7 +52,7 @@ public class BackofficeVisualizaProdutoController {
   @RequestMapping("/{id}")
   public ModelAndView obterPorId(@PathVariable("id") Long idProduto) {
     Produto p = service.obter(idProduto);
-    List<Categoria> listaCategorias = categoriaService.listarPorProduto(idProduto);
-    return new ModelAndView("produto/detalheProduto").addObject("produto", p).addObject("categoria", listaCategorias);
+    Set<Categoria> listaCategorias = p.getCategorias();
+    return new ModelAndView("backoffice/produto/detalheProduto").addObject("produto", p).addObject("categorias", listaCategorias);
   }
 }

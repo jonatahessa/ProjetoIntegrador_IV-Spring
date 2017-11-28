@@ -120,22 +120,22 @@ public class Produto implements Serializable {
     @Column(name = "EN_PRODUTO", nullable = false)
     private Boolean enabledProduto;
 
-    @DecimalMin(value = "0.0", message = "Altura do protuto inválida!")
+    @DecimalMin(value = "0.1", message = "Altura do protuto inválida!")
     @Digits(integer = 6, fraction = 1, message = "Altura do produto inválida!")
     @Column(name = "AT_PRODUTO", precision = 10, scale = 2)
     private double alturaProduto;
 
-    @DecimalMin(value = "0.0", message = "Largura do protuto inválida!")
+    @DecimalMin(value = "0.1", message = "Largura do protuto inválida!")
     @Digits(integer = 6, fraction = 1, message = "Largura do produto inválida!")
     @Column(name = "LG_PRODUTO", precision = 10, scale = 2)
     private double larguraProduto;
 
-    @DecimalMin(value = "0.0", message = "Comprimento do protuto inválido!")
+    @DecimalMin(value = "0.1", message = "Comprimento do protuto inválido!")
     @Digits(integer = 6, fraction = 1, message = "Comprimento do produto inválido!")
     @Column(name = "CM_PRODUTO", precision = 10, scale = 2)
     private double comprimentoProduto;
 
-    @DecimalMin(value = "0.0", message = "Peso do produto inválido!")
+    @DecimalMin(value = "0.1", message = "Peso do produto inválido!")
     @Digits(integer = 6, fraction = 1, message = "Peso do produto inválido!")
     @Column(name = "PS_PRODUTO", precision = 10, scale = 2)
     private double pesoProduto;

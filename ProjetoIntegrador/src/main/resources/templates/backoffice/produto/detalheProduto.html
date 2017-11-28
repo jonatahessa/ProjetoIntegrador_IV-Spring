@@ -17,6 +17,10 @@ and open the template in the editor.
               <h1 th:text="${produto.tituloProduto}">Título Produto</h1>
             </div>
           </div>
+
+          <div class="" th:each="c : ${categorias}">
+            <p th:text="c.nomeCategoria"></p>
+          </div>
         </section>
     </body>
 </html>

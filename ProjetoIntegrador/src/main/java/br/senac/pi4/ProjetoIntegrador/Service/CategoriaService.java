@@ -8,6 +8,7 @@ package br.senac.pi4.ProjetoIntegrador.Service;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -18,8 +19,6 @@ public interface CategoriaService extends Serializable {
     public List<Categoria> listar();
     
     public Categoria obter(Long id);
-    
-    public List<Categoria> listarPorProduto(Long idProduto);
     
     public void incluir(Categoria categoria);
     
