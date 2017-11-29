@@ -1,6 +1,7 @@
 package br.senac.pi4.ProjetoIntegrador.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,13 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
-
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "TB_CLIENTE")
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,7 @@ public class Cliente implements Serializable {
     private String senhaCliente;
 
     @CPF(message = "{cliente.cpfCliente.erro}")
-    @Column(name = "CPF_CLIENTE", length = 14, nullable = false)
+    @Column(name = "CPF_CLIENTE", length = 14, nullable = false, unique = true)
     private String cpfCliente;
 
     @Column(name = "NS_CLIENTE", nullable = false)
@@ -100,10 +102,34 @@ public class Cliente implements Serializable {
 
     @Column(name = "CE_CLIENTE", length = 8, nullable = true)
     private String cepCliente;
+    
+    @Column(name = "RO_CLIENTE", length = 13, nullable = true)
+    private String roleCliente;
 
+    @Transient
+    private List<Papel> papeis;
+
+    @Column(name = "EN_CLIENTE", nullable = true)
+    private boolean enabled;
+    
     public Cliente() {
     }
 
+    public Cliente(String cpfCliente, String senhaCliente, boolean enabled, String roleCliente) {
+        this.cpfCliente = cpfCliente;
+        this.senhaCliente = senhaCliente;
+        this.enabled = enabled;
+        this.roleCliente = roleCliente;
+    }
+    
+    public boolean getEnabled(){
+        return enabled;
+    }
+    
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
     public String getNomeCompletoCliente() {
         return nomeCompletoCliente;
     }
@@ -263,5 +289,55 @@ public class Cliente implements Serializable {
     public void setCepCliente(String cepCliente) {
         this.cepCliente = cepCliente;
     }
+
+    @Override
+    public Collection<Papel> getAuthorities() {
+        return papeis;
+    }
+
+    @Override
+    public String getPassword() {
+        return senhaCliente;
+    }
+
+    @Override
+    public String getUsername() {
+        return cpfCliente;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public String getRoleCliente() {
+        return roleCliente;
+    }
+
+    public void setRoleCliente(String roleCliente) {
+        this.roleCliente = roleCliente;
+    }
+
+    public void setPapeis(List<Papel> papeis) {
+        this.papeis = papeis;
+    }
+    
+    
+    
 
 }

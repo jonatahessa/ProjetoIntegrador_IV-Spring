@@ -3,8 +3,6 @@ package br.senac.pi4.ProjetoIntegrador.repository;
 import br.senac.pi4.ProjetoIntegrador.Service.ProdutoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

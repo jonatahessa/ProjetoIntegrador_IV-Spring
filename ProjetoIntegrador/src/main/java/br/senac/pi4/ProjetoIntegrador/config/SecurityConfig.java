@@ -1,13 +1,14 @@
 package br.senac.pi4.ProjetoIntegrador.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -15,20 +16,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public PasswordEncoder bCryptPasswordEncoder() {
-        return passwordEncoder();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
     }
 
     @Autowired
+    @Qualifier("userDetails")
+    UserDetailsService userDetails;
+    
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
-        builder
-                .inMemoryAuthentication()
-                .withUser("Arthur").password("123").roles("JOSELITO");
+        builder.userDetailsService(userDetails).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
