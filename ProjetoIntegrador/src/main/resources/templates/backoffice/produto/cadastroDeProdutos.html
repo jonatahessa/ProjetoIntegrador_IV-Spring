@@ -8,11 +8,7 @@
         <section layout:fragment="conteudo" class="container-fluid">
 
             <h1 class="text-center">Gerenciamento de Produto</h1>
-
-            <div class="alert alert-success" th:if="${msgSucesso != null}">
-                <h2 th:text="${msgSucesso}"></h2>
-            </div>
-
+            
             <form class="row" th:object="${produto}" th:action="@{/gerenciamento/produto/salvar}" method="post" novalidate>
                 <div id="formulario" class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
                     <input type="hidden" th:field="*{codigoProduto}" />

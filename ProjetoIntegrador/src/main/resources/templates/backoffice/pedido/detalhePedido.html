@@ -14,7 +14,7 @@ and open the template in the editor.
         <section layout:fragment="conteudo" class="container-fluid">
           <div class="row">
             <div class="">
-              <form class="" th:object="${pedido}" th:action="@{/backoffice/pedido/salvar}" method="post">
+              <form class="" th:object="${pedido}" th:action="@{/backoffice/pedido/salvarStatus}" method="post">
                 <div class="">
                   <label for="">Códido Pedido</label>
                   <p th:text="${pedido.codigoPedido}"></p>
@@ -28,7 +28,7 @@ and open the template in the editor.
 
                 <div class="">
                   <label for="">Valor Pedido</label>
-                  <p th:text="${pedido.valorPedido}"></p>
+                  <p th:text="${#numbers.formatCurrency(pedido.valorPedido)}"></p>
                 </div>
 
                 <div class="">

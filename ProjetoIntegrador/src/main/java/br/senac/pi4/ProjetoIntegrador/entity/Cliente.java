@@ -73,7 +73,7 @@ public class Cliente implements Serializable {
     private List<Papel> papeis;
 
     @Column(name = "EN_CLIENTE", nullable = true)
-    private boolean enabled;
+    private Boolean enabled;
     
     public Cliente() {
     }
@@ -201,11 +201,11 @@ public class Cliente implements Serializable {
         this.papeis = papeis;
     }
 
-    public boolean getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 

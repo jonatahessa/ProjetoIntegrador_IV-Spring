@@ -12,31 +12,31 @@ and open the template in the editor.
     </head>
     <body>
         <section layout:fragment="conteudo" class="container-fluid">
-          <div class="row">
-            <table>
-              <tr>
-                <th>ID</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Cliente</th>
-                <th>Status</th>
-                <th>Ultima Atualização</th>
-                <th>Detalhes</th>
-              </tr>
-              <tr th:each="p:${pedidos}">
-                <td th:text="${p.codigoPedido}"></td>
-                <td th:text="${p.dataPedido}"></td>
-                <td th:text="${p.valorPedido}"></td>
-                <td th:text="${p.idCliente}"></td>
-                <td th:text="${p.statusPedido}"></td>
-                <td th:text="${p.ultimaAtualizacao}"></td>
-                <td><form th:action="@{/backoffice/pedido/detalhe/{id} (id=${p.codigoPedido})}" method="post">
-                  <button class="btn btn-default" type="submit" name="button">Detalhes</button>
-                </form></td>
-              </tr>
-            </table>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Ultima Atualização</th>
+                        <th>Detalhes</th>
+                    </tr>
+                    <tr th:each="p:${pedidos}">
+                        <td th:text="${p.codigoPedido}"></td>
+                        <td th:text="${#calendars.format(p.dataPedido,'dd/MM/yyyy HH:mm:ss')}"></td>
+                        <td th:text="${#numbers.formatCurrency(p.valorPedido)}"></td>
+                        <td th:text="${p.idCliente}"></td>
+                        <td th:text="${p.statusPedido}"></td>
+                        <td th:text="${#calendars.format(p.ultimaAtualizacao,'dd/MM/yyyy HH:mm:ss')}"></td>
+                        <td><form th:action="@{/backoffice/pedido/detalhe/{id} (id=${p.codigoPedido})}" method="post">
+                                <button class="btn btn-default" type="submit" name="button">Detalhes</button>
+                            </form></td>
+                    </tr>
+                </table>
 
-          </div>
+            </div>
 
         </section>
     </body>
