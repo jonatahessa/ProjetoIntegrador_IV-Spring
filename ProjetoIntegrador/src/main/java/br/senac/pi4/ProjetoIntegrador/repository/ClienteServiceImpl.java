@@ -4,7 +4,6 @@ import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
