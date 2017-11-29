@@ -63,7 +63,7 @@ public class Pedido implements Serializable {
 
     @Column(name = "UA_PEDIDO", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd-MMM-YYYY HH:mm:ss")
+    @DateTimeFormat(pattern = "dd-MM-YYYY HH:mm:ss")
     private Date ultimaAtualizacao;
 
     @Size(min = 1, max = 100, message = "{pedido.statusPedido.erro}")

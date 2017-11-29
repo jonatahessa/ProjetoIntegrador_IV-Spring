@@ -5,7 +5,6 @@
  */
 package br.senac.pi4.ProjetoIntegrador.entity;
 
-import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
