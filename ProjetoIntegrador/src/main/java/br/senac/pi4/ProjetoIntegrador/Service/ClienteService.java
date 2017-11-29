@@ -5,14 +5,13 @@ import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import java.io.Serializable;
 import java.util.List;
 
-
 public interface ClienteService extends Serializable {
     
     public List<Cliente> listar(int offset);
     
     public Cliente obter(Long codigoCliente);
     
-    public Cliente obterClientePeloCPF_Senha(String cpf, String senha);
+    public Cliente obterClienteByCPF(String cpf);
     
     public void incluir(Cliente cliente);
     
