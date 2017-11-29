@@ -53,6 +53,6 @@ public class BackofficeVisualizaProdutoController {
   public ModelAndView obterPorId(@PathVariable("id") Long idProduto) {
     Produto p = service.obter(idProduto);
     Set<Categoria> listaCategorias = p.getCategorias();
-    return new ModelAndView("backoffice/produto/detalheProduto").addObject("produto", p).addObject("categorias", listaCategorias);
+    return new ModelAndView("backoffice/produto/detalheProduto").addObject("produto", p).addObject("categorias", listaCategorias).addObject("marca", p.getMarcaProduto());
   }
 }

@@ -57,7 +57,8 @@ public class BackofficeVisualizaPedidoController {
         Pedido p = pedidoService.obter(idPedido);
         Cliente cliente = p.getClientePedido();
         p.setIdCliente(cliente.getCodigoCliente());
-        return new ModelAndView("backoffice/pedido/detalhePedido").addObject("pedido", p);
+        return new ModelAndView("backoffice/pedido/detalhePedido").addObject("pedido", p)
+                .addObject("cliente", p.getClientePedido()).addObject("produtos", p.getProdutos());
     }
 
     @RequestMapping(value = "/salvar", method = RequestMethod.POST)

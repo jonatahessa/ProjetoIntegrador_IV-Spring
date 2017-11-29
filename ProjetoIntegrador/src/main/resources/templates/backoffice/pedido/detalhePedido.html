@@ -23,7 +23,7 @@ and open the template in the editor.
 
                 <div class="">
                   <label for="">Data Pedido</label>
-                  <p th:text="${#calendars.format(pedido.dataPedido,'dd/MMM/yyyy HH:mm:ss')}"></p>
+                  <p th:text="${#calendars.format(pedido.dataPedido,'dd/MM/yyyy HH:mm:ss')}"></p>
                 </div>
 
                 <div class="">
@@ -48,7 +48,20 @@ and open the template in the editor.
 
                 <div class="">
                   <label for="">Ultima Atualização</label>
-                  <p th:text="${#calendars.format(pedido.ultimaAtualizacao,'dd/MMM/yyyy HH:mm:ss')}"></p>
+                  <p th:text="${#calendars.format(pedido.ultimaAtualizacao,'dd/MM/yyyy HH:mm:ss')}"></p>
+                </div>
+
+                <div class="">
+                  <h4>Produtos</h4>
+                  <div th:each="prod : ${produtos}">
+                    <p th:text="${prod.tituloProduto}"></p>
+                    <p th:text="${prod.precoProduto}"></p>
+                  </div>
+                </div>
+
+                <div class="">
+                  <h5>Cliente</h5>
+                  <p th:text="${cliente.nomeCompletoCliente}"></p>
                 </div>
 
                 <button type="submit" name="button">Salvar</button>
