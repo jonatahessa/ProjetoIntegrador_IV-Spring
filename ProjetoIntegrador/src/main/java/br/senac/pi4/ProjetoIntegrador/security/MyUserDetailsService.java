@@ -31,7 +31,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
         UserDetails userDetails = new User(
                 cliente.getCpfCliente(), 
-                cliente.getPassword(), 
+                cliente.getSenhaCliente(), 
                 cliente.getEnabled(),
                 true,
                 true,

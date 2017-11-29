@@ -46,7 +46,7 @@
                 <div data-th-each="endereco : ${enderecos}">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
                         <div class="cardEndereco">
-                            <p class="pPessoa"> João da Silva</p>
+                            <p class="pPessoa" data-th-text="${endereco.logradouroEndereco}"> </p>
                             <p class="pEndereco" data-th-text="${endereco.logradouroEndereco}"></p>
                             <p class="pEndereco" data-th-text="${endereco.bairroEndereco}"></p>
                             <p class="pEndereco" data-th-text="${endereco.cidadeEndereco}"></p>

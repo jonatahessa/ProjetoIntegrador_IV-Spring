@@ -6,6 +6,7 @@ br\senac\pi4\ProjetoIntegrador\repository\MarcaRepository.class
 br\senac\pi4\ProjetoIntegrador\Service\PedidoService.class
 br\senac\pi4\ProjetoIntegrador\repository\ImagemRepository.class
 br\senac\pi4\ProjetoIntegrador\config\WebMvcConfig.class
+br\senac\pi4\ProjetoIntegrador\entity\Endereco.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\Service\Implement\ServiceCategoriaImplement.class
 br\senac\pi4\ProjetoIntegrador\entity\Papel.class
@@ -34,8 +35,8 @@ br\senac\pi4\ProjetoIntegrador\repository\CategoriaServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Pedido.class
 br\senac\pi4\ProjetoIntegrador\config\SecurityConfig.class
 br\senac\pi4\ProjetoIntegrador\Service\ImagemService.class
+br\senac\pi4\ProjetoIntegrador\entity\Telefone.class
 br\senac\pi4\ProjetoIntegrador\Service\ClienteService.class
-br\senac\pi4\ProjetoIntegrador\entity\EnderecosAlternativos.class
 br\senac\pi4\ProjetoIntegrador\Service\ProdutoService.class
 br\senac\pi4\ProjetoIntegrador\entity\Cliente.class
 br\senac\pi4\ProjetoIntegrador\entity\Categoria.class

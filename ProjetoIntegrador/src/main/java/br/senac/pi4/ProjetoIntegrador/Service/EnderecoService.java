@@ -5,7 +5,7 @@
  */
 package br.senac.pi4.ProjetoIntegrador.Service;
 
-import br.senac.pi4.ProjetoIntegrador.entity.EnderecosAlternativos;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,11 +15,11 @@ import java.util.List;
  */
 public interface EnderecoService extends Serializable {
     
-    public List<EnderecosAlternativos> listar(Long codigoCliente);
+    public List<Endereco> listar(Long codigoCliente);
 
-    public void incluir(EnderecosAlternativos produto);
+    public void incluir(Endereco produto);
     
-    public void alterar(EnderecosAlternativos produto);
+    public void alterar(Endereco produto);
     
     public void remover(Integer codigoEndereco);
 }

@@ -4,16 +4,19 @@ package br.senac.pi4.ProjetoIntegrador.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name = "TB_ENDERECO")
-public class EnderecosAlternativos implements Serializable {
+public class Endereco implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,11 +49,15 @@ public class EnderecosAlternativos implements Serializable {
     
     @Column(name = "CE_ENDERECO", length = 9, nullable = false)
     private String cepEndereco;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CLIENTE", nullable = false)
+    private Cliente clienteEnderecos;
 
-    public EnderecosAlternativos() {
+    public Endereco() {
     }
 
-    public EnderecosAlternativos(Long codigoEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String cepEndereco) {
+    public Endereco(Long codigoEndereco, String logradouroEndereco, String numeroEndereco, String complementoEndereco, String bairroEndereco, String cidadeEndereco, String estadoEndereco, String cepEndereco, Cliente clienteEnderecos) {
         this.codigoEndereco = codigoEndereco;
         this.logradouroEndereco = logradouroEndereco;
         this.numeroEndereco = numeroEndereco;
@@ -59,15 +66,8 @@ public class EnderecosAlternativos implements Serializable {
         this.cidadeEndereco = cidadeEndereco;
         this.estadoEndereco = estadoEndereco;
         this.cepEndereco = cepEndereco;
+        this.clienteEnderecos = clienteEnderecos;
     }
-
-    public String getCepEndereco() {
-        return cepEndereco;
-    }
-
-    public void setCepEndereco(String cepEndereco) {
-        this.cepEndereco = cepEndereco;
-    }   
 
     public Long getCodigoEndereco() {
         return codigoEndereco;
@@ -124,5 +124,22 @@ public class EnderecosAlternativos implements Serializable {
     public void setEstadoEndereco(String estadoEndereco) {
         this.estadoEndereco = estadoEndereco;
     }
+
+    public String getCepEndereco() {
+        return cepEndereco;
+    }
+
+    public void setCepEndereco(String cepEndereco) {
+        this.cepEndereco = cepEndereco;
+    }
+
+    public Cliente getClienteEnderecos() {
+        return clienteEnderecos;
+    }
+
+    public void setClienteEnderecos(Cliente clienteEnderecos) {
+        this.clienteEnderecos = clienteEnderecos;
+    }
+
     
 }

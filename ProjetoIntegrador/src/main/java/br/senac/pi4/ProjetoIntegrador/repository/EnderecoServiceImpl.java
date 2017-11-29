@@ -6,7 +6,7 @@
 package br.senac.pi4.ProjetoIntegrador.repository;
 
 import br.senac.pi4.ProjetoIntegrador.Service.EnderecoService;
-import br.senac.pi4.ProjetoIntegrador.entity.EnderecosAlternativos;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +28,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     private EntityManager entityManager;
 
     @Override
-    public List<EnderecosAlternativos> listar(Long codigoCliente) {
+    public List<Endereco> listar(Long codigoCliente) {
         Query query = entityManager.createNativeQuery(
                 "SELECT * FROM tb_cliente_endereco "
                 + "WHERE id_cliente= :idcliente").setParameter("idcliente", codigoCliente);
@@ -36,12 +36,12 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public void incluir(EnderecosAlternativos produto) {
+    public void incluir(Endereco produto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(EnderecosAlternativos produto) {
+    public void alterar(Endereco produto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

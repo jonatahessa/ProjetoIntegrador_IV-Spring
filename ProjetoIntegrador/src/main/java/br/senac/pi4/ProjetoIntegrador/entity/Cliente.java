@@ -22,7 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "TB_CLIENTE")
-public class Cliente implements Serializable, UserDetails {
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +47,12 @@ public class Cliente implements Serializable, UserDetails {
 
     @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
+    
+    @OneToMany(mappedBy = "clienteEnderecos", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Endereco> enderecos;
+    
+    @OneToMany(mappedBy = "clienteTelefone", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Telefone> telefones;
 
     @Size(min = 1, message = "{cliente.nomeCompletoCliente.erro}")
     @Column(name = "NC_CLIENTE", length = 255, nullable = false)
@@ -59,49 +65,6 @@ public class Cliente implements Serializable, UserDetails {
     @Size(min = 1, message = "{cliente.apelidoCliente.erro}")
     @Column(name = "AP_CLIENTE", length = 50, nullable = false)
     private String apelidoCliente;
-
-    @Size(min = 3, max = 3, message = "{telefone.dddTelefoneCliente.erro}")
-    @Column(name = "DDT_CLIENTE", length = 3, nullable = true)
-    private String dddTelefone;
-
-    @Size(min = 3, max = 3, message = "{telefone.dddCelularCliente.erro}")
-    @Column(name = "DDC_CLIENTE", length = 3, nullable = true)
-    private String dddCelular;
-
-    @Size(min = 1, message = "{telefone.telefone.erro}")
-    @Column(name = "TF_CLIENTE", length = 8, nullable = true)
-    private String telefone;
-
-    @Size(min = 1, message = "{telefone.celular.erro}")
-    @Column(name = "TC_CLIENTE", length = 9, nullable = true)
-    private String celular;
-
-    @Size(min = 1, max = 500, message = "{endereco.logradouroEndereco.erro}")
-    @Column(name = "LO_CLIENTE", length = 100, nullable = false)
-    private String logradouroCliente;
-
-    @Size(min = 1, max = 11, message = "{endereco.numeroEndereco.erro}")
-    @Column(name = "NU_CLIENTE", length = 100, nullable = false)
-    private String numeroCliente;
-
-    @Size(min = 1, max = 100, message = "{endereco.complementoEndereco.erro}")
-    @Column(name = "CP_CLIENTE", length = 100, nullable = true)
-    private String complementoCliente;
-
-    @Size(min = 1, max = 100, message = "{endereco.bairroEndereco.erro}")
-    @Column(name = "BR_CLIENTE", length = 100, nullable = false)
-    private String bairroCliente;
-
-    @Size(min = 1, max = 100, message = "{endereco.cidadeEndereco.erro}")
-    @Column(name = "CD_CLIENTE", length = 100, nullable = false)
-    private String cidadeCliente;
-
-    @Size(min = 1, message = "{endereco.estadoEndereco.erro}")
-    @Column(name = "ES_CLIENTE", length = 2, nullable = false)
-    private String estadoCliente;
-
-    @Column(name = "CE_CLIENTE", length = 8, nullable = true)
-    private String cepCliente;
     
     @Column(name = "RO_CLIENTE", length = 13, nullable = true)
     private String roleCliente;
@@ -115,45 +78,25 @@ public class Cliente implements Serializable, UserDetails {
     public Cliente() {
     }
 
-    public Cliente(String cpfCliente, String senhaCliente, boolean enabled, String roleCliente) {
-        this.cpfCliente = cpfCliente;
+    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Pedido> pedidos, List<Endereco> enderecos, List<Telefone> telefones, String nomeCompletoCliente, String sexoCliente, String apelidoCliente, String roleCliente, List<Papel> papeis, boolean enabled) {
+        this.codigoCliente = codigoCliente;
+        this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
-        this.enabled = enabled;
-        this.roleCliente = roleCliente;
-    }
-    
-    public boolean getEnabled(){
-        return enabled;
-    }
-    
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-    
-    public String getNomeCompletoCliente() {
-        return nomeCompletoCliente;
-    }
-
-    public void setNomeCompletoCliente(String nomeCompletoCliente) {
+        this.cpfCliente = cpfCliente;
+        this.nascCliente = nascCliente;
+        this.pedidos = pedidos;
+        this.enderecos = enderecos;
+        this.telefones = telefones;
         this.nomeCompletoCliente = nomeCompletoCliente;
-    }
-
-    public String getSexoCliente() {
-        return sexoCliente;
-    }
-
-    public void setSexoCliente(String sexoCliente) {
         this.sexoCliente = sexoCliente;
-    }
-
-    public String getApelidoCliente() {
-        return apelidoCliente;
-    }
-
-    public void setApelidoCliente(String apelidoCliente) {
         this.apelidoCliente = apelidoCliente;
+        this.roleCliente = roleCliente;
+        this.papeis = papeis;
+        this.enabled = enabled;
     }
 
+    
+    
     public Long getCodigoCliente() {
         return codigoCliente;
     }
@@ -194,38 +137,6 @@ public class Cliente implements Serializable, UserDetails {
         this.nascCliente = nascCliente;
     }
 
-    public String getDddTelefone() {
-        return dddTelefone;
-    }
-
-    public void setDddTelefone(String dddTelefone) {
-        this.dddTelefone = dddTelefone;
-    }
-
-    public String getDddCelular() {
-        return dddCelular;
-    }
-
-    public void setDddCelular(String dddCelular) {
-        this.dddCelular = dddCelular;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
     public List<Pedido> getPedidos() {
         return pedidos;
     }
@@ -234,95 +145,44 @@ public class Cliente implements Serializable, UserDetails {
         this.pedidos = pedidos;
     }
 
-    public String getLogradouroCliente() {
-        return logradouroCliente;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setLogradouroCliente(String logradouroCliente) {
-        this.logradouroCliente = logradouroCliente;
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public String getNumeroCliente() {
-        return numeroCliente;
+    public List<Telefone> getTelefones() {
+        return telefones;
     }
 
-    public void setNumeroCliente(String numeroCliente) {
-        this.numeroCliente = numeroCliente;
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
-    public String getComplementoCliente() {
-        return complementoCliente;
+    public String getNomeCompletoCliente() {
+        return nomeCompletoCliente;
     }
 
-    public void setComplementoCliente(String complementoCliente) {
-        this.complementoCliente = complementoCliente;
+    public void setNomeCompletoCliente(String nomeCompletoCliente) {
+        this.nomeCompletoCliente = nomeCompletoCliente;
     }
 
-    public String getBairroCliente() {
-        return bairroCliente;
+    public String getSexoCliente() {
+        return sexoCliente;
     }
 
-    public void setBairroCliente(String bairroCliente) {
-        this.bairroCliente = bairroCliente;
+    public void setSexoCliente(String sexoCliente) {
+        this.sexoCliente = sexoCliente;
     }
 
-    public String getCidadeCliente() {
-        return cidadeCliente;
+    public String getApelidoCliente() {
+        return apelidoCliente;
     }
 
-    public void setCidadeCliente(String cidadeCliente) {
-        this.cidadeCliente = cidadeCliente;
-    }
-
-    public String getEstadoCliente() {
-        return estadoCliente;
-    }
-
-    public void setEstadoCliente(String estadoCliente) {
-        this.estadoCliente = estadoCliente;
-    }
-
-    public String getCepCliente() {
-        return cepCliente;
-    }
-
-    public void setCepCliente(String cepCliente) {
-        this.cepCliente = cepCliente;
-    }
-
-    @Override
-    public Collection<Papel> getAuthorities() {
-        return papeis;
-    }
-
-    @Override
-    public String getPassword() {
-        return senhaCliente;
-    }
-
-    @Override
-    public String getUsername() {
-        return cpfCliente;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public void setApelidoCliente(String apelidoCliente) {
+        this.apelidoCliente = apelidoCliente;
     }
 
     public String getRoleCliente() {
@@ -333,11 +193,20 @@ public class Cliente implements Serializable, UserDetails {
         this.roleCliente = roleCliente;
     }
 
+    public List<Papel> getPapeis() {
+        return papeis;
+    }
+
     public void setPapeis(List<Papel> papeis) {
         this.papeis = papeis;
     }
-    
-    
-    
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
 }
