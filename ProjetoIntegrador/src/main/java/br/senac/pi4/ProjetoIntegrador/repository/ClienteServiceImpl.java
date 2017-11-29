@@ -53,7 +53,7 @@ public class ClienteServiceImpl implements ClienteService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(cliente.getPassword());
         cliente.setSenhaCliente(hashedPassword);
-        cliente.setEnabled(false);
+        cliente.setEnabled(true);
         cliente.setRoleCliente("ROLE_JOSELITO");
         entityManager.persist(cliente);
     }
