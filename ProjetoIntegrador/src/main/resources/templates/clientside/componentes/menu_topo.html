@@ -9,21 +9,11 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 menu_topo">
                     <a title="Home" th:href="@{/}" class="titulo">Loop4`S V1d4 Lok4</a>
-                    <p sec:authorize="hasRole('ROLE_JOSELITO')">Bem-vindo</p><p sec:authorize="hasRole('ROLE_JOSELITO')" data-th-text="${cliente.nomeCompletoCliente}"></p>
                     <a data-th-href="@{/login}" sec:authorize="!isAuthenticated()" type="button" class="icone_login fa fa-sign-in"></a>
                     <a title="Perfil!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/admin/perfil}" type="button" class="icone_usuario fa fa-user-o"></a>
                     <a title="Logout!" sec:authorize="hasRole('ROLE_JOSELITO')" data-th-href="@{/logout}" type="button" class="icone_logout fa fa-sign-out"></a>
-                    <button title="Carrinho!" type="button" data-toggle="modal" data-target="#carrrinho" class="icone_carrinho_Topo fa fa-shopping-cart"></button>
+                    <a title="Carrinho!" type="button" data-th-href="@{/sessao/carrinho}" class="icone_carrinho_Topo fa fa-shopping-cart"></a>
                 </div>
-            </div>
-            <!-- CARRINHO -->
-            <div class="modal fade bs-example-modal-lg" id="carrrinho" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content modal-lg">
-                        <div th:include="~{clientside/componentes/modal_carrinho :: modal_carrinho}"></div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>

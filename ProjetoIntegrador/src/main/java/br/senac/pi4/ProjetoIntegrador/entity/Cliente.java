@@ -33,7 +33,7 @@ public class Cliente implements Serializable {
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
-    @Size(min = 1, message = "{cliente.senhaCliente.erro}")
+    @Size(min = 1, max = 8, message = "{cliente.senhaCliente.erro}")
     @Column(name = "PW_CLIENTE", length = 100, nullable = false)
     private String senhaCliente;
 
@@ -73,7 +73,7 @@ public class Cliente implements Serializable {
     private List<Papel> papeis;
 
     @Column(name = "EN_CLIENTE", nullable = true)
-    private boolean enabled;
+    private Boolean enabled;
     
     public Cliente() {
     }
