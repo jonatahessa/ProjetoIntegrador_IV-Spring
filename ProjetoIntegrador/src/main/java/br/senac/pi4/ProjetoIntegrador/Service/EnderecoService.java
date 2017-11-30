@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface EnderecoService extends Serializable {
     
-    public List<Endereco> listar(Long codigoCliente);
+    public Endereco obter(Long codigoEndereco);
 
     public void incluir(Endereco produto);
     

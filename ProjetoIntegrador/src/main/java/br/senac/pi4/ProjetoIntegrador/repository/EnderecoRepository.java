@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package br.senac.pi4.ProjetoIntegrador.repository;
-
-import br.senac.pi4.ProjetoIntegrador.entity.Categoria;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author joliveira
  */
 @Repository
-public interface EnderecoRepository extends CrudRepository<Categoria, Long> {
+public interface EnderecoRepository extends CrudRepository<Endereco, Long> {
 
 }

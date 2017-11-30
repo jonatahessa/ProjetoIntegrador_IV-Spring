@@ -32,6 +32,7 @@ br\senac\pi4\ProjetoIntegrador\ProjetoIntegradorApplication.class
 br\senac\pi4\ProjetoIntegrador\entity\Marca.class
 br\senac\pi4\ProjetoIntegrador\controller\BackoficeGerenciaProdutoController.class
 br\senac\pi4\ProjetoIntegrador\repository\CategoriaServiceImpl.class
+br\senac\pi4\ProjetoIntegrador\entity\Cartao.class
 br\senac\pi4\ProjetoIntegrador\entity\Pedido.class
 br\senac\pi4\ProjetoIntegrador\config\SecurityConfig.class
 br\senac\pi4\ProjetoIntegrador\Service\ImagemService.class

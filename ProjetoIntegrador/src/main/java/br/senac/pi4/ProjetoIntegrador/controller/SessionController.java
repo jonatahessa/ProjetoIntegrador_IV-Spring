@@ -1,4 +1,3 @@
-
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.entity.Cartao;
@@ -19,6 +18,7 @@ import org.apache.catalina.Globals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,23 +33,24 @@ public class SessionController implements Serializable {
 
     @Autowired
     ClienteServiceImpl serviceCliente;
-    
+
     @Autowired
     ProdutoServiceImpl serviceProduto;
 
     @Autowired
     ImagemServiceImpl serviceImagem;
-    
+
     @Autowired
     EnderecoServiceImpl serviceEndereco;
 
     private List<Produto> carrinho = new ArrayList<Produto>();
     private List<Imagem> imagens = new ArrayList<Imagem>();
+    private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
-    private int idEndereco = 1;
+    private Long idEndereco = null;
 //    private Cliente cliente = new Cliente();
     private BigDecimal total = new BigDecimal("0.0");
-        
+
     @RequestMapping("/adicionar/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes) {
@@ -103,7 +104,7 @@ public class SessionController implements Serializable {
     public List<Imagem> getImagens() {
         return imagens;
     }
-    
+
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
     public ModelAndView carrinho() {
         BigDecimal tempTotal = new BigDecimal("0.0");
@@ -120,32 +121,32 @@ public class SessionController implements Serializable {
         total.add(new BigDecimal("12.0"));
         return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
     }
-    
+
     @RequestMapping(value = "/checkoutEndereco")
     public ModelAndView checkoutEndereco() {
         Cliente cliente = serviceCliente.obterClienteByCPF("111.111.111-11");
         List<Endereco> enderecos = cliente.getEnderecos();
         return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos).addObject("cliente", cliente);
     }
-    
+
     @RequestMapping(value = "/checkoutPagamento")
-    public ModelAndView checkoutPagamento(@ModelAttribute("id") int codigoEndereco) {
+    public ModelAndView checkoutPagamento(@ModelAttribute("id") Long codigoEndereco) {
         idEndereco = codigoEndereco;
-        return new ModelAndView("clientside/checkoutPagamento");
+        return new ModelAndView("clientside/checkoutPagamento").addObject("cartao", new Cartao());
     }
-    
-    @RequestMapping(value = "/checkoutConfirmacao")
-    public ModelAndView checkoutConfirmacao(@ModelAttribute("nCartao") String numeroCartao, 
-            @ModelAttribute("nomeCartao") String nomeCartao, @ModelAttribute("dVencimento") String vencimento, 
-            @ModelAttribute("cv") String cv, @ModelAttribute("parcelas") String parcelas) {
+
+    @RequestMapping(value = "/validaCartao")
+    public ModelAndView validaCartao(@ModelAttribute("cartao") @Valid Cartao c,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+         if (bindingResult.hasErrors()) {
+            return new ModelAndView("clientside/checkoutPagamento")
+                    .addObject("cartao", c);
+        }
         
-        Cartao cartao = new Cartao();
-        cartao.setNome(nomeCartao);
-        cartao.setCodigo(cv);
-        cartao.setNumero(numeroCartao);
-        cartao.setVencimento(vencimento);
-        
-        return new ModelAndView("clientside/checkoutConfirmacao");
+        Endereco endereco = serviceEndereco.obter(idEndereco);
+        cartao = c;
+        return new ModelAndView("clientside/checkoutConfirmacao").addObject("cartao", cartao).addObject("endereco", endereco);
     }
 
 }
