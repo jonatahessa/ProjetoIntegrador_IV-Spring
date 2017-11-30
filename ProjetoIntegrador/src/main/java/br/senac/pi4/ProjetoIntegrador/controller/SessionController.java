@@ -1,10 +1,12 @@
 
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.entity.Cartao;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.repository.ClienteServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.EnderecoServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
@@ -13,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
+import org.apache.catalina.Globals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class SessionController implements Serializable {
 
     @Autowired
+    ClienteServiceImpl serviceCliente;
+    
+    @Autowired
     ProdutoServiceImpl serviceProduto;
 
     @Autowired
@@ -41,17 +47,8 @@ public class SessionController implements Serializable {
     private List<Imagem> imagens = new ArrayList<Imagem>();
     private int qntCarrinho = 1;
     private int idEndereco = 1;
-    private Cliente cliente = new Cliente();
-    private boolean frete = false;
+//    private Cliente cliente = new Cliente();
     private BigDecimal total = new BigDecimal("0.0");
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
         
     @RequestMapping("/adicionar/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
@@ -120,27 +117,35 @@ public class SessionController implements Serializable {
                 tempTotal = tempTotal.add(produto);
             }
         }
-        total = tempTotal;
-        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio).addObject("frete", frete);
-    }
-    
-    @RequestMapping(value = "/frete")
-    public ModelAndView frete() {
-        frete = true;
-        total.add(new BigDecimal(12.00));
-        return new ModelAndView("redirect:/sessao/carrinho");
+        total.add(new BigDecimal("12.0"));
+        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
     }
     
     @RequestMapping(value = "/checkoutEndereco")
     public ModelAndView checkoutEndereco() {
+        Cliente cliente = serviceCliente.obterClienteByCPF("111.111.111-11");
         List<Endereco> enderecos = cliente.getEnderecos();
         return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos).addObject("cliente", cliente);
     }
     
     @RequestMapping(value = "/checkoutPagamento")
-    public ModelAndView checkoutPagamento(@ModelAttribute("id") @Valid int codigoEndereco) {
+    public ModelAndView checkoutPagamento(@ModelAttribute("id") int codigoEndereco) {
         idEndereco = codigoEndereco;
         return new ModelAndView("clientside/checkoutPagamento");
+    }
+    
+    @RequestMapping(value = "/checkoutConfirmacao")
+    public ModelAndView checkoutConfirmacao(@ModelAttribute("nCartao") String numeroCartao, 
+            @ModelAttribute("nomeCartao") String nomeCartao, @ModelAttribute("dVencimento") String vencimento, 
+            @ModelAttribute("cv") String cv, @ModelAttribute("parcelas") String parcelas) {
+        
+        Cartao cartao = new Cartao();
+        cartao.setNome(nomeCartao);
+        cartao.setCodigo(cv);
+        cartao.setNumero(numeroCartao);
+        cartao.setVencimento(vencimento);
+        
+        return new ModelAndView("clientside/checkoutConfirmacao");
     }
 
 }

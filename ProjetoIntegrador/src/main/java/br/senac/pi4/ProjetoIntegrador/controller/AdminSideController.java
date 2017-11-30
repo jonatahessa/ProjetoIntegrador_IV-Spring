@@ -30,8 +30,6 @@ public class AdminSideController {
                 String cpf = authentication.getName();
 
                 Cliente cliente = clienteService.obterClienteByCPF(cpf);
-                SessionController sc = new SessionController();
-                sc.setCliente(cliente);
                 return cliente;
             }
         }
