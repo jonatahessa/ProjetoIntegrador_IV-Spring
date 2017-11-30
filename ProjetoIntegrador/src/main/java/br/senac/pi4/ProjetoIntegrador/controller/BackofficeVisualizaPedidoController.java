@@ -40,7 +40,7 @@ public class BackofficeVisualizaPedidoController {
 
     @Autowired
     private ClienteService clienteService;
-    
+
     @Autowired
     private ProdutoService produtoService;
 
@@ -55,44 +55,27 @@ public class BackofficeVisualizaPedidoController {
     @RequestMapping("/detalhe/{id}")
     public ModelAndView abrirDetalhe(@PathVariable("id") Long idPedido) {
         Pedido p = pedidoService.obter(idPedido);
-        Cliente cliente = p.getClientePedido();
-        p.setIdCliente(cliente.getCodigoCliente());
         return new ModelAndView("backoffice/pedido/detalhePedido").addObject("pedido", p)
                 .addObject("cliente", p.getClientePedido()).addObject("produtos", p.getProdutos());
     }
 
-    @RequestMapping(value = "/salvar", method = RequestMethod.POST)
+    @RequestMapping(value = "/salvarStatus", method = RequestMethod.POST)
     public ModelAndView salvar(
             @ModelAttribute("pedido") @Valid Pedido p,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
+        Pedido pedidoEnvio = pedidoService.obter(p.getCodigoPedido());
+        pedidoEnvio.setStatusPedido(p.getStatusPedido());
+        pedidoEnvio.setUltimaAtualizacao(new Date());
         if (bindingResult.hasErrors()) {
             return new ModelAndView("backoffice/pedido/detalhePedido")
-                    .addObject("pedido", p);
+                    .addObject("pedido", pedidoEnvio);
         }
-        boolean inclusao = (p.getCodigoPedido() == null);
-        p.setUltimaAtualizacao(new Date());
-        p.setClientePedido(clienteService.obter(p.getIdCliente()));
 
-        if (p.getIdProdutos()!= null && !p.getIdProdutos().isEmpty()) {
-            Set<Produto> prods = new LinkedHashSet<Produto>();
-            for (Long i : p.getIdProdutos()) {
-                Produto prod = produtoService.obter(i);
-                Set<Produto> produtos = new LinkedHashSet<Produto>();
-                produtos.add(prod);
-                p.setProdutos(produtos);
-                prods.add(prod);
-            }
-            p.setProdutos(prods);
-        }
-        if (inclusao) {
-            pedidoService.incluir(p);
-        } else {
-            pedidoService.alterar(p);
-        }
+        pedidoService.alterar(pedidoEnvio);
 
         redirectAttributes.addFlashAttribute("msgSucesso",
-                "Produto " + p.getCodigoPedido()+ " cadastrado com sucesso");
-        return new ModelAndView("redirect:/gerenciamento/produto");
+                "Produto " + pedidoEnvio.getCodigoPedido() + " cadastrado com sucesso");
+        return new ModelAndView("redirect:/backoffice/pedido");
     }
 }

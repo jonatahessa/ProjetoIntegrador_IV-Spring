@@ -53,10 +53,14 @@ public class BackoficeGerenciaProdutoController {
 
     @RequestMapping("/{id}")
     public ModelAndView abrirAlteracao(@PathVariable("id") Long idProduto) {
-        Produto p = produtoService.obter(idProduto);
-        p.setCategorias(p.getCategorias());
+        Produto produto = produtoService.obter(idProduto);
+        Set<Long> idCategorias = new LinkedHashSet<Long>();
+        for (Categoria c : produto.getCategorias()) {
+            idCategorias.add(c.getCodigoCategoria());
+        }
+        produto.setIdCategorias(idCategorias);
         return new ModelAndView("backoffice/produto/cadastroDeProdutos")
-                .addObject("produto", p)
+                .addObject("produto", produto)
                 .addObject("categorias", categoriaService.listar())
                 .addObject("marcas", marcaService.listar());
     }
@@ -76,9 +80,7 @@ public class BackoficeGerenciaProdutoController {
             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("backoffice/produto/cadastroDeProdutos")
-                    .addObject("produto", p)
-                    .addObject("categorias", categoriaService.listar())
-                    .addObject("marcas", marcaService.listar());
+                    .addObject("produto", p);
         }
         boolean inclusao = (p.getCodigoProduto() == null);
         p.setEnabledProduto(true);
@@ -104,7 +106,7 @@ public class BackoficeGerenciaProdutoController {
 
         redirectAttributes.addFlashAttribute("msgSucesso",
                 "Produto " + p.getTituloProduto() + " cadastrado com sucesso");
-        return new ModelAndView("redirect:/gerenciamento/produto");
+        return new ModelAndView("redirect:/backoffice/produto");
     }
 
 }
