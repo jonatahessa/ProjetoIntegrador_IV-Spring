@@ -126,7 +126,8 @@ public class SessionController implements Serializable {
                 tempTotal = tempTotal.add(produto);
             }
         }
-        total.add(new BigDecimal("12.0"));
+        total = tempTotal;
+        total = total.add(new BigDecimal("12.0"));
         return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
     }
 
