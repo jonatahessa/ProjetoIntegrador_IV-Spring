@@ -25,73 +25,73 @@ and open the template in the editor.
               </div>
 
               <div class="">
-                <h4>Código</h4>
+                <h3>Código</h3>
                 <p th:text="${produto.codigoProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Modelo</h4>
+                <h3>Modelo</h3>
                 <p th:text="${produto.modeloProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Preço</h4>
+                <h3>Preço</h3>
                 <p th:text="${produto.precoProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Quantidade em Estoque</h4>
+                <h3>Quantidade em Estoque</h3>
                 <p th:text="${produto.quantEstoqueProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Cor da Armação</h4>
+                <h3>Cor da Armação</h3>
                 <p th:text="${produto.corProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Cor da Lente</h4>
+                <h3>Cor da Lente</h3>
                 <p th:text="${produto.lenteCorProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Descrição</h4>
+                <h3>Descrição</h3>
                 <p th:text="${produto.descricaoProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Tipo da Lente</h4>
+                <h3>Tipo da Lente</h3>
                 <p th:text="${produto.lenteTipoProduto}"></p>
               </div>
 
               <div class="">
-                <h4>Data de Cadastro</h4>
+                <h3>Data de Cadastro</h3>
                 <p th:text="${#calendars.format(produto.dtCadastroProduto, 'dd/MM/yyyy HH:mm:ss')}"></p>
               </div>
 
               <div class="">
-                <h4>Medidas</h4>
+                <h3>Medidas</h3>
 
-                <h5>Altura:</h5>
+                <h4>Altura:</h4>
                 <p th:text="${produto.alturaProduto}"></p>
 
-                <h5>Largura</h5>
+                <h4>Largura</h4>
                 <p th:text="${produto.larguraProduto}"></p>
 
-                <h5>Comprimento</h5>
+                <h4>Comprimento</h4>
                 <p th:text="${produto.comprimentoProduto}"></p>
 
-                <h5>Peso</h5>
+                <h4>Peso</h4>
                 <p th:text="${produto.pesoProduto}"></p>
               </div>
 
               <div class="">
-                <h5>Marca</h5>
+                <h4>Marca</h4>
                 <p th:text="${marca.tituloMarca}"></p>
               </div>
 
               <div class="">
-                <h5>Categorias</h5>
+                <h4>Categorias</h4>
                 <div class="" th:each="c : ${categorias}">
                   <p th:text="${c.nomeCategoria}"></p>
                 </div>
