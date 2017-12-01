@@ -20,6 +20,10 @@ and open the template in the editor.
                 <h1 class="text-center" th:text="${produto.tituloProduto}">Título Produto</h1>
               </div>
 
+              <div th:each="img : ${imagens}" class="">
+                <img th:src="@{'/images/' + ${img.nomeImagem}}" class="img-responsive">
+              </div>
+
               <div class="">
                 <h4>Código</h4>
                 <p th:text="${produto.codigoProduto}"></p>
