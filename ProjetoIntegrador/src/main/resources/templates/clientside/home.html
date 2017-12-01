@@ -191,7 +191,10 @@
                     <div class="blog-card">
                         <div class="photo photo1">
                             <img class="d-block img-fluid img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
-                            <a data-th-href="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></a> 
+                            <form action="#" th:action="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
+                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                    <button type="submit" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></button>
+                            </form>
                         </div>
                         <div class="description">
                             <h1 data-th-text="${produto.tituloProduto}"></h1>
