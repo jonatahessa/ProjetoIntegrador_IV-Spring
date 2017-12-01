@@ -49,8 +49,9 @@ public class PedidoServiceImpl implements PedidoService{
     }
 
     @Override
+    @Transactional
     public void incluir(Pedido pedido) {
-        
+        entityManager.persist(pedido);
     }
 
     @Override

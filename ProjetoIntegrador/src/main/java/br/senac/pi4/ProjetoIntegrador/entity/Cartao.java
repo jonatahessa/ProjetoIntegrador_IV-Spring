@@ -1,5 +1,8 @@
 package br.senac.pi4.ProjetoIntegrador.entity;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 public class Cartao {
@@ -15,6 +18,11 @@ public class Cartao {
     
     @Size(min = 3, max = 3, message = "{cartao.codigo.erro}")
     private String codigo;
+    
+    @Min(value = 1)
+    @Max(value = 12)
+    @Digits(integer = 2, fraction = 0, message = "{cartao.parcelas.erro}")
+    private int parcelas;
 
     public String getNumero() {
         return numero;
@@ -47,5 +55,15 @@ public class Cartao {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    public int getParcelas() {
+        return parcelas;
+    }
+
+    public void setParcelas(int parcelas) {
+        this.parcelas = parcelas;
+    }
+    
+    
       
 }

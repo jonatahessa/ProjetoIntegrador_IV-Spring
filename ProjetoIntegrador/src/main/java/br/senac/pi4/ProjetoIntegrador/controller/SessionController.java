@@ -4,15 +4,20 @@ import br.senac.pi4.ProjetoIntegrador.entity.Cartao;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
+import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import br.senac.pi4.ProjetoIntegrador.repository.ClienteServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.EnderecoServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
+import br.senac.pi4.ProjetoIntegrador.repository.PedidoServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.apache.catalina.Globals;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +47,11 @@ public class SessionController implements Serializable {
 
     @Autowired
     EnderecoServiceImpl serviceEndereco;
+    
+    @Autowired
+    PedidoServiceImpl servicePedido;
 
-    private List<Produto> carrinho = new ArrayList<Produto>();
+    private Set<Produto> carrinho = new HashSet<Produto>();
     private List<Imagem> imagens = new ArrayList<Imagem>();
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
@@ -97,7 +105,7 @@ public class SessionController implements Serializable {
         return new ModelAndView("redirect:/sessao/carrinho");
     }
 
-    public List<Produto> getCarrinho() {
+    public Set<Produto> getCarrinho() {
         return carrinho;
     }
 
@@ -124,7 +132,7 @@ public class SessionController implements Serializable {
 
     @RequestMapping(value = "/checkoutEndereco")
     public ModelAndView checkoutEndereco() {
-        Cliente cliente = serviceCliente.obterClienteByCPF("111.111.111-11");
+        Cliente cliente = serviceCliente.obter(Long.parseLong("5"));
         List<Endereco> enderecos = cliente.getEnderecos();
         return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos).addObject("cliente", cliente);
     }
@@ -139,14 +147,34 @@ public class SessionController implements Serializable {
     public ModelAndView validaCartao(@ModelAttribute("cartao") @Valid Cartao c,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-         if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ModelAndView("clientside/checkoutPagamento")
                     .addObject("cartao", c);
         }
-        
-        Endereco endereco = serviceEndereco.obter(idEndereco);
         cartao = c;
-        return new ModelAndView("clientside/checkoutConfirmacao").addObject("cartao", cartao).addObject("endereco", endereco);
+        return new ModelAndView("redirect:/sessao/checkoutConfirmacao");
+    }
+
+    @RequestMapping(value = "/checkoutConfirmacao")
+    public ModelAndView checkoutConfirmacao() {
+        Endereco endereco = serviceEndereco.obter(idEndereco);
+        return new ModelAndView("clientside/checkoutConfirmacao").addObject("endereco", endereco).addObject("cartao", cartao).addObject("total", total);
+    }
+    
+    @RequestMapping(value = "/salvarPedido")
+    public ModelAndView salvarPedido() {
+        Pedido pedido = new Pedido();
+        pedido.setClientePedido(serviceCliente.obter(Long.parseLong("5")));
+        pedido.setDataPedido(new Date());
+        pedido.setFormaPagamentoPedido("Cartão");
+        pedido.setProdutos(carrinho);
+        pedido.setStatusPedido("Pedido Recebido!");
+        pedido.setUltimaAtualizacao(new Date());
+        pedido.setValorPedido(total);
+        
+        servicePedido.incluir(pedido);
+
+        return new ModelAndView("redirect:/");
     }
 
 }

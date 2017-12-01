@@ -58,7 +58,7 @@ public class Pedido implements Serializable {
     private Cliente clientePedido;
 
     @Column(name = "DT_PEDIDO", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataPedido;
 
     @Column(name = "UA_PEDIDO", nullable = false)
