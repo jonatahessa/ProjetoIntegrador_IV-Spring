@@ -50,9 +50,12 @@ public class BackofficeVisualizaProdutoController {
   }
 
   @RequestMapping("/{id}")
-  public ModelAndView obterPorId(@PathVariable("id") Long idProduto) {
+  public ModelAndView detalhe(@PathVariable("id") Long idProduto) {
     Produto p = service.obter(idProduto);
-    Set<Categoria> listaCategorias = p.getCategorias();
-    return new ModelAndView("backoffice/produto/detalheProduto").addObject("produto", p).addObject("categorias", listaCategorias).addObject("marca", p.getMarcaProduto());
+    return new ModelAndView("backoffice/produto/detalheProduto")
+            .addObject("produto", p)
+            .addObject("categorias", p.getCategorias())
+            .addObject("marca", p.getMarcaProduto())
+            .addObject("imagens", p.getImagens());
   }
 }
