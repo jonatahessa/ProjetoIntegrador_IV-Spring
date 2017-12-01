@@ -18,7 +18,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "TB_CLIENTE")
@@ -78,7 +77,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Pedido> pedidos, List<Endereco> enderecos, List<Telefone> telefones, String nomeCompletoCliente, String sexoCliente, String apelidoCliente, String roleCliente, List<Papel> papeis, boolean enabled) {
+    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Pedido> pedidos, List<Endereco> enderecos, List<Telefone> telefones, String nomeCompletoCliente, String sexoCliente, String apelidoCliente, String roleCliente, List<Papel> papeis, Boolean enabled) {
         this.codigoCliente = codigoCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
@@ -94,9 +93,9 @@ public class Cliente implements Serializable {
         this.papeis = papeis;
         this.enabled = enabled;
     }
+    
+    
 
-    
-    
     public Long getCodigoCliente() {
         return codigoCliente;
     }
@@ -209,4 +208,5 @@ public class Cliente implements Serializable {
         this.enabled = enabled;
     }
 
+    
 }

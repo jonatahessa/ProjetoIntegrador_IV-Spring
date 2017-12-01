@@ -145,7 +145,7 @@
                                         <div class="col-xs-5 col-sm-3 col-md-4 col-lg-3">
                                             <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
                                                 <input
-                                                    id="qntParcelas"
+                                                    th:field="*{parcelas}"
                                                     type="text" 
                                                     class="form-control" 
                                                     name="parcelas"
