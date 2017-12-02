@@ -75,6 +75,10 @@ a:hover {
     margin-top: 5%;
 }
 
+.total {
+    text-align: right;
+}
+
 @media (max-width: 760px) {
     .confirmar {
         width: 100%;

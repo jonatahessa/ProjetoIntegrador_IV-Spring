@@ -52,11 +52,9 @@ public class SessionController implements Serializable {
     PedidoServiceImpl servicePedido;
 
     private Set<Produto> carrinho = new HashSet<Produto>();
-    private List<Imagem> imagens = new ArrayList<Imagem>();
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
     private Long idEndereco = null;
-//    private Cliente cliente = new Cliente();
     private BigDecimal total = new BigDecimal("0.0");
 
     @RequestMapping("/adicionar/{id}")
@@ -104,13 +102,28 @@ public class SessionController implements Serializable {
         }
         return new ModelAndView("redirect:/sessao/carrinho");
     }
+    
+    @RequestMapping("/add/{id}")
+    public ModelAndView addProduto(@PathVariable("id") Long idProduto,
+            RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
+
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                int qntAtual = p.getQntCarrinho() + qnt;
+                if (qntAtual != 0) {
+                    p.setQntCarrinho(qntAtual);
+                    break;
+                } else {
+                    carrinho.add(p);
+                    break;
+                }
+            }
+        }
+        return new ModelAndView("redirect:/sessao/carrinho");
+    }
 
     public Set<Produto> getCarrinho() {
         return carrinho;
-    }
-
-    public List<Imagem> getImagens() {
-        return imagens;
     }
 
     @RequestMapping(value = "/carrinho", method = RequestMethod.GET)
@@ -174,6 +187,11 @@ public class SessionController implements Serializable {
         pedido.setValorPedido(total);
         
         servicePedido.incluir(pedido);
+        carrinho = null;
+        total = null;
+        idEndereco = null;
+        qntCarrinho = 0;
+        
 
         return new ModelAndView("redirect:/");
     }
