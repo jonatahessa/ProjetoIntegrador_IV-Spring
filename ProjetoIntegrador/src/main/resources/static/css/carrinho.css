@@ -81,6 +81,11 @@ a:hover {
     .btnCalcularCep {
         width: 60%;
     }
+    
+    .colTotal {
+        text-align: center;
+        padding-bottom: 5%;
+    }
 }
 @media (max-width: 760px) {
 

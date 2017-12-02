@@ -86,7 +86,10 @@
                             <h1 id="precoProduto" data-th-text="${produto.precoProduto}"></h1>                            
                         </div>
                         <div class="comprar">
-                            <a  class="btnComprar button button-raised button-action button-pill ">Comprar</a>
+                            <form action="#" th:action="@{/sessao/comprar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
+                                <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                <button type="submit" class="btnComprar button button-raised button-action button-pill "><i class="fa fa-shopping-cart"></i>comprar</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@
         <link data-th-href="@{/css/clienteForm.css}" href="../../static/css/clienteForm.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/footer.css}" href="../../static/css/footer.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/home.css}" href="../../static/css/home.css" rel="stylesheet" type="text/css"/>
-         <link data-th-href="@{/css/clientePerfil_cards.css}" href="../../static/css/clientePerfil_cards.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/clientePerfil_cards.css}" href="../../static/css/clientePerfil_cards.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container-fluid">
@@ -25,8 +25,8 @@
             <div class="row">
                 <div id="Menu_Desktop" class="col-sm-2 col-md-2 col-lg-2">
                     <div class="vertical-menu responsive">
-                        <a id="Meus_DadosB">Meus Dados</a>
                         <a id="Meus_PedidosB">Meus Pedidos</a>
+                        <a id="Meus_DadosB">Meus Dados</a>
                         <a id="Meu_HistoricoB">Meu Histórico</a>
                         <a id="RecomendacoesB">Recomendações</a>
                     </div>
@@ -36,26 +36,23 @@
                 </div>
                 <div id="Menu_D" class="col-sm-10 col-md-10 col-lg-10">
 
-                    <div id="Meus_Dados">
-                        <!-- MEUS DADOS -->
+                    <!--<div id="Meus_Dados">
                         <div th:include="~{clientside/perfil/perfil_meusDados :: meus_dados}"></div> 
-                    </div>
+                    </div>-->
 
                     <div id="Meus_Pedidos">
-                        <!-- MEUS PEDIDOS -->
+
                         <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div> 
                     </div>
 
-                    <div id="Meu_Historico">
-                        <!-- MEU HISTORICO -->
+                    <!-- <div id="Meu_Historico">
                         <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div> 
                     </div>
 
                     <div id="Recomendacoes">
-                        <!-- RECOMENDAÇÕES -->
                         <div th:include="~{clientside/perfil/perfil_Recomendacoes :: recomendacoes}"></div> 
                     </div>
-
+                    -->
                 </div>
             </div>
 

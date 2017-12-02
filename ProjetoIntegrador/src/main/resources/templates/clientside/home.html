@@ -190,10 +190,14 @@
                 <div data-th-each="produto : ${produtos}" class="col-sm-5 col-md-5 col-lg-5">
                     <div class="blog-card">
                         <div class="photo photo1">
-                            <img class="d-block img-fluid img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
+                            <div data-th-each="imagem : ${imagens}">
+                                <div th:if="${produto.codigoProduto} == ${imagem.codigoProduto} && ${imagem.sequenciaImagem} == 1"> 
+                                    <img class="d-block img-fluid img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
+                                </div>
+                            </div>
                             <form action="#" th:action="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
-                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
-                                    <button type="submit" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></button>
+                                <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                <button type="submit" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></button>
                             </form>
                         </div>
                         <div class="description">

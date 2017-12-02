@@ -57,9 +57,10 @@ public class ClientSideController {
     public ModelAndView descricao(@PathVariable("id") Long idProduto) {
 
         Produto produto = serviceProduto.obter(idProduto);
-
+        List<Imagem> imagens = produto.getImagens();
+        
         return new ModelAndView("clientside/descricao")
-                .addObject("produto", produto);
+                .addObject("produto", produto).addObject("imagens", imagens);
     }
 
     @RequestMapping(value = "/cadastroC")

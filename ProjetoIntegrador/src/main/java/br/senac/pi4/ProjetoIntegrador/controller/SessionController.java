@@ -84,13 +84,40 @@ public class SessionController implements Serializable {
         return new ModelAndView("redirect:/");
     }
 
+    @RequestMapping("/comprar/{id}")
+    public ModelAndView comprarProduto(@PathVariable("id") Long idProduto,
+            RedirectAttributes redirectAttributes) {
+        boolean igual = false;
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                qntCarrinho++;
+                igual = true;
+            }
+        }
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                p.setQntCarrinho(qntCarrinho);
+            }
+        }
+
+        if (igual == false) {
+            Produto p = serviceProduto.obter(idProduto);
+            p.setQntCarrinho(1);
+//        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());
+            carrinho.add(p);
+//        imagens.add(temp.get(0));
+
+        }
+        return new ModelAndView("redirect:/sessao/carrinho");
+    }
+    
     @RequestMapping("/remover/{id}")
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
 
         for (Produto p : carrinho) {
             if (p.getCodigoProduto() == idProduto) {
-                int qntAtual = p.getQntCarrinho() - qnt;
+                int qntAtual = p.getQntCarrinho() - 1;
                 if (qntAtual != 0) {
                     p.setQntCarrinho(qntAtual);
                     break;
@@ -107,18 +134,25 @@ public class SessionController implements Serializable {
     public ModelAndView addProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
 
-        for (Produto p : carrinho) {
-            if (p.getCodigoProduto() == idProduto) {
-                int qntAtual = p.getQntCarrinho() + qnt;
-                if (qntAtual != 0) {
+          for (Produto p : carrinho) {
+                if (p.getCodigoProduto() == idProduto) {
+                    int qntAtual = p.getQntCarrinho() + 1;
                     p.setQntCarrinho(qntAtual);
-                    break;
-                } else {
-                    carrinho.add(p);
-                    break;
                 }
-            }
-        }
+          }
+        
+//        for (Produto p : carrinho) {
+//            if (p.getCodigoProduto() == idProduto) {
+//                int qntAtual = p.getQntCarrinho() + 1;
+//                if (qntAtual != 0) {
+//                    p.setQntCarrinho(qntAtual);
+//                    break;
+//                } else {
+//                    carrinho.add(p);
+//                    break;
+//                }
+//            }
+//        }
         return new ModelAndView("redirect:/sessao/carrinho");
     }
 
@@ -193,7 +227,7 @@ public class SessionController implements Serializable {
         qntCarrinho = 0;
         
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/admin/perfil");
     }
 
 }
