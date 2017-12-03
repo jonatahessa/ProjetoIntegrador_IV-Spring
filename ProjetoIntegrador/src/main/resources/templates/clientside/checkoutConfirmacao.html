@@ -56,9 +56,8 @@
                         <h1 class="titulos"> Pagamento </h1>
                         <p class="hs" data-th-text="${cartao.numero}"></p>
                             <p data-th-text="${cartao.nome}"></p>
-                            <p data-th-text="${cartao.vencimento}"></p>
-                            <p data-th-text="${cartao.parcelas}"> </p>
-                        </p>
+                            <p>Vencimento: <span data-th-text="${cartao.vencimento}"></span></p>
+                            <p>Parcelas: <span data-th-text="${cartao.parcelas}"></span></p>
                         <div>
                             <a th:href="@{/sessao/checkoutPagamento}" class="btn btn-small btn-info alterar">
                                 <i class="icon-info-sign"></i>Alterar</a>

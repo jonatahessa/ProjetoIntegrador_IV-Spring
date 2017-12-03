@@ -60,12 +60,13 @@ public class ProdutoServiceImpl implements ProdutoService {
         entityManager.merge(produto);
     }
 
+ 
     @Override
     public void removerQuantidade(Long idProduto, int qnt) {
         Query query = entityManager.createQuery(
-                " UPDATE TB_PRODUTO "
-                + "SET QT_PRODUTO = :qnt "
-                + "WHERE ID_PRODUTO = :idProd")
+                "UPDATE TB_PRODUTO"
+                + " SET QT_PRODUTO = :qnt"
+                + " WHERE ID_PRODUTO = :idProd")
                 .setParameter("idProd", idProduto).setParameter("qnt", qnt);
     }
     

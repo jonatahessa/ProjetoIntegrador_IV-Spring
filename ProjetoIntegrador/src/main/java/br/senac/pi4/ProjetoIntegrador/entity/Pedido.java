@@ -77,6 +77,9 @@ public class Pedido implements Serializable {
     @Size(min = 1, max = 50, message = "{pedido.formaPagamentoPedido.erro}")
     @Column(name = "FP_PEDIDO", length = 100, nullable = false)
     private String formaPagamentoPedido;
+    
+    @Column(name = "PR_PEDIDO", length = 5, nullable = false)
+    private String protocoloPedido;
 
     @Transient
     private Long idCliente;
@@ -87,7 +90,7 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long codigoPedido, Set<Produto> produtos, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido, Long idCliente, Set<Long> idProdutos) {
+    public Pedido(Long codigoPedido, Set<Produto> produtos, String protocoloPedido, Cliente clientePedido, Date dataPedido, Date ultimaAtualizacao, String statusPedido, BigDecimal valorPedido, String formaPagamentoPedido, Long idCliente, Set<Long> idProdutos) {
         this.codigoPedido = codigoPedido;
         this.produtos = produtos;
         this.clientePedido = clientePedido;
@@ -98,9 +101,16 @@ public class Pedido implements Serializable {
         this.formaPagamentoPedido = formaPagamentoPedido;
         this.idCliente = idCliente;
         this.idProdutos = idProdutos;
+        this.protocoloPedido = protocoloPedido;
     }
 
-    
+    public String getProtocoloPedido() {
+        return protocoloPedido;
+    }
+
+    public void setProtocoloPedido(String protocoloPedido) {
+        this.protocoloPedido = protocoloPedido;
+    }  
 
     public Long getCodigoPedido() {
         return codigoPedido;
