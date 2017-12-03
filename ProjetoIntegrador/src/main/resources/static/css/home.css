@@ -70,10 +70,6 @@ a:link{
     margin-right: 0%;
 }
 
-.pesquisa{
-    float: none;
-    margin: auto;
-}
 
 #footer{
     margin-top: 2px;
@@ -103,7 +99,6 @@ a:link{
     margin-bottom: 4%;
     background: #cccccc;   
 }
-
 
 .menu{
     font-family: 'Quicksand', sans-serif;
