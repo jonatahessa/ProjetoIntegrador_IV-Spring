@@ -170,6 +170,9 @@ public class Produto implements Serializable {
     @ManyToMany(mappedBy = "produtos")
     private List<Pedido> pedidos;
 
+    @Transient
+    private boolean estoque;
+    
     public Produto() {
     }
 
@@ -204,6 +207,14 @@ public class Produto implements Serializable {
         this.pedidos = pedidos;
     }
 
+    public boolean isEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(boolean estoque) {
+        this.estoque = estoque;
+    }
+    
     public int getQntCarrinho() {
         return qntCarrinho;
     }

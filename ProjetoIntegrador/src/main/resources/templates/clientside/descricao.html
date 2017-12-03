@@ -82,14 +82,19 @@
                     <div class="cardDescricao">
                         <div class="card1">
                             <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
-                            <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
-                            <h1 id="precoProduto" data-th-text="${produto.modeloProduto}"></h1>                            
+                            <h1 id="precoProduto" data-th-text="${produto.modeloProduto}"></h1> 
+                            <h1 id="precoProduto"><span data-th-text="${#numbers.formatCurrency(produto.precoProduto)}"></h1></span>       
                         </div>
                         <div class="comprar">
-                            <form action="#" th:action="@{/sessao/comprar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
-                                <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
-                                <button type="submit" class="btnComprar button button-raised button-action button-pill "><i class="fa fa-shopping-cart"></i>comprar</button>
-                            </form>
+                            <div th:if="${produto.estoque} == false">
+                                <h1>Produto Indisponível</h1>
+                            </div>
+                            <div th:if="${produto.estoque} == true">
+                                <form action="#" th:action="@{/sessao/comprar/{id}(id=${produto.codigoProduto})}" class="comprar" method="post">
+                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                    <button type="submit" class="btnComprar button button-raised button-action button-pill "><i class="fa fa-shopping-cart"></i>comprar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,15 +119,15 @@
                         </section>
 
                         <section id="content2" class="tab-content">
-                             <h3>Especificações</h3>
-                             <p>Marca: <span data-th-text="${produto.tituloProduto}"></span></p>
-                             <p>Modelo: <span data-th-text="${produto.modeloProduto}"></span></p>
-                             <p>Cor: <span data-th-text="${produto.corProduto}"></span></p>
-                             <p>Material: <span data-th-text="${produto.materialProduto}"></span></p>
-                             <p>Gênero: <span data-th-text="${produto.generoProduto}"></span></p>
-                             <p>Tamanho: <span data-th-text="${produto.tamanhoProduto}"></span></p>
-                             <p>Lente-Cor: <span data-th-text="${produto.lenteCorProduto}"></span></p>
-                             <p>Lente-Tipo: <span data-th-text="${produto.lenteTipoProduto}"></span></p>
+                            <h3>Especificações</h3>
+                            <p>Marca: <span data-th-text="${produto.tituloProduto}"></span></p>
+                            <p>Modelo: <span data-th-text="${produto.modeloProduto}"></span></p>
+                            <p>Cor: <span data-th-text="${produto.corProduto}"></span></p>
+                            <p>Material: <span data-th-text="${produto.materialProduto}"></span></p>
+                            <p>Gênero: <span data-th-text="${produto.generoProduto}"></span></p>
+                            <p>Tamanho: <span data-th-text="${produto.tamanhoProduto}"></span></p>
+                            <p>Lente-Cor: <span data-th-text="${produto.lenteCorProduto}"></span></p>
+                            <p>Lente-Tipo: <span data-th-text="${produto.lenteTipoProduto}"></span></p>
                         </section>
                     </div>
                 </div>

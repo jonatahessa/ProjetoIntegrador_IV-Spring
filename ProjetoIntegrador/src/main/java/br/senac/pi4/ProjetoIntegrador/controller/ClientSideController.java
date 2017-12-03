@@ -41,11 +41,23 @@ public class ClientSideController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
-
-        List<Produto> listaProdutos = new ArrayList<>();
-
         List<Produto> produtos = serviceProduto.listar(0, 100);
-        List<Imagem> imagens = serviceImagem.listar(0, 100);
+        List<Imagem> imagens = new ArrayList<>();
+
+        for (Produto p : produtos) {
+            if (p.getQuantEstoqueProduto() == 0) {
+                p.setEstoque(false);
+            } else {
+                p.setEstoque(true);
+            }
+            List<Imagem> img = p.getImagens();
+            for (Imagem i : img) {
+                if (i.getSequenciaImagem() == 1) {
+                    i.setIdProduto(p.getCodigoProduto());
+                    imagens.add(i);
+                }
+            }
+        }
 
         return new ModelAndView("clientside/home")
                 .addObject("produtos", produtos)
@@ -55,10 +67,15 @@ public class ClientSideController {
 
     @RequestMapping(value = "/descricao/{id}")
     public ModelAndView descricao(@PathVariable("id") Long idProduto) {
-
         Produto produto = serviceProduto.obter(idProduto);
         List<Imagem> imagens = produto.getImagens();
-        
+
+        if (produto.getQuantEstoqueProduto() == 0) {
+            produto.setEstoque(false);
+        } else {
+            produto.setEstoque(true);
+        }
+
         return new ModelAndView("clientside/descricao")
                 .addObject("produto", produto).addObject("imagens", imagens);
     }
@@ -73,16 +90,16 @@ public class ClientSideController {
 
         SecurityContext context = SecurityContextHolder.getContext();
         if (context instanceof SecurityContext) {
-            
+
             Authentication authentication = context.getAuthentication();
             if (authentication instanceof Authentication) {
-                
+
                 String cpf = authentication.getName();
-                
+
                 Cliente cliente = clienteService.obterClienteByCPF(cpf);
-               
+
                 return cliente;
-                
+
             }
         }
 

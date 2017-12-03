@@ -220,6 +220,12 @@ public class SessionController implements Serializable {
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
         
+        Set<Produto> produtos = pedido.getProdutos();
+        for(Produto p : produtos) {
+           int qnt = p.getQuantEstoqueProduto() - 1;
+           serviceProduto.removerQuantidade(p.getCodigoProduto(), qnt);
+        }
+        
         servicePedido.incluir(pedido);
         carrinho = null;
         total = null;

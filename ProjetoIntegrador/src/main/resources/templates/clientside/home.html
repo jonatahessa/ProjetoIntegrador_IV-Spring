@@ -191,8 +191,8 @@
                     <div class="blog-card">
                         <div class="photo photo1">
                             <div data-th-each="imagem : ${imagens}">
-                                <div th:if="${produto.codigoProduto} == ${imagem.codigoProduto} && ${imagem.sequenciaImagem} == 1"> 
-                                    <img class="d-block img-fluid img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
+                                <div th:if="${produto.codigoProduto} == ${imagem.idProduto}">
+                                    <img class="d-block img-fluid img-responsive" data-th-src="@{'/images/' + ${imagem.nomeImagem}}"/>
                                 </div>
                             </div>
                             <form action="#" th:action="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
@@ -214,11 +214,16 @@
                                 <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
                             </div>
                             <div style="width: 100%;">
-                                <button class="botoes no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button> 
-                                <form action="#" th:action="@{/sessao/adicionar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
-                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
-                                    <button type="submit" class="no-wlauto button button-primary button-circle btnAdicionarCarrinho"><i class="fa fa-shopping-cart"></i></button>
-                                </form>
+                                <div th:if="${produto.estoque} == true">
+                                    <button class="botoes no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button> 
+                                    <form action="#" th:action="@{/sessao/adicionar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
+                                        <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                        <button type="submit" class="no-wlauto button button-primary button-circle btnAdicionarCarrinho"><i class="fa fa-shopping-cart"></i></button>
+                                    </form>
+                                </div>
+                                <div th:if="${produto.estoque} == false">
+                                    <h1>Produto Indisponível</h1>
+                                </div>
                             </div>
                         </div>
                     </div>
