@@ -21,5 +21,5 @@ public interface ProdutoService extends Serializable {
     
     public void remover(Long codigoProduto);
     
-    public void removerQuantidade(Long codigoProduto, int qnt);
+    public List<Produto> pesquisar(String pesquisa);
 }

@@ -56,6 +56,12 @@ public class ClientSideController {
         List<Produto> produtos = serviceProduto.listar(0, 100);
         List<Imagem> imagens = new ArrayList<>();
 
+        boolean vazio = false;
+
+        if (produtos.isEmpty()) {
+            vazio = true;
+        }
+        
         for (Produto p : produtos) {
             if (p.getQuantEstoqueProduto() == 0) {
                 p.setEstoque(false);
@@ -74,6 +80,39 @@ public class ClientSideController {
         return new ModelAndView("clientside/home")
                 .addObject("produtos", produtos)
                 .addObject("imagens", imagens)
+                .addObject("vazio", vazio)
+                .addObject("cliente", sessaoCliente());
+    }
+
+    @RequestMapping(value = "/pesquisa")
+    public ModelAndView pesquisa(@ModelAttribute("pesquisa") String pesquisa) {
+        List<Produto> produtos = serviceProduto.pesquisar(pesquisa);
+        List<Imagem> imagens = new ArrayList<>();
+        boolean vazio = false;
+
+        if (produtos.isEmpty()) {
+            vazio = true;
+        }
+
+        for (Produto p : produtos) {
+            if (p.getQuantEstoqueProduto() == 0) {
+                p.setEstoque(false);
+            } else {
+                p.setEstoque(true);
+            }
+            List<Imagem> img = p.getImagens();
+            for (Imagem i : img) {
+                if (i.getSequenciaImagem() == 1) {
+                    i.setIdProduto(p.getCodigoProduto());
+                    imagens.add(i);
+                }
+            }
+        }
+
+        return new ModelAndView("clientside/home")
+                .addObject("produtos", produtos)
+                .addObject("imagens", imagens)
+                .addObject("vazio", vazio)
                 .addObject("cliente", sessaoCliente());
     }
 

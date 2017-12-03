@@ -60,16 +60,15 @@ public class ProdutoServiceImpl implements ProdutoService {
         entityManager.merge(produto);
     }
 
- 
     @Override
-    public void removerQuantidade(Long idProduto, int qnt) {
-        Query query = entityManager.createQuery(
-                "UPDATE TB_PRODUTO"
-                + " SET QT_PRODUTO = :qnt"
-                + " WHERE ID_PRODUTO = :idProd")
-                .setParameter("idProd", idProduto).setParameter("qnt", qnt);
+    public List<Produto> pesquisar(String pesquisa) {
+        Query query = entityManager.createNativeQuery(
+                "SELECT * FROM tb_produto "
+              + "WHERE tl_produto LIKE :pesquisa")
+                .setParameter("pesquisa", "'%"+pesquisa+"%'");
+        return query.getResultList();
     }
-    
+
     @Override
     public void remover(Long idProduto) {
         Query query = entityManager.createQuery(

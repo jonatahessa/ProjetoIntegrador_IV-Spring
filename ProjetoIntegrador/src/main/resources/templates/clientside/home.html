@@ -30,13 +30,17 @@
             <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
 
             <!-- BUSCA -->
+
+
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
                     <div class="input-group ">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">GO</button>
-                        </span>
+                        <form class="input-group " action="#" th:action="@{/pesquisa}" method="post">
+                            <input type="text" class="form-control" name="pesquisa" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">GO</button>
+                            </span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -186,7 +190,7 @@
                         </tbody>
                     </table>
                 </div>
-
+            <div th:if="${vazio} == false">
                 <div data-th-each="produto : ${produtos}" class="col-sm-5 col-md-5 col-lg-5">
                     <div class="blog-card">
                         <div class="photo photo1">
@@ -202,7 +206,7 @@
                         </div>
                         <div class="description">
                             <h1 data-th-text="${produto.tituloProduto}"></h1>
-                            <h2 data-th-text="${produto.precoProduto}"></h2>
+                            <h2 data-th-text="${#numbers.formatCurrency(produto.precoProduto)}"></h2>
                             <div class="card-text card_classificacao">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -228,6 +232,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div th:if="${vazio} == true">
+                <h1>Produto não encontrado</h1>
+            </div>
             </div>
 
             <!-- RECOMENDADOS -->

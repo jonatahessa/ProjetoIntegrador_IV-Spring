@@ -6,7 +6,6 @@ import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,7 +44,11 @@ public class AdminSideController {
         List<Pedido> pedidos = new ArrayList<>();
         Cliente c = clienteService.obter(Long.parseLong("5"));
         pedidos = c.getPedidos();
-        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos);
+        boolean vazio = false;
+        if (pedidos.size() == 0) {
+            vazio = true;
+        }
+        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos).addObject("vazio", vazio);
     }
 
     @RequestMapping(value = "/checkoutPagamento", method = RequestMethod.GET)
