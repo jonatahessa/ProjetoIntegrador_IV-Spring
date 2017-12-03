@@ -164,6 +164,7 @@ public class SessionController implements Serializable {
     public ModelAndView carrinho() {
         BigDecimal tempTotal = new BigDecimal("0.0");
         BigDecimal produto = new BigDecimal("0.0");
+        List<Imagem> imagens = new ArrayList<>();
         boolean vazio = false;
         if (carrinho.isEmpty()) {
             vazio = true;
@@ -172,10 +173,10 @@ public class SessionController implements Serializable {
                 produto = p.getPrecoProduto().multiply(new BigDecimal(p.getQntCarrinho()));
                 tempTotal = tempTotal.add(produto);
             }
-        }
+        }        
         total = tempTotal;
         total = total.add(new BigDecimal("12.0"));
-        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
+        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio).addObject("imagens", imagens);
     }
 
     @RequestMapping(value = "/checkoutEndereco")
