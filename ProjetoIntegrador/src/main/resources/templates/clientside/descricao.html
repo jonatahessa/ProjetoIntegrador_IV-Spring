@@ -63,8 +63,8 @@
 
                             <!-- Carousel items -->
                             <div class="carousel-inner">
-                                <div data-th-each="imagem : ${imagens}" data-th-class="${imagem.SequenciaImagem == 1}? 'active item' : 'item'" th:data-slide-number="${imagens.SequenciaImagem - 1}">
-                                    <img class="img-responsive" data-th-src="@{${imagem.NomeImagem}}">
+                                <div data-th-each="imagem : ${imagens}" data-th-class="${imagem.sequenciaImagem == 1}? 'active item' : 'item'" th:data-slide-number="${imagem.sequenciaImagem - 1}">
+                                    <img class="img-responsive" data-th-src="@{${imagem.nomeImagem}}">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -82,8 +82,8 @@
                     <div class="cardDescricao">
                         <div class="card1">
                             <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
-
-                            <h1 id="precoProduto" data-th-text="${produto.precoProduto}"></h1>                            
+                            <h1 id="nomeProduto" data-th-text="${produto.tituloProduto}"></h1>
+                            <h1 id="precoProduto" data-th-text="${produto.modeloProduto}"></h1>                            
                         </div>
                         <div class="comprar">
                             <form action="#" th:action="@{/sessao/comprar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
@@ -114,7 +114,15 @@
                         </section>
 
                         <section id="content2" class="tab-content">
-
+                             <h3>Especificações</h3>
+                             <p>Marca: <span data-th-text="${produto.tituloProduto}"></span></p>
+                             <p>Modelo: <span data-th-text="${produto.modeloProduto}"></span></p>
+                             <p>Cor: <span data-th-text="${produto.corProduto}"></span></p>
+                             <p>Material: <span data-th-text="${produto.materialProduto}"></span></p>
+                             <p>Gênero: <span data-th-text="${produto.generoProduto}"></span></p>
+                             <p>Tamanho: <span data-th-text="${produto.tamanhoProduto}"></span></p>
+                             <p>Lente-Cor: <span data-th-text="${produto.lenteCorProduto}"></span></p>
+                             <p>Lente-Tipo: <span data-th-text="${produto.lenteTipoProduto}"></span></p>
                         </section>
                     </div>
                 </div>
