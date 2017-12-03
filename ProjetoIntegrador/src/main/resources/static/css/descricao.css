@@ -113,9 +113,8 @@ body, html{
     font-weight: bold;
 }
 
-#MarcaProduto {
+#modeloProduto {
     font-size: 90%;
-    font-weight: bold;
 }
 
 .btnComprar {

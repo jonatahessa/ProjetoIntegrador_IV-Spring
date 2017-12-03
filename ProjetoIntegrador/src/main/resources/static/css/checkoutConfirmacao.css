@@ -75,8 +75,14 @@ a:hover {
     margin-top: 5%;
 }
 
-.total {
+.colTotal {
     text-align: right;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.panel-footer{
+    border: none;
 }
 
 @media (max-width: 760px) {
@@ -97,4 +103,10 @@ a:hover {
     .titulos {
         margin-top: 10%;
     }
+    
+    .colTotal {
+        text-align: center;
+        margin-top: 10%;
+    }
+    
 }

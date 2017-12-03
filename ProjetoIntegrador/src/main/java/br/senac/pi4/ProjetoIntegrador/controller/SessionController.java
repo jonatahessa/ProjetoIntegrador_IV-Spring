@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import javax.validation.Valid;
 import org.apache.catalina.Globals;
@@ -47,10 +48,10 @@ public class SessionController implements Serializable {
 
     @Autowired
     EnderecoServiceImpl serviceEndereco;
-    
+
     @Autowired
     PedidoServiceImpl servicePedido;
-    
+
     private Set<Produto> carrinho = new HashSet<Produto>();
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
@@ -110,7 +111,7 @@ public class SessionController implements Serializable {
         }
         return new ModelAndView("redirect:/sessao/carrinho");
     }
-    
+
     @RequestMapping("/remover/{id}")
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
@@ -129,18 +130,18 @@ public class SessionController implements Serializable {
         }
         return new ModelAndView("redirect:/sessao/carrinho");
     }
-    
+
     @RequestMapping("/add/{id}")
     public ModelAndView addProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
 
-          for (Produto p : carrinho) {
-                if (p.getCodigoProduto() == idProduto) {
-                    int qntAtual = p.getQntCarrinho() + 1;
-                    p.setQntCarrinho(qntAtual);
-                }
-          }
-        
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                int qntAtual = p.getQntCarrinho() + 1;
+                p.setQntCarrinho(qntAtual);
+            }
+        }
+
 //        for (Produto p : carrinho) {
 //            if (p.getCodigoProduto() == idProduto) {
 //                int qntAtual = p.getQntCarrinho() + 1;
@@ -173,7 +174,7 @@ public class SessionController implements Serializable {
                 produto = p.getPrecoProduto().multiply(new BigDecimal(p.getQntCarrinho()));
                 tempTotal = tempTotal.add(produto);
             }
-        }        
+        }
         total = tempTotal;
         total = total.add(new BigDecimal("12.0"));
         return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio).addObject("imagens", imagens);
@@ -209,32 +210,60 @@ public class SessionController implements Serializable {
         Endereco endereco = serviceEndereco.obter(idEndereco);
         return new ModelAndView("clientside/checkoutConfirmacao").addObject("endereco", endereco).addObject("cartao", cartao).addObject("total", total);
     }
-    
+
     @RequestMapping(value = "/salvarPedido")
     public ModelAndView salvarPedido() {
         Pedido pedido = new Pedido();
         pedido.setClientePedido(serviceCliente.obter(Long.parseLong("5")));
         pedido.setDataPedido(new Date());
-        pedido.setFormaPagamentoPedido("Cartão");
+        pedido.setFormaPagamentoPedido("Cartão em " + cartao.getParcelas() + " Vezes");
         pedido.setProdutos(carrinho);
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
-        
-//        Set<Produto> produtos = pedido.getProdutos();
-//        for(Produto p : produtos) {
-//           int qnt = p.getQuantEstoqueProduto() - 1;
-//           serviceProduto.removerQuantidade(p.getCodigoProduto(), qnt);
-//        }
-        
+        String protocolo = geraProtocolo();
+        pedido.setProtocoloPedido(protocolo); 
+        removerEstoque(pedido);
+       
         servicePedido.incluir(pedido);
         carrinho = null;
         total = null;
         idEndereco = null;
         qntCarrinho = 0;
-        
 
         return new ModelAndView("redirect:/admin/perfil");
+    }
+
+    public String geraProtocolo() {
+        Random gerador = new Random();
+        String protocolo = "";
+        boolean valido = false;
+        List<Pedido> pe = servicePedido.listar(0, 100);
+        while (valido == false) {
+            protocolo = "";
+            for (int i = 0; i < 5; i++) {
+                String temp = "" + gerador.nextInt(10);
+                protocolo = protocolo + temp;
+            }
+            for (Pedido p : pe) {
+                if (p.getProtocoloPedido().equals(protocolo)) {
+                    valido = false;
+                    break;
+                } else {
+                    valido = true;
+                }
+            }
+        }
+        return protocolo;
+    }
+
+    public void removerEstoque(Pedido pedido) {
+        Set<Produto> produtos = pedido.getProdutos();
+        for (Produto p : produtos) {
+            int qnt = p.getQuantEstoqueProduto() - 1;
+            p.setQuantEstoqueProduto(qnt);
+            serviceProduto.alterar(p);
+        }
     }
 
 }

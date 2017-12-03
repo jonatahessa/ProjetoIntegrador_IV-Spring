@@ -30,13 +30,17 @@
             <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
 
             <!-- BUSCA -->
+
+
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
                     <div class="input-group ">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">GO</button>
-                        </span>
+                        <form class="input-group formPesquisa" action="#" th:action="@{/pesquisa}" method="post">
+                            <input type="text" class="form-control" name="pesquisa" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">GO</button>
+                            </span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -186,47 +190,51 @@
                         </tbody>
                     </table>
                 </div>
-
-                <div data-th-each="produto : ${produtos}" class="col-sm-5 col-md-5 col-lg-5">
-                    <div class="blog-card">
-                        <div class="photo photo1">
-                            <div data-th-each="imagem : ${imagens}">
-                                <div th:if="${produto.codigoProduto} == ${imagem.idProduto}">
-                                    <img class="d-block img-fluid img-responsive" data-th-src="@{'/images/' + ${imagem.nomeImagem}}"/>
+                <div th:if="${vazio} == false">
+                    <div data-th-each="produto : ${produtos}" class="col-sm-5 col-md-5 col-lg-5">
+                        <div class="blog-card">
+                            <div class="photo photo1">
+                                <div data-th-each="imagem : ${imagens}">
+                                    <div th:if="${produto.codigoProduto} == ${imagem.idProduto}">
+                                        <img class="d-block img-fluid img-responsive" data-th-src="@{'/images/' + ${imagem.nomeImagem}}"/>
+                                    </div>
                                 </div>
+                                <form action="#" th:action="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
+                                    <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                    <button type="submit" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></button>
+                                </form>
                             </div>
-                            <form action="#" th:action="@{/descricao/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
-                                <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
-                                <button type="submit" class="botao_descricao no-wlauto button button-tiny button-circle"><i class="fa fa-info-circle"></i></button>
-                            </form>
-                        </div>
-                        <div class="description">
-                            <h1 data-th-text="${produto.tituloProduto}"></h1>
-                            <h2 data-th-text="${produto.precoProduto}"></h2>
-                            <div class="card-text card_classificacao">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="card-footer">
-                                <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
-                            </div>
-                            <div style="width: 100%;">
-                                <div th:if="${produto.estoque} == true">
-                                    <button class="botoes no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button> 
-                                    <form action="#" th:action="@{/sessao/adicionar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
-                                        <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
-                                        <button type="submit" class="no-wlauto button button-primary button-circle btnAdicionarCarrinho"><i class="fa fa-shopping-cart"></i></button>
-                                    </form>
+                            <div class="description">
+                                <h1 data-th-text="${produto.tituloProduto}"></h1>
+                                <h2 data-th-text="${#numbers.formatCurrency(produto.precoProduto)}"></h2>
+                                <div class="card-text card_classificacao">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-o"></i>
+                                    <i class="fa fa-star-o"></i>
                                 </div>
-                                <div th:if="${produto.estoque} == false">
-                                    <h1>Produto Indisponível</h1>
+                                <div class="card-footer">
+                                    <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
+                                </div>
+                                <div style="width: 100%;">
+                                    <div th:if="${produto.estoque} == true">
+                                        <button class="botoes no-wlauto button button-highlight button-circle"><i class="fa fa-star-o"></i></button> 
+                                        <form action="#" th:action="@{/sessao/adicionar/{id}(id=${produto.codigoProduto})}" class="botoes" method="post">
+                                            <input type="hidden" name="id" th:value="${produto.codigoProduto}" />
+                                            <button type="submit" class="no-wlauto button button-primary button-circle btnAdicionarCarrinho"><i class="fa fa-shopping-cart"></i></button>
+                                        </form>
+                                    </div>
+                                    <div th:if="${produto.estoque} == false">
+                                        <h1>Produto Indisponível</h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div th:if="${vazio} == true">
+                    <h1>Produto não encontrado</h1>
                 </div>
             </div>
 

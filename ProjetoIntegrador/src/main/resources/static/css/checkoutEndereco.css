@@ -38,6 +38,10 @@
     margin: auto;
 }
 
+form {
+    width: 100%;
+}
+
 @media (max-width: 760px) {
     .colSelecione {
         text-align: center;
