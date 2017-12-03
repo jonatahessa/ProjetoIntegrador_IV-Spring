@@ -2,15 +2,19 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -25,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@Scope("session")
 public class ClientSideController {
 
     @Autowired
@@ -38,6 +43,11 @@ public class ClientSideController {
 
     @Autowired
     private ClienteService clienteService;
+
+    /**
+     * Armazenamento de cliente para cadastro *
+     */
+    private Cliente clienteCadastro;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
@@ -72,16 +82,16 @@ public class ClientSideController {
 
         SecurityContext context = SecurityContextHolder.getContext();
         if (context instanceof SecurityContext) {
-            
+
             Authentication authentication = context.getAuthentication();
             if (authentication instanceof Authentication) {
-                
+
                 String cpf = authentication.getName();
-                
+
                 Cliente cliente = clienteService.obterClienteByCPF(cpf);
-               
+
                 return cliente;
-                
+
             }
         }
 
@@ -93,26 +103,25 @@ public class ClientSideController {
             @ModelAttribute(value = "cliente") @Valid Cliente cliente, BindingResult clienteR,
             RedirectAttributes attributes) {
 
-        boolean inclusao = (sessaoCliente().getCodigoCliente() == null);
+        boolean inclusao = (cliente.getCodigoCliente() == null);
 
         if (clienteR.hasErrors()) {
             if (inclusao) {
                 return new ModelAndView("clientside/clienteCadastro");
             } else {
-                return new ModelAndView("clientside/clientePerfil");
+                return new ModelAndView("clientside/clienteCadastro");
             }
 
         }
         if (inclusao) {
-            clienteService.incluir(cliente);
+            clienteCadastro = cliente;
         } else {
             clienteService.alterar(cliente);
         }
 
         if (inclusao) {
-            ModelAndView mv = new ModelAndView("redirect:/cadastroC");
-            attributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso");
-            return mv;
+            return new ModelAndView("clientside/clienteCadastroEndereco")
+                    .addObject("endereco", new Endereco());
         } else {
             ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
             attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
@@ -121,7 +130,83 @@ public class ClientSideController {
 
     }
 
+    @RequestMapping(value = "/novoCliente/endereco", method = RequestMethod.POST)
+    public ModelAndView cadastrarEnderecoCliente(
+            @ModelAttribute(value = "endereco") @Valid Endereco endereco, BindingResult bindingResult,
+            RedirectAttributes attributes) {
+
+        boolean inclusao = (endereco.getCodigoEndereco() == null);
+
+        if (bindingResult.hasErrors()) {
+            if (inclusao) {
+                return new ModelAndView("clientside/clienteCadastroEndereco");
+            } else {
+                return new ModelAndView("clientside/clientePerfil");
+            }
+
+        }
+        if (inclusao) {
+            List<Endereco> enderecos = new ArrayList<>();
+            enderecos.add(endereco);
+            clienteCadastro.setEnderecos(enderecos);
+        } else {
+            //clienteService.alterar(cliente);
+        }
+        
+        if (inclusao) {
+            return new ModelAndView("clientside/clienteCadastroTelefone")
+                    .addObject("telefone", new Telefone());
+        } else {
+            ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
+            attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
+            return mv;
+        }
+    }
+
+    @RequestMapping(value = "/novoCliente/telefone", method = RequestMethod.POST)
+    public ModelAndView cadastrarTelefoneCliente(
+            @ModelAttribute(value = "telefone") @Valid Telefone telefone, BindingResult bindingResult,
+            RedirectAttributes attributes) {
+
+        boolean inclusao = (telefone.getCodigoTelefone() == null);
+
+        if (bindingResult.hasErrors()) {
+            if (inclusao) {
+                return new ModelAndView("clientside/clienteCadastroTelefone");
+            } else {
+                return new ModelAndView("clientside/clientePerfil");
+            }
+
+        }
+        if (inclusao) {
+            List<Telefone> telefones = new ArrayList<>();
+            telefones.add(telefone);
+            clienteCadastro.setTelefones(telefones);
+        } else {
+            //clienteService.alterar(cliente);
+        }
+        
+        if (inclusao) {
+            return new ModelAndView("redirect:/finalizarCadastro");
+        } else {
+            ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
+            attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
+            return mv;
+        }
+    }
+
+    @RequestMapping(value = "/finalizarCadastro")
+    public ModelAndView finalizarCadastro(RedirectAttributes redirectAttributes) {
+        
+        clienteCadastro.setRoleCliente("ROLE_JOSELITO");
+        clienteService.incluir(clienteCadastro);
+
+        redirectAttributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso");
+        return new ModelAndView("redirect:/cadastroC");
+    }
+
     @RequestMapping("/login")
+
     public String login() {
         return "clientside/login";
     }

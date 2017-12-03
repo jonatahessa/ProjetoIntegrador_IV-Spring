@@ -23,31 +23,43 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "TB_TELEFONE")
-public class Telefone implements Serializable
-{
-    
+public class Telefone implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_TELEFONE")
     private Long codigoTelefone;
-    
-    @Size(min = 1, max = 3, message = "{telefone.ddd.erro}")
+
+    @Size(min = 1, max = 3, message = "{telefone.dddTelefone.erro}")
     @Column(name = "DD_TELEFONE", length = 3, nullable = false)
-    private String ddd;
-    
-    @Size(min = 9, max = 10, message = "{telefone.numeroTelefone.erro}")
+    private String dddTelefone;
+
+    @Size(min = 9, max = 9, message = "{telefone.numeroTelefone.erro}")
     @Column(name = "NM_TELEFONE", length = 3, nullable = false)
     private String numeroTelefone;
-    
+
+    @Size(min = 1, max = 3, message = "{telefone.dddCelular.erro}")
+    @Column(name = "DC_TELEFONE", length = 3, nullable = false)
+    private String dddCelular;
+
+    @Size(min = 10, max = 10, message = "{telefone.numeroCelular.erro}")
+    @Column(name = "NC_TELEFONE", length = 3, nullable = false)
+    private String numeroCelular;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CLIENTE", nullable = false)
     private Cliente clienteTelefone;
 
-    public Telefone(Long codigoTelefone, String ddd, String numeroTelefone, Cliente clienteTelefone) {
+    public Telefone(Long codigoTelefone, String dddTelefone, String numeroTelefone, String dddCelular, String numeroCelular, Cliente clienteTelefone) {
         this.codigoTelefone = codigoTelefone;
-        this.ddd = ddd;
+        this.dddTelefone = dddTelefone;
         this.numeroTelefone = numeroTelefone;
+        this.dddCelular = dddCelular;
+        this.numeroCelular = numeroCelular;
         this.clienteTelefone = clienteTelefone;
+    }
+
+    public Telefone() {
     }
 
     public Long getCodigoTelefone() {
@@ -58,12 +70,12 @@ public class Telefone implements Serializable
         this.codigoTelefone = codigoTelefone;
     }
 
-    public String getDdd() {
-        return ddd;
+    public String getDddTelefone() {
+        return dddTelefone;
     }
 
-    public void setDdd(String ddd) {
-        this.ddd = ddd;
+    public void setDddTelefone(String dddTelefone) {
+        this.dddTelefone = dddTelefone;
     }
 
     public String getNumeroTelefone() {
@@ -74,6 +86,22 @@ public class Telefone implements Serializable
         this.numeroTelefone = numeroTelefone;
     }
 
+    public String getDddCelular() {
+        return dddCelular;
+    }
+
+    public void setDddCelular(String dddCelular) {
+        this.dddCelular = dddCelular;
+    }
+
+    public String getNumeroCelular() {
+        return numeroCelular;
+    }
+
+    public void setNumeroCelular(String numeroCelular) {
+        this.numeroCelular = numeroCelular;
+    }
+
     public Cliente getClienteTelefone() {
         return clienteTelefone;
     }
@@ -81,6 +109,4 @@ public class Telefone implements Serializable
     public void setClienteTelefone(Cliente clienteTelefone) {
         this.clienteTelefone = clienteTelefone;
     }
-    
-    
 }
