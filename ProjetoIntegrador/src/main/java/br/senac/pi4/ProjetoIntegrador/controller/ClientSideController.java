@@ -19,6 +19,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -138,8 +140,8 @@ public class ClientSideController {
         }
 
         if (inclusao) {
-            return new ModelAndView("clientside/clienteCadastroEndereco")
-                    .addObject("endereco", new Endereco());
+            return new ModelAndView("clientside/clienteCadastroTelefone")
+                    .addObject("telefone", new Telefone());
         } else {
             ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
             attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
@@ -170,13 +172,12 @@ public class ClientSideController {
         } else {
             //clienteService.alterar(cliente);
         }
-        
+
         if (inclusao) {
-            return new ModelAndView("clientside/clienteCadastroTelefone")
-                    .addObject("telefone", new Telefone());
+            return new ModelAndView("redirect:/finalizarCadastro");
         } else {
             ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
-            attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
+            attributes.addFlashAttribute("mensagem", "Enderecos alterados com sucesso");
             return mv;
         }
     }
@@ -203,24 +204,30 @@ public class ClientSideController {
         } else {
             //clienteService.alterar(cliente);
         }
-        
+
         if (inclusao) {
-            return new ModelAndView("redirect:/finalizarCadastro");
+            return new ModelAndView("clientside/clienteCadastroEndereco")
+                    .addObject("endereco", new Endereco());
         } else {
             ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
-            attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
+            attributes.addFlashAttribute("mensagem", "Telefones alterados com sucesso");
             return mv;
         }
     }
 
     @RequestMapping(value = "/finalizarCadastro")
     public ModelAndView finalizarCadastro(RedirectAttributes redirectAttributes) {
-        
+
         clienteCadastro.setRoleCliente("ROLE_JOSELITO");
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(clienteCadastro.getSenhaCliente());
+        clienteCadastro.setSenhaCliente(hashedPassword);
+        clienteCadastro.setEnabled(true);
+
         clienteService.incluir(clienteCadastro);
 
         redirectAttributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso");
-        return new ModelAndView("redirect:/cadastroC");
+        return new ModelAndView("redirect:/");
     }
 
     @RequestMapping("/login")

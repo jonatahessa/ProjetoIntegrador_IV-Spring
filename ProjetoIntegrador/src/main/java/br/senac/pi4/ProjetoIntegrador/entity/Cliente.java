@@ -33,8 +33,7 @@ public class Cliente implements Serializable {
     @Column(name = "EM_CLIENTE", length = 100, nullable = false)
     private String emailCliente;
 
-    @Size(min = 1, max = 8, message = "{cliente.senhaCliente.erro}")
-    @Column(name = "PW_CLIENTE", length = 100, nullable = false)
+    @Column(name = "PW_CLIENTE", length = 200, nullable = false)
     private String senhaCliente;
 
     @CPF(message = "{cliente.cpfCliente.erro}")
