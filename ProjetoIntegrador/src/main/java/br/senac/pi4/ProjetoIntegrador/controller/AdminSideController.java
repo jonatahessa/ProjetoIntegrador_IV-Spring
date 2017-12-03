@@ -2,6 +2,9 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,8 +41,11 @@ public class AdminSideController {
     }
 
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView perfil() {
-        return new ModelAndView("clientside/clientePerfil").addObject("cliente", sessaoCliente());
+    public ModelAndView clientePedidos() {
+        List<Pedido> pedidos = new ArrayList<>();
+        Cliente c = clienteService.obter(Long.parseLong("5"));
+        pedidos = c.getPedidos();
+        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos);
     }
 
     @RequestMapping(value = "/checkoutPagamento", method = RequestMethod.GET)

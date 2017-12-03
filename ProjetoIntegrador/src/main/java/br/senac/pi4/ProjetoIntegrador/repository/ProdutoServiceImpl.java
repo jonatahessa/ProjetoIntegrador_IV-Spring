@@ -61,6 +61,15 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    public void removerQuantidade(Long idProduto, int qnt) {
+        Query query = entityManager.createQuery(
+                " UPDATE Produto p "
+                + "SET QT_PRODUTO = :qnt "
+                + "WHERE p.id = :idProd")
+                .setParameter("idProd", idProduto).setParameter("qnt", qnt);
+    }
+    
+    @Override
     public void remover(Long idProduto) {
         Query query = entityManager.createQuery(
                 " UPDATE Produto p "

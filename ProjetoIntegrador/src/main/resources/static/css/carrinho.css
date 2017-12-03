@@ -55,9 +55,11 @@ body, html{
 
 .btnContinuarComprando {
     width: 100%;
+    margin-right: 0;
 }
 
 .btnComprar {
+    width: 100%;
     margin-top: 2%;
 }
 
@@ -77,9 +79,18 @@ a:hover {
     font-weight: bold;
 }
 
+.colModeloProduto {
+    text-align: left;
+}
+
 @media (max-width: 768px) {
     .btnCalcularCep {
         width: 60%;
+    }
+    
+    .colTotal {
+        text-align: center;
+        padding-bottom: 5%;
     }
 }
 @media (max-width: 760px) {
@@ -110,7 +121,9 @@ a:hover {
         text-align: center;
         padding-bottom: 5%;
     }
-
-
+    
+    .colModeloProduto {
+    text-align: center;
+}
 }
 

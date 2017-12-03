@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -5,59 +6,25 @@
     </head>
     <body>
         <div th:fragment="meus_pedidos">
-
-            <div class="panel panel-default">
-                <div class="panel-body painel-descricao">
-                    Menu Pedidos
-                </div>
-                <div class="panel-footer painel-descricao2">
-                    <!-- CARD DE PRODUTO -->
-                    <div class="blog-card">
-                        <div class="photo photo1">
-                            <img class="img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
-                        </div>
-                        <div class="description">
-                            <h1>PRODUTO X</h1>
-                            <h2>PAGAMENTO RECEBIDO</h2>
-                            <p class="summary">DESCRIÇÃO</p>
-                            <a role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" class="button button-3d button-action button-pill a_card">VEJA MAIS</a>
-                        </div>
+            <div class="container-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-body painel-descricao">
+                        Menu Pedidos
                     </div>
-                    <div class="collapse" id="collapseExample">
-                        <div class="well">
-                            <ul class="list-group">
-                                <li class="list-group-item active">PAGAMENTO RECEBIDO EM HORA E DATA BLA BLA CAR</li>
-                                <li class="list-group-item list-group-item-info">NOTA FISCAL FEITA EM HORA E DATA BLA BLA CAR</li>
-                                <li class="list-group-item list-group-item-info">ENVIO EM HORA E DATA BLA BLA CAR</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- CARD DE PRODUTO -->
-                    <div class="blog-card">
-                        <div class="photo photo1">
-                            <img class="img-responsive" data-th-src="@{/images/oculosTeste.jpg}" />
-                        </div>
-                        <div class="description">
-                            <h1>PRODUTO X</h1>
-                            <h2>EM ENVIO</h2>
-                            <p class="summary">DESCRIÇÃO</p>
-                            <a role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" class="button button-3d button-action button-pill a_card">VEJA MAIS</a>
-                        </div>
-                    </div>
-                    <div class="collapse" id="collapseExample2">
-                        <div class="well">
-                            <ul class="list-group">
-                                <li class="list-group-item list-group-item-info">PAGAMENTO RECEBIDO EM HORA E DATA BLA BLA CAR</li>
-                                <li class="list-group-item list-group-item-info">NOTA FISCAL FEITA EM HORA E DATA BLA BLA CAR</li>
-                                <li class="list-group-item active">ENVIO EM HORA E DATA BLA BLA CAR</li>
-                            </ul>
+                    <div class="panel-footer painel-descricao2">
+                        <div data-th-each="pedido : ${pedidos}">         
+                            <div class="blog-card">
+                                <div class="description">
+                                    <h4>Código: <span data-th-text="${pedido.codigoPedido}"></span></h4>
+                                    <h4>Data da compra: <span data-th-text="${pedido.dataPedido}"></span></h4>
+                                    <h4 data-th-text="${pedido.statusPedido}"></h4>
+                                    <h4>Ultima Atualização: <span data-th-text="${pedido.ultimaAtualizacao}"></span></h4>
+                                </div>
+                            </div>                       
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </body>
 </html>
-

@@ -84,13 +84,40 @@ public class SessionController implements Serializable {
         return new ModelAndView("redirect:/");
     }
 
+    @RequestMapping("/comprar/{id}")
+    public ModelAndView comprarProduto(@PathVariable("id") Long idProduto,
+            RedirectAttributes redirectAttributes) {
+        boolean igual = false;
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                qntCarrinho++;
+                igual = true;
+            }
+        }
+        for (Produto p : carrinho) {
+            if (p.getCodigoProduto() == idProduto) {
+                p.setQntCarrinho(qntCarrinho);
+            }
+        }
+
+        if (igual == false) {
+            Produto p = serviceProduto.obter(idProduto);
+            p.setQntCarrinho(1);
+//        List<Imagem> temp = serviceImagem.obterCodigoProduto(p.getCodigoProduto());
+            carrinho.add(p);
+//        imagens.add(temp.get(0));
+
+        }
+        return new ModelAndView("redirect:/sessao/carrinho");
+    }
+    
     @RequestMapping("/remover/{id}")
     public ModelAndView removerProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
 
         for (Produto p : carrinho) {
             if (p.getCodigoProduto() == idProduto) {
-                int qntAtual = p.getQntCarrinho() - qnt;
+                int qntAtual = p.getQntCarrinho() - 1;
                 if (qntAtual != 0) {
                     p.setQntCarrinho(qntAtual);
                     break;
@@ -107,18 +134,25 @@ public class SessionController implements Serializable {
     public ModelAndView addProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes, @ModelAttribute("qnt") @Valid int qnt) {
 
-        for (Produto p : carrinho) {
-            if (p.getCodigoProduto() == idProduto) {
-                int qntAtual = p.getQntCarrinho() + qnt;
-                if (qntAtual != 0) {
+          for (Produto p : carrinho) {
+                if (p.getCodigoProduto() == idProduto) {
+                    int qntAtual = p.getQntCarrinho() + 1;
                     p.setQntCarrinho(qntAtual);
-                    break;
-                } else {
-                    carrinho.add(p);
-                    break;
                 }
-            }
-        }
+          }
+        
+//        for (Produto p : carrinho) {
+//            if (p.getCodigoProduto() == idProduto) {
+//                int qntAtual = p.getQntCarrinho() + 1;
+//                if (qntAtual != 0) {
+//                    p.setQntCarrinho(qntAtual);
+//                    break;
+//                } else {
+//                    carrinho.add(p);
+//                    break;
+//                }
+//            }
+//        }
         return new ModelAndView("redirect:/sessao/carrinho");
     }
 
@@ -130,6 +164,7 @@ public class SessionController implements Serializable {
     public ModelAndView carrinho() {
         BigDecimal tempTotal = new BigDecimal("0.0");
         BigDecimal produto = new BigDecimal("0.0");
+        List<Imagem> imagens = new ArrayList<>();
         boolean vazio = false;
         if (carrinho.isEmpty()) {
             vazio = true;
@@ -138,10 +173,10 @@ public class SessionController implements Serializable {
                 produto = p.getPrecoProduto().multiply(new BigDecimal(p.getQntCarrinho()));
                 tempTotal = tempTotal.add(produto);
             }
-        }
+        }        
         total = tempTotal;
         total = total.add(new BigDecimal("12.0"));
-        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
+        return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio).addObject("imagens", imagens);
     }
 
     @RequestMapping(value = "/checkoutEndereco")
@@ -186,6 +221,12 @@ public class SessionController implements Serializable {
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
         
+        Set<Produto> produtos = pedido.getProdutos();
+        for(Produto p : produtos) {
+           int qnt = p.getQuantEstoqueProduto() - 1;
+           serviceProduto.removerQuantidade(p.getCodigoProduto(), qnt);
+        }
+        
         servicePedido.incluir(pedido);
         carrinho = null;
         total = null;
@@ -193,7 +234,7 @@ public class SessionController implements Serializable {
         qntCarrinho = 0;
         
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/admin/perfil");
     }
 
 }
