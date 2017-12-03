@@ -30,14 +30,6 @@ public class ProdutoServiceImpl implements ProdutoService {
         return query.getResultList();
     }
 
-//     @PersistenceContext
-//    private EntityManager entityManager;
-//    
-//    @Override
-//    public List<Produto> listar(int offset, int quantidade) {
-//        Query query = entityManager.createQuery("SELECT * from tb_produto");
-//        return query.getResultList();
-//    }
     @Override
     public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
         throw new UnsupportedOperationException(""); //To change body of generated methods, choose Tools | Templates.
@@ -65,7 +57,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         Query query = entityManager.createNativeQuery(
                 "SELECT * FROM tb_produto "
               + "WHERE tl_produto LIKE :pesquisa")
-                .setParameter("pesquisa", "'%"+pesquisa+"%'");
+                .setParameter("pesquisa", "%"+pesquisa+"%  ");
         return query.getResultList();
     }
 
