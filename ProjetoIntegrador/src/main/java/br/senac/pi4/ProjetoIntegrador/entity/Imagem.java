@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "TB_IMAGEM")
@@ -22,6 +23,7 @@ public class Imagem implements Serializable {
     @Column(name = "ID_IMAGEM")
     private Long codigoImagem;
     
+    @Size(min = 1, max = 50)
     @Column(name = "NM_IMAGEM", length = 100, nullable = false)
     private String nomeImagem;
     

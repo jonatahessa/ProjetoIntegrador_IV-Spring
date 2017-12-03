@@ -49,11 +49,6 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional
     @Override
     public void incluir(Cliente cliente) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(cliente.getSenhaCliente());
-        cliente.setSenhaCliente(hashedPassword);
-        cliente.setEnabled(true);
-        cliente.setRoleCliente("ROLE_JOSELITO");
         entityManager.persist(cliente);
     }
     

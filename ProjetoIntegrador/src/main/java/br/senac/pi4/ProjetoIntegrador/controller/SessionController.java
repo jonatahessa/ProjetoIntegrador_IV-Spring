@@ -50,7 +50,7 @@ public class SessionController implements Serializable {
     
     @Autowired
     PedidoServiceImpl servicePedido;
-
+    
     private Set<Produto> carrinho = new HashSet<Produto>();
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
