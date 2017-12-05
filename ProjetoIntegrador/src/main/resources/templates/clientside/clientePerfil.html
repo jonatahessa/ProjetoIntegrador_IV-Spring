@@ -19,14 +19,14 @@
         <div class="container-fluid">
 
             <!-- MENU TOPO -->
-            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>  
+            <div th:include="~{clientside/componentes/menu_topo :: menu_topo}"></div>
 
             <!-- LATERAL MENU -->
             <div class="row">
                 <div id="Menu_Desktop" class="col-sm-2 col-md-2 col-lg-2">
                     <div class="vertical-menu responsive">
                         <a id="Meus_PedidosB">Meus Pedidos</a>
-                        <a id="Meus_DadosB">Meus Dados</a>
+                        <a th:href="@{/meusDados}" id="Meus_DadosB">Meus Dados</a>
                         <a id="Meu_HistoricoB">Meu Histórico</a>
                         <a id="RecomendacoesB">Recomendações</a>
                     </div>
@@ -37,20 +37,20 @@
                 <div id="Menu_D" class="col-sm-10 col-md-10 col-lg-10">
 
                     <!--<div id="Meus_Dados">
-                        <div th:include="~{clientside/perfil/perfil_meusDados :: meus_dados}"></div> 
+                        <div th:include="~{clientside/perfil/perfil_meusDados :: meus_dados}"></div>
                     </div>-->
 
                     <div id="Meus_Pedidos">
 
-                        <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div> 
+                        <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div>
                     </div>
 
                     <!-- <div id="Meu_Historico">
-                        <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div> 
+                        <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div>
                     </div>
 
                     <div id="Recomendacoes">
-                        <div th:include="~{clientside/perfil/perfil_Recomendacoes :: recomendacoes}"></div> 
+                        <div th:include="~{clientside/perfil/perfil_Recomendacoes :: recomendacoes}"></div>
                     </div>
                     -->
                 </div>
@@ -65,4 +65,3 @@
         <script data-th-src="@{/Bootstrap/js/bootstrap.js}" src="../../static/Bootstrap/js/bootstrap.js" type="text/javascript"></script>
     </body>
 </html>
-

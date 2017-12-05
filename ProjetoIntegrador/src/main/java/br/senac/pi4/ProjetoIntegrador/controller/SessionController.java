@@ -53,11 +53,13 @@ public class SessionController implements Serializable {
     PedidoServiceImpl servicePedido;
 
     private Set<Produto> carrinho = new HashSet<Produto>();
+    private Long idCliente;
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
     private Long idEndereco = null;
     private BigDecimal total = new BigDecimal("0.0");
-
+    
+    
     @RequestMapping("/adicionar/{id}")
     public ModelAndView adicionarProduto(@PathVariable("id") Long idProduto,
             RedirectAttributes redirectAttributes) {

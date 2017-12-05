@@ -43,6 +43,16 @@ public class ClientSideController {
 
     @Autowired
     private ClienteService clienteService;
+    
+    private Long idCliente;
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
 
     /**
      * Armazenamento de cliente para cadastro *
@@ -275,6 +285,13 @@ public class ClientSideController {
     @RequestMapping("/login-error")
     public ModelAndView loginError() {
         return new ModelAndView("clientside/login").addObject("erro", true);
+    }
+    
+    @RequestMapping("/meusDados")
+    public ModelAndView meusDados() {
+        Cliente cliente = clienteService.obter(idCliente);
+        
+        return new ModelAndView("clientside/perfil/perfil_meusDados").addObject("cliente", cliente);
     }
 
 }
