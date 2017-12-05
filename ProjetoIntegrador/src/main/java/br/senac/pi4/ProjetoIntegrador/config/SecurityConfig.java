@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Bean
     public PasswordEncoder bCryptPasswordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -26,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("userDetails")
     UserDetailsService userDetails;
-    
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetails).passwordEncoder(bCryptPasswordEncoder());
@@ -35,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
+        http.csrf().disable().httpBasic().and()
                 .authorizeRequests()
                 .antMatchers(
                         "/js/**",
@@ -44,21 +43,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/images/**",
                         "/IncornButtons/**",
+                        "/**",
                         "/sessao/**",
                         "/cadastroC/**",
                         "/descricao/**",
                         "/novoCliente/**",
                         "/login-error/**",
-                        "/login"
-                ).permitAll()
-                .antMatchers(
-                        "/admin/**", "/**").hasRole("JOSELITO")
+                        "/login").permitAll()
+                .antMatchers("/admin/**").hasAuthority("JOSELITO")
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("senha")
-                .failureUrl("/login-error")
+                .failureUrl("/login-error").permitAll()
                 .defaultSuccessUrl("/").permitAll()
                 .and()
                 .logout()

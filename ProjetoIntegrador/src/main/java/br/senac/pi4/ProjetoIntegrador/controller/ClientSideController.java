@@ -11,11 +11,9 @@ import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,7 +59,7 @@ public class ClientSideController {
         if (produtos.isEmpty()) {
             vazio = true;
         }
-        
+
         for (Produto p : produtos) {
             if (p.getQuantEstoqueProduto() == 0) {
                 p.setEstoque(false);
@@ -80,8 +78,7 @@ public class ClientSideController {
         return new ModelAndView("clientside/home")
                 .addObject("produtos", produtos)
                 .addObject("imagens", imagens)
-                .addObject("vazio", vazio)
-                .addObject("cliente", sessaoCliente());
+                .addObject("vazio", vazio);
     }
 
     @RequestMapping(value = "/pesquisa")

@@ -119,7 +119,8 @@
                                 <div class="row text-center">
                                     <div class="col-xs-0 col-sm-8 col-md-8 col-lg-8"></div>
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                        <a th:href="@{/sessao/checkoutEndereco}"><button type="button" class="btn btn-success btn-block btnComprar">Comprar</button></a>               
+                                        <a sec:authorize="hasRole('ROLE_JOSELITO')" th:href="@{/sessao/checkoutEndereco}"><button type="button" class="btn btn-success btn-block btnComprar">Comprar</button></a>               
+                                        <a sec:authorize="!isAuthenticated()" th:href="@{/login}"><button type="button" class="btn btn-success btn-block btnComprar">Comprar</button></a>               
                                     </div>
                                 </div>
                             </div>
