@@ -223,8 +223,6 @@ public class SessionController implements Serializable {
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
-        String protocolo = geraProtocolo();
-        pedido.setProtocoloPedido(protocolo); 
         removerEstoque(pedido);
        
         servicePedido.incluir(pedido);
@@ -234,29 +232,6 @@ public class SessionController implements Serializable {
         qntCarrinho = 0;
 
         return new ModelAndView("redirect:/admin/perfil");
-    }
-
-    public String geraProtocolo() {
-        Random gerador = new Random();
-        String protocolo = "";
-        boolean valido = false;
-        List<Pedido> pe = servicePedido.listar(0, 100);
-        while (valido == false) {
-            protocolo = "";
-            for (int i = 0; i < 5; i++) {
-                String temp = "" + gerador.nextInt(10);
-                protocolo = protocolo + temp;
-            }
-            for (Pedido p : pe) {
-                if (p.getProtocoloPedido().equals(protocolo)) {
-                    valido = false;
-                    break;
-                } else {
-                    valido = true;
-                }
-            }
-        }
-        return protocolo;
     }
 
     public void removerEstoque(Pedido pedido) {
