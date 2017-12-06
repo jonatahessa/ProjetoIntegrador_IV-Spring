@@ -54,10 +54,10 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<Produto> pesquisar(String pesquisa) {
-        Query query = entityManager.createNativeQuery(
-                "SELECT * FROM tb_produto "
-              + "WHERE tl_produto LIKE :pesquisa")
-                .setParameter("pesquisa", "%"+pesquisa+"%  ");
+        Query query = entityManager.createQuery(
+                "SELECT p FROM Produto p "
+              + "WHERE p.tituloProduto LIKE :pesquisa")
+                .setParameter("pesquisa", "%"+pesquisa+"%;");
         return query.getResultList();
     }
 
