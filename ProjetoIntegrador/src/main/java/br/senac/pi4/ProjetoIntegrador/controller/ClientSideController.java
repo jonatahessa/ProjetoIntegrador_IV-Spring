@@ -9,8 +9,11 @@ import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
+import br.senac.pi4.ProjetoIntegrador.security.MyUserDetailsService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -25,6 +28,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,7 +48,7 @@ public class ClientSideController {
 
     @Autowired
     private ClienteService clienteService;
-    
+
     private Long idCliente;
 
     public Long getIdCliente() {
@@ -164,7 +169,7 @@ public class ClientSideController {
         return null;
     }
 
-    @RequestMapping(value = "/novoCliente", method = RequestMethod.POST)
+    @RequestMapping(value = "/salvarCliente", method = RequestMethod.POST)
     public ModelAndView cadastrarCliente(
             @ModelAttribute(value = "cliente") @Valid Cliente cliente, BindingResult clienteR,
             RedirectAttributes attributes) {
@@ -189,9 +194,9 @@ public class ClientSideController {
             return new ModelAndView("clientside/clienteCadastroTelefone")
                     .addObject("telefone", new Telefone());
         } else {
-            ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
             attributes.addFlashAttribute("mensagem", "Cliente alterado com sucesso");
-            return mv;
+            return new ModelAndView("redirect:/admin/perfil");
+
         }
 
     }
@@ -286,12 +291,26 @@ public class ClientSideController {
     public ModelAndView loginError() {
         return new ModelAndView("clientside/login").addObject("erro", true);
     }
-    
+
     @RequestMapping("/meusDados")
     public ModelAndView meusDados() {
-        Cliente cliente = clienteService.obter(idCliente);
-        
-        return new ModelAndView("clientside/perfil/perfil_meusDados").addObject("cliente", cliente);
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        List<Endereco> enderecos = cliente.getEnderecos();
+        List<Telefone> telefones = cliente.getTelefones();
+
+        return new ModelAndView("clientside/clienteDados").addObject("cliente", cliente).addObject("enderecos", enderecos).addObject("telefones", telefones);
+    }
+
+    @RequestMapping("/editDados")
+    public ModelAndView abrirDados() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+
+        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+
+        return new ModelAndView("clientside/clienteCadastro").addObject("cliente", cliente);
     }
 
 }

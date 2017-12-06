@@ -52,9 +52,10 @@ public class ClienteServiceImpl implements ClienteService {
         entityManager.persist(cliente);
     }
     
+    @Transactional
     @Override
     public void alterar(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entityManager.merge(cliente);
     }
     
     @Override

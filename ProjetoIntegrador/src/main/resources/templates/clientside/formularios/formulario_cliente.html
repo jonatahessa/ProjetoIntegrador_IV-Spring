@@ -11,26 +11,26 @@
 
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 
-                    <form method="post" th:action="@{/novoCliente}" th:object="${cliente}" novalidate>
+                    <form method="post" th:action="@{/salvarCliente}" th:object="${cliente}" novalidate>
 
                       <input type="hidden" th:field="*{codigoCliente}">
 
                         <label for="basic-url">* Nome Completo:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
-                            <input  id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2" required >
+                            <input  id="nome" data-th-field="*{nomeCompletoCliente}" type="text" class="form-control" aria-describedby="sizing-addon2" required >
                         </div>
 
                         <label for="basic-url">* CPF:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('cpfCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input  id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input  id="cpf" data-th-field="*{cpfCliente}" type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* Data de Nascimento:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input id="dataN" data-th-field="*{nascCliente}" type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
                         <div class="form-group" data-th-classappend="${#fields.hasErrors('sexoCliente')} ? has-error">
@@ -52,16 +52,18 @@
                         <label for="basic-url">* Email:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('emailCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
-                            <input autocomplete="off" data-th-field="*{emailCliente}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                            <input autocomplete="off" data-th-field="*{emailCliente}" type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
-                        <label for="basic-url">* Senha:</label>
-                        <div class="input-group input_" data-th-classappend="${#fields.hasErrors('senhaCliente')} ? has-error">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                            <input autocomplete="off" data-th-field="*{senhaCliente}"  type="password" class="form-control"  aria-describedby="sizing-addon2">
+                        <div th:if="${cliente.codigoCliente} == null">
+                          <label for="basic-url">* Senha:</label>
+                          <div class="input-group input_" data-th-classappend="${#fields.hasErrors('senhaCliente')} ? has-error">
+                              <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
+                              <input autocomplete="off" data-th-field="*{senhaCliente}"  type="password" class="form-control" aria-describedby="sizing-addon2">
+                          </div>
                         </div>
 
-                        <button type="submit" class="button button-raised button-primary button-pill botaoC">Avançar</button>
+                        <button type="submit" class="button button-raised button-primary button-pill botaoC">Salvar</button>
                         <br />
                         <p class="textCampo text-right">* Campos obrigatórios</p>
 

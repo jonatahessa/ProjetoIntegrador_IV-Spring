@@ -5,17 +5,51 @@
     </head>
     <body>
         <section class="container-fluid" th:fragment="meus_dados">
+
           <h1 class="text-center">Meus Dados</h1>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
-              <h2 class="text-center">Dados Pessoais</h2>
+              <h2>Dados Pessoais</h2>
               <div class="">
-                <p th:text="{'Nome:' + cliente.nomeCompletoCliente}"></p>
+                <p th:text="${'Nome: ' + cliente.nomeCompletoCliente}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Email: ' + cliente.emailCliente}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'CPF: ' + cliente.cpfCliente}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Nascimento: ' + #calendars.format(cliente.nascCliente, 'dd/MM/yyyy')}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Sexo: ' + cliente.sexoCliente}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Apelido: ' + cliente.apelidoCliente}"></p>
+              </div>
+
+              <div class="">
+                <a class="btn btn-primary" th:href="@{/editDados}">Editar</a>
               </div>
             </div>
 
-          </div>
+            <h2>Enderecos</h2>
 
+            <div th:each="e : ${enderecos}">
+
+              <div class="">
+                <p th:text="${'Logradouro: ' + endereco.logradouro}"></p>  
+              </div>
+
+            </div>
+
+          </div>
         </section>
     </body>
 </html>
