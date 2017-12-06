@@ -78,7 +78,7 @@ public class Pedido implements Serializable {
     @Column(name = "FP_PEDIDO", length = 100, nullable = false)
     private String formaPagamentoPedido;
     
-    @Column(name = "PR_PEDIDO", length = 5, nullable = false)
+    @Column(name = "PR_PEDIDO", length = 5, nullable = true)
     private String protocoloPedido;
 
     @Transient

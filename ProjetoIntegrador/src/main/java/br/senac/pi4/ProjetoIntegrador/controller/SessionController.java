@@ -223,7 +223,7 @@ public class SessionController implements Serializable {
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
-        removerEstoque(pedido);
+//        removerEstoque(pedido);
        
         servicePedido.incluir(pedido);
         carrinho = null;
@@ -237,7 +237,7 @@ public class SessionController implements Serializable {
     public void removerEstoque(Pedido pedido) {
         Set<Produto> produtos = pedido.getProdutos();
         for (Produto p : produtos) {
-            int qnt = p.getQuantEstoqueProduto() - 1;
+            int qnt = p.getQuantEstoqueProduto() - p.getQntCarrinho();
             p.setQuantEstoqueProduto(qnt);
             serviceProduto.alterar(p);
         }
