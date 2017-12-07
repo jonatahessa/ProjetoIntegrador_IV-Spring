@@ -57,7 +57,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         Query query = entityManager.createQuery(
                 "SELECT p FROM Produto p "
               + "WHERE p.tituloProduto LIKE :pesquisa")
-                .setParameter("pesquisa", "%"+pesquisa+"%;");
+                .setParameter("pesquisa", "%"+pesquisa+"%");
         return query.getResultList();
     }
 

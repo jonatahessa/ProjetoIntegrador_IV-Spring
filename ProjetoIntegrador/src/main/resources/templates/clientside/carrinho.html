@@ -32,10 +32,11 @@
                 </div>
             </div>
 
-            <!-- CARRINHO -->
-            <div class="alert alert-success" th:if="${msgEstoque != null}">
-                <h2 th:text="${msgEstoque}"></h2>
+
+            <div class="alert alert-danger" th:if="${msgEstoque != null}">
+                <h4 th:text="${msgEstoque}"></h4>
             </div>
+            <!-- CARRINHO -->
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 carrinho">
                     <div class="panel panel-info">
