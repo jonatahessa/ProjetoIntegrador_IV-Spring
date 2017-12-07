@@ -19,7 +19,7 @@ and open the template in the editor.
 
                     <form method="post" th:action="@{/novoCliente/endereco}" th:object="${endereco}" novalidate>
 
-                      <input type="hidden" th:field="*{codigoEndereco}"/>
+                        <input type="hidden" th:field="*{codigoEndereco}"/>
 
                         <div class="form-group">
                             <label for="cep">CEP</label>
@@ -113,5 +113,6 @@ and open the template in the editor.
                 </div>
             </div>
         </section>
+        <script data-th-src="@{/js/mascara.js}" src="../../static/js/login.js" type="text/javascript"></script>
     </body>
 </html>

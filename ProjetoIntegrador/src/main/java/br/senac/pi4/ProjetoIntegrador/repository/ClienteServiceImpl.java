@@ -32,18 +32,13 @@ public class ClienteServiceImpl implements ClienteService {
     }
     
     @Override
-    public Cliente obterClienteByCPF(String cpf) {
-        
-        Query query = entityManager.createQuery("FROM Cliente c WHERE cpf_cliente = :cpf").setParameter("cpf", cpf);
-        
-        Cliente cliente = (Cliente) query.getSingleResult();
-        
+    public Cliente obterClienteByCPF(String cpf) { 
+        Query query = entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cpfCliente = :cpf").setParameter("cpf", cpf);     
+        Cliente cliente = (Cliente) query.getSingleResult();        
         if (cliente == null) {
             return null;
-        }
-        
-        return cliente;
-        
+        }      
+        return cliente;        
     }
     
     @Transactional

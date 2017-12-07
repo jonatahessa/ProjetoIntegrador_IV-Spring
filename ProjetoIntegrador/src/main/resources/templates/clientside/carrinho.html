@@ -32,6 +32,10 @@
                 </div>
             </div>
 
+
+            <div class="alert alert-danger" th:if="${msgEstoque != null}">
+                <h4 th:text="${msgEstoque}"></h4>
+            </div>
             <!-- CARRINHO -->
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 carrinho">
@@ -54,7 +58,7 @@
                         </div>
                         <div class="panel-body">
                             <div th:if="${vazio} == true">
-                                <div class="row">
+                                <div class="row linhap">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                                         <h2 class="vazio text-center">Seu carrinho está vazio!</h2>
                                     </div>
@@ -62,7 +66,7 @@
                             </div>
                             <div th:if="${vazio} == false">
                                 <div th:each="produto :  ${@sessionController.carrinho}">
-                                    <div class="row">
+                                    <div class="row linhap">
                                         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 colNomeProduto">
                                             <h4 data-th-text="${produto.tituloProduto}"><strong></strong></h4>
                                         </div>

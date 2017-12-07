@@ -93,11 +93,15 @@
                 </div>
             </div>
 
-            <!-- CATEGORIAS -->
+            <!-- CATEGORIAS 
             <div class="row">
 
                 <div class="col-sm-1 col-md-1 col-lg-1 categoria">
 
+                </div>
+            -->
+                <div class="alert alert-danger" th:if="${msgEstoque != null}">
+                    <h4 th:text="${msgEstoque}"></h4>
                 </div>
                 <div th:if="${vazio} == false">
                     <div data-th-each="produto : ${produtos}" class="col-sm-5 col-md-5 col-lg-5">
@@ -145,17 +149,6 @@
                 <div th:if="${vazio} == true">
                     <h1>Produto não encontrado</h1>
                 </div>
-            </div>
-
-            <!-- RECOMENDADOS -->
-            <div class="row">
-                <div class=" col-xs-12 col-sm-12  col-md-12 col-lg-12 ">
-                    <div class="recomendacao_texto text-center">Recomendações <i class="icone_recomendacao glyphicon glyphicon-heart-empty"></i></div>
-                </div>
-            </div>
-            <div class="row ">
-
-
             </div>
 
             <!-- RODAPE -->
