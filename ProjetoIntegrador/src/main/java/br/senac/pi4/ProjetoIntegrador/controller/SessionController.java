@@ -238,7 +238,7 @@ public class SessionController implements Serializable {
         pedido.setValorPedido(total);
         String protocolo = gerarProtocolo();
         pedido.setProtocoloPedido(protocolo);
-//        removerEstoque(pedido);
+        removerEstoque(pedido);
 
         servicePedido.incluir(pedido);
         carrinho = null;
