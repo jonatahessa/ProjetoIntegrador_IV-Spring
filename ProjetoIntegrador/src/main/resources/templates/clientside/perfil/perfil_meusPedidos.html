@@ -26,7 +26,7 @@
                                     <div class="description">
                                         <h4>Protocolo: <span data-th-text="${pedido.protocoloPedido}"></span></h4>
                                         <h4 data-th-text="${pedido.statusPedido}"></h4>
-                                        <h4>Valor: <span data-th-text="${pedido.valorPedido}"></span></h4>
+                                        <h4>Valor: <span data-th-text="${#numbers.formatCurrency(pedido.valorPedido)}"></span></h4>
                                         <a role="button" data-toggle="collapse" th:href="'#' + ${pedido.codigoPedido}" aria-expanded="false" aria-controls="collapseExample" class="button button-3d button-action button-pill a_card">VEJA MAIS</a>
                                     </div>
                                 </div>

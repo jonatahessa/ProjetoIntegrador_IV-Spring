@@ -40,6 +40,14 @@ body, html{
     top: 10%;
 }
 
+.indisponivel {
+    color: red;
+}
+
+.ind {
+    text-align: center;
+}
+
 #content1 {
     padding-top: 5%;
     text-align: center;

@@ -138,8 +138,8 @@
                                             <button type="submit" class="no-wlauto button button-primary button-circle btnAdicionarCarrinho"><i class="fa fa-shopping-cart"></i></button>
                                         </form>
                                     </div>
-                                    <div th:if="${produto.estoque} == false">
-                                        <h1>Produto Indisponível</h1>
+                                    <div class="ind" th:if="${produto.estoque} == false">
+                                        <h1 class="indisponivel">Produto Indisponível</h1>
                                     </div>
                                 </div>
                             </div>

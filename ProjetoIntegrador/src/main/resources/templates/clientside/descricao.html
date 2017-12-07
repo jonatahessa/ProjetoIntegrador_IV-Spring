@@ -93,7 +93,7 @@
                         </div>
                         <div class="comprar">
                             <div th:if="${produto.estoque} == false">
-                                <h1>Produto Indisponível</h1>
+                                <h1 class="indisponivel">Produto Indisponível</h1>
                             </div>
                             <div th:if="${produto.estoque} == true">
                                 <form action="#" th:action="@{/sessao/comprar/{id}(id=${produto.codigoProduto})}" class="comprar" method="post">

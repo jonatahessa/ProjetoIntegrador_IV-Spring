@@ -86,6 +86,10 @@ a:link{
     display: none;
 }
 
+.indisponivel {
+    color: red;
+}
+
 .quantity-remove, .quantity-add {
     cursor: pointer;
 }
