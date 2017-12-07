@@ -236,6 +236,8 @@ public class SessionController implements Serializable {
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
         pedido.setValorPedido(total);
+        String protocolo = gerarProtocolo();
+        pedido.setProtocoloPedido(protocolo);
 //        removerEstoque(pedido);
 
         servicePedido.incluir(pedido);
@@ -244,8 +246,8 @@ public class SessionController implements Serializable {
         idEndereco = null;
         qntCarrinho = 0;
 
-//        redirectAttributes.addFlashAttribute("sucessoPedido",
-//                    "Pedido de Número: " + a + "Realizado com sucesso!");
+        redirectAttributes.addFlashAttribute("sucessoPedido",
+                "Pedido de Número: " + protocolo + " Realizado com sucesso!");
         return new ModelAndView("redirect:/admin/perfil");
     }
 
@@ -255,6 +257,33 @@ public class SessionController implements Serializable {
             p.setQuantEstoqueProduto(qnt);
             serviceProduto.alterar(p);
         }
+    }
+
+    public String gerarProtocolo() {
+        Random gerador = new Random();
+        List<Pedido> pedidos = servicePedido.listar(0, 100);
+        String protocolo = "";
+        boolean valido = false;
+
+        while (valido == false) {
+            for (int i = 0; i < 5; i++) {
+                String temp = "" + gerador.nextInt(9);
+                protocolo = protocolo + temp;
+            }
+
+            if (pedidos.isEmpty()) {
+                valido = true;
+            } else {
+                for (Pedido p : pedidos) {
+                    if (protocolo.equalsIgnoreCase(p.getProtocoloPedido())) {
+                        valido = false;
+                    } else {
+                        valido = true;
+                    }
+                }
+            }
+        }
+        return protocolo;
     }
 
 }
