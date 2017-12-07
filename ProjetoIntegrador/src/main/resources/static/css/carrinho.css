@@ -23,6 +23,10 @@ body, html{
     border-color: hsl(0, 0%, 91%);
 }
 
+.linhap {
+    padding-top: 3%;
+}
+
 .frete {
     font-size: 100%;
     font-weight: bold;
@@ -87,7 +91,7 @@ a:hover {
     .btnCalcularCep {
         width: 60%;
     }
-    
+
     .colTotal {
         text-align: center;
         padding-bottom: 5%;
@@ -121,9 +125,13 @@ a:hover {
         text-align: center;
         padding-bottom: 5%;
     }
-    
+
+    .linhap {
+        padding-top: 8%;
+    }
+
     .colModeloProduto {
-    text-align: center;
-}
+        text-align: center;
+    }
 }
 

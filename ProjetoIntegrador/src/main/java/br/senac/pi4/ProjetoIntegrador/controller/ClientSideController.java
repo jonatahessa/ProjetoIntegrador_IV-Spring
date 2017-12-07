@@ -115,28 +115,27 @@ public class ClientSideController {
 
         if (produtos.isEmpty()) {
             vazio = true;
-        }
+        } else {
 
-        for (Produto p : produtos) {
-            if (p.getQuantEstoqueProduto() == 0) {
-                p.setEstoque(false);
-            } else {
-                p.setEstoque(true);
-            }
-            List<Imagem> img = p.getImagens();
-            for (Imagem i : img) {
-                if (i.getSequenciaImagem() == 1) {
-                    i.setIdProduto(p.getCodigoProduto());
-                    imagens.add(i);
+            for (Produto p : produtos) {
+                if (p.getQuantEstoqueProduto() == 0) {
+                    p.setEstoque(false);
+                } else {
+                    p.setEstoque(true);
+                }
+                List<Imagem> img = p.getImagens();
+                for (Imagem i : img) {
+                    if (i.getSequenciaImagem() == 1) {
+                        i.setIdProduto(p.getCodigoProduto());
+                        imagens.add(i);
+                    }
                 }
             }
         }
-
         return new ModelAndView("clientside/home")
                 .addObject("produtos", produtos)
                 .addObject("imagens", imagens)
-                .addObject("vazio", vazio)
-                .addObject("cliente", sessaoCliente());
+                .addObject("vazio", vazio);
     }
 
     @RequestMapping(value = "/descricao/{id}")
