@@ -101,14 +101,30 @@
                                     </div>
                                 </div>
                                 <hr>     
-                                <div class="row linhaTotal">
-                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
-                                        <p class="pFrete">Frete fixo para todo o Brasil </br>Valor: R$ 12,00</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                        <label>CEP:</label>
                                     </div>
-                                    <div class="col-xs-4 col-sm-2 col-md-3 col-lg-7 colTotal">
-                                        <p class="total"> Total</p>
+                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                                        <input type="text" id="cepEscolhido">
                                     </div>
-                                    <div class="col-xs-8 col-sm-3 col-md-3 col-lg-3 colValor">
+                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                        <label>Tipo de serviço</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                                        <div class="form-group">
+                                            <select class="form-control" id="sel1">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                        <label>Total Frete</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
                                         <h1 class="h1Total" data-th-text="${#numbers.formatCurrency(total)}"><strong> </strong></h1>
                                     </div>
                                 </div>
