@@ -3,8 +3,10 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
+import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -44,10 +46,12 @@ public class AdminSideController {
         List<Pedido> pedidos = new ArrayList<>();
         Cliente c = clienteService.obter(Long.parseLong("5"));
         pedidos = c.getPedidos();
+        List<Produto> produtos = new ArrayList<>();
         boolean vazio = false;
         if (pedidos.size() == 0) {
             vazio = true;
         }
+                
         return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos).addObject("vazio", vazio);
     }
 

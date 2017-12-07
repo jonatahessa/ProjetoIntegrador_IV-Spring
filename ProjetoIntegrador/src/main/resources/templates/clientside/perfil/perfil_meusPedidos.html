@@ -11,6 +11,43 @@
                     <div class="panel-body painel-descricao">
                         Menu Pedidos
                     </div>
+
+
+                    <div class="panel-footer painel-descricao2">
+                        <div class="alert alert-success" th:if="${sucessoPedido != null}">
+                            <h4 th:text="${sucessoPedido}"></h4>
+                        </div>
+                        <div th:if="${vazio} == true">
+                            <h4>Você não tem nenhum pedido</h4>
+                        </div>
+                        <div th:if="${vazio} == false">
+                            <div data-th-each="pedido : ${pedidos}">         
+                                <div class="blog-card">
+                                    <div class="description">
+                                        <h4>Protocolo: <span data-th-text="${pedido.protocoloPedido}"></span></h4>
+                                        <h4 data-th-text="${pedido.statusPedido}"></h4>
+                                        <h4>Valor: <span data-th-text="${pedido.valorPedido}"></span></h4>
+                                        <a role="button" data-toggle="collapse" th:href="'#' + ${pedido.codigoPedido}" aria-expanded="false" aria-controls="collapseExample" class="button button-3d button-action button-pill a_card">VEJA MAIS</a>
+                                    </div>
+                                </div>
+                                <div class="collapse" th:id="${pedido.codigoPedido}">
+                                    <div class="well">
+                                        <ul class="list-group">
+                                            <li class="list-group-item active" >Data da Compra: <span data-th-text="${pedido.dataPedido}"></span></li>
+                                            <li class="list-group-item list-group-item-info">Forma de Pagamento: <span data-th-text="${pedido.formaPagamentoPedido}"></span></li>
+                                            <li class="list-group-item list-group-item-info">Ultima Atualização Sobre o Pedido: <span data-th-text="${pedido.ultimaAtualizacao}"></span></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--
                     <div class="panel-footer painel-descricao2">
                         <div class="alert alert-success" th:if="${sucessoPedido != null}">
                             <h4 th:text="${sucessoPedido}"></h4>
@@ -33,6 +70,8 @@
                             </div>
                         </div>
                     </div>
+                    -->
+
                 </div>
             </div>
         </div>

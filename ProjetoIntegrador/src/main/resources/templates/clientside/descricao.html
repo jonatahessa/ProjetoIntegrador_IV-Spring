@@ -26,10 +26,12 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pesquisa">
                     <div class="input-group ">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
+                        <form class="input-group formPesquisa" action="#" th:action="@{/pesquisa}" method="post">
+                            <input type="text" class="form-control" name="pesquisa" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">GO</button>
+                            </span>
+                        </form>
                     </div>
                 </div>
             </div>
