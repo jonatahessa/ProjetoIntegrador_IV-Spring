@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.apache.catalina.Globals;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,8 +56,12 @@ public class SessionController implements Serializable {
     @Autowired
     PedidoServiceImpl servicePedido;
 
+    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+    HttpSession sessao = request.getSession();
+
     private Set<Produto> carrinho = new HashSet<Produto>();
-    private Long idCliente;
+    private Long idCliente = (Long) sessao.getAttribute("idDoCliente");
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
     private Long idEndereco = null;
@@ -190,7 +198,7 @@ public class SessionController implements Serializable {
 
     @RequestMapping(value = "/checkoutEndereco")
     public ModelAndView checkoutEndereco() {
-        Cliente cliente = serviceCliente.obter(Long.parseLong("5"));
+        Cliente cliente = serviceCliente.obter(idCliente);
         List<Endereco> enderecos = cliente.getEnderecos();
         return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos).addObject("cliente", cliente);
     }
@@ -222,7 +230,7 @@ public class SessionController implements Serializable {
     @RequestMapping(value = "/salvarPedido")
     public ModelAndView salvarPedido() {
         Pedido pedido = new Pedido();
-        pedido.setClientePedido(serviceCliente.obter(Long.parseLong("5")));
+        pedido.setClientePedido(serviceCliente.obter(idCliente));
         pedido.setDataPedido(new Date());
         pedido.setFormaPagamentoPedido("Cartão em " + cartao.getParcelas() + " Vezes");
         pedido.setProdutos(carrinho);
