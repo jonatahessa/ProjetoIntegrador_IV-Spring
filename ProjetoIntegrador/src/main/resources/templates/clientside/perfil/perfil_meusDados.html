@@ -35,17 +35,43 @@
               </div>
 
               <div class="">
-                <a class="btn btn-primary" th:href="@{/editDados}">Editar</a>
+                <a class="btn btn-primary" th:href="@{/editDados}">Editar Dados</a>
               </div>
             </div>
 
             <h2>Enderecos</h2>
 
-            <div th:each="e : ${enderecos}">
+            <div th:each="e:${enderecos}">
 
               <div class="">
-                <p th:text="${'Logradouro: ' + endereco.logradouro}"></p>  
+                <p th:text="${'Cep: ' + e.cepEndereco}"></p>
               </div>
+
+              <div class="">
+                <p th:text="${'Logradouro: ' + e.logradouroEndereco}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Número: ' + e.numeroEndereco}"></p>
+              </div>
+
+              <div th:if="${e.complementoEndereco =! null}" class="">
+                <p th:text="${'Complemento: ' + e.complementoEndereco}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Bairro: ' + e.bairroEndereco}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Cidade: ' + e.cidadeEndereco}"></p>
+              </div>
+
+              <div class="">
+                <p th:text="${'Estado: ' + e.estadoEndereco}"></p>
+              </div>
+
+              <a class="btn btn-primary" th:href="@{/editDadosEndereco}">Editar Endereço</a>
 
             </div>
 

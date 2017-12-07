@@ -17,7 +17,7 @@ public interface EnderecoService extends Serializable {
     
     public Endereco obter(Long codigoEndereco);
 
-    public void incluir(Endereco produto);
+    public Endereco incluir(Endereco produto);
     
     public void alterar(Endereco produto);
     

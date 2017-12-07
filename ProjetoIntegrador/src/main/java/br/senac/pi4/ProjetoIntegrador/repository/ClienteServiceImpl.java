@@ -48,8 +48,10 @@ public class ClienteServiceImpl implements ClienteService {
     
     @Transactional
     @Override
-    public void incluir(Cliente cliente) {
+    public Cliente incluir(Cliente cliente) {
         entityManager.persist(cliente);
+        entityManager.flush();
+        return cliente;
     }
     
     @Transactional
@@ -60,6 +62,11 @@ public class ClienteServiceImpl implements ClienteService {
     
     @Override
     public void remover(Long codigoCliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Cliente ultimoAdicionado() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

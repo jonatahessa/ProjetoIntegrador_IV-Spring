@@ -31,7 +31,7 @@ public class Endereco implements Serializable {
     @Column(name = "NU_ENDERECO", length = 100, nullable = false)
     private String numeroEndereco;
     
-    @Size(min = 1, max = 100, message = "{endereco.complementoEndereco.erro}")
+    @Size(max = 100, message = "{endereco.complementoEndereco.erro}")
     @Column(name = "CP_ENDERECO", length = 100, nullable = true)
     private String complementoEndereco;
     

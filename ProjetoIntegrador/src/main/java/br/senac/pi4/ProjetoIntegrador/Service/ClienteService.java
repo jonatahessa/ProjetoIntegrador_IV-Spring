@@ -13,9 +13,11 @@ public interface ClienteService extends Serializable {
     
     public Cliente obterClienteByCPF(String cpf);
     
-    public void incluir(Cliente cliente);
+    public Cliente incluir(Cliente cliente);
     
     public void alterar(Cliente cliente);
     
     public void remover(Long codigoCliente);
+    
+    public Cliente ultimoAdicionado();
 }

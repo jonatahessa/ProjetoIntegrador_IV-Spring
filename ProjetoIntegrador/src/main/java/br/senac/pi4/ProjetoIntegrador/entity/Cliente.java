@@ -47,10 +47,10 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
     
-    @OneToMany(mappedBy = "clienteEnderecos", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "clienteEnderecos", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private List<Endereco> enderecos;
     
-    @OneToMany(mappedBy = "clienteTelefone", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "clienteTelefone", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private List<Telefone> telefones;
 
     @Size(min = 1, message = "{cliente.nomeCompletoCliente.erro}")

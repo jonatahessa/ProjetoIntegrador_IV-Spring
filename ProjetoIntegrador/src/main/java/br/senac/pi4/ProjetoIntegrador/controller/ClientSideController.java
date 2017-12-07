@@ -1,6 +1,8 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
+import br.senac.pi4.ProjetoIntegrador.Service.EnderecoService;
+import br.senac.pi4.ProjetoIntegrador.Service.TelefoneService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
@@ -9,7 +11,6 @@ import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
-import br.senac.pi4.ProjetoIntegrador.security.MyUserDetailsService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,12 @@ public class ClientSideController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private EnderecoService enderecoService;
+
+    @Autowired
+    private TelefoneService telefoneService;
+
     private Long idCliente;
 
     public Long getIdCliente() {
@@ -63,6 +70,10 @@ public class ClientSideController {
      * Armazenamento de cliente para cadastro *
      */
     private Cliente clienteCadastro;
+
+    private Telefone telefoneCadastro;
+
+    private Endereco enderecoCadastro;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
@@ -185,7 +196,12 @@ public class ClientSideController {
 
         }
         if (inclusao) {
-            clienteCadastro = cliente;
+            cliente.setRoleCliente("ROLE_JOSELITO");
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(cliente.getSenhaCliente());
+            cliente.setSenhaCliente(hashedPassword);
+            cliente.setEnabled(true);
+            clienteCadastro = clienteService.incluir(cliente);
         } else {
             clienteService.alterar(cliente);
         }
@@ -217,9 +233,8 @@ public class ClientSideController {
 
         }
         if (inclusao) {
-            List<Endereco> enderecos = new ArrayList<>();
-            enderecos.add(endereco);
-            clienteCadastro.setEnderecos(enderecos);
+            endereco.setClienteEnderecos(clienteCadastro);
+            enderecoCadastro = enderecoService.incluir(endereco);
         } else {
             //clienteService.alterar(cliente);
         }
@@ -249,9 +264,8 @@ public class ClientSideController {
 
         }
         if (inclusao) {
-            List<Telefone> telefones = new ArrayList<>();
-            telefones.add(telefone);
-            clienteCadastro.setTelefones(telefones);
+            telefone.setClienteTelefone(clienteCadastro);
+            telefoneCadastro = telefoneService.incluir(telefone);
         } else {
             //clienteService.alterar(cliente);
         }
@@ -269,13 +283,7 @@ public class ClientSideController {
     @RequestMapping(value = "/finalizarCadastro")
     public ModelAndView finalizarCadastro(RedirectAttributes redirectAttributes) {
 
-        clienteCadastro.setRoleCliente("ROLE_JOSELITO");
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(clienteCadastro.getSenhaCliente());
-        clienteCadastro.setSenhaCliente(hashedPassword);
-        clienteCadastro.setEnabled(true);
-
-        clienteService.incluir(clienteCadastro);
+        clienteService.alterar(clienteCadastro);
 
         redirectAttributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso");
         return new ModelAndView("redirect:/");
@@ -300,7 +308,10 @@ public class ClientSideController {
         List<Endereco> enderecos = cliente.getEnderecos();
         List<Telefone> telefones = cliente.getTelefones();
 
-        return new ModelAndView("clientside/clienteDados").addObject("cliente", cliente).addObject("enderecos", enderecos).addObject("telefones", telefones);
+        return new ModelAndView("clientside/clienteDados")
+                .addObject("cliente", cliente)
+                .addObject("enderecos", enderecos)
+                .addObject("telefones", telefones);
     }
 
     @RequestMapping("/editDados")

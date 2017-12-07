@@ -1,12 +1,19 @@
 package br.senac.pi4.ProjetoIntegrador.repository;
+
 import br.senac.pi4.ProjetoIntegrador.Service.EnderecoService;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 public class EnderecoServiceImpl implements EnderecoService {
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     private EnderecoRepository repo;
@@ -18,13 +25,17 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
     
     @Override
-    public void incluir(Endereco produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public Endereco incluir(Endereco endereco) {
+        entityManager.persist(endereco);
+        entityManager.flush();
+        return endereco;
     }
 
     @Override
-    public void alterar(Endereco produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional
+    public void alterar(Endereco endereco) {
+        entityManager.merge(endereco);
     }
 
     @Override
