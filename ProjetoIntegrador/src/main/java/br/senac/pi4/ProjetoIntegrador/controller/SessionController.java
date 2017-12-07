@@ -56,12 +56,7 @@ public class SessionController implements Serializable {
     @Autowired
     PedidoServiceImpl servicePedido;
 
-    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-
-    HttpSession sessao = request.getSession();
-
     private Set<Produto> carrinho = new HashSet<Produto>();
-    private Long idCliente = (Long) sessao.getAttribute("idDoCliente");
     private Cartao cartao = new Cartao();
     private int qntCarrinho = 1;
     private Long idEndereco = null;
@@ -198,7 +193,9 @@ public class SessionController implements Serializable {
 
     @RequestMapping(value = "/checkoutEndereco")
     public ModelAndView checkoutEndereco() {
-        Cliente cliente = serviceCliente.obter(idCliente);
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+        Cliente cliente = serviceCliente.obter((Long) sessao.getAttribute("idDoCliente"));
         List<Endereco> enderecos = cliente.getEnderecos();
         return new ModelAndView("clientside/checkoutEndereco").addObject("enderecos", enderecos).addObject("cliente", cliente);
     }
@@ -228,9 +225,11 @@ public class SessionController implements Serializable {
     }
 
     @RequestMapping(value = "/salvarPedido")
-    public ModelAndView salvarPedido() {
+    public ModelAndView salvarPedido(RedirectAttributes redirectAttributes) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
         Pedido pedido = new Pedido();
-        pedido.setClientePedido(serviceCliente.obter(idCliente));
+        pedido.setClientePedido(serviceCliente.obter((Long) sessao.getAttribute("idDoCliente")));
         pedido.setDataPedido(new Date());
         pedido.setFormaPagamentoPedido("Cartão em " + cartao.getParcelas() + " Vezes");
         pedido.setProdutos(carrinho);
@@ -245,6 +244,8 @@ public class SessionController implements Serializable {
         idEndereco = null;
         qntCarrinho = 0;
 
+//        redirectAttributes.addFlashAttribute("sucessoPedido",
+//                    "Pedido de Número: " + a + "Realizado com sucesso!");
         return new ModelAndView("redirect:/admin/perfil");
     }
 
