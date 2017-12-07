@@ -7,6 +7,8 @@ import br.senac.pi4.ProjetoIntegrador.entity.Produto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -14,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -44,15 +48,21 @@ public class AdminSideController {
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public ModelAndView clientePedidos() {
         List<Pedido> pedidos = new ArrayList<>();
-        Cliente c = clienteService.obter(Long.parseLong("5"));
-        pedidos = c.getPedidos();
-        List<Produto> produtos = new ArrayList<>();
-        boolean vazio = false;
-        if (pedidos.size() == 0) {
-            vazio = true;
+        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+        Cliente cliente = new Cliente();
+        cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        if (cliente.getPedidos() != null) {
+            pedidos = cliente.getPedidos();
+            List<Produto> produtos = new ArrayList<>();
+            boolean vazio = false;
+            if (pedidos.size() == 0) {
+                vazio = true;
+                return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos).addObject("vazio", vazio);
+            }
         }
-                
-        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos).addObject("vazio", vazio);
+
+        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos);
     }
 
     @RequestMapping(value = "/checkoutPagamento", method = RequestMethod.GET)

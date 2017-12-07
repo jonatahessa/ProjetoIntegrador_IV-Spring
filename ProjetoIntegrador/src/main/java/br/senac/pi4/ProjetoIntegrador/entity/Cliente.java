@@ -35,7 +35,7 @@ public class Cliente implements Serializable {
     @Column(name = "PW_CLIENTE", length = 200, nullable = false)
     private String senhaCliente;
 
-    @CPF(message = "{cliente.cpfCliente.erro}")
+    @Size(min = 14, max = 14, message = "{cliente.cpfCliente.erro}")
     @Column(name = "CPF_CLIENTE", length = 14, nullable = false, unique = true)
     private String cpfCliente;
 
@@ -43,13 +43,13 @@ public class Cliente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date nascCliente;
 
-    @OrderBy(value = "dataPedido" )
+    @OrderBy(value = "dataPedido")
     @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Pedido> pedidos;
-    
+
     @OneToMany(mappedBy = "clienteEnderecos", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private List<Endereco> enderecos;
-    
+
     @OneToMany(mappedBy = "clienteTelefone", fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private List<Telefone> telefones;
 
@@ -64,7 +64,7 @@ public class Cliente implements Serializable {
     @Size(min = 1, message = "{cliente.apelidoCliente.erro}")
     @Column(name = "AP_CLIENTE", length = 50, nullable = false)
     private String apelidoCliente;
-    
+
     @Column(name = "RO_CLIENTE", length = 13, nullable = true)
     private String roleCliente;
 
@@ -73,7 +73,7 @@ public class Cliente implements Serializable {
 
     @Column(name = "EN_CLIENTE", nullable = true)
     private Boolean enabled;
-    
+
     public Cliente() {
     }
 
@@ -93,8 +93,6 @@ public class Cliente implements Serializable {
         this.papeis = papeis;
         this.enabled = enabled;
     }
-    
-    
 
     public Long getCodigoCliente() {
         return codigoCliente;
@@ -208,5 +206,4 @@ public class Cliente implements Serializable {
         this.enabled = enabled;
     }
 
-    
 }

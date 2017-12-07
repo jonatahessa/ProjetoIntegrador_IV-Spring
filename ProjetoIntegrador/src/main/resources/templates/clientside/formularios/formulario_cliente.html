@@ -30,7 +30,7 @@
                         <label for="basic-url">* Data de Nascimento:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input id="dataN" data-th-field="*{nascCliente}" maxlength = "10" onkeypress = " mascara (this, '##/##/####') " type="text" class="form-control" aria-describedby="sizing-addon2">
+                            <input id="dataN" th:value="${#dates.format(cliente.nascCliente, 'dd-MM-yyyy')}" th:id="${cliente.nascCliente}" th:name="${cliente.nascCliente}" maxlength = "10" onkeypress = " mascara (this, '##/##/####') " type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
                         <div class="form-group" data-th-classappend="${#fields.hasErrors('sexoCliente')} ? has-error">
@@ -59,7 +59,7 @@
                             <label for="basic-url">* Senha:</label>
                             <div class="input-group input_" data-th-classappend="${#fields.hasErrors('senhaCliente')} ? has-error">
                                 <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-th"></span></span>
-                                <input autocomplete="off" data-th-field="*{senhaCliente}"  type="password" class="form-control" aria-describedby="sizing-addon2">
+                                <input autocomplete="off" th:field="*{senhaCliente}" type="password" class="form-control" aria-describedby="sizing-addon2">
                             </div>
                         </div>
 

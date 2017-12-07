@@ -11,6 +11,8 @@ import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -187,13 +189,9 @@ public class ClientSideController {
         boolean inclusao = (cliente.getCodigoCliente() == null);
 
         if (clienteR.hasErrors()) {
-            if (inclusao) {
-                return new ModelAndView("clientside/clienteCadastro");
-            } else {
-                return new ModelAndView("clientside/clienteCadastro");
-            }
-
+            return new ModelAndView("clientside/clienteCadastro");
         }
+
         if (inclusao) {
             cliente.setRoleCliente("ROLE_JOSELITO");
             PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -202,6 +200,12 @@ public class ClientSideController {
             cliente.setEnabled(true);
             clienteCadastro = clienteService.incluir(cliente);
         } else {
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession sessao = request.getSession();
+            Cliente clienteAlt = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+            cliente.setSenhaCliente(clienteAlt.getSenhaCliente());
+            cliente.setEnabled(true);
+            cliente.setRoleCliente("ROLE_JOSELITO");
             clienteService.alterar(cliente);
         }
 
@@ -214,6 +218,38 @@ public class ClientSideController {
 
         }
 
+    }
+
+    @RequestMapping(value = "/novoCliente/telefone", method = RequestMethod.POST)
+    public ModelAndView cadastrarTelefoneCliente(
+            @ModelAttribute(value = "telefone") @Valid Telefone telefone, BindingResult bindingResult,
+            RedirectAttributes attributes) {
+
+        boolean inclusao = (telefone.getCodigoTelefone() == null);
+
+        if (bindingResult.hasErrors()) {
+            if (inclusao) {
+                return new ModelAndView("clientside/clienteCadastroTelefone");
+            } else {
+                return new ModelAndView("clientside/clientePerfil");
+            }
+
+        }
+        if (inclusao) {
+            telefone.setClienteTelefone(clienteCadastro);
+            telefoneService.incluir(telefone);
+        } else {
+            //clienteService.alterar(cliente);
+        }
+
+        if (inclusao) {
+            return new ModelAndView("clientside/clienteCadastroEndereco")
+                    .addObject("endereco", new Endereco());
+        } else {
+            ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
+            attributes.addFlashAttribute("mensagem", "Telefones alterados com sucesso");
+            return mv;
+        }
     }
 
     @RequestMapping(value = "/novoCliente/endereco", method = RequestMethod.POST)
@@ -243,38 +279,6 @@ public class ClientSideController {
         } else {
             ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
             attributes.addFlashAttribute("mensagem", "Enderecos alterados com sucesso");
-            return mv;
-        }
-    }
-
-    @RequestMapping(value = "/novoCliente/telefone", method = RequestMethod.POST)
-    public ModelAndView cadastrarTelefoneCliente(
-            @ModelAttribute(value = "telefone") @Valid Telefone telefone, BindingResult bindingResult,
-            RedirectAttributes attributes) {
-
-        boolean inclusao = (telefone.getCodigoTelefone() == null);
-
-        if (bindingResult.hasErrors()) {
-            if (inclusao) {
-                return new ModelAndView("clientside/clienteCadastroTelefone");
-            } else {
-                return new ModelAndView("clientside/clientePerfil");
-            }
-
-        }
-        if (inclusao) {
-            telefone.setClienteTelefone(clienteCadastro);
-            telefoneCadastro = telefoneService.incluir(telefone);
-        } else {
-            //clienteService.alterar(cliente);
-        }
-
-        if (inclusao) {
-            return new ModelAndView("clientside/clienteCadastroEndereco")
-                    .addObject("endereco", new Endereco());
-        } else {
-            ModelAndView mv = new ModelAndView("redirect:/admin/perfil");
-            attributes.addFlashAttribute("mensagem", "Telefones alterados com sucesso");
             return mv;
         }
     }
@@ -314,12 +318,12 @@ public class ClientSideController {
     }
 
     @RequestMapping("/editDados")
-    public ModelAndView abrirDados() {
+    public ModelAndView abrirDados() throws ParseException {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession sessao = request.getSession();
 
         Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
-
+        
         return new ModelAndView("clientside/clienteCadastro").addObject("cliente", cliente);
     }
 

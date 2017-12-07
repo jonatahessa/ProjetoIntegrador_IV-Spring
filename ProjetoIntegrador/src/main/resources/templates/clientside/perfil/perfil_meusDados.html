@@ -8,7 +8,7 @@
 
           <h1 class="text-center">Meus Dados</h1>
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
               <h2>Dados Pessoais</h2>
               <div class="">
                 <p th:text="${'Nome: ' + cliente.nomeCompletoCliente}"></p>
@@ -39,42 +39,62 @@
               </div>
             </div>
 
-            <h2>Enderecos</h2>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <h2>Enderecos</h2>
 
-            <div th:each="e:${enderecos}">
+              <div th:each="e:${enderecos}">
 
-              <div class="">
-                <p th:text="${'Cep: ' + e.cepEndereco}"></p>
+                <div class="">
+                  <p th:text="${'Cep: ' + e.cepEndereco}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Logradouro: ' + e.logradouroEndereco}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Número: ' + e.numeroEndereco}"></p>
+                </div>
+
+                <div th:if="${e.complementoEndereco != null}" class="">
+                  <p th:text="${'Complemento: ' + e.complementoEndereco}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Bairro: ' + e.bairroEndereco}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Cidade: ' + e.cidadeEndereco}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Estado: ' + e.estadoEndereco}"></p>
+                </div>
+
+                <a class="btn btn-primary" th:href="@{/editDadosEndereco}">Editar Endereço</a>
+
               </div>
-
-              <div class="">
-                <p th:text="${'Logradouro: ' + e.logradouroEndereco}"></p>
-              </div>
-
-              <div class="">
-                <p th:text="${'Número: ' + e.numeroEndereco}"></p>
-              </div>
-
-              <div th:if="${e.complementoEndereco =! null}" class="">
-                <p th:text="${'Complemento: ' + e.complementoEndereco}"></p>
-              </div>
-
-              <div class="">
-                <p th:text="${'Bairro: ' + e.bairroEndereco}"></p>
-              </div>
-
-              <div class="">
-                <p th:text="${'Cidade: ' + e.cidadeEndereco}"></p>
-              </div>
-
-              <div class="">
-                <p th:text="${'Estado: ' + e.estadoEndereco}"></p>
-              </div>
-
-              <a class="btn btn-primary" th:href="@{/editDadosEndereco}">Editar Endereço</a>
 
             </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+              <h2>Telefones</h2>
+
+              <div th:each="t:${telefones}" class="">
+
+                <div class="">
+                  <p th:text="${'Telefone Residencial: ' + t.dddTelefone + ' ' + t.numeroTelefone}"></p>
+                </div>
+
+                <div class="">
+                  <p th:text="${'Telefone Celular: ' + t.dddCelular + ' ' + t.numeroCelular}"></p>
+                </div>
+
+                <a class="btn btn-primary" th:href="@{editDadosTelefone}">Editar Telefones</a>
+
+              </div>
+            </div>
           </div>
         </section>
     </body>

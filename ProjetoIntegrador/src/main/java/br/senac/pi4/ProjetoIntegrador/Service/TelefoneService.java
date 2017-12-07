@@ -16,7 +16,7 @@ public interface TelefoneService extends Serializable {
     
     public Telefone obter(Long codigoTelefone);
 
-    public Telefone incluir(Telefone telefone);
+    public void incluir(Telefone telefone);
     
     public void alterar(Telefone telefone);
     

@@ -33,10 +33,8 @@ public class TelefoneServiceImpl implements TelefoneService {
 
     @Override
     @Transactional
-    public Telefone incluir(Telefone telefone) {
+    public void incluir(Telefone telefone) {
         entityManager.persist(telefone);
-        entityManager.flush();
-        return telefone;
     }
 
     @Override
