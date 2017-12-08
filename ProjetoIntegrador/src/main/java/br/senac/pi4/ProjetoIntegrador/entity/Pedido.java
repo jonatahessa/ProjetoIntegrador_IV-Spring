@@ -83,7 +83,10 @@ public class Pedido implements Serializable {
 
     @Transient
     private Long idCliente;
-
+    
+    @Transient
+    private String nomeCliente;
+    
     @Transient
     private Set<Long> idProdutos;
 
@@ -184,6 +187,14 @@ public class Pedido implements Serializable {
         this.idCliente = idCliente;
     }
 
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+    
     public Set<Long> getIdProdutos() {
         return idProdutos;
     }

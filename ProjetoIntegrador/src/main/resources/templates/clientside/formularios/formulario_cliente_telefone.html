@@ -32,7 +32,7 @@ and open the template in the editor.
                             <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('numeroTelefone')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                                    <input data-th-field="*{numeroTelefone}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{numeroTelefone}" type="text" onkeypress="mascara(this, '####=####')" maxlength="10" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@ and open the template in the editor.
                             <div class="telefone_2 col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                 <div class="input-group" data-th-classappend="${#fields.hasErrors('numeroCelular')} ? has-error">
                                     <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-phone"></span></span>
-                                    <input data-th-field="*{numeroCelular}" type="text" class="form-control"  aria-describedby="sizing-addon2">
+                                    <input data-th-field="*{numeroCelular}" type="text" onkeypress="mascara(this, '#####-####')" maxlength="10" class="form-control"  aria-describedby="sizing-addon2">
                                 </div>
                             </div>
                         </div>

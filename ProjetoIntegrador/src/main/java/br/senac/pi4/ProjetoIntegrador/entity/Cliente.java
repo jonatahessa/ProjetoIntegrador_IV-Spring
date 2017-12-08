@@ -35,13 +35,14 @@ public class Cliente implements Serializable {
     @Column(name = "PW_CLIENTE", length = 200, nullable = false)
     private String senhaCliente;
 
+    @CPF
     @Size(min = 14, max = 14, message = "{cliente.cpfCliente.erro}")
     @Column(name = "CPF_CLIENTE", length = 14, nullable = false, unique = true)
     private String cpfCliente;
 
-    @Column(name = "NS_CLIENTE", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date nascCliente;
+    @Size(min = 10, max = 10, message = "{cliente.nascCliente.erro}")
+    @Column(name = "NS_CLIENTE", length = 10, nullable = false)
+    private String nascCliente;
 
     @OrderBy(value = "dataPedido")
     @OneToMany(mappedBy = "clientePedido", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
@@ -77,7 +78,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, Date nascCliente, List<Pedido> pedidos, List<Endereco> enderecos, List<Telefone> telefones, String nomeCompletoCliente, String sexoCliente, String apelidoCliente, String roleCliente, List<Papel> papeis, Boolean enabled) {
+    public Cliente(Long codigoCliente, String emailCliente, String senhaCliente, String cpfCliente, String nascCliente, List<Pedido> pedidos, List<Endereco> enderecos, List<Telefone> telefones, String nomeCompletoCliente, String sexoCliente, String apelidoCliente, String roleCliente, List<Papel> papeis, Boolean enabled) {
         this.codigoCliente = codigoCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
@@ -126,11 +127,11 @@ public class Cliente implements Serializable {
         this.cpfCliente = cpfCliente;
     }
 
-    public Date getNascCliente() {
+    public String getNascCliente() {
         return nascCliente;
     }
 
-    public void setNascCliente(Date nascCliente) {
+    public void setNascCliente(String nascCliente) {
         this.nascCliente = nascCliente;
     }
 
@@ -205,5 +206,5 @@ public class Cliente implements Serializable {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
+    
 }

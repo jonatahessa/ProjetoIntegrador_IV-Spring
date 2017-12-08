@@ -41,6 +41,7 @@ br\senac\pi4\ProjetoIntegrador\controller\calculoFreteCorreio.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaProdutoController.class
 br\senac\pi4\ProjetoIntegrador\repository\ClienteRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\BDController.class
+br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaRelatorio.class
 br\senac\pi4\ProjetoIntegrador\repository\EnderecoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\controller\UploadController.class
 br\senac\pi4\ProjetoIntegrador\controller\BackoficeGerenciaProdutoController.class
