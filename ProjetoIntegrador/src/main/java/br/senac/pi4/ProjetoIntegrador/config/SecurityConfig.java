@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/novoCliente/**",
                         "/login-error/**",
                         "/sac",
+                        "/sobreEmpresa",
                         "/sacAdd",
                         "/login").permitAll()
                 .antMatchers("/admin/**").hasAuthority("JOSELITO")

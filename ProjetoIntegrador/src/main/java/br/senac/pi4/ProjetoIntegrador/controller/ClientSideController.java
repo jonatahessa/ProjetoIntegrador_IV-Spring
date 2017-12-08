@@ -117,6 +117,11 @@ public class ClientSideController {
                 .addObject("vazio", vazio);
     }
 
+    @RequestMapping(value = "/sobreEmpresa", method = RequestMethod.GET)
+    public ModelAndView sobreEmpresa() {
+        return new ModelAndView("clientside/sobreEmpresa");
+    }
+    
     @RequestMapping(value = "/sac", method = RequestMethod.GET)
     public ModelAndView sac() {
         return new ModelAndView("clientside/clienteSAC").addObject("sac", new SAC());
