@@ -1,5 +1,6 @@
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.entity.Boleto;
 import br.senac.pi4.ProjetoIntegrador.entity.Cartao;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
@@ -58,6 +59,7 @@ public class SessionController implements Serializable {
 
     private Set<Produto> carrinho = new HashSet<Produto>();
     private Cartao cartao = new Cartao();
+    private Boleto boleto = new Boleto();
     private int qntCarrinho = 1;
     private Long idEndereco = null;
     private BigDecimal total = new BigDecimal("0.0");
@@ -225,8 +227,13 @@ public class SessionController implements Serializable {
         this.enderecoFrete = serviceEndereco.obter(idEndereco);
         calculoFreteCorreio frete = new calculoFreteCorreio();
         BigDecimal retornoFrete = frete.calcularFrete("40010", this.enderecoFrete.getCepEndereco());
-        return new ModelAndView("clientside/checkoutConfirmacao").addObject("endereco", this.enderecoFrete).addObject("cartao", cartao).addObject("total", total).addObject("frete", retornoFrete);
+        return new ModelAndView("clientside/checkoutConfirmacao")
+                .addObject("endereco", this.enderecoFrete)
+                .addObject("cartao", cartao)
+                .addObject("total", total)
+                .addObject("frete", retornoFrete);
     }
+
 
     @RequestMapping(value = "/salvarPedido")
     public ModelAndView salvarPedido(RedirectAttributes redirectAttributes) {
@@ -245,7 +252,6 @@ public class SessionController implements Serializable {
         BigDecimal retornoFrete = frete.calcularFrete("40010", this.enderecoFrete.getCepEndereco());
 
         // Multiplicar pela quantidade de produtos no carrinho
-        
         pedido.setValorPedido(total);
         String protocolo = gerarProtocolo();
         pedido.setProtocoloPedido(protocolo);
