@@ -5,7 +5,11 @@
  */
 package br.senac.pi4.ProjetoIntegrador.controller;
 
+import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.Service.PedidoService;
+import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +29,13 @@ public class BackofficeVisualizaRelatorio {
     
     @RequestMapping
     public ModelAndView abrirRelatorio() {
+        boolean pesquisa = false;
+        boolean vazio = false;
         
-        return new ModelAndView("backoffice/pedido/relatorio");
+        List<Pedido> pedidos = pedidoService.listar(0, 100);
+        
+        
+        return new ModelAndView("backoffice/pedido/relatorio").addObject("pedidos", pedidos).addObject("pesquisa", pesquisa).addObject("vazio", vazio);
     }
     
 }
