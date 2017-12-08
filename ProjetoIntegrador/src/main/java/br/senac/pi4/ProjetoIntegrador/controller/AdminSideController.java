@@ -48,7 +48,6 @@ public class AdminSideController {
         return null;
     }
 
-
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public ModelAndView clientePefil() {
 
@@ -57,31 +56,24 @@ public class AdminSideController {
         Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
         List<Endereco> enderecos = cliente.getEnderecos();
         List<Telefone> telefones = cliente.getTelefones();
-
+        boolean vazio = true;
         List<Pedido> pedidos = new ArrayList<>();
 
         if (cliente.getPedidos() != null) {
 
             pedidos = cliente.getPedidos();
-            List<Produto> produtos = new ArrayList<>();
-            boolean vazio = false;
+            vazio = false;
 
-            if (pedidos.size() == 0) {
+            if (pedidos.isEmpty()) {
 
                 vazio = true;
-                return new ModelAndView("clientside/clientePerfil")
-                        .addObject("pedidos", pedidos)
-                        .addObject("vazio", vazio)
-                        .addObject("cliente", cliente)
-                        .addObject("enderecos", enderecos)
-                        .addObject("telefones", telefones);
-
             }
 
         }
 
         return new ModelAndView("clientside/clientePerfil")
                 .addObject("pedidos", pedidos)
+                .addObject("vazio", vazio)
                 .addObject("cliente", cliente)
                 .addObject("enderecos", enderecos)
                 .addObject("telefones", telefones);
