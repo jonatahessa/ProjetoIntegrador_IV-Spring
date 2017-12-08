@@ -25,7 +25,7 @@ and open the template in the editor.
                             <label for="cep">CEP</label>
                             <div class="input-group input_">
                                 <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-map-marker"></span></span>
-                                <input th:field="*{cepEndereco}"  id="cep" class="form-control" aria-describedby="sizing-addon2" type="text" />
+                                <input th:field="*{cepEndereco}" onkeypress="mascara(this, '#####-###')" maxlength="9" id="cep" class="form-control" aria-describedby="sizing-addon2" type="text" />
                             </div>
                         </div>
 

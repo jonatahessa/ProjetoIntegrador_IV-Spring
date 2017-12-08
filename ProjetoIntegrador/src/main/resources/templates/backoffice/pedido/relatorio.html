@@ -1,0 +1,45 @@
+<html layout:decorate="~{backoffice/geral/sidemenu}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <section layout:fragment="conteudo" class="container-fluid">
+
+          <form class="" th:action="@{/backoffice/relatorio/pesquisar}" method="post">
+
+            <label for="">Pedidos de:</label>
+            <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-de" value="">
+
+            <label for="">Pedidos até:</label>
+            <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-ate" value="">
+          </form>
+
+          <div class="">
+            <table>
+              <thead>
+                <tr>
+                  <th>Código do Pedido</th>
+                  <th>Data do Pedido</th>
+                  <th>Cliente</th>
+                  <th>Produtos</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="ped:${pedidos}">
+                  <td th:text="${ped.codigoPedido}"></td>
+                  <td th:text="${ped.dataPedido}"></td>
+                  <td th:text="${ped.nomeCliente}"></td>
+                  <td th:each="prod:${ped.produtos}">
+                  <p th:text="${prod.tituloProduto}"></p></td>
+                  <td th:text="${ped.total}"></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </section>
+    </body>
+</html>

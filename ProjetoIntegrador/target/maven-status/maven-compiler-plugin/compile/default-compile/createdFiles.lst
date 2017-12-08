@@ -12,6 +12,7 @@ br\senac\pi4\ProjetoIntegrador\entity\Imagem.class
 br\senac\pi4\ProjetoIntegrador\entity\Produto.class
 br\senac\pi4\ProjetoIntegrador\entity\SAC.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaPedidoController.class
+br\senac\pi4\ProjetoIntegrador\entity\Boleto.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoRepository.class
@@ -40,6 +41,7 @@ br\senac\pi4\ProjetoIntegrador\controller\calculoFreteCorreio.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaProdutoController.class
 br\senac\pi4\ProjetoIntegrador\repository\ClienteRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\BDController.class
+br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaRelatorio.class
 br\senac\pi4\ProjetoIntegrador\repository\EnderecoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\controller\UploadController.class
 br\senac\pi4\ProjetoIntegrador\controller\BackoficeGerenciaProdutoController.class

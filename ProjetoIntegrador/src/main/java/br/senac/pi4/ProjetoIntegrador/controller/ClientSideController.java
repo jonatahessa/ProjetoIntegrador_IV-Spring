@@ -340,5 +340,29 @@ public class ClientSideController {
 
         return new ModelAndView("clientside/clienteCadastro").addObject("cliente", cliente);
     }
+    
+    @RequestMapping("/editDadosEndereco")
+    public ModelAndView abrirEndereco() throws ParseException {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+
+        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        
+        List<Endereco> enderecos = cliente.getEnderecos();
+        
+        return new ModelAndView("clientside/clienteCadastroEndereco").addObject("endereco", enderecos.get(0));
+    }
+    
+    @RequestMapping("/editDadosTelefone")
+    public ModelAndView abrirTelefone() throws ParseException {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession sessao = request.getSession();
+
+        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        
+        List<Telefone> telefones = cliente.getTelefones();
+        
+        return new ModelAndView("clientside/clienteCadastroTelefone").addObject("telefone", telefones.get(0));
+    }
 
 }

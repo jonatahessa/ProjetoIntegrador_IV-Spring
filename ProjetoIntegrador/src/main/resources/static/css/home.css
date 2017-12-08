@@ -16,7 +16,7 @@ body, html{
 }
 
 a:link{
-    text-decoration:none; 
+    text-decoration:none;
     color: #000;
 }
 
@@ -112,7 +112,7 @@ a:link{
 .menu_topo{
     z-index: 8;
     margin-bottom: 4%;
-    background: #cccccc;   
+    background: #cccccc;
 }
 
 .menu{
@@ -178,7 +178,7 @@ a:link{
     .menu_topo{
         position: relative;
         margin-bottom: 4%;
-        background: #cccccc;    
+        background: #cccccc;
     }
 
 
@@ -204,4 +204,3 @@ a:link{
     }
 
 }
-

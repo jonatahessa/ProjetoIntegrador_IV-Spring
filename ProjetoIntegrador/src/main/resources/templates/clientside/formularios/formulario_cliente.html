@@ -24,13 +24,13 @@
                         <label for="basic-url">* CPF:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('cpfCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
-                            <input  id="cpf" data-th-field="*{cpfCliente}" maxlength = "14" onkeypress = " mascara (this, '###.###.###-##')" type="text" class="form-control" aria-describedby="sizing-addon2">
+                            <input  id="cpf" data-th-field="*{cpfCliente}" maxlength="14" onkeypress="mascara(this, '###.###.###-##')" type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
                         <label for="basic-url">* Data de Nascimento:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('nomeCompletoCliente')} ? has-error">
                             <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input id="dataN" th:value="${#dates.format(cliente.nascCliente, 'dd-MM-yyyy')}" th:id="${cliente.nascCliente}" th:name="${cliente.nascCliente}" maxlength = "10" onkeypress = " mascara (this, '##/##/####') " type="text" class="form-control" aria-describedby="sizing-addon2">
+                            <input id="dataN" th:field="*{nascCliente}" maxlength="10" onkeypress="mascara(this, '##/##/####')" type="text" class="form-control" aria-describedby="sizing-addon2">
                         </div>
 
                         <div class="form-group" data-th-classappend="${#fields.hasErrors('sexoCliente')} ? has-error">
@@ -74,7 +74,7 @@
             </div>
 
         </section>
-        <script data-th-src="@{/js/mascara.js}" src="../../static/js/login.js" type="text/javascript"></script>
+
     </body>
 
 </html>
