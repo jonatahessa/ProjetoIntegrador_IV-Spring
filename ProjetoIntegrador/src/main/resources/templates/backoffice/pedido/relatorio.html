@@ -7,39 +7,34 @@
     <body>
         <section layout:fragment="conteudo" class="container-fluid">
 
-          <form class="" th:action="@{/backoffice/relatorio/pesquisar}" method="post">
+            <form class="" th:action="@{/backoffice/relatorio/pesquisar}" method="post">
 
-            <label for="">Pedidos de:</label>
-            <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-de" value="">
+                <label for="">Pedidos de:</label>
+                <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-de" value="">
 
-            <label for="">Pedidos até:</label>
-            <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-ate" value="">
-          </form>
+                <label for="">Pedidos até:</label>
+                <input type="text" onkeypress="mascara(this, '##/##/####')" maxlength="10" name="data-ate" value="">
+            </form>
 
-          <div class="">
-            <table>
-              <thead>
-                <tr>
-                  <th>Código do Pedido</th>
-                  <th>Data do Pedido</th>
-                  <th>Cliente</th>
-                  <th>Produtos</th>
-                  <th>Valor</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr th:each="ped:${pedidos}">
-                  <td th:text="${ped.codigoPedido}"></td>
-                  <td th:text="${ped.dataPedido}"></td>
-                  <td th:text="${ped.nomeCliente}"></td>
-                  <td th:each="prod:${ped.produtos}">
-                  <p th:text="${prod.tituloProduto}"></p></td>
-                  <td th:text="${ped.total}"></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="">
+                <table class="col-xs-12 col-sm-12 col-md-8 col-lg-8 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Protocolo do Pedido</th>
+                            <th>Data do Pedido</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pedido : ${pedidos}">
+                            <td th:text="${pedido.protocoloPedido}"></td>
+                            <td th:text="${pedido.dataPedido}"></td>
+                            <td th:text="${pedido.valorPedido}"></td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-          </div>
         </section>
         <script data-th-src="@{/js/mascara.js}" type="text/javascript"></script>
     </body>

@@ -2,6 +2,9 @@ package br.senac.pi4.ProjetoIntegrador.repository;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,8 +25,15 @@ public class ClienteServiceImpl implements ClienteService {
     private EntityManager entityManager;
     
     @Override
-    public List<Cliente> listar(int offset) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Cliente> listar(int offset, int quantidade) {
+        Iterable<Cliente> clientes = repo.findAll();
+        Iterator it = clientes.iterator();
+        List<Cliente> lista = new ArrayList<Cliente>();
+        while (it.hasNext()) {
+            Cliente c = (Cliente) it.next();
+            lista.add(c);
+        }
+        return lista;
     }
     
     @Override
