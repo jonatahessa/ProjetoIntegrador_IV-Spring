@@ -22,6 +22,7 @@
                         <tr>
                             <th>Protocolo do Pedido</th>
                             <th>Data do Pedido</th>
+                            <th>Forma de Pagamento</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -29,7 +30,8 @@
                         <tr th:each="pedido : ${pedidos}">
                             <td th:text="${pedido.protocoloPedido}"></td>
                             <td th:text="${pedido.dataPedido}"></td>
-                            <td th:text="${pedido.valorPedido}"></td>                            
+                            <td th:text="${pedido.formaPagamentoPedido}"></td>  
+                            <td th:text="${pedido.valorPedido}"></td>  
                         </tr>
                     </tbody>
                 </table>
