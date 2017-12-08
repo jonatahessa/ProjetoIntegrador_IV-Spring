@@ -246,12 +246,9 @@ public class SessionController implements Serializable {
         pedido.setProdutos(carrinho);
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
-
         calculoFreteCorreio frete = new calculoFreteCorreio();
-
         BigDecimal retornoFrete = frete.calcularFrete("40010", this.enderecoFrete.getCepEndereco());
-
-        // Multiplicar pela quantidade de produtos no carrinho
+        total.add(retornoFrete);
         pedido.setValorPedido(total);
         String protocolo = gerarProtocolo();
         pedido.setProtocoloPedido(protocolo);
