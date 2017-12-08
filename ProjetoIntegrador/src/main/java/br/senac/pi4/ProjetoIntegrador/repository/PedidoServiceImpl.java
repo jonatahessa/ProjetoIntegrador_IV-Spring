@@ -59,4 +59,6 @@ public class PedidoServiceImpl implements PedidoService{
     public void alterar(Pedido pedido) {
         entityManager.merge(pedido);
     }
+
+
 }

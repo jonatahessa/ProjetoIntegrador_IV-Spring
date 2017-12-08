@@ -218,10 +218,14 @@ public class SessionController implements Serializable {
         return new ModelAndView("redirect:/sessao/checkoutConfirmacao");
     }
 
+    private Endereco enderecoFrete = null;
+
     @RequestMapping(value = "/checkoutConfirmacao")
     public ModelAndView checkoutConfirmacao() {
-        Endereco endereco = serviceEndereco.obter(idEndereco);
-        return new ModelAndView("clientside/checkoutConfirmacao").addObject("endereco", endereco).addObject("cartao", cartao).addObject("total", total);
+        this.enderecoFrete = serviceEndereco.obter(idEndereco);
+        calculoFreteCorreio frete = new calculoFreteCorreio();
+        BigDecimal retornoFrete = frete.calcularFrete("40010", this.enderecoFrete.getCepEndereco());
+        return new ModelAndView("clientside/checkoutConfirmacao").addObject("endereco", this.enderecoFrete).addObject("cartao", cartao).addObject("total", total).addObject("frete", retornoFrete);
     }
 
     @RequestMapping(value = "/salvarPedido")
@@ -235,6 +239,13 @@ public class SessionController implements Serializable {
         pedido.setProdutos(carrinho);
         pedido.setStatusPedido("Pedido Recebido!");
         pedido.setUltimaAtualizacao(new Date());
+
+        calculoFreteCorreio frete = new calculoFreteCorreio();
+
+        BigDecimal retornoFrete = frete.calcularFrete("40010", this.enderecoFrete.getCepEndereco());
+
+        // Multiplicar pela quantidade de produtos no carrinho
+        
         pedido.setValorPedido(total);
         String protocolo = gerarProtocolo();
         pedido.setProtocoloPedido(protocolo);

@@ -1,5 +1,8 @@
 br\senac\pi4\ProjetoIntegrador\repository\ClienteServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\repository\TelefoneRepository.class
+br\senac\pi4\ProjetoIntegrador\Service\SACService.class
+br\senac\pi4\ProjetoIntegrador\repository\SACRepository.class
+br\senac\pi4\ProjetoIntegrador\repository\SACServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Endereco.class
 br\senac\pi4\ProjetoIntegrador\repository\ProdutoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Papel.class

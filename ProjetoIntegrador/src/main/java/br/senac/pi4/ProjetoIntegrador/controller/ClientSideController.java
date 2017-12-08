@@ -2,6 +2,7 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.Service.EnderecoService;
+import br.senac.pi4.ProjetoIntegrador.Service.SACService;
 import br.senac.pi4.ProjetoIntegrador.Service.TelefoneService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
@@ -12,8 +13,8 @@ import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ProdutoServiceImpl;
+import br.senac.pi4.ProjetoIntegrador.repository.SACServiceImpl;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,12 @@ public class ClientSideController {
 
     @Autowired
     private ProdutoServiceImpl serviceProduto;
+
+    @Autowired
+    private SACServiceImpl serviceSAC;
+
+    @Autowired
+    private SACService sacService;
 
     @Autowired
     private ClienteService clienteService;
@@ -124,7 +131,10 @@ public class ClientSideController {
             return new ModelAndView("clientside/clienteSAC");
         }
 
-        return new ModelAndView("clientside/home");
+        sacService.incluir(sac);
+
+        attributes.addFlashAttribute("mensagem", "Enviado com sucesso");
+        return new ModelAndView("redirect:/sac");
     }
 
     @RequestMapping(value = "/pesquisa")
@@ -319,20 +329,6 @@ public class ClientSideController {
     @RequestMapping("/login-error")
     public ModelAndView loginError() {
         return new ModelAndView("clientside/login").addObject("erro", true);
-    }
-
-    @RequestMapping("/meusDados")
-    public ModelAndView meusDados() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession sessao = request.getSession();
-        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
-        List<Endereco> enderecos = cliente.getEnderecos();
-        List<Telefone> telefones = cliente.getTelefones();
-
-        return new ModelAndView("clientside/clienteDados")
-                .addObject("cliente", cliente)
-                .addObject("enderecos", enderecos)
-                .addObject("telefones", telefones);
     }
 
     @RequestMapping("/editDados")

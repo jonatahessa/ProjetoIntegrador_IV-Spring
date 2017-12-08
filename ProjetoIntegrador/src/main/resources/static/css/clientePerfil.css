@@ -27,20 +27,17 @@
 }
 
 #Meus_Dados{
-    display: none;
+    display: block;
 }
 
 #Meus_Pedidos{
-    display: block;
+    display: none;
 }
 
 #Meu_Historico{
     display: none;
 }
 
-#Recomendacoes{
-    display: none;
-}
 
 #Menu_Desktop{
     display: none;

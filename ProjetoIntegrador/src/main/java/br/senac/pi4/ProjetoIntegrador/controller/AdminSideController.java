@@ -2,8 +2,11 @@ package br.senac.pi4.ProjetoIntegrador.controller;
 
 import br.senac.pi4.ProjetoIntegrador.Service.ClienteService;
 import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
+import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Pedido;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -45,24 +48,43 @@ public class AdminSideController {
         return null;
     }
 
+
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public ModelAndView clientePedidos() {
-        List<Pedido> pedidos = new ArrayList<>();
-        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+    public ModelAndView clientePefil() {
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession sessao = request.getSession();
-        Cliente cliente = new Cliente();
-        cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
+        List<Endereco> enderecos = cliente.getEnderecos();
+        List<Telefone> telefones = cliente.getTelefones();
+
+        List<Pedido> pedidos = new ArrayList<>();
+
         if (cliente.getPedidos() != null) {
+
             pedidos = cliente.getPedidos();
             List<Produto> produtos = new ArrayList<>();
             boolean vazio = false;
+
             if (pedidos.size() == 0) {
+
                 vazio = true;
-                return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos).addObject("vazio", vazio);
+                return new ModelAndView("clientside/clientePerfil")
+                        .addObject("pedidos", pedidos)
+                        .addObject("vazio", vazio)
+                        .addObject("cliente", cliente)
+                        .addObject("enderecos", enderecos)
+                        .addObject("telefones", telefones);
+
             }
+
         }
 
-        return new ModelAndView("clientside/clientePerfil").addObject("pedidos", pedidos);
+        return new ModelAndView("clientside/clientePerfil")
+                .addObject("pedidos", pedidos)
+                .addObject("cliente", cliente)
+                .addObject("enderecos", enderecos)
+                .addObject("telefones", telefones);
     }
 
     @RequestMapping(value = "/checkoutPagamento", method = RequestMethod.GET)
