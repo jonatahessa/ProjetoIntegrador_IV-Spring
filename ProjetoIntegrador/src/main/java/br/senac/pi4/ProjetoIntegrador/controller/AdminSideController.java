@@ -66,7 +66,7 @@ public class AdminSideController {
             List<Produto> produtos = new ArrayList<>();
             boolean vazio = false;
 
-            if (pedidos.size() == 0) {
+            if (pedidos.isEmpty()) {
 
                 vazio = true;
                 return new ModelAndView("clientside/clientePerfil")
