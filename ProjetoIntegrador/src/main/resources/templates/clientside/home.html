@@ -93,13 +93,13 @@
                 </div>
             </div>
 
-            <!-- CATEGORIAS 
+
             <div class="row">
 
                 <div class="col-sm-1 col-md-1 col-lg-1 categoria">
 
                 </div>
-            -->
+
                 <div class="alert alert-danger" th:if="${msgEstoque != null}">
                     <h4 th:text="${msgEstoque}"></h4>
                 </div>
@@ -118,15 +118,8 @@
                                 </form>
                             </div>
                             <div class="description">
-                                <h1 data-th-text="${produto.tituloProduto}"></h1>
+                                <h3 class="tituloCard" data-th-text="${produto.tituloProduto}"></h3>
                                 <h2 data-th-text="${#numbers.formatCurrency(produto.precoProduto)}"></h2>
-                                <div class="card-text card_classificacao">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
                                 <div class="card-footer">
                                     <div data-target="#myCarousel" class="cores" th:style="${produto.corProduto}" type="radio" data-slide-to="0"></div>
                                 </div>

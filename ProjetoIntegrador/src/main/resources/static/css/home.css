@@ -4,6 +4,10 @@ body, html{
     height: 100%;
 }
 
+.tituloCard{
+    padding-top: 2%;
+}
+
 a:link{
     text-decoration:none; 
     color: #000;

@@ -7,6 +7,7 @@ br\senac\pi4\ProjetoIntegrador\repository\PedidoRepository.class
 br\senac\pi4\ProjetoIntegrador\repository\PedidoServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\entity\Imagem.class
 br\senac\pi4\ProjetoIntegrador\entity\Produto.class
+br\senac\pi4\ProjetoIntegrador\entity\SAC.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaPedidoController.class
 br\senac\pi4\ProjetoIntegrador\Service\CategoriaService.class
 br\senac\pi4\ProjetoIntegrador\ServletInitializer.class
@@ -32,6 +33,7 @@ br\senac\pi4\ProjetoIntegrador\repository\TelefoneServiceImpl.class
 br\senac\pi4\ProjetoIntegrador\controller\ClientSideController.class
 br\senac\pi4\ProjetoIntegrador\Service\MarcaService.class
 br\senac\pi4\ProjetoIntegrador\repository\CategoriaRepository.class
+br\senac\pi4\ProjetoIntegrador\controller\calculoFreteCorreio.class
 br\senac\pi4\ProjetoIntegrador\controller\BackofficeVisualizaProdutoController.class
 br\senac\pi4\ProjetoIntegrador\repository\ClienteRepository.class
 br\senac\pi4\ProjetoIntegrador\controller\BDController.class

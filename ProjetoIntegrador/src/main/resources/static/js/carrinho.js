@@ -3,10 +3,11 @@ $(document).ready(function () {
     $('#btnCalcularCep').click(function () {
 
         var cep = $('#cepEscolhido').val();
+        var servico = $('#cepServico').val();
 
         var nCdEmpresa = "";
         var sDsSenha = "";
-        var nCdServico = "40010";
+        var nCdServico = servico;
         var sCepOrigem = "04696000";
         var sCepDestino = cep;
         var nVlPeso = "0.066";
@@ -44,7 +45,7 @@ $(document).ready(function () {
             success: function (xml) {
                 $(xml).find('cServico').each(function () {
                     var valor = $(this).find('Valor').text();
-                    $("#totalCep").text("Valor do cep: R$" + valor);
+                    $("#totalCep").text("R$" + valor);
                 });
             },
             type: 'GET'

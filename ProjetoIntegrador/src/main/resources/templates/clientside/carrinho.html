@@ -114,21 +114,27 @@
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
                                         <input type="text" id="cepEscolhido">
                                     </div>
-                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
                                         <label>Tipo de serviço</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
                                         <div class="form-group">
-                                            <select class="form-control" id="sel1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
+                                            <select id="cepServico" class="form-control">
+                                                <option value="40010">SEDEX Varejo</option>
+                                                <option value="40215">SEDEX 10 Varejo</option>
+                                                <option value="40169 ">SEDEX 12</option>
+                                                <option value="40290">SEDEX Hoje Varejo</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
-                                        <label>Total Frete</label>
+                                        <label>Total Frete:</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                                        <label id="totalCep"></label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                        <label>Total:</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
                                         <h1 class="h1Total" data-th-text="${#numbers.formatCurrency(total)}"><strong> </strong></h1>

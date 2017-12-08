@@ -7,6 +7,7 @@ import br.senac.pi4.ProjetoIntegrador.entity.Cliente;
 import br.senac.pi4.ProjetoIntegrador.entity.Endereco;
 import br.senac.pi4.ProjetoIntegrador.entity.Imagem;
 import br.senac.pi4.ProjetoIntegrador.entity.Produto;
+import br.senac.pi4.ProjetoIntegrador.entity.SAC;
 import br.senac.pi4.ProjetoIntegrador.entity.Telefone;
 import br.senac.pi4.ProjetoIntegrador.repository.CategoriaServiceImpl;
 import br.senac.pi4.ProjetoIntegrador.repository.ImagemServiceImpl;
@@ -107,6 +108,23 @@ public class ClientSideController {
                 .addObject("produtos", produtos)
                 .addObject("imagens", imagens)
                 .addObject("vazio", vazio);
+    }
+
+    @RequestMapping(value = "/sac", method = RequestMethod.GET)
+    public ModelAndView sac() {
+        return new ModelAndView("clientside/clienteSAC");
+    }
+
+    @RequestMapping(value = "/sacAdd", method = RequestMethod.POST)
+    public ModelAndView cadastrarSAC(
+            @ModelAttribute(value = "sac") @Valid SAC sac, BindingResult sacR,
+            RedirectAttributes attributes) {
+
+        if (sacR.hasErrors()) {
+            return new ModelAndView("clientside/clienteSAC");
+        }
+
+        return new ModelAndView("clientside/home");
     }
 
     @RequestMapping(value = "/pesquisa")
@@ -323,7 +341,7 @@ public class ClientSideController {
         HttpSession sessao = request.getSession();
 
         Cliente cliente = clienteService.obter((Long) sessao.getAttribute("idDoCliente"));
-        
+
         return new ModelAndView("clientside/clienteCadastro").addObject("cliente", cliente);
     }
 
