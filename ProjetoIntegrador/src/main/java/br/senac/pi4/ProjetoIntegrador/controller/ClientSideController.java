@@ -317,7 +317,7 @@ public class ClientSideController {
         clienteService.alterar(clienteCadastro);
 
         redirectAttributes.addFlashAttribute("mensagem", "Cliente cadastrado com sucesso");
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/home");
     }
 
     @RequestMapping("/login")
