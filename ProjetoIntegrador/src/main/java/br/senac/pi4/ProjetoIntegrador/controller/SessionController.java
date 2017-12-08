@@ -182,7 +182,6 @@ public class SessionController implements Serializable {
             }
         }
         total = tempTotal;
-        total = total.add(new BigDecimal("12.0"));
 
         if (temEstoque == true) {
             return new ModelAndView("clientside/carrinho").addObject("total", total).addObject("vazio", vazio);
