@@ -4,6 +4,13 @@ body, html{
     height: 100%;
 }
 
+.descricaoC{
+    max-width: 150ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .tituloCard{
     padding-top: 2%;
 }

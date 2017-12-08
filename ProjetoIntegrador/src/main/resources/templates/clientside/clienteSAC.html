@@ -13,6 +13,7 @@
         <link data-th-href="@{/Bootstrap/css/bootstrap.css}" href="../../static/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/home.css}" href="../../static/css/home.css" rel="stylesheet" type="text/css"/>
         <link data-th-href="@{/css/footer.css}" href="../../static/css/footer.css" rel="stylesheet" type="text/css"/>
+        <link data-th-href="@{/css/clienteForm.css}" href="../../static/css/clienteForm.css"  rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container-fluid">
@@ -26,7 +27,7 @@
 
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 
-                    <form method="post" th:action="@{/sacAdd}" th:object="${cliente}" novalidate>
+                    <form method="post" th:action="@{/sacAdd}" th:object="${sac}" novalidate>
 
 
                         <label for="basic-url">* Nome Completo:</label>
@@ -37,17 +38,17 @@
 
                         <label for="basic-url">* Email:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('email')} ? has-error">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="fa fa-globe"></span></span>
+                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
                             <input  id="email" data-th-field="*{email}" type="text" class="form-control" aria-describedby="sizing-addon2" required>
                         </div>
 
                         <label for="basic-url">* Mensagem:</label>
                         <div class="input-group input_" data-th-classappend="${#fields.hasErrors('mensagem')} ? has-error">
-                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-gift"></span></span>
-                            <input id="mensagem" data-th-field="*{mensagem}" type="text" class="form-control" aria-describedby="sizing-addon2" required>
+                            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
+                            <textarea maxlength="500" id="mensagem" data-th-field="*{mensagem}" class="form-control" aria-describedby="sizing-addon2" required></textarea>
                         </div>
-
-                        <button type="submit" class="button button-raised button-primary button-pill botaoC">Salvar</button>
+                        <br />
+                        <button type="submit" class="button button-raised button-primary button-pill botaoC">Enviar</button>
                         <br />
                         <p class="textCampo text-right">* Campos obrigatórios</p>
 

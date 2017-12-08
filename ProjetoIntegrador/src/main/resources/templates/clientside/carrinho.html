@@ -112,7 +112,7 @@
                                         <label>CEP:</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
-                                        <input type="text" id="cepEscolhido">
+                                        <input style="width: 50%;" type="text" id="cepEscolhido"/>
                                     </div>
                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
                                         <label>Tipo de serviço</label>
@@ -120,23 +120,24 @@
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
                                         <div class="form-group">
                                             <select id="cepServico" class="form-control">
-                                                <option value="40010">SEDEX Varejo</option>
-                                                <option value="40215">SEDEX 10 Varejo</option>
-                                                <option value="40169 ">SEDEX 12</option>
-                                                <option value="40290">SEDEX Hoje Varejo</option>
+                                                <option value="40010">SEDEX </option>
+                                                <option value="40215">SEDEX 10</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
-                                        <label>Total Frete:</label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
-                                        <label id="totalCep"></label>
+                                        <button class="button button-primary button-circle button-small" id="btnCalcularCep">P</button>
                                     </div>
                                     <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
-                                        <label>Total:</label>
+                                        <label>Total Frete unitário:</label>
                                     </div>
                                     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+                                        <h1 class="h1Total" id="totalCep"></h1>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
+                                        <label>Total (sem frete incluido):</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" >
                                         <h1 class="h1Total" data-th-text="${#numbers.formatCurrency(total)}"><strong> </strong></h1>
                                     </div>
                                 </div>

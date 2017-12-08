@@ -112,7 +112,7 @@ public class ClientSideController {
 
     @RequestMapping(value = "/sac", method = RequestMethod.GET)
     public ModelAndView sac() {
-        return new ModelAndView("clientside/clienteSAC");
+        return new ModelAndView("clientside/clienteSAC").addObject("sac", new SAC());
     }
 
     @RequestMapping(value = "/sacAdd", method = RequestMethod.POST)
