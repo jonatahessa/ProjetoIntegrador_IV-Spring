@@ -33,7 +33,9 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="alert alert-success" th:if="${sucessoPedido != null}">
+                <h4 th:text="${sucessoPedido}"></h4>
+            </div>
             <!-- LATERAL MENU -->
             <div class="row">
                 <div id="Menu_Desktop" class="col-sm-2 col-md-2 col-lg-2">
@@ -56,7 +58,7 @@
                         <div th:include="~{clientside/perfil/perfil_meusPedidos :: meus_pedidos}"></div>
                     </div>
 
-                     <div id="Meu_Historico">
+                    <div id="Meu_Historico">
                         <div th:include="~{clientside/perfil/perfil_meuHistorico :: meu_historico}"></div>
                     </div>
 
